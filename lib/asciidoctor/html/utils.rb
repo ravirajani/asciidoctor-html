@@ -13,7 +13,7 @@ module Asciidoctor
       def self.id_class_sel_str(id, classes)
         result = ""
         result += "##{id}" if id
-        result += ".#{classes.tr "\s", "."}" if classes
+        result + ".#{classes.tr "\s", "."}" if classes
       end
 
       def self.display_number(node)
@@ -27,7 +27,8 @@ module Asciidoctor
 
       def self.display_title(node)
         prefix = display_title_prefix node
-        node.title? ? %(<h5 class="block-title">#{prefix}<span class="title-content">#{node.title}</span></h5>\n) : ""
+        title = prefix.empty? ? node.title : %(<span class="title-content">#{node.title}</span>)
+        node.title? ? %(<h5 class="block-title">#{prefix}#{title}</h5>\n) : ""
       end
 
       def self.title_prefix(node)
