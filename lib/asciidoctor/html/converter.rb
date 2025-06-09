@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "asciidoctor"
 require_relative "utils"
 
 module Asciidoctor
@@ -14,7 +15,7 @@ module Asciidoctor
         show_sectnum = node.numbered && level <= (doc_attrs["sectnumlevels"] || 3).to_i
         tag_name = %(h#{level + 1})
         sectnum = show_sectnum ? %(<span class="sec-mark">#{node.sectnum ""}</span>) : ""
-        content = %(<#{tag_name}#{Utils.id_class_string nil, node.role}>) +
+        content = %(<#{tag_name}#{Utils.id_class_attr_str nil, node.role}>) +
                   %(#{sectnum}#{node.title}</#{tag_name}>\n\n#{node.content})
         Utils.wrap_node content, node, :section
       end

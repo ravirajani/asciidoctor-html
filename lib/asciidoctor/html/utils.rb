@@ -4,16 +4,16 @@ module Asciidoctor
   module Html
     # Utilities shared by multiple elements
     module Utils
-      def self.id_class_string(id, classes = nil)
+      def self.id_class_attr_str(id, classes = nil)
         id_attr = id ? %( id="#{id}") : ""
         class_attr = classes ? %( class="#{classes}") : ""
         "#{id_attr}#{class_attr}"
       end
 
-      def self.short_id_class_string(id, classes)
+      def self.id_class_sel_str(id, classes)
         result = ""
-        result << "##{id}" if id
-        result << ".#{classes.tr "\s", "."}" if classes
+        result += "##{id}" if id
+        result += ".#{classes.tr "\s", "."}" if classes
       end
 
       def self.display_number(node)
@@ -40,8 +40,8 @@ module Asciidoctor
       end
 
       def self.wrap_id_classes(content, id, classes, tag_name = :div)
-        id_class_string = id_class_string id, classes
-        %(<#{tag_name}#{id_class_string}>\n#{content}\n</#{tag_name}> <!-- #{short_id_class_string id, classes} -->\n)
+        id_class = id_class_attr_str id, classes
+        %(<#{tag_name}#{id_class}>\n#{content}\n</#{tag_name}> <!-- #{id_class_sel_str id, classes} -->\n)
       end
 
       def self.wrap_node(content, node, tag_name = :div)
