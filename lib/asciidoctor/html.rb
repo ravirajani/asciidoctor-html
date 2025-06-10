@@ -2,4 +2,3 @@
 
 require_relative "html/version"
 require_relative "html/converter"
-require "asciidoctor"

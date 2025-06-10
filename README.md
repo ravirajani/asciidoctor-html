@@ -20,8 +20,11 @@ gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
 
 ## Usage
 
-```bash
-asciidoctor -r asciidoctor-html mydoc.adoc
+```ruby
+require "asciidoctor"
+require "asciidoctor/html"
+
+Asciidoctor.convert_file "mydoc.adoc"
 ```
 
 ## Development

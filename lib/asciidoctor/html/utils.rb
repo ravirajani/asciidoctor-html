@@ -19,7 +19,7 @@ module Asciidoctor
       def self.display_number(node)
         if node.numeral
           chapter_number = node.document.attr("chapnum")
-          chapter_number ? "#{chapter_number}.#{node.numeral}" : node.numeral
+          chapter_number ? "#{chapter_number}.#{node.numeral}" : node.numeral.to_s
         else
           ""
         end
