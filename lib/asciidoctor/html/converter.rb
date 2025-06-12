@@ -26,6 +26,11 @@ module Asciidoctor
       end
 
       def convert_example(node)
+        unless node.title?
+          # Hack to ensure numbering of example block in all circumstances
+          node.title = ""
+          node.assign_caption nil
+        end
         node.set_attr "reftext", Utils.title_prefix(node)
         content = Utils.display_title(node) + node.content
         Utils.wrap_node content, node

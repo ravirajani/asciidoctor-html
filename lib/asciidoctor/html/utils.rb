@@ -17,9 +17,12 @@ module Asciidoctor
       end
 
       def self.display_number(node)
+        sectnums = node.document.attr "sectnums"
+        parent = node.parent
+        sectnum = sectnums && parent.instance_of?(Asciidoctor::Section) ? parent.numeral : nil
         if node.numeral
-          chapter_number = node.document.attr("chapnum")
-          chapter_number ? "#{chapter_number}.#{node.numeral}" : node.numeral.to_s
+          prefix_number = node.document.attr("chapnum") || sectnum
+          prefix_number ? "#{prefix_number}.#{node.numeral}" : node.numeral.to_s
         else
           ""
         end
@@ -27,12 +30,12 @@ module Asciidoctor
 
       def self.display_title(node)
         prefix = display_title_prefix node
-        title = prefix.empty? ? node.title : %(<span class="title-content">#{node.title}</span>)
-        node.title? ? %(<h5 class="block-title">#{prefix}#{title}</h5>\n) : ""
+        node.title? ? %(<h5 class="block-title">#{prefix}#{node.title}</h5>\n) : ""
       end
 
       def self.title_prefix(node)
-        (node.style ? "#{node.style.capitalize} " : "") + display_number(node)
+        name = node.style || node.role
+        (name ? "#{name.capitalize} " : "") + display_number(node)
       end
 
       def self.display_title_prefix(node)
@@ -46,7 +49,7 @@ module Asciidoctor
       end
 
       def self.wrap_node(content, node, tag_name = :div)
-        classes = [node.context, node.style, node.role].compact.join " "
+        classes = [node.context, node.style, node.role].compact.map(&:to_s).uniq.join " "
         wrap_id_classes content, node.id, classes, tag_name
       end
     end

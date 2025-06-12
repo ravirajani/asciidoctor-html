@@ -1,0 +1,8 @@
+:sectnums:
+== Numbered Section
+
+== Other Numbered Section
+
+====
+This is a simple example.
+====

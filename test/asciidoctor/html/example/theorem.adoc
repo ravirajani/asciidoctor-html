@@ -1,0 +1,4 @@
+[theorem]
+====
+This is a theorem.
+====
