@@ -35,7 +35,8 @@ module Asciidoctor
 
       def self.title_prefix(node)
         name = node.style || node.role
-        (name ? "#{name.capitalize} " : "") + display_number(node)
+        name_and_number = (name ? "#{name.capitalize} " : "") + display_number(node)
+        node.title? && !node.title.empty? && !name_and_number.empty? ? "#{name_and_number}: " : name_and_number
       end
 
       def self.display_title_prefix(node)

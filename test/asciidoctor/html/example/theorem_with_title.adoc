@@ -1,0 +1,5 @@
+.Theorem Title
+[theorem]
+====
+This is a theorem with title.
+====

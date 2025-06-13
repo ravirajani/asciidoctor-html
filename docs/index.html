@@ -2,7 +2,7 @@
 layout: default
 title: Test Results
 ---
-<p class="lead">13/06/2025 11:06</p>
+<p class="lead">13/06/2025 11:43</p>
 <div class="d-grid gap-2"><button type="button" data-bs-toggle="collapse" data-bs-target="#test-paragraph" class="btn btn-success">paragraph</button>
 <div class="collapse" id="test-paragraph"><pre><code class="language-asciidoc">This is a simple paragraph.
 </code></pre>
@@ -16,6 +16,18 @@ This is a paragraph with title.
 <h5 class="block-title">Paragraph Title</h5>
 <p>This is a paragraph with title.</p>
 </div> <!-- .paragraph -->
+</div>
+<button type="button" data-bs-toggle="collapse" data-bs-target="#test-theorem-with-title" class="btn btn-success">theorem_with_title</button>
+<div class="collapse" id="test-theorem-with-title"><pre><code class="language-asciidoc">.Theorem Title
+[theorem]
+====
+This is a theorem with title.
+====</code></pre>
+<div class="example theorem">
+<h5 class="block-title"><span class="title-prefix">Theorem 1: </span>Theorem Title</h5>
+<p>This is a theorem with title.</p>
+
+</div> <!-- .example.theorem -->
 </div>
 <button type="button" data-bs-toggle="collapse" data-bs-target="#test-example-in-numbered-section" class="btn btn-success">example_in_numbered_section</button>
 <div class="collapse" id="test-example-in-numbered-section"><pre><code class="language-asciidoc">:sectnums:
