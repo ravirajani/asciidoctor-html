@@ -28,5 +28,5 @@ jobs:
       - name: Upload index.html
         uses: actions/upload-artifact@v4
         with:
-          name: upload-index
+          name: test-results
           path: docs/index.html
