@@ -1,0 +1,6 @@
+:chapnum: 2
+
+[theorem]
+====
+This is a theorem numbered within chapter 2.
+====
