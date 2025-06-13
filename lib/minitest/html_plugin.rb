@@ -29,7 +29,7 @@ module Minitest
       color = failed ? "danger" : "success"
       id = "test-#{name.tr "_", "-"}"
       attrs = %(type="button" data-bs-toggle="collapse" data-bs-target="##{id}")
-      title = %(<button #{attrs} class="btn btn-#{color}">#{name.tr("_"," ").capitalize}</button>\n)
+      title = %(<button #{attrs} class="btn btn-#{color}">#{name.tr("_", " ").capitalize}</button>\n)
       pre = %(<pre><code class="language-asciidoc">#{CGI.escapeHTML adoc}</code></pre>\n)
       fail = failed ? display_failure(CGI.escapeHTML(@results[key].join("\n")), color) : ""
       %(#{title}<div class="collapse" id="#{id}">#{pre}#{fail}#{html}</div>)
