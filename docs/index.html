@@ -1,0 +1,60 @@
+---
+layout: default
+title: Test Results
+---
+<p class="lead">13/06/2025 11:06</p>
+<div class="d-grid gap-2"><button type="button" data-bs-toggle="collapse" data-bs-target="#test-paragraph" class="btn btn-success">paragraph</button>
+<div class="collapse" id="test-paragraph"><pre><code class="language-asciidoc">This is a simple paragraph.
+</code></pre>
+<p>This is a simple paragraph.</p>
+</div>
+<button type="button" data-bs-toggle="collapse" data-bs-target="#test-paragraph-with-title" class="btn btn-success">paragraph_with_title</button>
+<div class="collapse" id="test-paragraph-with-title"><pre><code class="language-asciidoc">.Paragraph Title
+This is a paragraph with title.
+</code></pre>
+<div class="paragraph">
+<h5 class="block-title">Paragraph Title</h5>
+<p>This is a paragraph with title.</p>
+</div> <!-- .paragraph -->
+</div>
+<button type="button" data-bs-toggle="collapse" data-bs-target="#test-example-in-numbered-section" class="btn btn-success">example_in_numbered_section</button>
+<div class="collapse" id="test-example-in-numbered-section"><pre><code class="language-asciidoc">:sectnums:
+== Numbered Section
+
+== Other Numbered Section
+
+====
+This is a simple example.
+====
+</code></pre>
+<div class="example">
+<h5 class="block-title"><span class="title-prefix">Example 2.1</span></h5>
+<p>This is a simple example.</p>
+
+</div> <!-- .example -->
+</div>
+<button type="button" data-bs-toggle="collapse" data-bs-target="#test-example" class="btn btn-success">example</button>
+<div class="collapse" id="test-example"><pre><code class="language-asciidoc">== Unnumbered Section
+
+====
+This is a simple example.
+====
+</code></pre>
+<div class="example">
+<h5 class="block-title"><span class="title-prefix">Example 1</span></h5>
+<p>This is a simple example.</p>
+
+</div> <!-- .example -->
+</div>
+<button type="button" data-bs-toggle="collapse" data-bs-target="#test-theorem" class="btn btn-success">theorem</button>
+<div class="collapse" id="test-theorem"><pre><code class="language-asciidoc">[theorem]
+====
+This is a theorem.
+====
+</code></pre>
+<div class="example theorem">
+<h5 class="block-title"><span class="title-prefix">Theorem 1</span></h5>
+<p>This is a theorem.</p>
+
+</div> <!-- .example.theorem -->
+</div></div>

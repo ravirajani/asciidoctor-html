@@ -3,6 +3,7 @@
 source "https://rubygems.org"
 
 gemspec
+gem "github-pages", "~> 232", group: :jekyll_plugins
 gem "irb"
 gem "logger"
 gem "minitest", "~> 5.16"
