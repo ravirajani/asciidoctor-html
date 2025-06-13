@@ -1,4 +1,4 @@
-[![Tests](https://github.com/ravirajani/asciidoctor-html/actions/workflows/main.yml/badge.svg)](https://github.com/ravirajani/asciidoctor-html/actions/workflows/main.yml)
+[![Build](https://github.com/ravirajani/asciidoctor-html/actions/workflows/main.yml/badge.svg)](https://github.com/ravirajani/asciidoctor-html/actions/workflows/main.yml)
 
 # Asciidoctor::Html
 
