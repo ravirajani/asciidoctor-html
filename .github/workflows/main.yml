@@ -25,3 +25,8 @@ jobs:
           bundler-cache: true
       - name: Run the default task
         run: bundle exec rake
+      - name: Upload index.html
+        uses: actions/upload-artifact@v4
+        with:
+          name: upload-index
+          path: docs/index.html
