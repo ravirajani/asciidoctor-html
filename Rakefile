@@ -12,9 +12,9 @@ RuboCop::RakeTask.new
 
 task build: %i[test rubocop] do
   config = Jekyll.configuration({
-    source: "./docs",
-    destination: "./_site"
-  })
+                                  source: "./docs",
+                                  destination: "./_site"
+                                })
   site = Jekyll::Site.new(config)
   Jekyll::Commands::Build.build site, config
 end
