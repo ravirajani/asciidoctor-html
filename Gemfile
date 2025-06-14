@@ -3,8 +3,8 @@
 source "https://rubygems.org"
 
 gemspec
-gem "github-pages", "~> 232", group: :jekyll_plugins
 gem "irb"
+gem "jekyll", "~> 4.4"
 gem "logger"
 gem "minitest", "~> 5.16"
 gem "rake", "~> 13.0"
