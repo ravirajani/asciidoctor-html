@@ -6,7 +6,7 @@
 /pkg/
 /spec/reports/
 /tmp/
-/docs/_site/
+_site
 /docs/index.html
-/docs/.jekyll-cache/
-/docs/node_modules/
+.jekyll-cache
+node_modules

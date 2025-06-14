@@ -42,12 +42,10 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
-      - name: Run the default task
-        run: bundle exec rake
+      - name: Run the build task
+        run: bundle exec rake build
       - name: Setup Pages
         uses: actions/configure-pages@v5
-      - name: Build with Jekyll
-        run: bundle exec jekyll build -s ./docs -d ./_site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
