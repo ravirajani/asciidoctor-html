@@ -1,4 +1,4 @@
-site: asciidoctor-html docs
+title: asciidoctor-html docs
 
 exclude:
   - package.json
