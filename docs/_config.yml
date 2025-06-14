@@ -1,5 +1,8 @@
 title: asciidoctor-html docs
 
+include:
+  - site.webmanifest
+  
 exclude:
   - package.json
   - package-lock.json
