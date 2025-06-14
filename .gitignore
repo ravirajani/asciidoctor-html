@@ -8,3 +8,5 @@
 /tmp/
 /docs/_site/
 /docs/index.html
+/docs/.jekyll-cache/
+/docs/node_modules/
