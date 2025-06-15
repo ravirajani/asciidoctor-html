@@ -28,7 +28,7 @@
 }
 
 @include color-mode(dark) {
-    .example-theorem, .example-theorem .block-title {
+    .example-theorem {
         --example-color: #{tint-color($indigo, 60%)};
     }
 }
