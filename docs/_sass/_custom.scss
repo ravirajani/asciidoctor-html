@@ -13,16 +13,22 @@
     padding-left: 1rem;
     margin-top: 1.25rem;
     margin-bottom: 1.25rem;
-    border-left: .25rem solid var(--example-color, var(--bs-gray-500));
+    border-left: .25rem solid var(--example-color, #{$gray-500});
     *:last-child {
         margin-bottom: 0;
     }
     .block-title {
-        color: var(--example-color, var(--bs-heading-color));
+        color: var(--example-color, #{$headings-color});
         
     }
 }
 
 .example-theorem {
-    --example-color: var(--bs-indigo);
+    --example-color: #{$indigo};
+}
+
+@include color-mode(dark) {
+    .example-theorem, .example-theorem .block-title {
+        --example-color: #{tint-color($indigo, 60%)};
+    }
 }

@@ -13,7 +13,7 @@ module Asciidoctor
         doc_attrs = node.document.attributes
         level = node.level
         show_sectnum = node.numbered && level <= (doc_attrs["sectnumlevels"] || 1).to_i
-        tag_name = %(h#{level + 1})
+        tag_name = %(h#{[level + 2,6].min})
         sectnum = show_sectnum ? %(<span class="title-mark">#{node.sectnum ""}</span>) : ""
         content = %(<#{tag_name}>#{sectnum}#{node.title}) +
                   %(</#{tag_name}>\n#{node.content})
