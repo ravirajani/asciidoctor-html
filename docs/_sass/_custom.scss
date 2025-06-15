@@ -1,0 +1,28 @@
+.title-mark {
+    margin-right: 1.5ex;
+}
+
+.title-prefix {
+    margin-right: 1ex;
+    &::after {
+        content: ':';
+    }
+}
+
+.example {
+    padding-left: 1rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    border-left: .25rem solid var(--example-color, var(--bs-gray-500));
+    *:last-child {
+        margin-bottom: 0;
+    }
+    .block-title {
+        color: var(--example-color, var(--bs-heading-color));
+        
+    }
+}
+
+.example-theorem {
+    --example-color: var(--bs-indigo);
+}

@@ -35,13 +35,13 @@ module Asciidoctor
 
       def self.title_prefix(node)
         name = node.style || node.role
-        name_and_number = (name ? "#{name.capitalize} " : "") + display_number(node)
-        node.title? && !node.title.empty? && !name_and_number.empty? ? "#{name_and_number}: " : name_and_number
+        (name ? "#{name.capitalize} " : "") + display_number(node)
       end
 
       def self.display_title_prefix(node)
         prefix = title_prefix node
-        prefix.empty? ? "" : %(<span class="title-prefix">#{prefix}</span>)
+        display_prefix = node.title? && !node.title.empty? ? %(<span class="title-prefix">#{prefix}</span>) : prefix
+        prefix.empty? ? "" : display_prefix
       end
 
       def self.wrap_id_classes(content, id, classes, tag_name = :div)

@@ -1,0 +1,4 @@
+[[sec-id]]
+== Section Title
+
+This is some content for <<sec-id>>.

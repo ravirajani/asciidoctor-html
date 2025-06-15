@@ -12,11 +12,11 @@ module Asciidoctor
       def convert_section(node)
         doc_attrs = node.document.attributes
         level = node.level
-        show_sectnum = node.numbered && level <= (doc_attrs["sectnumlevels"] || 3).to_i
+        show_sectnum = node.numbered && level <= (doc_attrs["sectnumlevels"] || 1).to_i
         tag_name = %(h#{level + 1})
-        sectnum = show_sectnum ? %(<span class="sec-mark">#{node.sectnum ""}</span>) : ""
-        content = %(<#{tag_name}#{Utils.id_class_attr_str nil, node.role}>) +
-                  %(#{sectnum}#{node.title}</#{tag_name}>\n\n#{node.content})
+        sectnum = show_sectnum ? %(<span class="title-mark">#{node.sectnum ""}</span>) : ""
+        content = %(<#{tag_name}>#{sectnum}#{node.title}) +
+                  %(</#{tag_name}>\n#{node.content})
         Utils.wrap_node content, node, :section
       end
 
