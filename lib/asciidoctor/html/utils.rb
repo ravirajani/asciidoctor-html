@@ -41,7 +41,7 @@ module Asciidoctor
       end
 
       def self.title_prefix(node)
-        name = node.style || node.role
+        name = node.style
         (name ? "#{name.capitalize} " : "") + display_number(node)
       end
 
