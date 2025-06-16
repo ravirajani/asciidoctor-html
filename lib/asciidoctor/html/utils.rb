@@ -16,12 +16,19 @@ module Asciidoctor
         result + ".#{classes.tr "\s", "."}" if classes
       end
 
+      def self.sectnum(node)
+        parent = node
+        sectnum = nil
+        if node.document.attr? "sectnums"
+          parent = parent.parent until parent.instance_of?(Asciidoctor::Section) || !parent.parent
+          sectnum = parent.numeral
+        end
+        sectnum
+      end
+
       def self.display_number(node)
-        sectnums = node.document.attr "sectnums"
-        parent = node.parent
-        sectnum = sectnums && parent.instance_of?(Asciidoctor::Section) ? parent.numeral : nil
         if node.numeral
-          prefix_number = node.document.attr("chapnum") || sectnum
+          prefix_number = node.document.attr("chapnum") || sectnum(node)
           prefix_number ? "#{prefix_number}.#{node.numeral}" : node.numeral.to_s
         else
           ""
