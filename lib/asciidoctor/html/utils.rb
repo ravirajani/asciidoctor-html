@@ -70,6 +70,10 @@ module Asciidoctor
         classes = [base_class, mod_class, node.role].compact.map(&:to_s).uniq.join(" ").strip
         wrap_id_classes content, node.id, classes, tag_name
       end
+
+      def self.wrap_node_with_title(content, node, tag_name = :div)
+        node.title? ? wrap_node(display_title(node) + content, node, tag_name) : content
+      end
     end
   end
 end

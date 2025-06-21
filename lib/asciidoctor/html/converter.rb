@@ -22,8 +22,8 @@ module Asciidoctor
       end
 
       def convert_paragraph(node)
-        content = %(#{Utils.display_title node}<p>#{node.content}</p>)
-        node.title? ? Utils.wrap_node(content, node) : "#{content}\n"
+        content = %(<p>#{node.content}</p>\n)
+        Utils.wrap_node_with_title content, node
       end
 
       def convert_example(node)
@@ -39,12 +39,13 @@ module Asciidoctor
 
       def convert_olist(node)
         depth = Olist.depth node
-        result = [%(<ol class="list-unstyled level-#{depth}">)]
+        classes = ["list-unstyled olist level-#{depth}", node.style, node.role].compact.join(" ")
+        result = [%(<ol#{Utils.id_class_attr_str node.id, classes}>)]
         node.items.each_with_index do |item, idx|
           result << Olist.convert_list_item(depth, item, idx)
         end
         result << %(</ol> <!-- .level-#{depth} -->\n)
-        result.join "\n"
+        Utils.wrap_node_with_title result.join("\n"), node
       end
     end
   end
