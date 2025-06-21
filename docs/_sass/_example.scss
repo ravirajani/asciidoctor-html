@@ -1,0 +1,17 @@
+.example {
+    padding: $content-padding-y $content-padding-x;
+    margin-left: -$content-padding-x;
+    margin-right: -$content-padding-x;
+    margin-bottom: 1.25rem;
+    border-top: 2px solid var(--example-border-color, var(--bs-secondary-border-subtle));
+    border-bottom: 2px solid var(--example-border-color, var(--bs-secondary-border-subtle));
+    background-color: var(--example-bg-color, var(--bs-secondary-bg-subtle));
+    > *:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.example-theorem {
+    --example-border-color: var(--bs-primary-border-subtle);
+    --example-bg-color: var(--bs-primary-bg-subtle);
+}

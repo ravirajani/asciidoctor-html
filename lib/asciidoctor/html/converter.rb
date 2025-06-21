@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "asciidoctor"
+require_relative "olist"
 require_relative "utils"
 
 module Asciidoctor
@@ -34,6 +35,16 @@ module Asciidoctor
         node.set_attr "reftext", Utils.title_prefix(node)
         content = Utils.display_title(node) + node.content
         Utils.wrap_node content, node
+      end
+
+      def convert_olist(node)
+        depth = Olist.depth node
+        result = [%(<ol class="list-unstyled level-#{depth}">)]
+        node.items.each_with_index do |item, idx|
+          result << Olist.convert_list_item(depth, item, idx)
+        end
+        result << %(</ol> <!-- .level-#{depth} -->\n)
+        result.join "\n"
       end
     end
   end

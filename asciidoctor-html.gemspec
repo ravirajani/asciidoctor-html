@@ -31,4 +31,5 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
   spec.add_dependency "asciidoctor", "~> 2.0"
+  spec.add_dependency "roman-numerals", "~>0.3"
 end

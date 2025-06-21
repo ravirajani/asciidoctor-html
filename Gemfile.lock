@@ -3,6 +3,7 @@ PATH
   specs:
     asciidoctor-html (0.1.0)
       asciidoctor (~> 2.0)
+      roman-numerals (~> 0.3)
 
 GEM
   remote: https://rubygems.org/
@@ -99,6 +100,7 @@ GEM
     reline (0.6.1)
       io-console (~> 0.5)
     rexml (3.4.1)
+    roman-numerals (0.3.0)
     rouge (3.30.0)
     rubocop (1.76.1)
       json (~> 2.3)
