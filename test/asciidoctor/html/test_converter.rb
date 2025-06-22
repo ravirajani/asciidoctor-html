@@ -14,7 +14,7 @@ module Asciidoctor
       node = doc.find_by(context: context.to_sym).first
 
       TestConverter.define_method("test_#{filepath.basename.sub_ext ""}") do
-        assert_equal converter.public_send("convert_#{context}", node), html
+        assert_equal html, converter.public_send("convert_#{context}", node)
       end
     end
 

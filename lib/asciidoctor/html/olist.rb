@@ -7,6 +7,8 @@ module Asciidoctor
     # Helper functions for the olist conversion
     module Olist
       DEPTH_ATTR = "list-depth"
+      OFFSET_ATTR = "list-offset"
+      FLAT_STYLE = "pseudocode"
 
       def self.depth(node)
         unless node.attr?(DEPTH_ATTR)
@@ -15,6 +17,34 @@ module Asciidoctor
           node.set_attr(DEPTH_ATTR, parent.attr?(DEPTH_ATTR) ? (parent.attr(DEPTH_ATTR) + 1) : 0)
         end
         node.attr DEPTH_ATTR
+      end
+
+      # Finds first parent node with OFFSET_ATTR (numbering follows this if so).
+      # If flat_numbering=true, then OFFSET_ATTR is set to 0 on node, and node is returned.
+      # Otherwise nil is returned.
+      def self.parent_with_offset(node)
+        node.set_attr OFFSET_ATTR, default_offset(node) if node.style == FLAT_STYLE
+        unless node.attr? OFFSET_ATTR
+          parent = node.parent
+          parent = parent.parent until parent.attr?(OFFSET_ATTR) || !parent.parent
+          return parent if parent.attr? OFFSET_ATTR
+        end
+        node.attr?(OFFSET_ATTR) ? node : nil
+      end
+
+      def self.default_offset(node)
+        start = node.attr?("start") ? node.attr("start") : "1"
+        num = start.to_i
+        num.to_s == start ? (num - 1) : 0
+      end
+
+      def self.increment_offset!(parent, step = 1)
+        if parent&.attr?(OFFSET_ATTR)
+          offset = parent.attr OFFSET_ATTR
+          parent.set_attr(OFFSET_ATTR, offset + step)
+          return offset
+        end
+        0
       end
 
       def self.list_mark(depth, idx)
@@ -30,7 +60,13 @@ module Asciidoctor
         end
       end
 
-      def self.convert_list_item(depth, item, idx)
+      def self.convert_list_item(node, parent, depth, item, idx)
+        depth = 0 if parent # Number relative to parent's offset if parent != nil
+        adj_idx = parent ? increment_offset!(parent) : (idx + default_offset(node))
+        display_list_item item, depth, adj_idx
+      end
+
+      def self.display_list_item(item, depth, idx)
         result = []
         result << %(<li#{Utils.id_class_attr_str item.id,
                                                  item.role}><div class="li-mark">#{Olist.list_mark depth, idx}</div>)

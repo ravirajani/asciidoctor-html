@@ -10,6 +10,11 @@ module Asciidoctor
         "#{id_attr}#{class_attr}"
       end
 
+      def self.dyn_id_class_attr_str(node, classes = nil)
+        id = node.title? ? node.id : nil
+        id_class_attr_str id, classes
+      end
+
       def self.id_class_sel_str(id, classes)
         result = ""
         result += "##{id}" if id
@@ -73,6 +78,10 @@ module Asciidoctor
 
       def self.wrap_node_with_title(content, node, tag_name = :div)
         node.title? ? wrap_node(display_title(node) + content, node, tag_name) : content
+      end
+
+      def self.wrap_id_classes_with_title(content, node, id, classes, tag_name = :div)
+        node.title ? wrap_id_classes(display_title(node) + content, id, classes, tag_name) : content
       end
     end
   end
