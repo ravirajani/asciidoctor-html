@@ -39,12 +39,13 @@ module Asciidoctor
 
       def convert_olist(node)
         depth = Olist.depth node
-        classes = ["list-unstyled olist level-#{depth}", node.style, node.role].compact.join(" ")
+        level = depth + 1
+        classes = ["olist level-#{level}", node.style, node.role].compact.join(" ")
         result = [%(<ol#{Utils.id_class_attr_str node.id, classes}>)]
         node.items.each_with_index do |item, idx|
           result << Olist.convert_list_item(depth, item, idx)
         end
-        result << %(</ol> <!-- .level-#{depth} -->\n)
+        result << %(</ol> <!-- .level-#{level} -->\n)
         Utils.wrap_node_with_title result.join("\n"), node
       end
     end

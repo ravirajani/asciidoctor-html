@@ -41,7 +41,7 @@ module Asciidoctor
 
       def self.display_title(node)
         prefix = display_title_prefix node
-        node.title? ? %(<h5 class="block-title">#{prefix}#{node.title}</h5>\n) : ""
+        node.title? ? %(<h6 class="block-title">#{prefix}#{node.title}</h6>\n) : ""
       end
 
       def self.title_prefix(node)

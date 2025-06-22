@@ -1,0 +1,24 @@
+.olist {
+    @extend .list-unstyled;
+    li {
+        display: flex;
+        flex-flow: row nowrap;
+        gap: 1ex;
+        align-items: first baseline;
+        .li-mark {
+            flex: 0 0 3.5ex;
+            text-align: right;
+        }
+    }
+    &.arabic {
+        > li > .li-mark::after {
+            content: '.';
+        }
+    }
+    &.loweralpha, &.lowerroman  {
+        > li > .li-mark {
+            &::before { content: '(' }
+            &::after { content: ')' }
+        }
+    }
+}
