@@ -13,12 +13,12 @@
             p { margin-bottom: 0.25rem; }
         }
     }
-    &.arabic {
+    &.arabic, &.lowerroman {
         > li > .li-mark::after {
             content: '.';
         }
     }
-    &.loweralpha, &.lowerroman  {
+    &.loweralpha, &.upperalpha {
         > li > .li-mark {
             &::before { content: '(' }
             &::after { content: ')' }

@@ -1,7 +1,7 @@
 :sectnums:
 :xrefstyle: short
 
-[[sec-id]]
+[[numbered-sec-id]]
 == Section Title
 
-This is some content for <<sec-id>>.
+This is some content for <<numbered-sec-id>>.

@@ -23,17 +23,23 @@ module Minitest
       %(<pre class="border border-#{color}"><code class="language-shell">#{failure}</code></pre>\n)
     end
 
+    def display_result_title(name, id, failed, color)
+      style = %(style="vertical-align: -0.125em;")
+      status_icon = %(<i class="bi bi-#{failed ? "x" : "check"}-square text-#{color}" #{style}></i>)
+      chevron = %(<i class="bi bi-chevron-expand"></i>)
+      attrs = %(type="button" data-bs-toggle="collapse" data-bs-target="##{id}")
+      %(#{status_icon}<button #{attrs} class="btn btn-link">#{chevron} #{name.tr("_", " ").capitalize}</button>\n)
+    end
+
     def display_result(name, adoc, html)
       key = "test_#{name}"
       failed = @results[key].size.positive?
       color = failed ? "danger" : "success"
       id = "test-#{name.tr "_", "-"}"
-      icon = %(<i class="bi bi-chevron-expand"></i>)
-      attrs = %(type="button" data-bs-toggle="collapse" data-bs-target="##{id}")
-      title = %(<button #{attrs} class="btn btn-#{color}">#{icon} #{name.tr("_", " ").capitalize}</button>\n)
+      title = display_result_title name, id, failed, color
       pre = %(<pre><code class="language-asciidoc">#{CGI.escapeHTML adoc}</code></pre>\n)
       fail = failed ? display_failure(CGI.escapeHTML(@results[key].join("\n")), color) : ""
-      %(#{title}<div class="collapse" id="#{id}">#{pre}#{fail}#{html}</div>)
+      %(<div>#{title}<div class="collapse full-width-bg" id="#{id}">#{pre}#{fail}#{html}</div></div>)
     end
 
     def report_files(results, dirname)
@@ -54,7 +60,7 @@ module Minitest
 
         report_files results, pn
       end
-      html = %(#{frontmatter}#{time}<div class="d-grid gap-2">#{results.join "\n"}</div>)
+      html = %(#{frontmatter}#{time}#{results.join "\n"})
       File.write("#{DOCS_DIR}/index.html", html)
     end
   end

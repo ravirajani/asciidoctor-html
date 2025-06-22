@@ -1,7 +1,12 @@
-main { margin: 1rem auto; }
-
 $content-padding-x: 0.75rem;
 $content-padding-y: 0.5rem;
+
+.full-width-bg {
+    padding-left: $content-padding-x;
+    padding-right: $content-padding-x;
+    margin-left: -$content-padding-x;
+    margin-right: -$content-padding-x;
+}
 
 .content-container {
     max-width: 100ch;
