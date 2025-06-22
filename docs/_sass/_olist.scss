@@ -9,6 +9,9 @@
             flex: 0 0 3.5ex;
             text-align: right;
         }
+        .li-content {
+            p { margin-bottom: 0.25rem; }
+        }
     }
     &.arabic {
         > li > .li-mark::after {
