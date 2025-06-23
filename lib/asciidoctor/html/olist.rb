@@ -20,7 +20,7 @@ module Asciidoctor
       end
 
       # Finds first parent node with OFFSET_ATTR (numbering follows this if so).
-      # If flat_numbering=true, then OFFSET_ATTR is set to 0 on node, and node is returned.
+      # If node.style == FLAT_STYLE, then OFFSET_ATTR is set to (start || 0) on node, and node is returned.
       # Otherwise nil is returned.
       def self.parent_with_offset(node)
         node.set_attr OFFSET_ATTR, default_offset(node) if node.style == FLAT_STYLE

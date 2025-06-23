@@ -25,9 +25,9 @@
         }
     }
     &.pseudocode {
-        $pcode-indent: 28px;
-        $pcode-initial-gap: 18px;
-        $pcode-mark-width: 26px;
+        $pcode-indent: 2rem;
+        $pcode-initial-gap: 1rem;
+        $pcode-mark-width: 1.25rem;
         > li {
             gap: $pcode-initial-gap;
             > .li-mark {
