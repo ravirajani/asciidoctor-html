@@ -25,23 +25,34 @@
         }
     }
     &.pseudocode {
-        $pcode-indent: 2rem;
-        $pcode-initial-gap: 1rem;
-        $pcode-mark-width: 1.25rem;
-        > li {
-            gap: $pcode-initial-gap;
-            > .li-mark {
-                flex: 0 0 $pcode-mark-width;
+        @mixin pcode-style($initial-gap, $indent) {
+            $mark-width: 1.25rem;
+            > li {
+                gap: $initial-gap;
+                > .li-mark {
+                    flex: 0 0 $mark-width;
+                }
             }
-        }
-        @for $i from 1 through 3 {
-            &.level-#{$i + 1} {
-                margin-left: -($i - 1)*$pcode-indent - $pcode-initial-gap - $pcode-mark-width;
-                > li {
-                    gap: $i*$pcode-indent + $pcode-initial-gap;
+            @for $i from 1 through 3 {
+                &.level-#{$i + 1} {
+                    margin-left: -($i - 1)*$indent - $initial-gap - $mark-width;
+                    > li {
+                        gap: $i*$indent + $initial-gap;
+                    }
                 }
             }
         }
+
+        @include pcode-style($initial-gap: 0.75rem, $indent: 1.5rem);
+
+        @include media-breakpoint-up(sm) {
+            @include pcode-style($initial-gap: 0.75rem, $indent: 1.75rem);
+        }
+
+        @include media-breakpoint-up(md) {
+            @include pcode-style($initial-gap: 1rem, $indent: 2rem)
+        }
+
         .li-mark {
             font-size: 90%;
             color: var(--bs-tertiary-color)
