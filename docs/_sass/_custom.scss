@@ -1,5 +1,10 @@
 $content-padding-x: 0.75rem;
 $content-padding-y: 0.5rem;
+$content-width: 100ch;
+
+main {
+    margin: 1rem auto;
+}
 
 .full-width-bg {
     padding-left: $content-padding-x;
@@ -9,7 +14,7 @@ $content-padding-y: 0.5rem;
 }
 
 .content-container {
-    max-width: 100ch;
+    max-width: $content-width;
     padding-left: $content-padding-x;
     padding-right: $content-padding-x;
 }
