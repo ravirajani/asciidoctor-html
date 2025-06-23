@@ -21,8 +21,8 @@
     }
     &.loweralpha, &.upperalpha {
         > li > .li-mark {
-            &::before { content: '(' }
-            &::after { content: ')' }
+            &::before { content: '('; }
+            &::after { content: ')'; }
         }
     }
     &.pseudocode {
