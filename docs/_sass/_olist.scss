@@ -3,10 +3,10 @@
     li {
         display: flex;
         flex-flow: row nowrap;
-        gap: 1ex;
+        gap: 0.5rem;
         align-items: first baseline;
         .li-mark {
-            flex: 0 0 3.5ex;
+            flex: 0 0 1.5rem;
             text-align: right;
         }
         .li-content {
