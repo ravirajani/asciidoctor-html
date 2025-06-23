@@ -33,8 +33,7 @@ module Asciidoctor
           node.assign_caption nil
         end
         node.set_attr "reftext", Utils.title_prefix(node)
-        content = Utils.display_title(node) + node.content
-        Utils.wrap_node content, node
+        Utils.wrap_node_with_title node.content, node, needs_prefix: true
       end
 
       def convert_olist(node)

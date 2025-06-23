@@ -44,8 +44,8 @@ module Asciidoctor
         end
       end
 
-      def self.display_title(node)
-        prefix = display_title_prefix node
+      def self.display_title(node, needs_prefix: true)
+        prefix = needs_prefix ? display_title_prefix(node) : ""
         node.title? ? %(<h6 class="block-title">#{prefix}#{node.title}</h6>\n) : ""
       end
 
@@ -76,12 +76,12 @@ module Asciidoctor
         wrap_id_classes content, node.id, classes, tag_name
       end
 
-      def self.wrap_node_with_title(content, node, tag_name = :div)
-        node.title? ? wrap_node(display_title(node) + content, node, tag_name) : content
+      def self.wrap_node_with_title(content, node, tag_name = :div, needs_prefix: false)
+        node.title? ? wrap_node(display_title(node, needs_prefix:) + content, node, tag_name) : content
       end
 
-      def self.wrap_id_classes_with_title(content, node, id, classes, tag_name = :div)
-        node.title ? wrap_id_classes(display_title(node) + content, id, classes, tag_name) : content
+      def self.wrap_id_classes_with_title(content, node, id, classes, needs_prefix: false)
+        node.title ? wrap_id_classes(display_title(node, needs_prefix:) + content, id, classes) : content
       end
     end
   end
