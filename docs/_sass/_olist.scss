@@ -51,12 +51,12 @@
         }
 
         @include media-breakpoint-up(md) {
-            @include pcode-style($initial-gap: 1rem, $indent: 2rem)
+            @include pcode-style($initial-gap: 1rem, $indent: 2rem);
         }
 
         .li-mark {
             font-size: 90%;
-            color: var(--bs-tertiary-color)
+            color: var(--bs-tertiary-color);
         }
     }
 }
