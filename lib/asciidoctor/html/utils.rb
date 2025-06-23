@@ -10,8 +10,10 @@ module Asciidoctor
         "#{id_attr}#{class_attr}"
       end
 
+      # Don't include an id if the element will be wrapped
+      # by a title, since the wrapper should have the id.
       def self.dyn_id_class_attr_str(node, classes = nil)
-        id = node.title? ? node.id : nil
+        id = node.title? ? nil : node.id
         id_class_attr_str id, classes
       end
 
