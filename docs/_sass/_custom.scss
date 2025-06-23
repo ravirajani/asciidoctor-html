@@ -1,6 +1,6 @@
 $content-padding-x: 0.75rem;
 $content-padding-y: 0.5rem;
-$content-width: 100ch;
+$content-width: 80rch;
 
 main {
     margin: 1rem auto;
@@ -14,6 +14,7 @@ main {
 }
 
 .content-container {
+    box-sizing: content-box;
     max-width: $content-width;
     padding-left: $content-padding-x;
     padding-right: $content-padding-x;
