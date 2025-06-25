@@ -11,9 +11,10 @@ module Asciidoctor
       register_for "html5"
 
       def convert_section(node)
-        doc_attrs = node.document.attributes
+        document = node.document
+        Utils.reset_counters(document) if Utils.number_within(document) == :section
         level = node.level
-        show_sectnum = node.numbered && level <= (doc_attrs["sectnumlevels"] || 1).to_i
+        show_sectnum = node.numbered && level <= (document.attr("sectnumlevels") || 1).to_i
         tag_name = %(h#{[level + 2, 6].min})
         sectnum = show_sectnum ? %(<span class="title-mark">#{node.sectnum ""}</span>) : ""
         content = %(<#{tag_name}>#{sectnum}#{node.title}) +
@@ -27,11 +28,8 @@ module Asciidoctor
       end
 
       def convert_example(node)
-        unless node.title?
-          # Hack to ensure numbering of example block in all circumstances
-          node.title = ""
-          node.assign_caption nil
-        end
+        node.title = "" unless node.title? # Ensures the caption is displayed
+        Utils.assign_numeral! node, "thm"
         node.set_attr "reftext", Utils.title_prefix(node)
         Utils.wrap_node_with_title node.content, node, needs_prefix: true
       end

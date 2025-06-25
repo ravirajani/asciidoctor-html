@@ -37,6 +37,20 @@ module Asciidoctor
         sectnum
       end
 
+      def self.number_within(document)
+        return :chapter if document.attr? "chapnum"
+        return :section if document.attr? "sectnums"
+
+        :document
+      end
+
+      def self.reset_counters(document)
+        counters = document.counters
+        counters.each_key do |key|
+          counters[key] = 0
+        end
+      end
+
       def self.display_number(node)
         if node.numeral
           prefix_number = node.document.attr("chapnum") || sectnum(node)
@@ -51,6 +65,15 @@ module Asciidoctor
         node.title? ? %(<h6 class="block-title">#{prefix}#{node.title}</h6>\n) : ""
       end
 
+      # Increments the counter "#{context}-number" and
+      # sets the numeral on the node.
+      def self.assign_numeral!(node, counter_name = node.context)
+        document = node.document
+        hash_key = "#{counter_name}-number"
+        document.counters[hash_key] ||= 0
+        node.numeral = (document.counters[hash_key] += 1)
+      end
+
       def self.title_prefix(node)
         name = node.style
         (name ? "#{name.capitalize} " : "") + display_number(node)
@@ -58,8 +81,7 @@ module Asciidoctor
 
       def self.display_title_prefix(node)
         prefix = title_prefix node
-        display_prefix = node.title? && !node.title.empty? ? %(<span class="title-prefix">#{prefix}</span>) : prefix
-        prefix.empty? ? "" : display_prefix
+        node.title? && !node.title.empty? ? %(<span class="title-prefix">#{prefix}</span>) : prefix
       end
 
       def self.wrap_id_classes(content, id, classes, tag_name = :div)

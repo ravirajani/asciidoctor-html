@@ -2,3 +2,30 @@
 == Section Title
 
 This is some content for <<sec-id>>.
+
+====
+This is an example.
+====
+
+[lemma#lem-minor]
+====
+This is a lemma.
+====
+
+Building on <<lem-minor>>:
+
+[proposition]
+====
+This is a proposition.
+====
+
+[theorem#thm-important]
+.An Important Theorem
+====
+This is a theorem with title.
+====
+
+[corollary]
+====
+This is a corollary to <<thm-important>>.
+====

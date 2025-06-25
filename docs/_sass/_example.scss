@@ -2,7 +2,7 @@
     @extend .full-width-bg;
     padding-top: $content-padding-y;
     padding-bottom: $content-padding-y;
-    margin-bottom: 1.25rem;
+    margin-bottom: $spacer;
     border-top: 2px solid var(--example-border-color, var(--bs-secondary-border-subtle));
     border-bottom: 2px solid var(--example-border-color, var(--bs-secondary-border-subtle));
     background-color: var(--example-bg-color, var(--bs-secondary-bg-subtle));
@@ -11,7 +11,11 @@
     }
 }
 
-.example-theorem {
-    --example-border-color: var(--bs-primary-border-subtle);
-    --example-bg-color: var(--bs-primary-bg-subtle);
+$thm-types: theorem, proposition, lemma, corollary;
+
+@each $type in $thm-types {
+    .example-#{$type} {
+        --example-border-color: var(--bs-primary-border-subtle);
+        --example-bg-color: var(--bs-primary-bg-subtle);
+    }
 }
