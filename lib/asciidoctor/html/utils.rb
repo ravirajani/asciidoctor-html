@@ -4,6 +4,10 @@ module Asciidoctor
   module Html
     # Utilities shared by multiple elements
     module Utils
+      RESET = {
+        "thm-number" => true
+      }.freeze
+
       def self.id_class_attr_str(id, classes = nil)
         id_attr = id ? %( id="#{id}") : ""
         class_attr = classes ? %( class="#{classes}") : ""
@@ -47,7 +51,7 @@ module Asciidoctor
       def self.reset_counters(document)
         counters = document.counters
         counters.each_key do |key|
-          counters[key] = 0
+          counters[key] = 0 if RESET.fetch(key, false)
         end
       end
 

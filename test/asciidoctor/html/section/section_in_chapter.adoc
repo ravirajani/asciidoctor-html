@@ -1,5 +1,4 @@
-:sectnums:
-:xrefstyle: short
+:chapnum: 3
 
 [[numbered-sec-id]]
 == Section Title
