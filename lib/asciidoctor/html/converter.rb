@@ -12,8 +12,8 @@ module Asciidoctor
 
       def convert_section(node)
         document = node.document
-        Utils.reset_counters(document) if Utils.number_within(document) == :section
         level = node.level
+        Utils.reset_counters(document) if Utils.number_within(document) == :section && level == 1
         show_sectnum = node.numbered && level <= (document.attr("sectnumlevels") || 1).to_i
         tag_name = %(h#{[level + 2, 6].min})
         sectnum = show_sectnum ? %(<span class="title-mark">#{node.sectnum ""}</span>) : ""
