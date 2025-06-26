@@ -34,6 +34,22 @@ module Asciidoctor
         Utils.wrap_node_with_title node.content, node, needs_prefix: true
       end
 
+      def convert_image(node)
+        return super if node.option?("inline") || node.option?("interactive")
+
+        node.style = "figure"
+        Utils.assign_numeral! node, "fig"
+        target = node.attr "target"
+        width = node.attr?("width") ? %( width="#{node.attr "width"}") : ""
+        height = node.attr?("height") ? %( height="#{node.attr "height"}") : ""
+        alt = encode_attribute_value node.alt
+        image = %(<img src="#{node.image_uri target}" alt="#{alt}"#{width}#{height}#{@void_element_slash}>)
+        title = node.title? ? node.title : ""
+        caption = %(<figcaption>#{Utils.display_title_prefix node}#{title}</figcaption>)
+        content = %(<figure>\n    #{image}\n    #{caption}\n</figure>)
+        Utils.wrap_id_classes content, node.id, "figbox"
+      end
+
       def convert_olist(node)
         depth = Olist.depth node
         level = depth + 1

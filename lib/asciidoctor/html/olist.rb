@@ -33,7 +33,7 @@ module Asciidoctor
       end
 
       def self.default_offset(node)
-        start = node.attr?("start") ? node.attr("start") : "1"
+        start = node.attr?("start") ? node.attr("start") : 1
         num = start.to_i
         num.to_s == start ? (num - 1) : 0
       end

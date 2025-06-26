@@ -1,0 +1,19 @@
+.figbox {
+    margin-left: -$content-padding-x;
+    margin-right: -$content-padding-x;
+    display: flex;
+    justify-content: space-evenly;
+    figure {
+        img {
+            @extend .figure-img;
+            @extend .img-fluid;
+            max-height: 500px;
+        }
+        figcaption {
+            padding-left: $content-padding-x;
+            padding-right: $content-padding-x;
+            text-align: center;
+            @extend .figure-caption;
+        }
+    }
+}

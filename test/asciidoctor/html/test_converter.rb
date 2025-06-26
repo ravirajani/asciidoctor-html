@@ -9,7 +9,8 @@ module Asciidoctor
     class TestConverter < Minitest::Test; end
 
     def self.define_test_case(filepath, context, converter)
-      doc = Asciidoctor.load_file filepath
+      attributes = { "imagesdir" => "assets/img" }
+      doc = Asciidoctor.load_file(filepath, attributes:)
       html = File.read filepath.sub_ext(".html")
       node = doc.find_by(context: context.to_sym).first
 
