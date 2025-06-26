@@ -1,9 +1,8 @@
 .figbox {
     margin-left: -$content-padding-x;
     margin-right: -$content-padding-x;
-    display: flex;
-    justify-content: space-evenly;
     figure {
+        text-align: center;
         img {
             @extend .figure-img;
             @extend .img-fluid;
