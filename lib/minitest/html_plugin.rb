@@ -33,7 +33,7 @@ module Minitest
 
     def display_result(name, adoc, html)
       key = "test_#{name}"
-      failed = @results[key].size.positive?
+      failed = @results[key]&.size&.positive?
       color = failed ? "danger" : "success"
       id = "test-#{name.tr "_", "-"}"
       title = display_result_title name, id, failed, color

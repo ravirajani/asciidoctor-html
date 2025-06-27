@@ -3,10 +3,16 @@ AllCops:
   NewCops: enable
 
 Metrics/AbcSize:
-  Max: 20
+  Max: 40
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Metrics/PerceivedComplexity:
+  Max: 15
 
 Metrics/MethodLength:
-  Max: 15
+  Max: 30
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes

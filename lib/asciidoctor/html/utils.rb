@@ -4,10 +4,6 @@ module Asciidoctor
   module Html
     # Utilities shared by multiple elements
     module Utils
-      RESET = {
-        "thm-number" => true
-      }.freeze
-
       def self.id_class_attr_str(id, classes = nil)
         id_attr = id ? %( id="#{id}") : ""
         class_attr = classes ? %( class="#{classes}") : ""
@@ -31,60 +27,17 @@ module Asciidoctor
         id || (classes && !classes.empty?) ? " <!-- #{id_class_sel_str id, classes} -->" : ""
       end
 
-      def self.sectnum(node)
-        parent = node
-        sectnum = nil
-        if node.document.attr? "sectnums"
-          parent = parent.parent until parent.instance_of?(Asciidoctor::Section) || !parent.parent
-          sectnum = parent.numeral
-        end
-        sectnum
-      end
-
-      def self.number_within(document)
-        return :chapter if document.attr? "chapnum"
-        return :section if document.attr? "sectnums"
-
-        :document
-      end
-
-      def self.reset_counters(document)
-        counters = document.counters
-        counters.each_key do |key|
-          counters[key] = 0 if RESET.fetch(key, false)
-        end
-      end
-
-      def self.display_number(node)
-        if node.numeral
-          prefix_number = node.document.attr("chapnum") || sectnum(node)
-          prefix_number ? "#{prefix_number}.#{node.numeral}" : node.numeral.to_s
-        else
-          ""
-        end
+      def self.show_title?(node)
+        node.attr?("showcaption") || node.title?
       end
 
       def self.display_title(node, needs_prefix: true)
         prefix = needs_prefix ? display_title_prefix(node) : ""
-        node.title? ? %(<h6 class="block-title">#{prefix}#{node.title}</h6>\n) : ""
-      end
-
-      # Increments the counter "#{context}-number" and
-      # sets the numeral on the node.
-      def self.assign_numeral!(node, counter_name = node.context)
-        document = node.document
-        hash_key = "#{counter_name}-number"
-        document.counters[hash_key] ||= 0
-        node.numeral = (document.counters[hash_key] += 1)
-      end
-
-      def self.title_prefix(node)
-        name = node.style
-        (name ? "#{name.capitalize} " : "") + display_number(node)
+        show_title?(node) ? %(<h6 class="block-title">#{prefix}#{node.title}</h6>\n) : ""
       end
 
       def self.display_title_prefix(node)
-        prefix = title_prefix node
+        prefix = node.attr?("reftext") ? node.attr("reftext") : ""
         node.title? && !node.title.empty? ? %(<span class="title-prefix">#{prefix}</span>) : prefix
       end
 
@@ -95,8 +48,9 @@ module Asciidoctor
 
       def self.wrap_node(content, node, tag_name = :div)
         base_class = node.context
-        mod_class = if node.style && node.style != node.context.to_s
-                      "#{base_class}-#{node.style}"
+        mod = node.attr?("env") ? node.attr("env") : node.style
+        mod_class = if mod && mod != base_class.to_s
+                      "#{base_class}-#{mod}"
                     else
                       ""
                     end
@@ -105,11 +59,11 @@ module Asciidoctor
       end
 
       def self.wrap_node_with_title(content, node, tag_name = :div, needs_prefix: false)
-        node.title? ? wrap_node(display_title(node, needs_prefix:) + content, node, tag_name) : content
+        show_title?(node) ? wrap_node(display_title(node, needs_prefix:) + content, node, tag_name) : content
       end
 
       def self.wrap_id_classes_with_title(content, node, id, classes, needs_prefix: false)
-        node.title ? wrap_id_classes(display_title(node, needs_prefix:) + content, id, classes) : content
+        show_title?(node) ? wrap_id_classes(display_title(node, needs_prefix:) + content, id, classes) : content
       end
     end
   end

@@ -1,2 +1,2 @@
 .Picture of a cute cat.
-image::cat1.jpg[Cute Cat]
+image::cat1.jpg[cute cat]

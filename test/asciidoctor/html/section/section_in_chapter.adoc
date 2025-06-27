@@ -1,4 +1,5 @@
 :chapnum: 3
+:xrefstyle: short
 
 [[numbered-sec-id]]
 == Section Title
@@ -21,3 +22,9 @@ Building on <<lem-minor>>:
 ====
 This is a proposition.
 ====
+ 
+See <<fig-cute-cat>> for a picture of a cute cat.
+
+[[fig-cute-cat]]
+.Picture of a cute cat.
+image::cat2.jpg[cute cat]

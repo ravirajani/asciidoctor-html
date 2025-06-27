@@ -3,6 +3,7 @@
 require "asciidoctor"
 require_relative "olist"
 require_relative "utils"
+require_relative "figure"
 
 module Asciidoctor
   module Html
@@ -10,10 +11,11 @@ module Asciidoctor
     class Converter < (Asciidoctor::Converter.for "html5")
       register_for "html5"
 
+      include Figure
+
       def convert_section(node)
         document = node.document
         level = node.level
-        Utils.reset_counters(document) if Utils.number_within(document) == :section && level == 1
         show_sectnum = node.numbered && level <= (document.attr("sectnumlevels") || 1).to_i
         tag_name = %(h#{[level + 2, 6].min})
         sectnum = show_sectnum ? %(<span class="title-mark">#{node.sectnum ""}</span>) : ""
@@ -28,29 +30,32 @@ module Asciidoctor
       end
 
       def convert_example(node)
-        node.title = "" unless node.title? # Ensures the caption is displayed
-        Utils.assign_numeral! node, "thm"
-        node.set_attr "reftext", Utils.title_prefix(node)
+        p node.context unless Utils.show_title?(node)
         Utils.wrap_node_with_title node.content, node, needs_prefix: true
       end
 
       def convert_image(node)
         return super if node.option?("inline") || node.option?("interactive")
 
-        node.style = "figure"
-        Utils.assign_numeral! node, "fig"
-        target = node.attr "target"
-        width = node.attr?("width") ? %( width="#{node.attr "width"}") : ""
-        height = node.attr?("height") ? %( height="#{node.attr "height"}") : ""
-        alt = encode_attribute_value node.alt
-        image = %(<img src="#{node.image_uri target}" alt="#{alt}"#{width}#{height}#{@void_element_slash}>)
-        title = node.title? ? node.title : ""
-        caption = %(<figcaption>#{Utils.display_title_prefix node}#{title}</figcaption>)
-        content = %(<figure>\n    #{image}\n    #{caption}\n</figure>)
-        Utils.wrap_id_classes content, node.id, "figbox"
+        content = display_figure node
+        Utils.wrap_id_classes content, node.id, ["figbox", node.role].compact.join(" ")
+      end
+
+      def convert_inline_image(node)
+        return super if node.option?("inline") || node.option?("interactive")
+
+        target = node.target
+        mark = node.parent.attr("figcap-mark")
+        attrs = image_attrs node
+        image = display_image node, target, attrs
+        title = node.attr?("title") ? node.attr("title") : ""
+        caption = mark ? %(<span class="li-mark">#{mark}</span>#{title}) : title
+        %(    #{image}\n    <figcaption>#{caption}</figcaption>)
       end
 
       def convert_olist(node)
+        return convert_figlist(node) if node.style == Olist::FIGLIST_STYLE
+
         depth = Olist.depth node
         level = depth + 1
         parent = Olist.parent_with_offset node

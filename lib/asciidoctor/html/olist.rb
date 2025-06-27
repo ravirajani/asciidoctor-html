@@ -4,11 +4,12 @@ require "roman-numerals"
 
 module Asciidoctor
   module Html
-    # Helper functions for the olist conversion
+    # Helper functions for the olist conversion.
     module Olist
       DEPTH_ATTR = "list-depth"
       OFFSET_ATTR = "list-offset"
       FLAT_STYLE = "pseudocode"
+      FIGLIST_STYLE = "figlist"
 
       def self.depth(node)
         unless node.attr?(DEPTH_ATTR)

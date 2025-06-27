@@ -1,0 +1,4 @@
+[figlist]
+.Two beautiful cats.
+. image:cat2.jpg[Cat in basket,title=A cat in a basket.]
+. image:cat3.jpg[Cat on sofa,title=A cat on a sofa.]

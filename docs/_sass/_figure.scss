@@ -1,18 +1,18 @@
 .figbox {
     margin-left: -$content-padding-x;
     margin-right: -$content-padding-x;
-    figure {
+}
+figure {
+    text-align: center;
+    img {
+        @extend .figure-img;
+        @extend .img-fluid;
+        max-height: 500px;
+    }
+    figcaption {
+        padding-left: $content-padding-x;
+        padding-right: $content-padding-x;
         text-align: center;
-        img {
-            @extend .figure-img;
-            @extend .img-fluid;
-            max-height: 500px;
-        }
-        figcaption {
-            padding-left: $content-padding-x;
-            padding-right: $content-padding-x;
-            text-align: center;
-            @extend .figure-caption;
-        }
+        @extend .figure-caption;
     }
 }
