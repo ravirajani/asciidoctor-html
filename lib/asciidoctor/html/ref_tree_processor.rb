@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative "utils"
-require "set"
+require_relative "tree_walker"
 
 module Asciidoctor
   module Html
@@ -60,12 +60,8 @@ module Asciidoctor
 
       def process(document)
         sectnum = 0
-        blocks = [document]
-        max_levels = 5
-        idx = [0] * (max_levels + 1)
-        level = 0
-        while blocks.size.positive?
-          block = blocks.last
+        tw = TreeWalker.new(document)
+        while (block = tw.next_block)
           context = block.context
           unless block.attr? "refprocessed"
             if NUMBERED_CONTEXTS.key? context
@@ -76,14 +72,7 @@ module Asciidoctor
             end
             block.set_attr "refprocessed", true
           end
-          if block.blocks? && level < max_levels && idx[level + 1] < block.blocks.size
-            level += 1
-            blocks.push(block.blocks[idx[level]])
-          else
-            idx[level] += 1
-            level -= 1
-            blocks.pop
-          end
+          tw.walk
         end
       end
     end
