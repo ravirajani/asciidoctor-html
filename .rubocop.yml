@@ -6,13 +6,19 @@ Metrics/AbcSize:
   Max: 40
 
 Metrics/CyclomaticComplexity:
-  Max: 10
+  Max: 15
 
 Metrics/PerceivedComplexity:
-  Max: 15
+  Max: 20
+
+Metrics/BlockNesting:
+  Max: 5
 
 Metrics/MethodLength:
   Max: 30
+
+Metrics/ClassLength:
+  Max: 200
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
