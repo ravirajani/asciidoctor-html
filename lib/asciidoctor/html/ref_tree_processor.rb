@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "roman-numerals"
-require_relative "utils"
 require_relative "tree_walker"
 
 module Asciidoctor
@@ -64,7 +63,7 @@ module Asciidoctor
       end
 
       def ref_li_mark(mark, depth)
-        return mark if depth.odd?
+        return mark.to_s if depth.even?
 
         "(#{mark})"
       end

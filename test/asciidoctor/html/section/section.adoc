@@ -19,6 +19,28 @@ Building on <<lem-minor>>:
 This is a proposition.
 ====
 
+The following describes an <<alg-easy>>.
+
+[algorithm]
+====
+Here is an algorithm.
+
+[[alg-easy]]
+.Easy Algorithm
+. Initialise variables.
+. For every item in loop:
+.. Do some stuff.
+. Output something.
+====
+
+Take a break and look at <<fig-cats>>, paying special
+attention to <<fig-sofa-cat>>.
+
+[figlist#fig-cats]
+.Two beautiful cats.
+. image:cat2.jpg[Cat in basket,title=A cat in a basket.]
+. [[fig-sofa-cat,the sofa cat]] image:cat3.jpg[Cat on sofa,title=A cat on a sofa.]
+
 [theorem#thm-important]
 .An Important Theorem
 ====

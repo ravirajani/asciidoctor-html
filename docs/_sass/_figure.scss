@@ -1,6 +1,5 @@
 .figbox {
-    margin-left: -$content-padding-x;
-    margin-right: -$content-padding-x;
+    margin: 1.5rem -#{$content-padding-x};
 }
 figure {
     text-align: center;

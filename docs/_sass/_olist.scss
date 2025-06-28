@@ -10,7 +10,12 @@
     }
 }
 
+.list-wrapper {
+    margin-bottom: $spacer;
+}
+
 .olist {
+    margin-bottom: 0;
     @extend .list-unstyled;
     li {
         display: flex;
@@ -63,9 +68,7 @@
 }
 
 .figlist-wrapper {
-    margin-left: -$content-padding-x;
-    margin-right: -$content-padding-x;
-    margin-bottom: $spacer;
+    @extend .figbox;
     .figlist {
         margin-bottom: 0;
         @extend .list-unstyled;
