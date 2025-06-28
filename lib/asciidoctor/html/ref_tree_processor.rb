@@ -77,7 +77,7 @@ module Asciidoctor
         if depth.positive?
           parent = block.parent
           parent = parent.parent until parent.context == :list_item
-          parent_reftext = parent.attr?("reftext") ? parent.attr("reftext") : ""
+          parent_reftext = parent.reftext? ? parent.reftext : ""
         end
         block.set_attr "list-depth", depth
         if flat_style

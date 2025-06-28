@@ -37,7 +37,7 @@ module Asciidoctor
       end
 
       def self.display_title_prefix(node)
-        prefix = node.attr?("reftext") ? node.attr("reftext") : ""
+        prefix = node.reftext? ? node.reftext : ""
         node.title? && !node.title.empty? ? %(<span class="title-prefix">#{prefix}</span>) : prefix
       end
 
