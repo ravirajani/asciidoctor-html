@@ -10,7 +10,7 @@ module Asciidoctor
 
     def self.define_test_case(filepath, context)
       name = "test_#{filepath.basename.sub_ext ""}"
-      # return nil unless name == "test_section"
+      return nil unless name == "test_section"
 
       TestConverter.define_method(name) do
         converter = Asciidoctor::Converter.create "html5"

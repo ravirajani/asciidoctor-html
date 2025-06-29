@@ -20,6 +20,7 @@ This is a proposition.
 ====
 
 The following describes an <<alg-easy>>.
+The main work is done inside step <<alg-easy-loop-body>>.
 
 [algorithm]
 ====
@@ -29,7 +30,7 @@ Here is an algorithm.
 .Easy Algorithm
 . Initialise variables.
 . For every item in loop:
-.. Do some stuff.
+.. [[alg-easy-loop-body]]Do some stuff.
 . Output something.
 ====
 
@@ -39,7 +40,7 @@ attention to <<fig-sofa-cat>>.
 [figlist#fig-cats]
 .Two beautiful cats.
 . image:cat2.jpg[Cat in basket,title=A cat in a basket.]
-. [[fig-sofa-cat,the sofa cat]] image:cat3.jpg[Cat on sofa,title=A cat on a sofa.]
+. [[fig-sofa-cat]]image:cat3.jpg[Cat on sofa,title=A cat on a sofa.]
 
 [theorem#thm-important]
 .An Important Theorem

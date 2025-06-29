@@ -6,7 +6,7 @@ figure {
     img {
         @extend .figure-img;
         @extend .img-fluid;
-        max-height: 500px;
+        max-height: 400px;
     }
     figcaption {
         padding-left: $content-padding-x;

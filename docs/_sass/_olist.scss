@@ -12,10 +12,12 @@
 
 .list-wrapper {
     margin-bottom: $spacer;
+    ol, ul {
+        margin-bottom: 0;
+    }
 }
 
 .olist {
-    margin-bottom: 0;
     @extend .list-unstyled;
     li {
         display: flex;
