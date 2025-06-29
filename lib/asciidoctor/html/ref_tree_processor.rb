@@ -72,14 +72,17 @@ module Asciidoctor
         list.attr?("start") ? (list.attr("start").to_i - 1) : 0
       end
 
-      def register_reftext!(document, anchor_id, reftext)
-        node = document.catalog[:refs][anchor_id]
-        node&.text = reftext
+      # Finds an anchor at the start of item.text and updates
+      # its reftext to that of item's if necessary.
+      def register_reftext!(item, reftext)
+        item.set_attr "reftext", reftext
+        /^<a id="(?<anchor_id>.+?)"/ =~ item.text
+        node = item.document.catalog[:refs][anchor_id]
+        node&.text ||= reftext
       end
 
       def process_olist!(block, depth, flat_style: false)
         parent_reftext = ""
-        document = block.document
         if depth.positive?
           parent = block.parent
           parent = parent.parent until parent.context == :list_item
@@ -95,9 +98,7 @@ module Asciidoctor
             mark = li_mark(d, idx + offset)
             item.set_attr "mark", mark
             item_reftext = "#{parent_reftext}#{ref_li_mark mark, d}"
-            item.set_attr "reftext", item_reftext
-            /^<a id="(?<id>.+?)"/ =~ item.text
-            register_reftext! document, id, item_reftext if id
+            register_reftext! item, item_reftext
           end
         end
       end
@@ -105,7 +106,7 @@ module Asciidoctor
       def process_flat_item!(item, idx)
         mark = li_mark(0, idx)
         item.set_attr "mark", mark
-        item.set_attr "reftext", ref_li_mark(mark, 0)
+        register_reftext! item, ref_li_mark(mark, 0)
       end
 
       def reset_counters!(document)

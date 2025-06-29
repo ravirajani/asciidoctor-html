@@ -20,7 +20,9 @@ This is a proposition.
 ====
 
 The following describes an <<alg-easy>>.
-The main work is done inside step <<alg-easy-loop-body>>.
+The main work is done inside step <<alg-easy-loop-body>>,
+not <<alg-easy-condition-statement>>.
+The algorithm terminates on the <<alg-easy-output-line>>.
 
 [algorithm]
 ====
@@ -31,7 +33,9 @@ Here is an algorithm.
 . Initialise variables.
 . For every item in loop:
 .. [[alg-easy-loop-body]]Do some stuff.
-. Output something.
+.. If some condition:
+... [[alg-easy-condition-statement]]Some statement.
+. [[alg-easy-output-line,output line]]Output something.
 ====
 
 Take a break and look at <<fig-cats>>, paying special

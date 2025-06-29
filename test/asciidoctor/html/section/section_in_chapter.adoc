@@ -29,13 +29,14 @@ See <<fig-cute-cat>> for a picture of a cute cat.
 image::cat2.jpg[cute cat]
 
 Now for something more serious. Pay special attention
-to line <<alg-serious-line>> of <<alg-serious>>.
+to line <<alg-serious-line>> of <<alg-serious>> which starts
+with an <<alg-serious-init>>.
 
 [algorithm#alg-serious]
 .A Serious Algorithm
 ====
 [pseudocode]
-. First item, level 1
+. [[alg-serious-init,initialisation line]]First item, level 1
 . Second item, level 1
 .. First item, level 2
 ... First item, level 3
