@@ -1,12 +1,16 @@
 .arabic, .lowerroman {
-    > li .li-mark::after {
-        content: '.';
+    > li {
+        > .li-mark, > figure .li-mark {
+            &::after { content: '.'; }
+        }
     }
 }
 .loweralpha, .upperalpha {
-    > li .li-mark {
-        &::before { content: '('; }
-        &::after { content: ')'; }
+    > li {
+        > .li-mark, > figure .li-mark {
+            &::before { content: '('; }
+            &::after { content: ')'; }
+        }
     }
 }
 
