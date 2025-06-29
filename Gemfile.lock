@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    asciidoctor-html (0.1.1)
+    asciidoctor-html (0.1.2)
       asciidoctor (~> 2.0)
       roman-numerals (~> 0.3)
 
