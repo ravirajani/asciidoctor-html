@@ -116,6 +116,18 @@ module Asciidoctor
         end
       end
 
+      def olist_item?(node)
+        node.context == :list_item && node.parent.context == :olist
+      end
+
+      def level1_section?(node)
+        node.context == :section && node.level == 1
+      end
+
+      def olist?(node)
+        node.context == :olist
+      end
+
       def process(document)
         sectnum = 0
         listdepth = 0
@@ -123,27 +135,26 @@ module Asciidoctor
         flat_idx = 0 # flat index for (pseudocode) list
         tw = TreeWalker.new(document)
         while (block = tw.next_block)
-          context = block.context
           unless block.attr? "refprocessed"
             process_numbered_block!(block, document, sectnum) if process_numbered_block?(block)
-            if context == :section && block.level == 1 && number_within(document) == :section
+            if level1_section?(block) && number_within(document) == :section
               sectnum += 1
               reset_counters! document
-            elsif context == :olist
+            elsif olist?(block)
               if listdepth.zero?
                 flat_style = (block.style == "pseudocode")
                 flat_idx = offset block
               end
               process_olist!(block, listdepth, flat_style:)
-            elsif context == :list_item && flat_style
+            elsif olist_item?(block) && flat_style
               process_flat_item!(block, flat_idx)
               flat_idx += 1
             end
             block.set_attr "refprocessed", true
           end
           tw.walk do |move|
-            listdepth += 1 if context == :olist && move == :explore
-            listdepth -= 1 if context == :list_item && move == :retreat
+            listdepth += 1 if olist?(block) && move == :explore
+            listdepth -= 1 if olist_item?(block) && move == :retreat
           end
         end
       end

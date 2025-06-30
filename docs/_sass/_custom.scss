@@ -1,6 +1,10 @@
 $content-padding-x: 0.75rem;
-$content-padding-y: 0.5rem;
-$content-width: 90rch;
+$content-width: 45rem;
+
+:root {
+    --parsep: #{$spacer};
+    --paritemsep: #{0.25*$spacer};
+}
 
 main {
     margin: $spacer auto;
@@ -32,4 +36,12 @@ main {
 
 .block-title {
     margin-bottom: 0.25rem;
+}
+
+p {
+    margin-bottom: var(--parsep);
+}
+
+ol, ul, dl {
+    margin-bottom: calc(var(--parsep) - var(--paritemsep));
 }

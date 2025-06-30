@@ -14,13 +14,6 @@
     }
 }
 
-.list-wrapper {
-    margin-bottom: $spacer;
-    ol, ul {
-        margin-bottom: 0;
-    }
-}
-
 .olist {
     @extend .list-unstyled;
     li {
@@ -34,7 +27,7 @@
         }
         .li-content {
             flex: 1;
-            p { margin-bottom: 0.25rem; }
+            p { margin-bottom: var(--paritemsep); }
         }
     }
     &.pseudocode {
