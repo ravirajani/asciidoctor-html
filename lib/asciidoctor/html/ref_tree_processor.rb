@@ -76,7 +76,7 @@ module Asciidoctor
       # its reftext to that of item's if necessary.
       def register_reftext!(item, reftext)
         item.set_attr "reftext", reftext
-        /^<a id="(?<anchor_id>.+?)"/ =~ item.text
+        /\A<a id="(?<anchor_id>.+?)"/ =~ item.text
         node = item.document.catalog[:refs][anchor_id]
         node&.text ||= reftext
       end
