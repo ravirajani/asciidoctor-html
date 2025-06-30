@@ -4,7 +4,7 @@
 
 **The code in this repo is being actively developed and currently has limited functionality.**
 
-When complete, this gem will provide an alternative HTML converter for [Asciidoctor](https://github.com/asciidoctor/asciidoctor) as well as Jekyll-based book generator.
+When complete, this gem will provide an alternative HTML converter for [Asciidoctor](https://github.com/asciidoctor/asciidoctor) as well as a simple static site generator.
 
 ## Installation
 
