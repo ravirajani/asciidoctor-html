@@ -44,4 +44,5 @@ p {
 
 ol, ul, dl {
     margin-bottom: calc(var(--parsep) - var(--paritemsep));
+    p { margin-bottom: var(--paritemsep); }
 }
