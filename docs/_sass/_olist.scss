@@ -93,5 +93,7 @@
         padding-right: $content-padding-x;
         text-align: center;
         @extend .figure-caption;
+        margin-bottom: 0;
+        margin-top: 0.25rem;
     }
 }
