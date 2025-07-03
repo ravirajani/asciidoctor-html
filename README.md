@@ -27,7 +27,7 @@ require "asciidoctor"
 require "asciidoctor/html"
 
 Asciidoctor::Extensions.register do
-  tree_processor RefTreeProcessor
+  tree_processor Asciidoctor::Html::RefTreeProcessor
 end
 Asciidoctor.convert_file "mydoc.adoc"
 ```
