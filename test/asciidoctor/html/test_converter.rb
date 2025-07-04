@@ -10,13 +10,9 @@ module Asciidoctor
 
     def self.define_test_case(filepath, context)
       name = "test_#{filepath.basename.sub_ext ""}"
-      return nil unless name == "test_section"
 
       TestConverter.define_method(name) do
         converter = Asciidoctor::Converter.create "html5"
-        Asciidoctor::Extensions.register do
-          tree_processor RefTreeProcessor
-        end
         attributes = { "imagesdir" => "assets/img" }
         doc = Asciidoctor.load_file(filepath, attributes:)
         node = doc.find_by(context: context.to_sym).first
@@ -35,10 +31,8 @@ module Asciidoctor
       end
     end
 
-    Pathname(__dir__).children.each do |pn|
-      next unless pn.directory?
-
-      generate_tests pn
-    end
+    Pathname(__dir__).children.reject do |pn|
+      pn.file? || pn.basename.to_s.start_with?("_")
+    end.each(&method(:generate_tests))
   end
 end

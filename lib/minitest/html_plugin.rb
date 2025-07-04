@@ -55,9 +55,7 @@ module Minitest
       frontmatter = %(---\nlayout: default\ntitle: Test Results\n---\n)
       time = %(<p class="lead">#{Time.now.strftime("%d/%m/%Y %H:%M")}</p>\n)
       results = []
-      Pathname(TESTS_DIR).children.sort.each do |pn|
-        next unless pn.directory?
-
+      Pathname(TESTS_DIR).children.reject { |f| f.file? || f.basename.to_s.start_with?("_") }.sort.each do |pn|
         report_files results, pn
       end
       html = %(#{frontmatter}#{time}#{results.join "\n"})

@@ -2,17 +2,4 @@
 # frozen_string_literal: true
 
 $LOAD_PATH.unshift File.expand_path("../lib", __dir__)
-require "asciidoctor"
 require "asciidoctor/html"
-
-ADOC_DIR = "test/asciidoctor/html/section"
-
-DOCS = [ "section.adoc", "section_in_chapter.adoc" ]
-
-documents = DOCS.map do |docname|
-  Asciidoctor.load_file("#{ADOC_DIR}/#{docname}")
-end
-
-book = Asciidoctor::Html::Book.new documents
-
-pp book.refs

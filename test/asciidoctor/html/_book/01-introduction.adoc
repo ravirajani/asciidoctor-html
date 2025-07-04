@@ -1,0 +1,8 @@
+# Introduction
+
+Let's start with <<thm-intro>>.
+
+[theorem#thm-intro]
+====
+A theorem.
+====
