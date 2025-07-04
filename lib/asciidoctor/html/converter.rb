@@ -13,6 +13,10 @@ module Asciidoctor
 
       include Figure
 
+      def convert_preamble(node)
+        %(<div class="preamble">#{node.content}</div>)
+      end
+
       def convert_section(node)
         document = node.document
         level = node.level

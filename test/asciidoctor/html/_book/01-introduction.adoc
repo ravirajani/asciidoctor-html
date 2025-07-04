@@ -1,4 +1,6 @@
-# Introduction
+= Introduction
+
+== Section
 
 Let's start with <<thm-intro>>.
 
@@ -6,3 +8,9 @@ Let's start with <<thm-intro>>.
 ====
 A theorem.
 ====
+
+[[simple-list]]
+.A List
+. First item.
+. Second item.
+.. [[simple-list-item]]First item, level 2.

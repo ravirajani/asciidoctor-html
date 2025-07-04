@@ -1,4 +1,9 @@
-# Welcome
+= Welcome
 
 This is the home page. cref:01-introduction.adoc[] is more interesting
 since it has cref:01-introduction.adoc#thm-intro[]
+
+[[welcome-section]]
+== A Section
+
+This is a paragraph.

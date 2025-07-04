@@ -28,7 +28,7 @@ module Asciidoctor
 
       def initialize(filenames = [INDEX])
         filenames.unshift(INDEX) unless Pathname(filenames.first).basename.to_s == INDEX
-        @docs = []
+        @docs = {} # Hash(docname => converted_content)
         @refs = {} # Hash(docname => Hash(id => reftext))
         filenames.each_with_index do |filename, idx|
           attributes = { "chapnum" => idx }.merge DOCATTRS
@@ -41,7 +41,7 @@ module Asciidoctor
           val = doc.catalog[:refs].transform_values(&method(:reftext)).compact
           val["doctitle"] = doc.attr "doctitle"
           @refs[key] = val
-          @docs << doc
+          @docs[key] = doc.convert
         end
       end
 
