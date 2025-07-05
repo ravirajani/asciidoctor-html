@@ -26,7 +26,7 @@ module Asciidoctor
 
       INDEX = "index.adoc"
 
-      def initialize(filenames = [INDEX])
+      def initialize(filenames = [INDEX], chapname = "Chapter")
         filenames.unshift(INDEX) unless Pathname(filenames.first).basename.to_s == INDEX
         @docs = {} # Hash(docname => converted_content)
         @refs = {} # Hash(docname => Hash(id => reftext))
@@ -37,9 +37,12 @@ module Asciidoctor
             safe: :unsafe,
             attributes:
           )
+          doctitle = doc.attr("doctitle")
           key = Pathname(filename).basename.sub_ext("").to_s
           val = doc.catalog[:refs].transform_values(&method(:reftext)).compact
-          val["doctitle"] = doc.attr "doctitle"
+          val["chaptitle"] = doctitle
+          val["chapnum"] = idx
+          val["chapref"] = idx.positive? ? "#{chapname} #{idx}" : doctitle
           @refs[key] = val
           @docs[key] = doc.convert
         end

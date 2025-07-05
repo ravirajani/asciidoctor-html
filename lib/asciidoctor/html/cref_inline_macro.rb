@@ -19,7 +19,7 @@ module Asciidoctor
       def process(parent, target, attrs)
         path_tag = target.split "#"
         path = path_tag.first
-        tag = path_tag.size > 1 ? path_tag[1] : "doctitle"
+        tag = path_tag.size > 1 ? path_tag[1] : "chapref"
         text = attrs["text"] || %(<%= refs["#{Pathname(path).sub_ext ""}"]["#{tag}"] %>)
         hash_tag = path_tag.size > 1 ? "##{path_tag[1]}" : ""
         href = "#{Pathname(path).sub_ext ".html"}#{hash_tag}"

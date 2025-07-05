@@ -14,7 +14,7 @@ module Asciidoctor
       include Figure
 
       def convert_preamble(node)
-        %(<div class="preamble">#{node.content}</div>)
+        %(<div class="preamble">\n#{node.content}</div> <!-- .preamble -->\n)
       end
 
       def convert_section(node)

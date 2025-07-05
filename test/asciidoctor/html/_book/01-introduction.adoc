@@ -1,5 +1,7 @@
 = Introduction
 
+I hope you enjoyed cref:index#welcome-section[the welcome].
+
 == Section
 
 Let's start with <<thm-intro>>.
@@ -14,3 +16,14 @@ A theorem.
 . First item.
 . Second item.
 .. [[simple-list-item]]First item, level 2.
+
+[#sec-other]
+== Other Section
+
+This section has an important Lemma.
+
+[lemma#lem-important]
+.Important Lemma
+====
+An important lemma.
+====
