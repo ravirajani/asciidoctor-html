@@ -22,7 +22,6 @@ module Asciidoctor
       end
 
       def self.main(content, nav_items, chapnum, chaptitle)
-        indent = " " * 10
         %(<main>
           <nav class="sidebar">
           #{nav nav_items}
@@ -31,7 +30,16 @@ module Asciidoctor
           <h2>#{nav_text chapnum, chaptitle}</h2>
           #{content}
           </div>
-          </main>\n).gsub("\n#{indent}", "\n")
+          </main>\n).gsub("\n          ", "\n")
+      end
+
+      def self.header(title)
+        %(<header>
+          <div class="home">
+            <a href="">#{title}</a>
+          </div>
+          </header>
+        ).gsub("\n          ", "\n")
       end
     end
   end

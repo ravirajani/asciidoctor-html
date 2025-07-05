@@ -13,7 +13,7 @@ module Asciidoctor
     # A book is a collection of documents with cross referencing
     # supported via the cref macro.
     class Book
-      attr_reader :docs, :refs, :navs
+      attr_reader :docs, :refs, :title
 
       Asciidoctor::Extensions.register do
         tree_processor RefTreeProcessor
@@ -28,11 +28,11 @@ module Asciidoctor
 
       INDEX = "index.adoc"
 
-      def initialize(filenames = [INDEX], chapname = "Chapter")
+      def initialize(filenames = [INDEX], title: "[Title]", chapname: "Chapter")
         filenames.unshift(INDEX) unless Pathname(filenames.first).basename.to_s == INDEX
+        @title = title
         @docs = {} # Hash(docname => converted_content)
         @refs = {} # Hash(docname => Hash(id => reftext))
-        @navs = {} # Hash(docname => converted_nav)
         erb_templates = {} # Hash(docname => erb_content)
         filenames.each_with_index do |filename, idx|
           attributes = { "chapnum" => idx }.merge DOCATTRS
@@ -53,6 +53,8 @@ module Asciidoctor
         end
         generate_docs(erb_templates)
       end
+
+      private
 
       def reftext(node)
         node.reftext || (node.title unless node.inline?) || "[#{node.id}]" if node.id

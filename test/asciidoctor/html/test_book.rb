@@ -9,7 +9,7 @@ module Asciidoctor
     class TestBook < Minitest::Test
       def setup
         filenames = ["index.adoc", "01-introduction.adoc"].map { |f| "#{__dir__}/_book/#{f}" }
-        @book = Book.new filenames, "Lecture"
+        @book = Book.new filenames, title: "Test", chapname: "Lecture"
       end
 
       def test_first_refs_initialized
