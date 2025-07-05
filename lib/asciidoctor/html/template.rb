@@ -5,14 +5,14 @@ module Asciidoctor
     # The template for the book layout
     module Template
       def self.nav_item(target, text, content = "", active: false)
-        active_class = active ? " active" : ""
-        link = %(<a class="nav-link#{active_class}" href="#{target}">#{text}</a>)
+        active_class = active ? %( class="active") : ""
+        link = %(<a href="#{target}">#{text}</a>)
         subnav = content.empty? ? content : "\n#{content}\n"
-        %(<li class="nav-item">#{link}#{subnav}</li>\n)
+        %(<li#{active_class}>#{link}#{subnav}</li>\n)
       end
 
       def self.nav(items = [])
-        %(<ul class="nav">\n#{items.join "\n"}\n</ul> <!-- .nav -->)
+        %(<ul>\n#{items.join "\n"}\n</ul>)
       end
     end
   end

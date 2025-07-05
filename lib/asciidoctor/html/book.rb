@@ -73,15 +73,18 @@ module Asciidoctor
           nav_items = erb_templates.map do |k, _h|
             active = (k == key)
             subnav = active ? hash[:nav] : ""
-            Template.nav_item("#{k}.html", @refs[k]["chapref"], subnav, active:)
+            icon = %(<i class="bi bi-chevron-#{active ? "down" : "right"}"></i>)
+            navtext = %(#{icon}<span class="title-mark">#{@refs[k]["chapnum"]}</span>#{@refs[k]["chaptitle"]})
+            Template.nav_item("#{k}.html", navtext, subnav, active:)
           end
           indent = " " * 12
-          template = %(<main>\n<aside>
+          template = %(<main>\n<nav class="sidebar">
             #{Template.nav(nav_items)}
-            </aside>
-            <article>
+            </nav>
+            <div class="content">
+            <h2>#{@refs[key]["chaptitle"]}</h2>
             #{hash[:content]}
-            </article>
+            </div>
             </main>
           ).gsub("\n#{indent}", "\n")
           erb = ERB.new template
