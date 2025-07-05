@@ -2,6 +2,7 @@
 
 I hope you enjoyed cref:index#welcome-section[the welcome].
 
+[#sec-first]
 == Section
 
 Let's start with <<thm-intro>>.

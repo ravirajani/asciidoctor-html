@@ -1,8 +1,25 @@
+<main>
+<aside>
+<ul class="nav">
+<li class="nav-item"><a class="nav-link" href="index.html">Welcome</a></li>
+
+<li class="nav-item"><a class="nav-link active" href="01-introduction.html">Lecture 1</a>
+<ul class="nav">
+<li class="nav-item"><a class="nav-link" href="#sec-first">Section</a></li>
+
+<li class="nav-item"><a class="nav-link" href="#sec-other">Other Section</a></li>
+
+</ul> <!-- .nav -->
+</li>
+
+</ul> <!-- .nav -->
+</aside>
+<article>
 <div class="preamble">
 <p>I hope you enjoyed <a href="index.html#welcome-section">the welcome</a>.</p>
 </div> <!-- .preamble -->
 
-<section class="section">
+<section id="sec-first" class="section">
 <h3>Section</h3>
 <p>Let&#8217;s start with <a href="#thm-intro">Theorem 1.1</a>.</p>
 
@@ -32,7 +49,7 @@
 
 </div> <!-- #simple-list.list-wrapper -->
 
-</section> <!-- .section -->
+</section> <!-- #sec-first.section -->
 
 <section id="sec-other" class="section">
 <h3>Other Section</h3>
@@ -45,3 +62,7 @@
 </div> <!-- #lem-important.example.example-lemma -->
 
 </section> <!-- #sec-other.section -->
+
+</article>
+</main>
+          

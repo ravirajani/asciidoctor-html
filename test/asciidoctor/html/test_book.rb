@@ -32,7 +32,7 @@ module Asciidoctor
 
       def test_docs_initialized
         @book.docs.each do |key, value|
-          assert_equal value, File.read("#{__dir__}/_book/#{key}.rhtml")
+          assert_equal value, File.read("#{__dir__}/_book/#{key}.html")
         end
       end
     end
