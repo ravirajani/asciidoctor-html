@@ -40,10 +40,10 @@ module Asciidoctor
         filenames.unshift(INDEX) unless Pathname(filenames.first).basename.to_s == INDEX
         opts = DEFAULT_OPTS.merge opts
         @title = ERB::Escape.html_escape opts[:title]
-        @author = ERB::Escape.html_escape(opts[:author])
+        @author = ERB::Escape.html_escape opts[:author]
         @docs = {} # Hash(docname => converted_content)
         @refs = {} # Hash(docname => Hash(id => reftext))
-        erb_templates = {} # Hash(docname => erb_content)
+        templates = {} # Hash(docname => Hash)
         langs = {} # Hash(langname => true)
         filenames.each_with_index do |filename, idx|
           attributes = { "chapnum" => idx }.merge DOCATTRS
@@ -59,7 +59,7 @@ module Asciidoctor
           val = doc.catalog[:refs].transform_values(&method(:reftext)).compact
           val["chapref"] = idx.positive? ? "#{chapname} #{idx}" : doctitle
           @refs[key] = val
-          erb_templates[key] = {
+          templates[key] = {
             content: doc.convert,
             nav: outline(doc),
             chapnum: idx,
@@ -67,7 +67,7 @@ module Asciidoctor
           }
         end
         @langs = langs.keys # Array[String]
-        generate_docs(erb_templates)
+        generate_docs(templates)
       end
 
       private
@@ -86,9 +86,9 @@ module Asciidoctor
         items.size > 1 ? Template.nav(items) : ""
       end
 
-      def generate_docs(erb_templates)
-        erb_templates.each do |key, hash|
-          nav_items = erb_templates.map do |k, h|
+      def generate_docs(templates)
+        templates.each do |key, hash|
+          nav_items = templates.map do |k, h|
             active = (k == key)
             subnav = active ? h[:nav] : ""
             icon = %(<i class="bi bi-chevron-#{active ? "down" : "right"}"></i>)
