@@ -1,5 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Test</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/default.min.css">
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/build/highlight.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/languages/asciidoc.min.js"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+<header>
+<div class="home">
+  <a href="">Test</a>
+</div>
+<div class="menu">
+  <button type="button" class="btn">
+    <i class="bi bi-list"></i>
+  </button>
+</div>
+</header>
+
 <main>
-<nav class="sidebar">
+<div class="sidebar">
+<div class="search">
+  <button type="button" class="btn btn-outline-secondary">
+    <i class="bi bi-search"></i> Search&#8230;
+  </button>
+</div> <!-- .search -->
+<nav>
 <ul>
 <li><a href="index.html"><i class="bi bi-chevron-right"></i>Welcome</a></li>
 
@@ -14,6 +48,7 @@
 
 </ul>
 </nav>
+</div> <!-- .sidebar -->
 <div class="content">
 <h2><span class="title-mark">1</span>Introduction</h2>
 <div class="preamble">
@@ -63,7 +98,29 @@ of <a href="index.html">Welcome</a>.</p>
 
 </div> <!-- #lem-important.example.example-lemma -->
 
+<p>And an asciidoc listing.</p>
+
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">= This is a doctitle
+
+== This is a section title
+
+This is a simple paragraph.</code></pre>
+</div>
+</div>
 </section> <!-- #sec-other.section -->
 
-</div>
+</div> <!-- .content -->
 </main>
+
+<footer>
+&#169; 2025-07-06 R. Rajani
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+        crossorigin="anonymous"></script>
+<script>hljs.highlightAll();</script>
+</body>
+</html>

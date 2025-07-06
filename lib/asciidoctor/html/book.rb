@@ -13,7 +13,7 @@ module Asciidoctor
     # A book is a collection of documents with cross referencing
     # supported via the cref macro.
     class Book
-      attr_reader :docs, :refs, :title
+      attr_reader :docs, :refs, :langs, :title, :author
 
       Asciidoctor::Extensions.register do
         tree_processor RefTreeProcessor
@@ -23,17 +23,28 @@ module Asciidoctor
       DOCATTRS = {
         "sectids" => false,
         "stem" => "latexmath",
-        "hide-uri-scheme" => true
+        "hide-uri-scheme" => true,
+        "source-highlighter" => "highlight.js",
+        "imagesdir" => Template::IMG_PATH
+      }.freeze
+
+      DEFAULT_OPTS = {
+        title: "Untitled Book",
+        author: "Anonymous Author",
+        chapname: "Chapter"
       }.freeze
 
       INDEX = "index.adoc"
 
-      def initialize(filenames = [INDEX], title: "[Title]", chapname: "Chapter")
+      def initialize(filenames = [INDEX], opts = {})
         filenames.unshift(INDEX) unless Pathname(filenames.first).basename.to_s == INDEX
-        @title = title
+        opts = DEFAULT_OPTS.merge opts
+        @title = ERB::Escape.html_escape opts[:title]
+        @author = ERB::Escape.html_escape(opts[:author])
         @docs = {} # Hash(docname => converted_content)
         @refs = {} # Hash(docname => Hash(id => reftext))
         erb_templates = {} # Hash(docname => erb_content)
+        langs = {} # Hash(langname => true)
         filenames.each_with_index do |filename, idx|
           attributes = { "chapnum" => idx }.merge DOCATTRS
           doc = Asciidoctor.load_file(
@@ -41,16 +52,21 @@ module Asciidoctor
             safe: :unsafe,
             attributes:
           )
-          doctitle = ERB::Escape.html_escape doc.attr("doctitle")
-          chapname = ERB::Escape.html_escape chapname
+          langs.merge! doc.attr("source-langs") if doc.attr?("source-langs")
+          doctitle = doc.doctitle sanitize: true, use_fallback: true
+          chapname = ERB::Escape.html_escape opts[:chapname]
           key = Pathname(filename).basename.sub_ext("").to_s
           val = doc.catalog[:refs].transform_values(&method(:reftext)).compact
-          val["chaptitle"] = doctitle
-          val["chapnum"] = idx
           val["chapref"] = idx.positive? ? "#{chapname} #{idx}" : doctitle
           @refs[key] = val
-          erb_templates[key] = { content: doc.convert, nav: outline(doc) }
+          erb_templates[key] = {
+            content: doc.convert,
+            nav: outline(doc),
+            chapnum: idx,
+            chaptitle: doctitle
+          }
         end
+        @langs = langs.keys # Array[String]
         generate_docs(erb_templates)
       end
 
@@ -72,16 +88,23 @@ module Asciidoctor
 
       def generate_docs(erb_templates)
         erb_templates.each do |key, hash|
-          nav_items = erb_templates.map do |k, _h|
+          nav_items = erb_templates.map do |k, h|
             active = (k == key)
-            subnav = active ? hash[:nav] : ""
+            subnav = active ? h[:nav] : ""
             icon = %(<i class="bi bi-chevron-#{active ? "down" : "right"}"></i>)
-            navtext = %(#{icon}#{Template.nav_text @refs[k]["chapnum"], @refs[k]["chaptitle"]})
+            navtext = %(#{icon}#{Template.nav_text h[:chapnum], h[:chaptitle]})
             Template.nav_item("#{k}.html", navtext, subnav, active:)
           end
-          template = Template.main hash[:content], nav_items, @refs[key]["chapnum"], @refs[key]["chaptitle"]
-          erb = ERB.new template
-          @docs[key] = erb.result(binding)
+          content = ERB.new(hash[:content]).result(binding)
+          @docs[key] = Template.html(
+            content,
+            nav_items,
+            title: @title,
+            author: @author,
+            chapnum: hash[:chapnum],
+            chaptitle: hash[:chaptitle],
+            langs: @langs
+          )
         end
       end
     end

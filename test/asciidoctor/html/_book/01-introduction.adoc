@@ -29,3 +29,14 @@ This section has an important Lemma.
 ====
 An important lemma.
 ====
+
+And an asciidoc listing.
+
+[source,asciidoc]
+----
+= This is a doctitle
+
+== This is a section title
+
+This is a simple paragraph.
+----

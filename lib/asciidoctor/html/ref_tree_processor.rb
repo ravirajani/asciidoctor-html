@@ -6,8 +6,12 @@ require_relative "tree_walker"
 
 module Asciidoctor
   module Html
-    # Traverses the document tree and attaches a correct reftext to
-    # numbered nodes.
+    # Traverses the document tree and:
+    # - attaches a correct reftext to numbered nodes;
+    # - populates the text (= reftext for inline nodes) to anchors at
+    #   the beginning of a list item for an ordered list;
+    # - registers every encountered source code language in the
+    #   document's source-langs attribute.
     class RefTreeProcessor < Asciidoctor::Extensions::TreeProcessor
       NUMBERED_CONTEXTS = {
         example: "thm-number",
@@ -110,6 +114,16 @@ module Asciidoctor
         register_reftext! item, ref_li_mark(mark, 0)
       end
 
+      def process_source_code!(document, lang)
+        lang_attr = "source-langs"
+        if document.attr? lang_attr
+          langs = document.attr lang_attr
+          langs[lang] = true
+        else
+          document.set_attr(lang_attr, { lang => true })
+        end
+      end
+
       def reset_counters!(document)
         counters = document.counters
         NUMBERED_CONTEXTS.each_value do |counter_name|
@@ -127,6 +141,10 @@ module Asciidoctor
 
       def olist?(node)
         node.context == :olist
+      end
+
+      def source_code?(node)
+        node.context == :listing && node.style == "source" && node.attr?("language")
       end
 
       def process(document)
@@ -148,8 +166,10 @@ module Asciidoctor
               end
               process_olist!(block, listdepth, flat_style:)
             elsif olist_item?(block) && flat_style
-              process_flat_item!(block, flat_idx)
+              process_flat_item! block, flat_idx
               flat_idx += 1
+            elsif source_code?(block)
+              process_source_code! document, block.attr("language")
             end
             block.set_attr "refprocessed", true
           end

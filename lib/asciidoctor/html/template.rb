@@ -4,6 +4,11 @@ module Asciidoctor
   module Html
     # The template for the book layout
     module Template
+      HIGHLIGHT_JS_CDN = "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build"
+      ASSETS_PATH = "assets"
+      CSS_PATH = "#{ASSETS_PATH}/css".freeze
+      IMG_PATH = "#{ASSETS_PATH}/img".freeze
+
       def self.nav_item(target, text, content = "", active: false)
         active_class = active ? %( class="active") : ""
         link = %(<a href="#{target}">#{text}</a>)
@@ -23,13 +28,18 @@ module Asciidoctor
 
       def self.main(content, nav_items, chapnum, chaptitle)
         %(<main>
-          <nav class="sidebar">
-          #{nav nav_items}
-          </nav>
+          <div class="sidebar">
+          <div class="search">
+            <button type="button" class="btn btn-outline-secondary">
+              <i class="bi bi-search"></i> Search&#8230;
+            </button>
+          </div> <!-- .search -->
+          <nav>\n#{nav nav_items}\n</nav>
+          </div> <!-- .sidebar -->
           <div class="content">
           <h2>#{nav_text chapnum, chaptitle}</h2>
           #{content}
-          </div>
+          </div> <!-- .content -->
           </main>\n).gsub("\n          ", "\n")
       end
 
@@ -38,8 +48,59 @@ module Asciidoctor
           <div class="home">
             <a href="">#{title}</a>
           </div>
-          </header>
-        ).gsub("\n          ", "\n")
+          <div class="menu">
+            <button type="button" class="btn">
+              <i class="bi bi-list"></i>
+            </button>
+          </div>
+          </header>\n).gsub("\n          ", "\n")
+      end
+
+      def self.footer(author)
+        %(<footer>
+          &#169; #{Time.now.strftime("%F")} #{author}
+          </footer>\n).gsub("\n          ", "\n")
+      end
+
+      def self.highlightjs(langs)
+        langs.map do |lang|
+          %(<script src="#{HIGHLIGHT_JS_CDN}/languages/#{lang}.min.js"></script>)
+        end.join("\n  ")
+      end
+
+      # opts:
+      # - title: String
+      # - author: String
+      # - chapnum: Int
+      # - chaptitle: String
+      # - langs: Array[String]
+      def self.html(content, nav_items, opts = {})
+        %(<!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>#{opts[:title]}</title>
+            <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+            <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+            <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+            <link rel="manifest" href="site.webmanifest">
+            <link rel="stylesheet" href="#{CSS_PATH}/styles.css">
+            <link rel="stylesheet" href="#{HIGHLIGHT_JS_CDN}/styles/default.min.css">
+            <script src="#{HIGHLIGHT_JS_CDN}/build/highlight.min.js"></script>
+            #{highlightjs opts[:langs]}
+            <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+          </head>
+          <body>
+          #{header opts[:title]}
+          #{main content, nav_items, opts[:chapnum], opts[:chaptitle]}
+          #{footer opts[:author]}
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+                  integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+                  crossorigin="anonymous"></script>
+          <script>hljs.highlightAll();</script>
+          </body>
+          </html>\n).gsub("\n          ", "\n")
       end
     end
   end
