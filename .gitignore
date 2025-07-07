@@ -7,6 +7,6 @@
 /spec/reports/
 /tmp/
 _site
-/docs/index.html
+/docs/test/index.html
 .jekyll-cache
 node_modules

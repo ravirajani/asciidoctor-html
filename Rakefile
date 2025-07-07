@@ -18,7 +18,7 @@ RuboCop::RakeTask.new
 
 task jekyll: %i[test rubocop] do
   config = Jekyll.configuration({
-                                  source: "#{__dir__}/docs/jekyll",
+                                  source: "#{__dir__}/docs/test",
                                   destination: JEKYLL_SITEDIR
                                 })
   site = Jekyll::Site.new(config)
