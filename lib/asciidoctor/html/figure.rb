@@ -7,22 +7,24 @@ module Asciidoctor
     # Helper functions for the image/figure conversion.
     # Mixed into the Converter class.
     module Figure
-      def display_image(node, target, attrs)
+      def display_image(node, target, title_attr: false)
+        attrs = image_attrs(node, title_attr:)
         %(<img src="#{node.image_uri target}" #{attrs}#{@void_element_slash}>)
       end
 
-      def image_attrs(node)
+      def image_attrs(node, title_attr: false)
         width = node.attr?("width") ? %( width="#{node.attr "width"}") : ""
         height = node.attr?("height") ? %( height="#{node.attr "height"}") : ""
+        title = encode_attribute_value node.attr("title") if node.attr?("title") && title_attr
+        title = title ? %( title="#{title}") : ""
         alt = encode_attribute_value node.alt
-        %(alt="#{alt}"#{width}#{height})
+        %(alt="#{alt}"#{width}#{height}#{title})
       end
 
       def display_figure(node)
         target = node.attr "target"
         title = node.title? ? node.title : ""
-        attrs = image_attrs node
-        image = display_image node, target, attrs
+        image = display_image node, target
         caption = %(<figcaption>#{Utils.display_title_prefix node}#{title}</figcaption>)
         %(<figure>\n    #{image}\n    #{caption}\n</figure>)
       end

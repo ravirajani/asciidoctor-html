@@ -33,10 +33,18 @@ An important lemma.
 And an asciidoc listing.
 
 [source,asciidoc]
+.A piece of asciidoc
 ----
 = This is a doctitle
 
 == This is a section title
 
 This is a simple paragraph.
+----
+
+[source,ruby]
+----
+module Html
+  # Some Ruby
+end
 ----

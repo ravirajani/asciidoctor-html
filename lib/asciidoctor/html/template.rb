@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
+require "date"
+require_relative "highlightjs"
+
 module Asciidoctor
   module Html
     # The template for the book layout
     module Template
-      HIGHLIGHT_JS_CDN = "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build"
       ASSETS_PATH = "assets"
       CSS_PATH = "#{ASSETS_PATH}/css".freeze
       IMG_PATH = "#{ASSETS_PATH}/img".freeze
@@ -56,21 +58,20 @@ module Asciidoctor
           </header>\n).gsub("\n          ", "\n")
       end
 
-      def self.footer(author)
-        %(<footer>
-          &#169; #{Time.now.strftime("%F")} #{author}
-          </footer>\n).gsub("\n          ", "\n")
+      def self.footer(author, year)
+        %(<footer>&#169; #{year} #{author}</footer>\n)
       end
 
       def self.highlightjs(langs)
         langs.map do |lang|
-          %(<script src="#{HIGHLIGHT_JS_CDN}/languages/#{lang}.min.js"></script>)
+          %(<script src="#{Highlightjs::CDN_PATH}/languages/#{lang}.min.js"></script>)
         end.join("\n  ")
       end
 
       # opts:
       # - title: String
       # - author: String
+      # - date: Date
       # - chapnum: Int
       # - chaptitle: String
       # - langs: Array[String]
@@ -86,15 +87,15 @@ module Asciidoctor
             <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
             <link rel="manifest" href="site.webmanifest">
             <link rel="stylesheet" href="#{CSS_PATH}/styles.css">
-            <link rel="stylesheet" href="#{HIGHLIGHT_JS_CDN}/styles/default.min.css">
-            <script src="#{HIGHLIGHT_JS_CDN}/build/highlight.min.js"></script>
+            <link rel="stylesheet" href="#{Highlightjs::CDN_PATH}/styles/default.min.css">
+            <script src="#{Highlightjs::CDN_PATH}/build/highlight.min.js"></script>
             #{highlightjs opts[:langs]}
             <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
           </head>
           <body>
           #{header opts[:title]}
           #{main content, nav_items, opts[:chapnum], opts[:chaptitle]}
-          #{footer opts[:author]}
+          #{footer opts[:author], opts[:date].year}
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
                   integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
                   crossorigin="anonymous"></script>

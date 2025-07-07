@@ -3,6 +3,7 @@
 require "asciidoctor"
 require "roman-numerals"
 require_relative "tree_walker"
+require_relative "highlightjs"
 
 module Asciidoctor
   module Html
@@ -10,8 +11,8 @@ module Asciidoctor
     # - attaches a correct reftext to numbered nodes;
     # - populates the text (= reftext for inline nodes) to anchors at
     #   the beginning of a list item for an ordered list;
-    # - registers every encountered source code language in the
-    #   document's source-langs attribute.
+    # - registers every encountered source code language not included in
+    #   in the default highlightjs build.
     class RefTreeProcessor < Asciidoctor::Extensions::TreeProcessor
       NUMBERED_CONTEXTS = {
         example: "thm-number",
@@ -51,7 +52,7 @@ module Asciidoctor
       end
 
       def process_numbered_block?(block)
-        NUMBERED_CONTEXTS.key?(block.context) || block.style == "figlist"
+        NUMBERED_CONTEXTS.include?(block.context) || block.style == "figlist"
       end
 
       def li_mark(depth, idx)
@@ -115,13 +116,9 @@ module Asciidoctor
       end
 
       def process_source_code!(document, lang)
-        lang_attr = "source-langs"
-        if document.attr? lang_attr
-          langs = document.attr lang_attr
-          langs[lang] = true
-        else
-          document.set_attr(lang_attr, { lang => true })
-        end
+        document.set_attr("source-langs", {}) unless document.attr?("source-langs")
+        langs = document.attr "source-langs"
+        langs[lang] = true unless Highlightjs::INCLUDED_LANGS.include?(lang)
       end
 
       def reset_counters!(document)

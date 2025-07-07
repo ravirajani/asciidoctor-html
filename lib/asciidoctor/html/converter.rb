@@ -50,11 +50,13 @@ module Asciidoctor
 
         target = node.target
         mark = node.parent.attr("mark")
-        attrs = image_attrs node
-        image = display_image node, target, attrs
-        title = node.attr?("title") ? node.attr("title") : ""
-        caption = mark ? %(<span class="li-mark">#{mark}</span>#{title}) : title
-        %(    #{image}\n    <figcaption>#{caption}</figcaption>)
+        if mark # The image is part of a figlist
+          title = node.attr?("title") ? node.attr("title") : ""
+          %(    #{display_image node, target}
+          <figcaption><span class="li-mark">#{mark}</span>#{title}</figcaption>).gsub(/^      /, "")
+        else
+          display_image node, target, title_attr:
+        end
       end
 
       def convert_olist(node)
