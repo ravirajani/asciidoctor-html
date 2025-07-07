@@ -3,6 +3,7 @@ PATH
   specs:
     asciidoctor-html (0.1.2)
       asciidoctor (~> 2.0)
+      psych (~> 5.2)
       roman-numerals (~> 0.3)
 
 GEM
