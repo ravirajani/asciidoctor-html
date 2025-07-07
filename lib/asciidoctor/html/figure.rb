@@ -25,8 +25,8 @@ module Asciidoctor
         target = node.attr "target"
         title = node.title? ? node.title : ""
         image = display_image node, target
-        caption = %(<figcaption>#{Utils.display_title_prefix node}#{title}</figcaption>)
-        %(<figure>\n    #{image}\n    #{caption}\n</figure>)
+        caption = %(    <figcaption>#{Utils.display_title_prefix node}#{title}</figcaption>)
+        %(<figure>\n    #{image}\n#{caption}\n</figure>)
       end
 
       def convert_figlist(node)

@@ -8,3 +8,11 @@ given in cref:appendix-a[].
 == A Section
 
 This is a paragraph.
+
+[#img-cat]
+image::cat1.jpg[A cat]
+
+[theorem#thm-welcome]
+====
+Numbered theorem on home page.
+====

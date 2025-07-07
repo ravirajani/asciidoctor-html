@@ -1,3 +1,8 @@
 = Linear Algebra Background
 
 This is an appendix.
+
+[#ex-appa]
+====
+The numbering here starts with 'A'.
+====

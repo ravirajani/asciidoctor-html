@@ -36,13 +36,13 @@ module Asciidoctor
         chapname: "Chapter"
       }.freeze
 
-      INDEX = "index.adoc"
+      INDEX = "index"
 
       # Template data to be processed by each document
       TData = Struct.new("TData", :content, :nav, :chapnum, :chaptitle)
 
       def initialize(chapters = [INDEX], appendices = [], opts = {})
-        chapters.unshift(INDEX) unless Pathname(chapters.first).basename.to_s == INDEX
+        chapters = [INDEX] + chapters unless Pathname(chapters.first).basename.sub_ext("").to_s == INDEX
         opts = DEFAULT_OPTS.merge opts, { appendices: 0 }
         @title = ERB::Escape.html_escape opts[:title]
         @author = ERB::Escape.html_escape opts[:author]
@@ -68,13 +68,13 @@ module Asciidoctor
         chapname = opts[:chapname]
         numeral = idx.to_s
         num_appendices = opts[:appendices]
-        if num_appendices.positive?
+        if num_appendices.positive? # if this file is an appendix
           chapname = "Appendix"
-          numeral = num_appendices > 1 ? ("a".."z").to_a[idx].upcase : ""
+          numeral = ("a".."z").to_a[idx].upcase
         end
         attributes = { "chapnum" => numeral, "chapname" => chapname }.merge DOCATTRS
         doc = Asciidoctor.load_file(
-          filename,
+          Pathname(filename).sub_ext(".adoc"),
           safe: :unsafe,
           attributes:
         )

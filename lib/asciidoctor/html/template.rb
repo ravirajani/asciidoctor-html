@@ -31,7 +31,7 @@ module Asciidoctor
       def self.chaptitle(chapname, numeral, doctitle, num_appendices)
         return doctitle unless num_appendices.positive?
 
-        numeral = " #{numeral}" unless numeral.empty?
+        numeral = num_appendices == 1 ? "" : " #{numeral}"
         %(<span class="title-prefix">#{chapname}#{numeral}</span>#{doctitle})
       end
 
