@@ -8,6 +8,7 @@ require_relative "converter"
 require_relative "ref_tree_processor"
 require_relative "cref_inline_macro"
 require_relative "template"
+require_relative "utils"
 
 module Asciidoctor
   module Html
@@ -40,9 +41,9 @@ module Asciidoctor
       # Template data to be processed by each document
       TData = Struct.new("TData", :content, :nav, :chapnum, :chaptitle)
 
-      def initialize(filenames = [INDEX], opts = {})
-        filenames.unshift(INDEX) unless Pathname(filenames.first).basename.to_s == INDEX
-        opts = DEFAULT_OPTS.merge opts
+      def initialize(chapters = [INDEX], appendices = [], opts = {})
+        chapters.unshift(INDEX) unless Pathname(chapters.first).basename.to_s == INDEX
+        opts = DEFAULT_OPTS.merge opts, { appendices: 0 }
         @title = ERB::Escape.html_escape opts[:title]
         @author = ERB::Escape.html_escape opts[:author]
         @date = opts.include?(:date) ? Date.parse(opts[:date]) : Date.today
@@ -50,7 +51,11 @@ module Asciidoctor
         @refs = {} # Hash(docname => Hash(id => reftext))
         templates = {} # Hash(docname => TData)
         langs = {} # Hash(langname => true)
-        filenames.each_with_index do |filename, idx|
+        chapters.each_with_index do |filename, idx|
+          process_file! templates, langs, filename, idx, opts
+        end
+        opts[:appendices] = appendices.size
+        appendices.each_with_index do |filename, idx|
           process_file! templates, langs, filename, idx, opts
         end
         @langs = langs.keys # Array[langname]
@@ -61,7 +66,13 @@ module Asciidoctor
 
       def process_file!(templates, langs, filename, idx, opts)
         chapname = opts[:chapname]
-        attributes = { "chapnum" => idx, "chapname" => chapname }.merge DOCATTRS
+        numeral = idx.to_s
+        num_appendices = opts[:appendices]
+        if num_appendices.positive?
+          chapname = "Appendix"
+          numeral = num_appendices > 1 ? ("a".."z").to_a[idx].upcase : ""
+        end
+        attributes = { "chapnum" => numeral, "chapname" => chapname }.merge DOCATTRS
         doc = Asciidoctor.load_file(
           filename,
           safe: :unsafe,
@@ -71,13 +82,20 @@ module Asciidoctor
         doctitle = doc.doctitle sanitize: true, use_fallback: true
         key = Pathname(filename).basename.sub_ext("").to_s
         val = doc.catalog[:refs].transform_values(&method(:reftext)).compact
-        val["chapref"] = idx.positive? ? "#{ERB::Escape.html_escape chapname} #{idx}" : doctitle
+        chapref = if (idx.positive? && num_appendices.zero?) || num_appendices > 1
+                    "#{ERB::Escape.html_escape chapname} #{numeral}"
+                  elsif num_appendices == 1
+                    chapname
+                  else
+                    doctitle
+                  end
+        val["chapref"] = chapref
         @refs[key] = val
         templates[key] = TData.new(
           content: doc.convert,
           nav: outline(doc),
-          chapnum: idx,
-          chaptitle: doctitle
+          chapnum: Template.chapnum(numeral, num_appendices),
+          chaptitle: Template.chaptitle(chapname, numeral, doctitle, num_appendices)
         )
       end
 

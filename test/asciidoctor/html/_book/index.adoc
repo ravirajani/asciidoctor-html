@@ -1,7 +1,8 @@
 = Welcome
 
 This is the home page. cref:01-introduction[] is more interesting
-since it has cref:01-introduction#thm-intro[].
+since it has cref:01-introduction#thm-intro[]. Some background is
+given in cref:appendix-a[].
 
 [[welcome-section]]
 == A Section

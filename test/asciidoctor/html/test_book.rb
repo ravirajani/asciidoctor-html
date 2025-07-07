@@ -9,8 +9,10 @@ module Asciidoctor
     class TestBook < Minitest::Test
       def setup
         filenames = ["index.adoc", "01-introduction.adoc"].map { |f| "#{__dir__}/_book/#{f}" }
+        appendices = ["appendix-a.adoc", "appendix-b.adoc"].map { |f| "#{__dir__}/_book/#{f}" }
         @book = Book.new(
           filenames,
+          appendices,
           title: "Test",
           chapname: "Lecture",
           author: "R. Rajani",
@@ -30,6 +32,10 @@ module Asciidoctor
         assert_equal "Lemma 1.2", @book.refs["01-introduction"]["lem-important"]
         assert_equal "A List", @book.refs["01-introduction"]["simple-list"]
         assert_equal "2(a)", @book.refs["01-introduction"]["simple-list-item"]
+      end
+
+      def test_third_refs_initialized
+        assert_equal "Appendix A", @book.refs["appendix-a"]["chapref"]
       end
 
       def test_docs_initialized

@@ -48,3 +48,5 @@ module Html
   # Some Ruby
 end
 ----
+
+image::cat1.jpg[A cat, title=Title's escaped?]

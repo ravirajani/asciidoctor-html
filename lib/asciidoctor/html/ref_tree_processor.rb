@@ -33,12 +33,11 @@ module Asciidoctor
       end
 
       def relative_numeral(node, document, sectnum)
-        if node.numeral
-          prefix_number = (document.attr("chapnum") || sectnum).to_i
-          prefix_number.positive? ? "#{prefix_number}.#{node.numeral}" : node.numeral.to_s
-        else
-          ""
-        end
+        return "" unless node.numeral
+
+        chapnum = document.attr "chapnum"
+        has_prefix = (chapnum && !chapnum.empty?) || sectnum.positive?
+        has_prefix ? "#{chapnum || sectnum}.#{node.numeral}" : node.numeral.to_s
       end
 
       def process_numbered_block!(block, document, sectnum)

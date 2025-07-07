@@ -23,9 +23,20 @@ module Asciidoctor
       end
 
       def self.nav_text(chapnum, chaptitle)
-        return chaptitle unless chapnum.positive?
+        return chaptitle if chapnum.empty?
 
         %(<span class="title-mark">#{chapnum}</span>#{chaptitle})
+      end
+
+      def self.chaptitle(chapname, numeral, doctitle, num_appendices)
+        return doctitle unless num_appendices.positive?
+
+        numeral = " #{numeral}" unless numeral.empty?
+        %(<span class="title-prefix">#{chapname}#{numeral}</span>#{doctitle})
+      end
+
+      def self.chapnum(numeral, num_appendices)
+        numeral == "0" || num_appendices.positive? ? "" : numeral
       end
 
       def self.main(content, nav_items, chapnum, chaptitle)
