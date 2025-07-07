@@ -35,7 +35,7 @@ jobs:
         with:
           node-version: 22
       - name: Set up Sass
-        working-directory: docs
+        working-directory: docs/jekyll
         run: npm ci
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
