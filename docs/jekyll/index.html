@@ -1,0 +1,704 @@
+---
+layout: default
+title: Test Results
+---
+<p class="lead">07/07/2025 18:27</p>
+<div><i class="bi bi-check-square text-success" style="vertical-align: -0.125em;"></i><button type="button" data-bs-toggle="collapse" data-bs-target="#test-example" class="btn btn-link"><i class="bi bi-chevron-expand"></i> Example</button>
+<div class="collapse full-width-bg" id="test-example"><pre><code class="language-asciidoc">== Unnumbered Section
+
+====
+This is a simple example.
+====
+</code></pre>
+<div class="example">
+<h6 class="block-title">Example 1</h6>
+<p>This is a simple example.</p>
+
+</div> <!-- .example -->
+</div></div>
+<div><i class="bi bi-check-square text-success" style="vertical-align: -0.125em;"></i><button type="button" data-bs-toggle="collapse" data-bs-target="#test-example-in-numbered-section" class="btn btn-link"><i class="bi bi-chevron-expand"></i> Example in numbered section</button>
+<div class="collapse full-width-bg" id="test-example-in-numbered-section"><pre><code class="language-asciidoc">:sectnums:
+== Numbered Section
+
+== Other Numbered Section
+
+====
+This is a simple example.
+====
+</code></pre>
+<div class="example">
+<h6 class="block-title">Example 2.1</h6>
+<p>This is a simple example.</p>
+
+</div> <!-- .example -->
+</div></div>
+<div><i class="bi bi-check-square text-success" style="vertical-align: -0.125em;"></i><button type="button" data-bs-toggle="collapse" data-bs-target="#test-theorem" class="btn btn-link"><i class="bi bi-chevron-expand"></i> Theorem</button>
+<div class="collapse full-width-bg" id="test-theorem"><pre><code class="language-asciidoc">[theorem]
+====
+This is a theorem.
+====
+</code></pre>
+<div class="example example-theorem">
+<h6 class="block-title">Theorem 1</h6>
+<p>This is a theorem.</p>
+
+</div> <!-- .example.example-theorem -->
+</div></div>
+<div><i class="bi bi-check-square text-success" style="vertical-align: -0.125em;"></i><button type="button" data-bs-toggle="collapse" data-bs-target="#test-theorem-in-chapter" class="btn btn-link"><i class="bi bi-chevron-expand"></i> Theorem in chapter</button>
+<div class="collapse full-width-bg" id="test-theorem-in-chapter"><pre><code class="language-asciidoc">:chapnum: 2
+
+[theorem]
+====
+This is a theorem numbered within chapter 2.
+====
+</code></pre>
+<div class="example example-theorem">
+<h6 class="block-title">Theorem 2.1</h6>
+<p>This is a theorem numbered within chapter 2.</p>
+
+</div> <!-- .example.example-theorem -->
+</div></div>
+<div><i class="bi bi-check-square text-success" style="vertical-align: -0.125em;"></i><button type="button" data-bs-toggle="collapse" data-bs-target="#test-theorem-with-title" class="btn btn-link"><i class="bi bi-chevron-expand"></i> Theorem with title</button>
+<div class="collapse full-width-bg" id="test-theorem-with-title"><pre><code class="language-asciidoc">.Theorem Title
+[theorem]
+====
+This is a theorem with title.
+====
+</code></pre>
+<div class="example example-theorem">
+<h6 class="block-title"><span class="title-prefix">Theorem 1</span>Theorem Title</h6>
+<p>This is a theorem with title.</p>
+
+</div> <!-- .example.example-theorem -->
+</div></div>
+<div><i class="bi bi-check-square text-success" style="vertical-align: -0.125em;"></i><button type="button" data-bs-toggle="collapse" data-bs-target="#test-figure" class="btn btn-link"><i class="bi bi-chevron-expand"></i> Figure</button>
+<div class="collapse full-width-bg" id="test-figure"><pre><code class="language-asciidoc">.Picture of a cute cat.
+image::cat1.jpg[cute cat]
+</code></pre>
+<div class="figbox">
+<figure>
+    <img src="assets/img/cat1.jpg" alt="cute cat">
+    <figcaption><span class="title-prefix">Figure 1</span>Picture of a cute cat.</figcaption>
+</figure>
+</div> <!-- .figbox -->
+</div></div>
+<div><i class="bi bi-check-square text-success" style="vertical-align: -0.125em;"></i><button type="button" data-bs-toggle="collapse" data-bs-target="#test-ordered-list" class="btn btn-link"><i class="bi bi-chevron-expand"></i> Ordered list</button>
+<div class="collapse full-width-bg" id="test-ordered-list"><pre><code class="language-asciidoc">[[olist-id]]
+. First item, level 1
+. Second item, level 1
+.. First item, level 2
+... First item, level 3
+... Second item, level 3
+.... First item, level 4
+... Third item, level 3
+.. Second item, level 2
+. Third item, level 1
+</code></pre>
+<ol id="olist-id" class="olist level-1 arabic">
+<li><div class="li-mark">1</div>
+<div class="li-content"><p>First item, level 1</p>
+</div></li>
+<li><div class="li-mark">2</div>
+<div class="li-content"><p>Second item, level 1</p>
+
+<ol class="olist level-2 loweralpha">
+<li><div class="li-mark">a</div>
+<div class="li-content"><p>First item, level 2</p>
+
+<ol class="olist level-3 lowerroman">
+<li><div class="li-mark">i</div>
+<div class="li-content"><p>First item, level 3</p>
+</div></li>
+<li><div class="li-mark">ii</div>
+<div class="li-content"><p>Second item, level 3</p>
+
+<ol class="olist level-4 upperalpha">
+<li><div class="li-mark">A</div>
+<div class="li-content"><p>First item, level 4</p>
+</div></li>
+</ol> <!-- .level-4 -->
+
+</div></li>
+<li><div class="li-mark">iii</div>
+<div class="li-content"><p>Third item, level 3</p>
+</div></li>
+</ol> <!-- .level-3 -->
+
+</div></li>
+<li><div class="li-mark">b</div>
+<div class="li-content"><p>Second item, level 2</p>
+</div></li>
+</ol> <!-- .level-2 -->
+
+</div></li>
+<li><div class="li-mark">3</div>
+<div class="li-content"><p>Third item, level 1</p>
+</div></li>
+</ol> <!-- .level-1 -->
+</div></div>
+<div><i class="bi bi-check-square text-success" style="vertical-align: -0.125em;"></i><button type="button" data-bs-toggle="collapse" data-bs-target="#test-ordered-list-of-figures" class="btn btn-link"><i class="bi bi-chevron-expand"></i> Ordered list of figures</button>
+<div class="collapse full-width-bg" id="test-ordered-list-of-figures"><pre><code class="language-asciidoc">[figlist]
+.Two beautiful cats.
+. image:cat2.jpg[Cat in basket,title=A cat in a basket.]
+. image:cat3.jpg[Cat on sofa,title=A cat on a sofa.]
+</code></pre>
+<div class="figlist-wrapper">
+<ol class="figlist loweralpha">
+<li><figure>
+    <img src="assets/img/cat2.jpg" alt="Cat in basket">
+    <figcaption><span class="li-mark">a</span>A cat in a basket.</figcaption>
+</figure></li>
+<li><figure>
+    <img src="assets/img/cat3.jpg" alt="Cat on sofa">
+    <figcaption><span class="li-mark">b</span>A cat on a sofa.</figcaption>
+</figure></li>
+</ol> <!-- .figlist.loweralpha -->
+<div class="figlist-title"><span class="title-prefix">Figure 1</span>Two beautiful cats.</div>
+</div> <!-- .figlist-wrapper -->
+</div></div>
+<div><i class="bi bi-check-square text-success" style="vertical-align: -0.125em;"></i><button type="button" data-bs-toggle="collapse" data-bs-target="#test-ordered-list-with-start" class="btn btn-link"><i class="bi bi-chevron-expand"></i> Ordered list with start</button>
+<div class="collapse full-width-bg" id="test-ordered-list-with-start"><pre><code class="language-asciidoc">[start=3]
+. First item, level 1
+. Second item, level 1
+.. First item, level 2
+... First item, level 3
+... Second item, level 3
+.... First item, level 4
+... Third item, level 3
+.. Second item, level 2
+. Third item, level 1
+</code></pre>
+<ol class="olist level-1 arabic">
+<li><div class="li-mark">3</div>
+<div class="li-content"><p>First item, level 1</p>
+</div></li>
+<li><div class="li-mark">4</div>
+<div class="li-content"><p>Second item, level 1</p>
+
+<ol class="olist level-2 loweralpha">
+<li><div class="li-mark">a</div>
+<div class="li-content"><p>First item, level 2</p>
+
+<ol class="olist level-3 lowerroman">
+<li><div class="li-mark">i</div>
+<div class="li-content"><p>First item, level 3</p>
+</div></li>
+<li><div class="li-mark">ii</div>
+<div class="li-content"><p>Second item, level 3</p>
+
+<ol class="olist level-4 upperalpha">
+<li><div class="li-mark">A</div>
+<div class="li-content"><p>First item, level 4</p>
+</div></li>
+</ol> <!-- .level-4 -->
+
+</div></li>
+<li><div class="li-mark">iii</div>
+<div class="li-content"><p>Third item, level 3</p>
+</div></li>
+</ol> <!-- .level-3 -->
+
+</div></li>
+<li><div class="li-mark">b</div>
+<div class="li-content"><p>Second item, level 2</p>
+</div></li>
+</ol> <!-- .level-2 -->
+
+</div></li>
+<li><div class="li-mark">5</div>
+<div class="li-content"><p>Third item, level 1</p>
+</div></li>
+</ol> <!-- .level-1 -->
+</div></div>
+<div><i class="bi bi-check-square text-success" style="vertical-align: -0.125em;"></i><button type="button" data-bs-toggle="collapse" data-bs-target="#test-ordered-list-with-title" class="btn btn-link"><i class="bi bi-chevron-expand"></i> Ordered list with title</button>
+<div class="collapse full-width-bg" id="test-ordered-list-with-title"><pre><code class="language-asciidoc">.List Title
+[[olist-title-id]]
+. First item
+. Second item
+. Third item
+</code></pre>
+<div id="olist-title-id" class="list-wrapper">
+<h6 class="block-title">List Title</h6>
+<ol class="olist level-1 arabic">
+<li><div class="li-mark">1</div>
+<div class="li-content"><p>First item</p>
+</div></li>
+<li><div class="li-mark">2</div>
+<div class="li-content"><p>Second item</p>
+</div></li>
+<li><div class="li-mark">3</div>
+<div class="li-content"><p>Third item</p>
+</div></li>
+</ol> <!-- .level-1 -->
+
+</div> <!-- #olist-title-id.list-wrapper -->
+</div></div>
+<div><i class="bi bi-check-square text-success" style="vertical-align: -0.125em;"></i><button type="button" data-bs-toggle="collapse" data-bs-target="#test-pseudocode" class="btn btn-link"><i class="bi bi-chevron-expand"></i> Pseudocode</button>
+<div class="collapse full-width-bg" id="test-pseudocode"><pre><code class="language-asciidoc">[pseudocode]
+. First item, level 1
+. Second item, level 1
+.. First item, level 2
+... First item, level 3
+... Second item, level 3
+.... First item, level 4
+... Third item, level 3
+.. Second item, level 2
+. Third item, level 1
+</code></pre>
+<ol class="olist level-1 pseudocode">
+<li><div class="li-mark">1</div>
+<div class="li-content"><p>First item, level 1</p>
+</div></li>
+<li><div class="li-mark">2</div>
+<div class="li-content"><p>Second item, level 1</p>
+
+<ol class="olist level-2 pseudocode">
+<li><div class="li-mark">3</div>
+<div class="li-content"><p>First item, level 2</p>
+
+<ol class="olist level-3 pseudocode">
+<li><div class="li-mark">4</div>
+<div class="li-content"><p>First item, level 3</p>
+</div></li>
+<li><div class="li-mark">5</div>
+<div class="li-content"><p>Second item, level 3</p>
+
+<ol class="olist level-4 pseudocode">
+<li><div class="li-mark">6</div>
+<div class="li-content"><p>First item, level 4</p>
+</div></li>
+</ol> <!-- .level-4 -->
+
+</div></li>
+<li><div class="li-mark">7</div>
+<div class="li-content"><p>Third item, level 3</p>
+</div></li>
+</ol> <!-- .level-3 -->
+
+</div></li>
+<li><div class="li-mark">8</div>
+<div class="li-content"><p>Second item, level 2</p>
+</div></li>
+</ol> <!-- .level-2 -->
+
+</div></li>
+<li><div class="li-mark">9</div>
+<div class="li-content"><p>Third item, level 1</p>
+</div></li>
+</ol> <!-- .level-1 -->
+</div></div>
+<div><i class="bi bi-check-square text-success" style="vertical-align: -0.125em;"></i><button type="button" data-bs-toggle="collapse" data-bs-target="#test-pseudocode-with-start" class="btn btn-link"><i class="bi bi-chevron-expand"></i> Pseudocode with start</button>
+<div class="collapse full-width-bg" id="test-pseudocode-with-start"><pre><code class="language-asciidoc">[pseudocode,start=5]
+. First item, level 1
+. Second item, level 1
+.. First item, level 2
+... First item, level 3
+... Second item, level 3
+.... First item, level 4
+... Third item, level 3
+.. Second item, level 2
+. Third item, level 1
+</code></pre>
+<ol class="olist level-1 pseudocode">
+<li><div class="li-mark">5</div>
+<div class="li-content"><p>First item, level 1</p>
+</div></li>
+<li><div class="li-mark">6</div>
+<div class="li-content"><p>Second item, level 1</p>
+
+<ol class="olist level-2 pseudocode">
+<li><div class="li-mark">7</div>
+<div class="li-content"><p>First item, level 2</p>
+
+<ol class="olist level-3 pseudocode">
+<li><div class="li-mark">8</div>
+<div class="li-content"><p>First item, level 3</p>
+</div></li>
+<li><div class="li-mark">9</div>
+<div class="li-content"><p>Second item, level 3</p>
+
+<ol class="olist level-4 pseudocode">
+<li><div class="li-mark">10</div>
+<div class="li-content"><p>First item, level 4</p>
+</div></li>
+</ol> <!-- .level-4 -->
+
+</div></li>
+<li><div class="li-mark">11</div>
+<div class="li-content"><p>Third item, level 3</p>
+</div></li>
+</ol> <!-- .level-3 -->
+
+</div></li>
+<li><div class="li-mark">12</div>
+<div class="li-content"><p>Second item, level 2</p>
+</div></li>
+</ol> <!-- .level-2 -->
+
+</div></li>
+<li><div class="li-mark">13</div>
+<div class="li-content"><p>Third item, level 1</p>
+</div></li>
+</ol> <!-- .level-1 -->
+</div></div>
+<div><i class="bi bi-check-square text-success" style="vertical-align: -0.125em;"></i><button type="button" data-bs-toggle="collapse" data-bs-target="#test-paragraph" class="btn btn-link"><i class="bi bi-chevron-expand"></i> Paragraph</button>
+<div class="collapse full-width-bg" id="test-paragraph"><pre><code class="language-asciidoc">This is a simple paragraph.
+</code></pre>
+<p>This is a simple paragraph.</p>
+</div></div>
+<div><i class="bi bi-check-square text-success" style="vertical-align: -0.125em;"></i><button type="button" data-bs-toggle="collapse" data-bs-target="#test-paragraph-with-title" class="btn btn-link"><i class="bi bi-chevron-expand"></i> Paragraph with title</button>
+<div class="collapse full-width-bg" id="test-paragraph-with-title"><pre><code class="language-asciidoc">.Paragraph Title
+This is a paragraph with title.
+</code></pre>
+<div class="paragraph">
+<h6 class="block-title">Paragraph Title</h6>
+<p>This is a paragraph with title.</p>
+
+</div> <!-- .paragraph -->
+</div></div>
+<div><i class="bi bi-check-square text-success" style="vertical-align: -0.125em;"></i><button type="button" data-bs-toggle="collapse" data-bs-target="#test-numbered-section" class="btn btn-link"><i class="bi bi-chevron-expand"></i> Numbered section</button>
+<div class="collapse full-width-bg" id="test-numbered-section"><pre><code class="language-asciidoc">:sectnums:
+:xrefstyle: short
+
+[[numbered-sec-id]]
+== Section Title
+
+This is some content for &lt;&lt;numbered-sec-id&gt;&gt;.
+
+====
+This is an example.
+====
+
+[lemma#lem-minor]
+.Minor Lemma
+====
+This is a lemma.
+====
+
+Building on &lt;&lt;lem-minor&gt;&gt;:
+
+[proposition]
+====
+This is a proposition.
+====
+</code></pre>
+<section id="numbered-sec-id" class="section">
+<h3><span class="title-mark">1</span>Section Title</h3>
+<p>This is some content for <a href="#numbered-sec-id">Section 1</a>.</p>
+
+<div class="example">
+<h6 class="block-title">Example 1.1</h6>
+<p>This is an example.</p>
+
+</div> <!-- .example -->
+
+<div id="lem-minor" class="example example-lemma">
+<h6 class="block-title"><span class="title-prefix">Lemma 1.2</span>Minor Lemma</h6>
+<p>This is a lemma.</p>
+
+</div> <!-- #lem-minor.example.example-lemma -->
+
+<p>Building on <a href="#lem-minor">Lemma 1.2</a>:</p>
+
+<div class="example example-proposition">
+<h6 class="block-title">Proposition 1.3</h6>
+<p>This is a proposition.</p>
+
+</div> <!-- .example.example-proposition -->
+
+</section> <!-- #numbered-sec-id.section -->
+</div></div>
+<div><i class="bi bi-check-square text-success" style="vertical-align: -0.125em;"></i><button type="button" data-bs-toggle="collapse" data-bs-target="#test-section" class="btn btn-link"><i class="bi bi-chevron-expand"></i> Section</button>
+<div class="collapse full-width-bg" id="test-section"><pre><code class="language-asciidoc">[[sec-id]]
+== Section Title
+
+This is some content for &lt;&lt;sec-id&gt;&gt;.
+
+====
+This is an example.
+====
+
+[lemma#lem-minor]
+====
+This is a lemma.
+====
+
+Building on &lt;&lt;lem-minor&gt;&gt;:
+
+[proposition]
+====
+This is a proposition.
+====
+
+The following describes an &lt;&lt;alg-easy&gt;&gt;.
+The main work is done inside step &lt;&lt;alg-easy-loop-body&gt;&gt;,
+not &lt;&lt;alg-easy-condition-statement&gt;&gt;.
+The algorithm terminates on the &lt;&lt;alg-easy-output-line&gt;&gt;.
+
+[algorithm]
+====
+Here is an algorithm.
+
+[[alg-easy]]
+.Easy Algorithm
+. Initialise variables.
+. For every item in loop:
+.. [[alg-easy-loop-body]]Do some stuff.
+.. If some condition:
+... [[alg-easy-condition-statement]]Some statement.
+. [[alg-easy-output-line,output line]]Output something.
+====
+
+Take a break and look at &lt;&lt;fig-cats&gt;&gt;, paying special
+attention to &lt;&lt;fig-sofa-cat&gt;&gt;.
+
+[figlist#fig-cats]
+.Two beautiful cats.
+. image:cat2.jpg[Cat in basket,title=A cat in a basket.]
+. [[fig-sofa-cat]]image:cat3.jpg[Cat on sofa,title=A cat on a sofa.]
+
+[theorem#thm-important]
+.An Important Theorem
+====
+This is a theorem with title.
+====
+
+[corollary]
+====
+This is a corollary to &lt;&lt;thm-important&gt;&gt;.
+====
+</code></pre>
+<section id="sec-id" class="section">
+<h3>Section Title</h3>
+<p>This is some content for <a href="#sec-id">Section Title</a>.</p>
+
+<div class="example">
+<h6 class="block-title">Example 1</h6>
+<p>This is an example.</p>
+
+</div> <!-- .example -->
+
+<div id="lem-minor" class="example example-lemma">
+<h6 class="block-title">Lemma 2</h6>
+<p>This is a lemma.</p>
+
+</div> <!-- #lem-minor.example.example-lemma -->
+
+<p>Building on <a href="#lem-minor">Lemma 2</a>:</p>
+
+<div class="example example-proposition">
+<h6 class="block-title">Proposition 3</h6>
+<p>This is a proposition.</p>
+
+</div> <!-- .example.example-proposition -->
+
+<p>The following describes an <a href="#alg-easy">Easy Algorithm</a>.
+The main work is done inside step <a href="#alg-easy-loop-body">2(a)</a>,
+not <a href="#alg-easy-condition-statement">2(b)i</a>.
+The algorithm terminates on the <a href="#alg-easy-output-line">output line</a>.</p>
+
+<div class="example example-algorithm">
+<h6 class="block-title">Algorithm 4</h6>
+<p>Here is an algorithm.</p>
+
+<div id="alg-easy" class="list-wrapper">
+<h6 class="block-title">Easy Algorithm</h6>
+<ol class="olist level-1 arabic">
+<li><div class="li-mark">1</div>
+<div class="li-content"><p>Initialise variables.</p>
+</div></li>
+<li><div class="li-mark">2</div>
+<div class="li-content"><p>For every item in loop:</p>
+
+<ol class="olist level-2 loweralpha">
+<li><div class="li-mark">a</div>
+<div class="li-content"><p><a id="alg-easy-loop-body"></a>Do some stuff.</p>
+</div></li>
+<li><div class="li-mark">b</div>
+<div class="li-content"><p>If some condition:</p>
+
+<ol class="olist level-3 lowerroman">
+<li><div class="li-mark">i</div>
+<div class="li-content"><p><a id="alg-easy-condition-statement"></a>Some statement.</p>
+</div></li>
+</ol> <!-- .level-3 -->
+
+</div></li>
+</ol> <!-- .level-2 -->
+
+</div></li>
+<li><div class="li-mark">3</div>
+<div class="li-content"><p><a id="alg-easy-output-line"></a>Output something.</p>
+</div></li>
+</ol> <!-- .level-1 -->
+
+</div> <!-- #alg-easy.list-wrapper -->
+
+</div> <!-- .example.example-algorithm -->
+
+<p>Take a break and look at <a href="#fig-cats">Figure 1</a>, paying special
+attention to <a href="#fig-sofa-cat">(b)</a>.</p>
+
+<div id="fig-cats" class="figlist-wrapper">
+<ol class="figlist loweralpha">
+<li><figure>
+    <img src="assets/img/cat2.jpg" alt="Cat in basket">
+    <figcaption><span class="li-mark">a</span>A cat in a basket.</figcaption>
+</figure></li>
+<li><figure>
+<a id="fig-sofa-cat"></a>    <img src="assets/img/cat3.jpg" alt="Cat on sofa">
+    <figcaption><span class="li-mark">b</span>A cat on a sofa.</figcaption>
+</figure></li>
+</ol> <!-- .figlist.loweralpha -->
+<div class="figlist-title"><span class="title-prefix">Figure 1</span>Two beautiful cats.</div>
+</div> <!-- #fig-cats.figlist-wrapper -->
+
+<div id="thm-important" class="example example-theorem">
+<h6 class="block-title"><span class="title-prefix">Theorem 5</span>An Important Theorem</h6>
+<p>This is a theorem with title.</p>
+
+</div> <!-- #thm-important.example.example-theorem -->
+
+<div class="example example-corollary">
+<h6 class="block-title">Corollary 6</h6>
+<p>This is a corollary to <a href="#thm-important">Theorem 5</a>.</p>
+
+</div> <!-- .example.example-corollary -->
+
+</section> <!-- #sec-id.section -->
+</div></div>
+<div><i class="bi bi-check-square text-success" style="vertical-align: -0.125em;"></i><button type="button" data-bs-toggle="collapse" data-bs-target="#test-section-in-chapter" class="btn btn-link"><i class="bi bi-chevron-expand"></i> Section in chapter</button>
+<div class="collapse full-width-bg" id="test-section-in-chapter"><pre><code class="language-asciidoc">:chapnum: 3
+
+[[sec-in-chap-id]]
+== Section Title
+
+This is some content for &lt;&lt;sec-in-chap-id&gt;&gt;.
+
+====
+This is an example.
+====
+
+[lemma#lem-minor]
+.Minor Lemma
+====
+This is a lemma.
+====
+
+Building on &lt;&lt;lem-minor&gt;&gt;:
+
+[proposition]
+====
+This is a proposition.
+====
+ 
+See &lt;&lt;fig-cute-cat&gt;&gt; for a picture of a cute cat.
+
+[[fig-cute-cat]]
+.Picture of a cute cat.
+image::cat2.jpg[cute cat]
+
+Now for something more serious. Pay special attention
+to line &lt;&lt;alg-serious-line&gt;&gt; of &lt;&lt;alg-serious&gt;&gt; which starts
+with an &lt;&lt;alg-serious-init&gt;&gt;.
+
+[algorithm#alg-serious]
+.A Serious Algorithm
+====
+[pseudocode]
+. [[alg-serious-init,initialisation line]]First item, level 1
+. Second item, level 1
+.. First item, level 2
+... First item, level 3
+... Second item, level 3
+.... [[alg-serious-line]]First item, level 4
+... Third item, level 3
+.. Second item, level 2
+. Third item, level 1
+====
+</code></pre>
+<section id="sec-in-chap-id" class="section">
+<h3>Section Title</h3>
+<p>This is some content for <a href="#sec-in-chap-id">Section Title</a>.</p>
+
+<div class="example">
+<h6 class="block-title">Example 3.1</h6>
+<p>This is an example.</p>
+
+</div> <!-- .example -->
+
+<div id="lem-minor" class="example example-lemma">
+<h6 class="block-title"><span class="title-prefix">Lemma 3.2</span>Minor Lemma</h6>
+<p>This is a lemma.</p>
+
+</div> <!-- #lem-minor.example.example-lemma -->
+
+<p>Building on <a href="#lem-minor">Lemma 3.2</a>:</p>
+
+<div class="example example-proposition">
+<h6 class="block-title">Proposition 3.3</h6>
+<p>This is a proposition.</p>
+
+</div> <!-- .example.example-proposition -->
+
+<p>See <a href="#fig-cute-cat">Figure 3.1</a> for a picture of a cute cat.</p>
+
+<div id="fig-cute-cat" class="figbox">
+<figure>
+    <img src="assets/img/cat2.jpg" alt="cute cat">
+    <figcaption><span class="title-prefix">Figure 3.1</span>Picture of a cute cat.</figcaption>
+</figure>
+</div> <!-- #fig-cute-cat.figbox -->
+
+<p>Now for something more serious. Pay special attention
+to line <a href="#alg-serious-line">6</a> of <a href="#alg-serious">Algorithm 3.4</a> which starts
+with an <a href="#alg-serious-init">initialisation line</a>.</p>
+
+<div id="alg-serious" class="example example-algorithm">
+<h6 class="block-title"><span class="title-prefix">Algorithm 3.4</span>A Serious Algorithm</h6>
+<ol class="olist level-1 pseudocode">
+<li><div class="li-mark">1</div>
+<div class="li-content"><p><a id="alg-serious-init"></a>First item, level 1</p>
+</div></li>
+<li><div class="li-mark">2</div>
+<div class="li-content"><p>Second item, level 1</p>
+
+<ol class="olist level-2 pseudocode">
+<li><div class="li-mark">3</div>
+<div class="li-content"><p>First item, level 2</p>
+
+<ol class="olist level-3 pseudocode">
+<li><div class="li-mark">4</div>
+<div class="li-content"><p>First item, level 3</p>
+</div></li>
+<li><div class="li-mark">5</div>
+<div class="li-content"><p>Second item, level 3</p>
+
+<ol class="olist level-4 pseudocode">
+<li><div class="li-mark">6</div>
+<div class="li-content"><p><a id="alg-serious-line"></a>First item, level 4</p>
+</div></li>
+</ol> <!-- .level-4 -->
+
+</div></li>
+<li><div class="li-mark">7</div>
+<div class="li-content"><p>Third item, level 3</p>
+</div></li>
+</ol> <!-- .level-3 -->
+
+</div></li>
+<li><div class="li-mark">8</div>
+<div class="li-content"><p>Second item, level 2</p>
+</div></li>
+</ol> <!-- .level-2 -->
+
+</div></li>
+<li><div class="li-mark">9</div>
+<div class="li-content"><p>Third item, level 1</p>
+</div></li>
+</ol> <!-- .level-1 -->
+
+</div> <!-- #alg-serious.example.example-algorithm -->
+
+</section> <!-- #sec-in-chap-id.section -->
+</div></div>
