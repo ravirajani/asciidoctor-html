@@ -27,7 +27,7 @@ module Asciidoctor
         "stem" => "latexmath",
         "hide-uri-scheme" => true,
         "source-highlighter" => "highlight.js",
-        "imagesdir" => Template::IMG_PATH
+        "imagesdir" => IMG_PATH
       }.freeze
 
       DEFAULT_OPTS = {

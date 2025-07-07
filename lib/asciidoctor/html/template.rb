@@ -8,7 +8,7 @@ module Asciidoctor
     ASSETS_PATH = "assets"
     CSS_PATH = "#{ASSETS_PATH}/css".freeze
     IMG_PATH = "#{ASSETS_PATH}/img".freeze
-    
+
     # The template for the book layout
     module Template
       def self.nav_item(target, text, content = "", active: false)

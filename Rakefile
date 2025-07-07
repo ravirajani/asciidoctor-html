@@ -7,10 +7,10 @@ require "jekyll"
 require "fileutils"
 require_relative "lib/asciidoctor/html"
 
-JEKYLL_SITEDIR = "#{__dir__}/_site"
+JEKYLL_SITEDIR = "#{__dir__}/_site".freeze
 JEKYLL_CSSDIR = "#{JEKYLL_SITEDIR}/assets/css".freeze
-WWW_DIR = "#{__dir__}/www"
-WWW_ASSETS_DIR = "#{WWW_DIR}/#{Asciidoctor::Html::ASSETS_PATH}"
+WWW_DIR = "#{__dir__}/www".freeze
+WWW_ASSETS_DIR = "#{WWW_DIR}/#{Asciidoctor::Html::ASSETS_PATH}".freeze
 
 Minitest::TestTask.create
 
