@@ -7,9 +7,9 @@ module Asciidoctor
   module Html
     # Tests the Book generator
     module TestBook
-      CHAPTERS = %w[index 01-introduction.adoc].map { |f| "#{__dir__}/_book/#{f}" }.freeze
+      CHAPTERS = %w[index.adoc 01-introduction.adoc].map { |f| "#{__dir__}/_book/#{f}" }.freeze
 
-      APPENDICES = %w[appendix-a appendix-b].map { |f| "#{__dir__}/_book/#{f}" }.freeze
+      APPENDICES = %w[appendix-a.adoc appendix-b.adoc].map { |f| "#{__dir__}/_book/#{f}" }.freeze
 
       class TestBookNoAppendix < Minitest::Test
         def setup

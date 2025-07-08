@@ -105,7 +105,7 @@ module Asciidoctor
       def parse_file(filename, chapname, numeral)
         attributes = { "chapnum" => numeral, "chapname" => chapname }.merge DOCATTRS
         Asciidoctor.load_file(
-          Pathname(filename).sub_ext(".adoc"),
+          filename,
           safe: :unsafe,
           attributes:
         )
