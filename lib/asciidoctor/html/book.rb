@@ -36,9 +36,9 @@ module Asciidoctor
       }.freeze
 
       # Template data to be processed by each document
-      TData = Struct.new("TData", :content, :nav, :chapnum, :chaptitle)
+      TData = Struct.new("TData", :content, :nav, :langs, :chapnum, :chaptitle)
 
-      def initialize(chapters = ["index"], appendices = [], opts = {})
+      def initialize(chapters = ["index.adoc"], appendices = [], opts = {})
         opts = DEFAULT_OPTS.merge opts
         @title = ERB::Escape.html_escape opts[:title]
         @author = ERB::Escape.html_escape opts[:author]
@@ -46,7 +46,6 @@ module Asciidoctor
         @docs = {} # Hash(docname => converted_content)
         @refs = {} # Hash(docname => Hash(id => reftext))
         @templates = {} # Hash(docname => TData)
-        @langs = {} # Hash(langname => true)
         chapters.each_with_index do |filename, idx|
           process_chapter filename, idx, opts[:chapname]
         end
@@ -90,13 +89,14 @@ module Asciidoctor
       # - chaptitle
       # - chapref
       def process_doc(key, doc, opts)
-        @langs.merge! doc.attr("source-langs") if doc.attr?("source-langs")
+        langs = doc.attr?("source-langs") ? doc.attr("source-langs").keys : []
         val = doc.catalog[:refs].transform_values(&method(:reftext)).compact
         val["chapref"] = opts[:chapref]
         @refs[key] = val
         @templates[key] = TData.new(
           content: doc.convert,
           nav: outline(doc),
+          langs:,
           chapnum: opts[:chapnum],
           chaptitle: opts[:chaptitle]
         )
@@ -152,7 +152,7 @@ module Asciidoctor
           date: @date,
           chapnum: tdata.chapnum,
           chaptitle: tdata.chaptitle,
-          langs: @langs.keys
+          langs: tdata.langs
         )
       end
     end
