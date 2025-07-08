@@ -68,7 +68,7 @@ module Asciidoctor
         chaptitle = doctitle doc
         chapref = idx.zero? ? chaptitle : chapref_default(chapname, numeral)
         chapnum = idx.zero? ? "" : numeral
-        process_doc filename, doc, chapnum:, chaptitle:, chapref:
+        process_doc key(filename), doc, chapnum:, chaptitle:, chapref:
       end
 
       def process_appendix(filename, idx, num_appendices)
@@ -78,16 +78,19 @@ module Asciidoctor
         chapref = num_appendices == 1 ? chapname : chapref_default(chapname, numeral)
         chapnum = ""
         chaptitle = Template.appendix_title chapname, numeral, doctitle(doc), num_appendices
-        process_doc filename, doc, chapnum:, chaptitle:, chapref:
+        process_doc key(filename), doc, chapnum:, chaptitle:, chapref:
+      end
+
+      def key(filename)
+        Pathname(filename).basename.sub_ext("").to_s
       end
 
       # opts:
       # - chapnum
       # - chaptitle
       # - chapref
-      def process_doc(filename, doc, opts)
+      def process_doc(key, doc, opts)
         @langs.merge! doc.attr("source-langs") if doc.attr?("source-langs")
-        key = Pathname(filename).basename.sub_ext("").to_s
         val = doc.catalog[:refs].transform_values(&method(:reftext)).compact
         val["chapref"] = opts[:chapref]
         @refs[key] = val
@@ -127,25 +130,30 @@ module Asciidoctor
       end
 
       def generate_docs
-        @templates.each do |key, tdata|
-          nav_items = @templates.map do |k, td|
-            active = (k == key)
-            subnav = active ? td.nav : ""
-            navtext = Template.nav_text td.chapnum, td.chaptitle
-            Template.nav_item("#{k}.html", navtext, subnav, active:)
-          end
-          content = ERB.new(tdata.content).result(binding)
-          @docs[key] = Template.html(
-            content,
-            nav_items,
-            title: @title,
-            author: @author,
-            date: @date,
-            chapnum: tdata.chapnum,
-            chaptitle: tdata.chaptitle,
-            langs: @langs.keys
-          )
+        @templates.each_key do |key|
+          generate_doc key
         end
+      end
+
+      def generate_doc(key)
+        tdata = @templates[key]
+        nav_items = @templates.map do |k, td|
+          active = (k == key)
+          subnav = active ? td.nav : ""
+          navtext = Template.nav_text td.chapnum, td.chaptitle
+          Template.nav_item("#{k}.html", navtext, subnav, active:)
+        end
+        content = ERB.new(tdata.content).result(binding)
+        @docs[key] = Template.html(
+          content,
+          nav_items,
+          title: @title,
+          author: @author,
+          date: @date,
+          chapnum: tdata.chapnum,
+          chaptitle: tdata.chaptitle,
+          langs: @langs.keys
+        )
       end
     end
   end
