@@ -8,7 +8,6 @@ require_relative "converter"
 require_relative "ref_tree_processor"
 require_relative "cref_inline_macro"
 require_relative "template"
-require_relative "utils"
 
 module Asciidoctor
   module Html
@@ -42,7 +41,6 @@ module Asciidoctor
       TData = Struct.new("TData", :content, :nav, :chapnum, :chaptitle)
 
       def initialize(chapters = [INDEX], appendices = [], opts = {})
-        chapters = [INDEX] + chapters unless Pathname(chapters.first).basename.sub_ext("").to_s == INDEX
         opts = DEFAULT_OPTS.merge opts, { appendices: 0 }
         @title = ERB::Escape.html_escape opts[:title]
         @author = ERB::Escape.html_escape opts[:author]
