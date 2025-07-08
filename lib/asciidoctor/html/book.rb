@@ -45,16 +45,15 @@ module Asciidoctor
         @date = opts.include?(:date) ? Date.parse(opts[:date]) : Date.today
         @docs = {} # Hash(docname => converted_content)
         @refs = {} # Hash(docname => Hash(id => reftext))
-        templates = {} # Hash(docname => TData)
-        langs = {} # Hash(langname => true)
+        @templates = {} # Hash(docname => TData)
+        @langs = {} # Hash(langname => true)
         chapters.each_with_index do |filename, idx|
-          process_chapter! templates, langs, filename, idx, opts[:chapname]
+          process_chapter filename, idx, opts[:chapname]
         end
         appendices.each_with_index do |filename, idx|
-          process_appendix! templates, langs, filename, idx, appendices.size
+          process_appendix filename, idx, appendices.size
         end
-        @langs = langs.keys # Array[langname]
-        generate_docs templates
+        generate_docs
       end
 
       private
@@ -63,32 +62,36 @@ module Asciidoctor
         doc.doctitle sanitize: true, use_fallback: true
       end
 
-      def process_chapter!(templates, langs, filename, idx, chapname)
+      def process_chapter(filename, idx, chapname)
         numeral = idx.to_s
         doc = parse_file filename, chapname, numeral
         chaptitle = doctitle doc
         chapref = idx.zero? ? chaptitle : chapref_default(chapname, numeral)
         chapnum = idx.zero? ? "" : numeral
-        process_doc! templates, langs, filename, doc, chapnum:, chaptitle:, chapref:
+        process_doc filename, doc, chapnum:, chaptitle:, chapref:
       end
 
-      def process_appendix!(templates, langs, filename, idx, num_appendices)
+      def process_appendix(filename, idx, num_appendices)
         chapname = "Appendix"
         numeral = ("a".."z").to_a[idx].upcase
         doc = parse_file filename, chapname, numeral
         chapref = num_appendices == 1 ? chapname : chapref_default(chapname, numeral)
         chapnum = ""
         chaptitle = Template.appendix_title chapname, numeral, doctitle(doc), num_appendices
-        process_doc! templates, langs, filename, doc, chapnum:, chaptitle:, chapref:
+        process_doc filename, doc, chapnum:, chaptitle:, chapref:
       end
 
-      def process_doc!(templates, langs, filename, doc, opts)
-        langs.merge! doc.attr("source-langs") if doc.attr?("source-langs")
+      # opts:
+      # - chapnum
+      # - chaptitle
+      # - chapref
+      def process_doc(filename, doc, opts)
+        @langs.merge! doc.attr("source-langs") if doc.attr?("source-langs")
         key = Pathname(filename).basename.sub_ext("").to_s
         val = doc.catalog[:refs].transform_values(&method(:reftext)).compact
         val["chapref"] = opts[:chapref]
         @refs[key] = val
-        templates[key] = TData.new(
+        @templates[key] = TData.new(
           content: doc.convert,
           nav: outline(doc),
           chapnum: opts[:chapnum],
@@ -123,9 +126,9 @@ module Asciidoctor
         items.size > 1 ? Template.nav(items) : ""
       end
 
-      def generate_docs(templates)
-        templates.each do |key, tdata|
-          nav_items = templates.map do |k, td|
+      def generate_docs
+        @templates.each do |key, tdata|
+          nav_items = @templates.map do |k, td|
             active = (k == key)
             subnav = active ? td.nav : ""
             navtext = Template.nav_text td.chapnum, td.chaptitle
@@ -140,7 +143,7 @@ module Asciidoctor
             date: @date,
             chapnum: tdata.chapnum,
             chaptitle: tdata.chaptitle,
-            langs: @langs
+            langs: @langs.keys
           )
         end
       end
