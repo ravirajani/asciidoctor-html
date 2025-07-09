@@ -37,7 +37,7 @@ module Asciidoctor
       }.freeze
 
       # Template data to be processed by each document
-      TData = Struct.new("TData", :nav, :chapnum, :chaptitle)
+      TData = Struct.new("TData", :chapnum, :chaptitle)
 
       def initialize(opts = {})
         opts = DEFAULT_OPTS.merge opts
@@ -109,7 +109,6 @@ module Asciidoctor
         val["chapref"] = opts[:chapref]
         @refs[key] = val
         @templates[key] = TData.new(
-          nav: outline(doc),
           chapnum: opts[:chapnum],
           chaptitle: opts[:chaptitle]
         )
@@ -151,7 +150,7 @@ module Asciidoctor
         tdata = @templates[key]
         nav_items = @templates.map do |k, td|
           active = (k == key)
-          subnav = active ? td.nav : ""
+          subnav = active ? outline(doc) : ""
           navtext = Template.nav_text td.chapnum, td.chaptitle
           Template.nav_item "#{k}.html", navtext, subnav, active:
         end
