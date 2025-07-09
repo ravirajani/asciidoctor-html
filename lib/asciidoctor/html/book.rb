@@ -14,7 +14,7 @@ module Asciidoctor
     # A book is a collection of documents with cross referencing
     # supported via the cref macro.
     class Book
-      attr_reader :docs, :refs, :langs, :title, :author, :date
+      attr_reader :refs, :title, :author, :date, :chapname
 
       Asciidoctor::Extensions.register do
         tree_processor RefTreeProcessor
@@ -36,41 +36,56 @@ module Asciidoctor
       }.freeze
 
       # Template data to be processed by each document
-      TData = Struct.new("TData", :content, :nav, :langs, :chapnum, :chaptitle)
+      TData = Struct.new("TData", :nav, :chapnum, :chaptitle)
 
-      def initialize(chapters = ["index.adoc"], appendices = [], opts = {})
+      def initialize(opts = {})
         opts = DEFAULT_OPTS.merge opts
         @title = ERB::Escape.html_escape opts[:title]
         @author = ERB::Escape.html_escape opts[:author]
         @date = opts.include?(:date) ? Date.parse(opts[:date]) : Date.today
-        @docs = {} # Hash(docname => converted_content)
+        @chapname = opts[:chapname]
         @refs = {} # Hash(docname => Hash(id => reftext))
         @templates = {} # Hash(docname => TData)
+      end
+
+      def read(chapters = ["index.adoc"], appendices = [])
+        docs = {} # Hash(docname => document)
         chapters.each_with_index do |filename, idx|
-          process_chapter filename, idx, opts[:chapname]
+          doc = chapter filename, idx
+          register! docs, filename, doc
         end
         appendices.each_with_index do |filename, idx|
-          process_appendix filename, idx, appendices.size
+          doc = appendix filename, idx, appendices.size
+          register! docs, filename, doc
         end
-        generate_docs
+        generate docs
       end
 
       private
+
+      def register!(docs, filename, doc)
+        key = key filename
+        docs[key] = doc
+      end
+
+      def langs(doc)
+        doc.attr?("source-langs") ? doc.attr("source-langs").keys : []
+      end
 
       def doctitle(doc)
         doc.doctitle sanitize: true, use_fallback: true
       end
 
-      def process_chapter(filename, idx, chapname)
+      def chapter(filename, idx)
         numeral = idx.to_s
-        doc = parse_file filename, chapname, numeral
+        doc = parse_file filename, @chapname, numeral
         chaptitle = doctitle doc
-        chapref = idx.zero? ? chaptitle : chapref_default(chapname, numeral)
+        chapref = idx.zero? ? chaptitle : chapref_default(@chapname, numeral)
         chapnum = idx.zero? ? "" : numeral
         process_doc key(filename), doc, chapnum:, chaptitle:, chapref:
       end
 
-      def process_appendix(filename, idx, num_appendices)
+      def appendix(filename, idx, num_appendices)
         chapname = "Appendix"
         numeral = ("a".."z").to_a[idx].upcase
         doc = parse_file filename, chapname, numeral
@@ -89,17 +104,15 @@ module Asciidoctor
       # - chaptitle
       # - chapref
       def process_doc(key, doc, opts)
-        langs = doc.attr?("source-langs") ? doc.attr("source-langs").keys : []
         val = doc.catalog[:refs].transform_values(&method(:reftext)).compact
         val["chapref"] = opts[:chapref]
         @refs[key] = val
         @templates[key] = TData.new(
-          content: doc.convert,
           nav: outline(doc),
-          langs:,
           chapnum: opts[:chapnum],
           chaptitle: opts[:chaptitle]
         )
+        doc
       end
 
       def parse_file(filename, chapname, numeral)
@@ -125,13 +138,15 @@ module Asciidoctor
         items.size > 1 ? Template.nav(items) : ""
       end
 
-      def generate_docs
-        @templates.each_key do |key|
-          generate_doc key
+      def generate(docs)
+        html = {} # Hash(docname => html)
+        docs.each do |key, doc|
+          html[key] = build_template key, doc
         end
+        html
       end
 
-      def generate_doc(key)
+      def build_template(key, doc)
         tdata = @templates[key]
         nav_items = @templates.map do |k, td|
           active = (k == key)
@@ -139,8 +154,8 @@ module Asciidoctor
           navtext = Template.nav_text td.chapnum, td.chaptitle
           Template.nav_item("#{k}.html", navtext, subnav, active:)
         end
-        content = ERB.new(tdata.content).result(binding)
-        @docs[key] = Template.html(
+        content = ERB.new(doc.convert).result(binding)
+        Template.html(
           content,
           nav_items,
           title: @title,
@@ -148,7 +163,7 @@ module Asciidoctor
           date: @date,
           chapnum: tdata.chapnum,
           chaptitle: tdata.chaptitle,
-          langs: tdata.langs
+          langs: langs(doc)
         )
       end
     end

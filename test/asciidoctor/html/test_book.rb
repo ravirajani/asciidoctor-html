@@ -14,13 +14,12 @@ module Asciidoctor
       class TestBookNoAppendix < Minitest::Test
         def setup
           @book = Book.new(
-            CHAPTERS,
-            [],
             title: "Test",
             chapname: "Lecture",
             author: "R. Rajani",
             date: "7/7/2025"
           )
+          @docs = @book.read(CHAPTERS, [])
         end
 
         def test_first_refs_initialized
@@ -42,7 +41,7 @@ module Asciidoctor
         end
 
         def test_docs_initialized
-          @book.docs.each do |key, value|
+          @docs.each do |key, value|
             assert_equal value, File.read("#{__dir__}/_book/#{key}.html")
           end
         end
@@ -51,13 +50,12 @@ module Asciidoctor
       class TestBookOneAppendix < Minitest::Test
         def setup
           @book = Book.new(
-            CHAPTERS,
-            [APPENDICES.first],
             title: "Test",
             chapname: "Lecture",
             author: "R. Rajani",
             date: "7/7/2025"
           )
+          @docs = @book.read(CHAPTERS, [APPENDICES.first])
         end
 
         def test_first_refs_initialized
@@ -82,7 +80,7 @@ module Asciidoctor
         end
 
         def test_docs_initialized
-          @book.docs.each do |key, value|
+          @docs.each do |key, value|
             assert_equal value, File.read("#{__dir__}/_book/#{key}_2.html")
           end
         end
@@ -91,13 +89,12 @@ module Asciidoctor
       class TestBookTwoAppendices < Minitest::Test
         def setup
           @book = Book.new(
-            CHAPTERS,
-            APPENDICES,
             title: "Test",
             chapname: "Lecture",
             author: "R. Rajani",
             date: "7/7/2025"
           )
+          @docs = @book.read(CHAPTERS, APPENDICES)
         end
 
         def test_first_refs_initialized
@@ -124,7 +121,7 @@ module Asciidoctor
         end
 
         def test_docs_initialized
-          @book.docs.each do |key, value|
+          @docs.each do |key, value|
             assert_equal value, File.read("#{__dir__}/_book/#{key}_3.html")
           end
         end
