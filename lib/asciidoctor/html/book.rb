@@ -14,7 +14,8 @@ module Asciidoctor
     # A book is a collection of documents with cross referencing
     # supported via the cref macro.
     class Book
-      attr_reader :refs, :title, :author, :date, :chapname
+      attr_reader :title, :author, :date, :chapname,
+                  :refs, :templates
 
       Asciidoctor::Extensions.register do
         tree_processor RefTreeProcessor
