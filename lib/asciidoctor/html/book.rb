@@ -58,7 +58,7 @@ module Asciidoctor
           doc = appendix filename, idx, appendices.size
           register! docs, filename, doc
         end
-        generate docs
+        html docs
       end
 
       private
@@ -138,7 +138,7 @@ module Asciidoctor
         items.size > 1 ? Template.nav(items) : ""
       end
 
-      def generate(docs)
+      def html(docs)
         html = {} # Hash(docname => html)
         docs.each do |key, doc|
           html[key] = build_template key, doc
