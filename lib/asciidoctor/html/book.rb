@@ -153,7 +153,7 @@ module Asciidoctor
           active = (k == key)
           subnav = active ? td.nav : ""
           navtext = Template.nav_text td.chapnum, td.chaptitle
-          Template.nav_item("#{k}.html", navtext, subnav, active:)
+          Template.nav_item "#{k}.html", navtext, subnav, active:
         end
         content = ERB.new(doc.convert).result(binding)
         Template.html(
