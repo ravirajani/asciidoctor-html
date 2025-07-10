@@ -1,4 +1,4 @@
-= Introduction
+= Book's Introduction
 
 I hope you enjoyed cref:index#welcome-section[the welcome]
 of cref:index[].
