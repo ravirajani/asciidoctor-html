@@ -33,7 +33,8 @@ module Asciidoctor
       DEFAULT_OPTS = {
         title: "Untitled Book",
         author: "Anonymous Author",
-        chapname: "Chapter"
+        chapname: "Chapter",
+        outdir: "www"
       }.freeze
 
       # Template data to be processed by each document
@@ -49,7 +50,11 @@ module Asciidoctor
         @templates = {} # Hash(docname => TData)
       end
 
-      def read(chapters = ["index.adoc"], appendices = [])
+      # params:
+      # - chapters: array of filenames
+      # - appendices: array of filenames
+      # returns: Hash(file_basename_without_ext => html)
+      def read(chapters = [], appendices = [])
         docs = {} # Hash(docname => document)
         chapters.each_with_index do |filename, idx|
           doc = chapter filename, idx
@@ -60,6 +65,16 @@ module Asciidoctor
           register! docs, filename, doc
         end
         html docs
+      end
+
+      # params:
+      # - chapters: array of filenames
+      # - appendices: array of filenames
+      # - outdir: directory to write the converted html files to
+      def write(chapters = [], appendices = [], outdir = DEFAULT_OPTS[:outdir])
+        read(chapters, appendices).each do |name, html|
+          File.write("#{outdir}/#{name}.html", html)
+        end
       end
 
       private
