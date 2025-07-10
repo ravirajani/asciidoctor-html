@@ -33,8 +33,7 @@ module Asciidoctor
       DEFAULT_OPTS = {
         title: "Untitled Book",
         author: "Anonymous Author",
-        chapname: "Chapter",
-        outdir: "www"
+        chapname: "Chapter"
       }.freeze
 
       # Template data to be processed by each document
@@ -71,7 +70,7 @@ module Asciidoctor
       # - chapters: array of filenames
       # - appendices: array of filenames
       # - outdir: directory to write the converted html files to
-      def write(chapters = [], appendices = [], outdir = DEFAULT_OPTS[:outdir])
+      def write(chapters, appendices, outdir)
         read(chapters, appendices).each do |name, html|
           File.write("#{outdir}/#{name}.html", html)
         end

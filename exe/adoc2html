@@ -1,7 +1,0 @@
-#!/usr/bin/env ruby
-# frozen_string_literal: true
-
-require "psych"
-require "asciidoctor/html"
-
-puts "hello"
