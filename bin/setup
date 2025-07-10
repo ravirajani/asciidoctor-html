@@ -3,6 +3,9 @@ set -euo pipefail
 IFS=$'\n\t'
 set -vx
 
+DIR=$(cd "$(dirname "$0")" && pwd)
+
 bundle install
 
-# Do any other automated setup that you need to do here
+cd $DIR/../docs/test
+npm i
