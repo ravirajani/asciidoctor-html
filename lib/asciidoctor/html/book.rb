@@ -39,6 +39,11 @@ module Asciidoctor
       # Template data to be processed by each document
       TData = Struct.new("TData", :chapnum, :chaptitle)
 
+      # opts:
+      # - title
+      # - author
+      # - date
+      # - chapname
       def initialize(opts = {})
         opts = DEFAULT_OPTS.merge opts
         @title = ERB::Escape.html_escape opts[:title]

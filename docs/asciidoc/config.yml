@@ -1,0 +1,13 @@
+title: Documentation for Asciidoctor::Html
+author: Ravi Rajani
+date: 10 July 2025
+version: 0.1
+
+chapters:
+  - index.adoc
+  - typography.adoc
+  - numbered-environments.adoc
+  - referencing.adoc
+
+appendices:
+  - asciidoc.adoc
