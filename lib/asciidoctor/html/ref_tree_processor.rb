@@ -9,9 +9,9 @@ module Asciidoctor
   module Html
     # Traverses the document tree and:
     # - attaches a correct reftext to numbered nodes;
-    # - populates the text (= reftext for inline nodes) to anchors at
+    # - populates the text (= reftext for inline nodes) of anchors at
     #   the beginning of a list item for an ordered list;
-    # - registers every encountered source code language not included in
+    # - registers every encountered source code language not included
     #   in the default highlightjs build.
     class RefTreeProcessor < Asciidoctor::Extensions::TreeProcessor
       NUMBERED_CONTEXTS = {
