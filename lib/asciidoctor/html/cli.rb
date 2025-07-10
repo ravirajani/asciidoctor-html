@@ -8,6 +8,7 @@ require_relative "book"
 
 module Asciidoctor
   module Html
+    WWW_DIR = "www"
     # The command line interface
     module CLI
       DEFAULT_OPTIONS = {
@@ -17,7 +18,7 @@ module Asciidoctor
 
       DEFAULT_DIRS = {
         "srcdir" => ".",
-        "outdir" => "www"
+        "outdir" => WWW_DIR
       }.freeze
 
       def self.parse_opts
@@ -45,8 +46,8 @@ module Asciidoctor
 
       def self.setup_outdir(outdir)
         FileUtils.mkdir outdir unless File.directory?(outdir)
-        assets_path = File.absolute_path ASSETS_PATH, "#{__dir__}/../../.."
-        FileUtils.cp_r assets_path, outdir unless File.directory?("#{outdir}/#{ASSETS_PATH}")
+        www_dir = File.absolute_path "#{__dir__}/../../../#{WWW_DIR}"
+        FileUtils.cp_r "#{www_dir}/.", outdir unless File.exist?("#{outdir}/#{CSS_PATH}/styles.css")
       end
 
       def self.run

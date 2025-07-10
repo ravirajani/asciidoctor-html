@@ -9,6 +9,7 @@ require_relative "lib/asciidoctor/html"
 
 JEKYLL_SITEDIR = "#{__dir__}/_site".freeze
 JEKYLL_CSSDIR = "#{JEKYLL_SITEDIR}/assets/css".freeze
+ASSETS_DIR = "#{Asciidoctor::Html::WWW_DIR}/#{Asciidoctor::Html::ASSETS_PATH}".freeze
 
 Minitest::TestTask.create
 
@@ -24,8 +25,8 @@ task jekyll: %i[test rubocop] do
 end
 
 task stylesheet: %i[jekyll] do
-  FileUtils.mkdir_p Asciidoctor::Html::ASSETS_PATH, verbose: true
-  FileUtils.cp_r JEKYLL_CSSDIR, Asciidoctor::Html::ASSETS_PATH, verbose: true
+  FileUtils.mkdir_p ASSETS_DIR, verbose: true
+  FileUtils.cp_r JEKYLL_CSSDIR, ASSETS_DIR, verbose: true
 end
 
 task default: %i[test rubocop]
