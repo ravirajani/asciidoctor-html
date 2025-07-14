@@ -9,7 +9,13 @@ module Asciidoctor
     # ERB inline ruby string:
     #
     # cref:example.adoc#element-id[]
-    # => <a href="example.html#"
+    # => <a href="example.html#element-id"><%= refs.dig("example", "element-id") %></a>
+    #
+    # cref:example.adoc[]
+    # => <a href="example.html"><%= refs.dig("example", "chapref") %></a>
+    #
+    # cref:example.adoc[here]
+    # => <a href="example.html">here</a>
     class CrefInlineMacro < Asciidoctor::Extensions::InlineMacroProcessor
       use_dsl
 

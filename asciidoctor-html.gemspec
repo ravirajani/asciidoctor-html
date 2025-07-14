@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative "lib/asciidoctor/html/version"
+require_relative "lib/asciidoctor/html"
 
 Gem::Specification.new do |spec|
   spec.name = "asciidoctor-html"

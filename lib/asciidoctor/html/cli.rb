@@ -8,7 +8,6 @@ require_relative "book"
 
 module Asciidoctor
   module Html
-    WWW_DIR = "www"
     # The command line interface
     module CLI
       DEFAULT_OPTIONS = {
