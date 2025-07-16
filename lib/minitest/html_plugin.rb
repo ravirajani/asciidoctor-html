@@ -7,8 +7,9 @@ require "cgi"
 module Minitest
   # Custom reporter class that creates an HTML file in the docs folder
   class HTMLReporter < AbstractReporter
-    DOCS_DIR = "#{__dir__}/../../docs/test".freeze
+    DOCS_DIR = "#{__dir__}/../../docs/asciidoc".freeze
     TESTS_DIR = "#{__dir__}/../../test/asciidoctor/html".freeze
+    CONFIG_FILE = "#{__dir__}/../../docs/asciidoc/config.yml".freeze
 
     def initialize
       @results = {}
@@ -19,27 +20,24 @@ module Minitest
       @results[result.name] = result.failures
     end
 
-    def display_failure(failure, color)
-      %(<pre class="border border-#{color}"><code class="language-shell">#{failure}</code></pre>\n)
+    def display_failure(failure)
+      %([source,shell,role="border border-danger"]\n----\n#{failure}\n----\n)
     end
 
-    def display_result_title(name, id, failed, color)
-      style = %(style="vertical-align: -0.125em;")
-      status_icon = %(<i class="bi bi-#{failed ? "x" : "check"}-square text-#{color}" #{style}></i>)
-      chevron = %(<i class="bi bi-chevron-expand"></i>)
-      attrs = %(type="button" data-bs-toggle="collapse" data-bs-target="##{id}")
-      %(#{status_icon}<button #{attrs} class="btn btn-link">#{chevron} #{name.tr("_", " ").capitalize}</button>\n)
+    def display_result_title(name, failed, color)
+      status_icon = %(pass:[<i class="bi bi-#{failed ? "x" : "check"}-square text-#{color}"></i>])
+      %(#{status_icon} #{name.tr("_", " ").capitalize})
     end
 
-    def display_result(name, adoc, html)
+    def display_result(name, adoc)
       key = "test_#{name}"
       failed = @results[key]&.size&.positive?
       color = failed ? "danger" : "success"
       id = "test-#{name.tr "_", "-"}"
-      title = display_result_title name, id, failed, color
-      pre = %(<pre><code class="language-asciidoc">#{CGI.escapeHTML adoc}</code></pre>\n)
-      fail = failed ? display_failure(CGI.escapeHTML(@results[key].join("\n")), color) : ""
-      %(<div>#{title}<div class="collapse full-width-bg" id="#{id}">#{pre}#{fail}#{html}</div></div>)
+      title = display_result_title name, failed, color
+      pre = %([source,asciidoc]\n----\n#{adoc}\n----\n)
+      fail = failed ? display_failure(@results[key].join("\n")) : ""
+      %([##{id}]\n== #{title}\n\n#{pre}#{fail}\n\n#{adoc}\n\n)
     end
 
     def report_files(results, dirname)
@@ -47,19 +45,19 @@ module Minitest
         next unless filepath.extname == ".adoc"
 
         results << display_result(filepath.basename.sub_ext("").to_s,
-                                  File.read(filepath), File.read(filepath.sub_ext(".html")))
+                                  File.read(filepath))
       end
     end
 
     def report
-      frontmatter = %(---\nlayout: default\ntitle: Test Results\n---\n)
-      time = %(<p class="lead">#{Time.now.strftime("%d/%m/%Y %H:%M")}</p>\n)
+      time = %([.lead]\n#{Time.now.strftime("%d/%m/%Y %H:%M")}\n)
       results = []
       Pathname(TESTS_DIR).children.reject { |f| f.file? || f.basename.to_s.start_with?("_") }.sort.each do |pn|
         report_files results, pn
       end
-      html = %(#{frontmatter}#{time}#{results.join "\n"})
-      File.write("#{DOCS_DIR}/index.html", html)
+      adoc = %(= Test Results\n\n#{time}\n#{results.join "\n"})
+      File.write("#{DOCS_DIR}/tests.adoc", adoc)
+      Asciidoctor::Html::CLI.run({ "config-file": CONFIG_FILE })
     end
   end
 

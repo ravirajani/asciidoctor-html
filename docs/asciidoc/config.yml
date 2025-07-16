@@ -10,7 +10,7 @@ chapters:
   - referencing.adoc
 
 appendices:
-  - asciidoc.adoc
+  - tests.adoc
 
 srcdir: .
-outdir: www
+outdir: ../html

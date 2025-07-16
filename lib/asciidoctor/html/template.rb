@@ -89,7 +89,7 @@ module Asciidoctor
             <link rel="manifest" href="#{FAVICON_PATH}/site.webmanifest">
             <link rel="stylesheet" href="#{CSS_PATH}/styles.css">
             <link rel="stylesheet" href="#{Highlightjs::CDN_PATH}/styles/default.min.css">
-            <script src="#{Highlightjs::CDN_PATH}/build/highlight.min.js"></script>
+            <script src="#{Highlightjs::CDN_PATH}/highlight.min.js"></script>
             #{highlightjs opts[:langs]}
             <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
           </head>

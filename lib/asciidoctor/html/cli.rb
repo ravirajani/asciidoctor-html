@@ -68,8 +68,8 @@ module Asciidoctor
         File.write filename, Webmanifest.generate(name, short_name)
       end
 
-      def self.run
-        opts = parse_opts
+      def self.run(opts = nil)
+        opts ||= parse_opts
         config = read_config opts[:"config-file"]
         outdir = config["outdir"]
         book_opts = {}

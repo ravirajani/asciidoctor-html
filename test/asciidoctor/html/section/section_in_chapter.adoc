@@ -9,13 +9,13 @@ This is some content for <<sec-in-chap-id>>.
 This is an example.
 ====
 
-[lemma#lem-minor]
+[lemma#lem-minor-3]
 .Minor Lemma
 ====
 This is a lemma.
 ====
 
-Building on <<lem-minor>>:
+Building on <<lem-minor-3>>:
 
 [proposition]
 ====

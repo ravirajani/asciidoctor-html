@@ -10,15 +10,17 @@ This is some content for <<numbered-sec-id>>.
 This is an example.
 ====
 
-[lemma#lem-minor]
+[lemma#lem-minor-2]
 .Minor Lemma
 ====
 This is a lemma.
 ====
 
-Building on <<lem-minor>>:
+Building on <<lem-minor-2>>:
 
 [proposition]
 ====
 This is a proposition.
 ====
+
+:!sectnums:
