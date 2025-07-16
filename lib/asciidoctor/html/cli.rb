@@ -17,7 +17,7 @@ module Asciidoctor
 
       DEFAULT_DIRS = {
         "srcdir" => ".",
-        "outdir" => WWW_DIR
+        "outdir" => "www"
       }.freeze
 
       def self.parse_opts
@@ -32,7 +32,12 @@ module Asciidoctor
       end
 
       def self.read_config(config_file)
-        config = Psych.safe_load_file config_file
+        begin
+          config = Psych.safe_load_file config_file
+        rescue StandardError
+          puts "Error opening configuration file #{config_file}"
+          exit 1
+        end
         config_dir = Pathname(config_file).dirname
         %w[outdir srcdir].each do |prop|
           config[prop] = "#{config_dir}/#{config[prop] || DEFAULT_DIRS[prop]}"
@@ -44,21 +49,25 @@ module Asciidoctor
       end
 
       def self.setup_outdir(outdir)
-        FileUtils.mkdir outdir unless File.directory?(outdir)
-        www_dir = File.absolute_path "#{__dir__}/../../../#{WWW_DIR}"
-        FileUtils.cp_r "#{www_dir}/.", outdir unless File.exist?("#{outdir}/#{CSS_PATH}/styles.css")
+        assets_dst = "#{outdir}/#{ASSETS_PATH}"
+        FileUtils.mkdir_p assets_dst, verbose: true unless File.directory?(assets_dst)
+        rootdir = File.absolute_path "#{__dir__}/../../.."
+        %W[#{CSS_PATH} #{FAVICON_PATH}].each do |p|
+          assets_src = "#{rootdir}/#{p}"
+          FileUtils.cp_r assets_src, assets_dst, verbose: true unless Dir.exist?("#{outdir}/#{p}")
+        end
       end
 
       def self.run
         opts = parse_opts
         config = read_config opts[:"config-file"]
         book_opts = {}
-        %i[title author date chapname].each do |opt|
+        %i[title short_title author date chapname].each do |opt|
           key = opt.to_s
           book_opts[opt] = config[key] if config.include?(key)
         end
-        book = Book.new(book_opts)
         setup_outdir config["outdir"]
+        book = Book.new(book_opts)
         book.write config["chapters"], config["appendices"], config["outdir"]
       end
     end

@@ -1,7 +1,7 @@
 title: Documentation for Asciidoctor::Html
+short_title: Asciidoctor::Html Docs
 author: Ravi Rajani
 date: 10 July 2025
-version: 0.1
 
 chapters:
   - index.adoc
@@ -11,3 +11,6 @@ chapters:
 
 appendices:
   - asciidoc.adoc
+
+srcdir: .
+outdir: www
