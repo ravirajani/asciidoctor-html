@@ -5,6 +5,7 @@ require "psych"
 require "pathname"
 require "fileutils"
 require_relative "book"
+require_relative "webmanifest"
 
 module Asciidoctor
   module Html
@@ -50,23 +51,32 @@ module Asciidoctor
 
       def self.setup_outdir(outdir)
         assets_dst = "#{outdir}/#{ASSETS_PATH}"
-        FileUtils.mkdir_p assets_dst, verbose: true unless File.directory?(assets_dst)
+        FileUtils.mkdir_p assets_dst unless File.directory?(assets_dst)
         rootdir = File.absolute_path "#{__dir__}/../../.."
         %W[#{CSS_PATH} #{FAVICON_PATH}].each do |p|
           assets_src = "#{rootdir}/#{p}"
-          FileUtils.cp_r assets_src, assets_dst, verbose: true unless Dir.exist?("#{outdir}/#{p}")
+          FileUtils.cp_r assets_src, assets_dst unless Dir.exist?("#{outdir}/#{p}")
         end
+      end
+
+      def self.generate_webmanifest(outdir, name, short_name)
+        filename = "#{outdir}/#{FAVICON_PATH}/site.webmanifest"
+        puts "Generating #{filename}"
+        File.write filename, Webmanifest.generate(name, short_name)
       end
 
       def self.run
         opts = parse_opts
         config = read_config opts[:"config-file"]
+        outdir = config["outdir"]
         book_opts = {}
         %i[title short_title author date chapname].each do |opt|
           key = opt.to_s
           book_opts[opt] = config[key] if config.include?(key)
         end
-        setup_outdir config["outdir"]
+        book_opts[:short_title] ||= book_opts[:title]
+        setup_outdir outdir
+        generate_webmanifest outdir, book_opts[:title], book_opts[:short_title]
         book = Book.new(book_opts)
         book.write config["chapters"], config["appendices"], config["outdir"]
       end
