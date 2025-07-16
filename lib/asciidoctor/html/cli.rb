@@ -50,12 +50,15 @@ module Asciidoctor
       end
 
       def self.setup_outdir(outdir)
-        assets_dst = "#{outdir}/#{ASSETS_PATH}"
-        FileUtils.mkdir_p assets_dst unless File.directory?(assets_dst)
+        assets_dir = "#{outdir}/#{ASSETS_PATH}"
+        FileUtils.mkdir_p assets_dir unless File.directory?(assets_dir)
         rootdir = File.absolute_path "#{__dir__}/../../.."
         %W[#{CSS_PATH} #{FAVICON_PATH}].each do |p|
-          assets_src = "#{rootdir}/#{p}"
-          FileUtils.cp_r assets_src, assets_dst unless Dir.exist?("#{outdir}/#{p}")
+          dir = "#{outdir}/#{p}"
+          next if Dir.exist?(dir)
+
+          puts "Generating #{dir}"
+          FileUtils.cp_r "#{rootdir}/#{p}", assets_dir
         end
       end
 
