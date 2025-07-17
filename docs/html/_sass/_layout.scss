@@ -1,6 +1,8 @@
 $header-height: 2.5rem;
+$main-width: $content-width + 2*$content-padding-x;
+
 html {
-    scroll-padding-top: $header-height;
+    scroll-padding-top: calc($header-height + $spacer);
 }
 
 .header {
@@ -52,31 +54,41 @@ html {
 }
 
 .sidebar {
-    margin-top: $header-height;
+    z-index: 1;
+    position: fixed;
+    top: $header-height;
+    background-color: var(--bs-body-bg);
+    bottom: 0;
+    border-left: 1px solid var(--bs-dark-border-subtle);
+    right: 0;
+    overflow-y: auto;
+    a, button { 
+        text-wrap: nowrap;
+    }
 }
 
 .main {
+    margin-top: calc($header-height + $spacer);
+    overflow-x: hidden;
     .content-container {
         max-width: $content-width;
-        padding-left: $content-padding-x;
-        padding-right: $content-padding-x;
+        margin: 0 auto;
     }
 }
 
 @include media-breakpoint-up(lg) {
+    .header .btn.menu {
+        display: none;
+    }
     .sidebar {
-        width: 30%;
-        position: fixed;
-        margin-top: 0;
-        top: $header-height;
-        max-height: calc(100vh - $header-height);
-        overflow-y: auto;
+        &.collapse:not(.show) { display: block; }
+        width: calc(100% - $main-width);
+        a {
+            text-wrap: wrap;
+        }
     }
     .main {
-        position: relative;
-        left: 30%;
-        width: 70%;
-        margin-top: calc($header-height + $spacer);
+        width: $main-width;
     }
 }
 

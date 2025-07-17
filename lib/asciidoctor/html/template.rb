@@ -30,7 +30,7 @@ module Asciidoctor
       end
 
       def self.sidebar(nav_items)
-        %(<div class="sidebar">
+        %(<div id="sidebar" class="sidebar collapse collapse-horizontal">
           <div class="search">
             <button type="button" class="btn">
               <i class="bi bi-search"></i> Search&#8230;
@@ -53,7 +53,8 @@ module Asciidoctor
       def self.header(title)
         %(<header class="header">
             <a class="home" href="./">#{title}</a>
-            <button type="button" class="btn menu">
+            <button type="button" class="btn menu" data-bs-toggle="collapse" data-bs-target="#sidebar"
+                    aria-expanded="false" aria-controls="sidebar">
               <i class="bi bi-list"></i>
             </button>
           </header>\n).gsub("\n          ", "\n")
@@ -100,7 +101,13 @@ module Asciidoctor
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
                   integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
                   crossorigin="anonymous"></script>
-          <script>hljs.highlightAll();</script>
+          <script>
+            hljs.highlightAll();
+            addEventListener("hashchange", function(){
+              collapse = bootstrap.Collapse.getInstance("#sidebar");
+              if(collapse) collapse.hide();
+            })
+          </script>
           </body>
           </html>\n).gsub("\n          ", "\n")
       end

@@ -7,10 +7,10 @@ $content-width: 45rem;
 }
 
 .full-width-bg {
-    padding-left: $content-padding-x;
-    padding-right: $content-padding-x;
-    margin-left: -$content-padding-x;
-    margin-right: -$content-padding-x;
+    padding-left: calc(100% - 0.5*$content-width);
+    padding-right: calc(100% - 0.5*$content-width);
+    margin-left: calc(0.5*$content-width - 100%);
+    margin-right: calc(0.5*$content-width - 100%);
 }
 
 .title-mark {
