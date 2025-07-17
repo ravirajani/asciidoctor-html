@@ -35,14 +35,14 @@ jobs:
         with:
           node-version: 22
       - name: Set up Sass
-        working-directory: docs/test
+        working-directory: docs/html
         run: npm ci
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
-      - name: Build the Jekyll test page
+      - name: Build the Jekyll docs site
         run: bundle exec rake jekyll
       - name: Setup Pages
         uses: actions/configure-pages@v5

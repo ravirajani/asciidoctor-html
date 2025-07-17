@@ -7,7 +7,7 @@
 /spec/reports/
 /tmp/
 _site
-/docs/test/index.html
-/docs/asciidoc/www/
+/docs/html/*.html
+/docs/asciidoc/tests.adoc
 .jekyll-cache
 node_modules

@@ -16,7 +16,7 @@ RuboCop::RakeTask.new
 
 task jekyll: %i[test rubocop] do
   config = Jekyll.configuration({
-                                  source: "#{__dir__}/docs/test",
+                                  source: "#{__dir__}/docs/html",
                                   destination: JEKYLL_SITEDIR
                                 })
   site = Jekyll::Site.new(config)
@@ -24,7 +24,7 @@ task jekyll: %i[test rubocop] do
 end
 
 task stylesheet: %i[jekyll] do
-  FileUtils.mkdir_p Asciidoctor::Html::ASSETS_PATH, verbose: true
+  FileUtils.mkdir_p Asciidoctor::Html::CSS_PATH, verbose: true
   FileUtils.cp_r JEKYLL_CSSDIR, Asciidoctor::Html::ASSETS_PATH, verbose: true
 end
 
