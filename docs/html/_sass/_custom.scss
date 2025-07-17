@@ -1,5 +1,5 @@
-$content-padding-x: 0.75rem;
-$content-width: 45rem;
+$content-padding-x: 12px;
+$content-width: map-get($container-max-widths, md) - 2*$content-padding-x;
 
 :root {
     --parsep: #{$spacer};
@@ -7,10 +7,17 @@ $content-width: 45rem;
 }
 
 .full-width-bg {
-    padding-left: calc(100% - 0.5*$content-width);
-    padding-right: calc(100% - 0.5*$content-width);
-    margin-left: calc(0.5*$content-width - 100%);
-    margin-right: calc(0.5*$content-width - 100%);
+    padding-left: max($content-padding-x, calc(100% - 0.5*$content-width));
+    padding-right: max($content-padding-x, calc(100% - 0.5*$content-width));
+    margin-left: min(-#{$content-padding-x}, calc(0.5*$content-width - 100%));
+    margin-right: min(-#{$content-padding-x}, calc(0.5*$content-width - 100%));
+
+    @include media-breakpoint-up(md) {
+        padding-left: $content-padding-x;
+        padding-right: $content-padding-x;
+        margin-left: -$content-padding-x;
+        margin-right: -$content-padding-x;
+    }
 }
 
 .title-mark {

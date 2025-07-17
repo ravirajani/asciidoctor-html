@@ -4,7 +4,7 @@
         --bs-btn-padding-x: #{$content-padding-x};
     }
     nav {
-        $active-border-width: 0.25rem;
+        $active-border-width: 4px;
         ul {
             @extend .nav;
             @extend .flex-column;
