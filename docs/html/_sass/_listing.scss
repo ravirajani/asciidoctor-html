@@ -1,0 +1,25 @@
+.listing {
+    .pre-wrapper {
+        @extend .full-width-bg;
+        background-color: #f3f3f3;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+    .block-title {
+        background-color: var(--bs-secondary-color);
+        color: var(--bs-white);
+        height: 1.75rem;
+        line-height: 1.75rem;
+        font-weight: normal;
+        font-size: 100%;
+        @extend .full-width-bg;
+        margin-bottom: 0;
+    }
+    pre {
+        margin-bottom: 0;
+        .hljs {
+            padding: 0;
+        }
+    }
+    margin-bottom: $spacer;
+}

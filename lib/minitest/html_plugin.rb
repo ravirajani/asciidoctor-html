@@ -35,7 +35,7 @@ module Minitest
       color = failed ? "danger" : "success"
       id = "test-#{name.tr "_", "-"}"
       title = display_result_title name, failed, color
-      pre = %([source,asciidoc]\n----\n#{adoc}\n----\n)
+      pre = %([source,asciidoc]\n------\n#{adoc}\n------\n)
       fail = failed ? display_failure(@results[key].join("\n")) : ""
       %([##{id}]\n== #{title}\n\n#{pre}#{fail}\n\n#{adoc}\n\n)
     end
