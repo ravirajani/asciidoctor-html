@@ -1,7 +1,6 @@
-[[sec-id]]
 == Section Title
 
-This is some content for <<sec-id>>.
+This is some content.
 
 ====
 This is an example.

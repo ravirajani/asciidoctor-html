@@ -75,15 +75,9 @@
 
 <li><a href="#test-numbered-section"><i class="bi bi-check-square text-success"></i> Numbered section</a></li>
 
-<li><a href="#numbered-sec-id">Section Title</a></li>
-
 <li><a href="#test-section"><i class="bi bi-check-square text-success"></i> Section</a></li>
 
-<li><a href="#sec-id">Section Title</a></li>
-
 <li><a href="#test-section-in-chapter"><i class="bi bi-check-square text-success"></i> Section in chapter</a></li>
-
-<li><a href="#sec-in-chap-id">Section Title</a></li>
 
 </ul>
 </li>
@@ -94,7 +88,7 @@
 <div class="content">
 <h2><span class="title-prefix">Appendix</span>Test Results</h2>
 <div class="preamble">
-<p>16/07/2025 19:14</p>
+<p>17/07/2025 09:13</p>
 </div> <!-- .preamble -->
 
 <section id="test-example" class="section">
@@ -554,12 +548,10 @@ This is a paragraph with title.</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">:sectnums:
-:xrefstyle: short
 
-[[numbered-sec-id]]
 == Section Title
 
-This is some content for &lt;&lt;numbered-sec-id&gt;&gt;.
+This is some content.
 
 ====
 This is an example.
@@ -583,9 +575,9 @@ This is a proposition.
 </div>
 </section> <!-- #test-numbered-section.section -->
 
-<section id="numbered-sec-id" class="section">
+<section class="section">
 <h3><span class="title-mark">3</span>Section Title</h3>
-<p>This is some content for <a href="#numbered-sec-id">Section 3</a>.</p>
+<p>This is some content.</p>
 
 <div class="example">
 <h6 class="block-title">Example A.6</h6>
@@ -607,16 +599,15 @@ This is a proposition.
 
 </div> <!-- .example.example-proposition -->
 
-</section> <!-- #numbered-sec-id.section -->
+</section> <!-- .section -->
 
 <section id="test-section" class="section">
 <h3><i class="bi bi-check-square text-success"></i> Section</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[[sec-id]]
-== Section Title
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">== Section Title
 
-This is some content for &lt;&lt;sec-id&gt;&gt;.
+This is some content.
 
 ====
 This is an example.
@@ -675,9 +666,9 @@ This is a corollary to &lt;&lt;thm-important&gt;&gt;.
 </div>
 </section> <!-- #test-section.section -->
 
-<section id="sec-id" class="section">
+<section class="section">
 <h3>Section Title</h3>
-<p>This is some content for <a href="#sec-id">Section Title</a>.</p>
+<p>This is some content.</p>
 
 <div class="example">
 <h6 class="block-title">Example A.9</h6>
@@ -772,7 +763,7 @@ attention to <a href="#fig-sofa-cat">(b)</a>.</p>
 
 </div> <!-- .example.example-corollary -->
 
-</section> <!-- #sec-id.section -->
+</section> <!-- .section -->
 
 <section id="test-section-in-chapter" class="section">
 <h3><i class="bi bi-check-square text-success"></i> Section in chapter</h3>
@@ -780,10 +771,9 @@ attention to <a href="#fig-sofa-cat">(b)</a>.</p>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">:chapnum: 3
 
-[[sec-in-chap-id]]
 == Section Title
 
-This is some content for &lt;&lt;sec-in-chap-id&gt;&gt;.
+This is some content.
 
 ====
 This is an example.
@@ -830,9 +820,9 @@ with an &lt;&lt;alg-serious-init&gt;&gt;.
 </div>
 </section> <!-- #test-section-in-chapter.section -->
 
-<section id="sec-in-chap-id" class="section">
+<section class="section">
 <h3>Section Title</h3>
-<p>This is some content for <a href="#sec-in-chap-id">Section Title</a>.</p>
+<p>This is some content.</p>
 
 <div class="example">
 <h6 class="block-title">Example A.15</h6>
@@ -913,7 +903,7 @@ with an <a href="#alg-serious-init">initialisation line</a>.</p>
 
 </div> <!-- #alg-serious.example.example-algorithm -->
 
-</section> <!-- #sec-in-chap-id.section -->
+</section> <!-- .section -->
 
 </div> <!-- .content -->
 </main>

@@ -1,7 +1,7 @@
 = Test Results
 
 [.lead]
-16/07/2025 19:14
+17/07/2025 09:13
 
 [#test-example]
 == pass:[<i class="bi bi-check-square text-success"></i>] Example
@@ -345,12 +345,10 @@ This is a paragraph with title.
 [source,asciidoc]
 ----
 :sectnums:
-:xrefstyle: short
 
-[[numbered-sec-id]]
 == Section Title
 
-This is some content for <<numbered-sec-id>>.
+This is some content.
 
 ====
 This is an example.
@@ -374,12 +372,10 @@ This is a proposition.
 
 
 :sectnums:
-:xrefstyle: short
 
-[[numbered-sec-id]]
 == Section Title
 
-This is some content for <<numbered-sec-id>>.
+This is some content.
 
 ====
 This is an example.
@@ -406,10 +402,9 @@ This is a proposition.
 
 [source,asciidoc]
 ----
-[[sec-id]]
 == Section Title
 
-This is some content for <<sec-id>>.
+This is some content.
 
 ====
 This is an example.
@@ -468,10 +463,9 @@ This is a corollary to <<thm-important>>.
 ----
 
 
-[[sec-id]]
 == Section Title
 
-This is some content for <<sec-id>>.
+This is some content.
 
 ====
 This is an example.
@@ -536,10 +530,9 @@ This is a corollary to <<thm-important>>.
 ----
 :chapnum: 3
 
-[[sec-in-chap-id]]
 == Section Title
 
-This is some content for <<sec-in-chap-id>>.
+This is some content.
 
 ====
 This is an example.
@@ -588,10 +581,9 @@ with an <<alg-serious-init>>.
 
 :chapnum: 3
 
-[[sec-in-chap-id]]
 == Section Title
 
-This is some content for <<sec-in-chap-id>>.
+This is some content.
 
 ====
 This is an example.

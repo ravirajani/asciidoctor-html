@@ -9,7 +9,7 @@ module Minitest
   class HTMLReporter < AbstractReporter
     DOCS_DIR = "#{__dir__}/../../docs/asciidoc".freeze
     TESTS_DIR = "#{__dir__}/../../test/asciidoctor/html".freeze
-    CONFIG_FILE = "#{__dir__}/../../docs/asciidoc/config.yml".freeze
+    CONFIG_FILE = "#{DOCS_DIR}/config.yml".freeze
 
     def initialize
       @results = {}
@@ -57,7 +57,7 @@ module Minitest
       end
       adoc = %(= Test Results\n\n#{time}\n#{results.join "\n"})
       File.write("#{DOCS_DIR}/tests.adoc", adoc)
-      Asciidoctor::Html::CLI.run({ "config-file": CONFIG_FILE })
+      Asciidoctor::Html::CLI.run({ "config-file": CONFIG_FILE, watch: false })
     end
   end
 

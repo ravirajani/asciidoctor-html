@@ -13,7 +13,7 @@ module Asciidoctor
 
       TestConverter.define_method(name) do
         converter = Asciidoctor::Converter.create "html5"
-        attributes = { "imagesdir" => "assets/img" }
+        attributes = { "imagesdir" => IMG_PATH, "sectids" => false }
         doc = Asciidoctor.load_file(filepath, attributes:)
         node = doc.find_by(context: context.to_sym).first
         html = File.read filepath.sub_ext(".html")

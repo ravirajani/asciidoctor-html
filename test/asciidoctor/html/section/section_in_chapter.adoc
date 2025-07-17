@@ -1,9 +1,8 @@
 :chapnum: 3
 
-[[sec-in-chap-id]]
 == Section Title
 
-This is some content for <<sec-in-chap-id>>.
+This is some content.
 
 ====
 This is an example.
