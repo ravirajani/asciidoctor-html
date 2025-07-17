@@ -5,6 +5,7 @@ module Asciidoctor
     # Constants for the highlightjs syntax highlighting library
     module Highlightjs
       CDN_PATH = "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build"
+      COPY_CDN_PATH = "https://unpkg.com/highlightjs-copy/dist"
 
       INCLUDED_LANGS = {
         "bash" => true,

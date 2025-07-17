@@ -29,7 +29,22 @@ module Asciidoctor
       end
 
       def convert_paragraph(node)
-        content = %(<p>#{node.content}</p>\n)
+        content = %(<p#{Utils.dyn_id_class_attr_str node, node.role}>#{node.content}</p>\n)
+        Utils.wrap_node_with_title content, node
+      end
+
+      def convert_listing(node)
+        nowrap = (node.option? "nowrap") || !(node.document.attr? "prewrap")
+        if node.style == "source"
+          lang = node.attr "language"
+          code_open = %(<code#{%( class="language-#{lang}") if lang}>)
+          pre_open = %(<pre#{Utils.dyn_id_class_attr_str(node, nowrap ? "nowrap" : "")}>#{code_open})
+          pre_close = "</code></pre>"
+        else
+          pre_open = %(<pre#{Utils.dyn_id_class_attr_str(node, nowrap ? "nowrap" : "")}>)
+          pre_close = "</pre>"
+        end
+        content = pre_open + node.content + pre_close
         Utils.wrap_node_with_title content, node
       end
 
