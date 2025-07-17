@@ -29,38 +29,38 @@ module Asciidoctor
         %(<span class="title-prefix">#{chapname}#{numeral}</span>#{doctitle})
       end
 
-      def self.main(content, nav_items, chapnum, chaptitle)
-        %(<main>
-          <div class="sidebar">
+      def self.sidebar(nav_items)
+        %(<div class="sidebar">
           <div class="search">
-            <button type="button" class="btn btn-outline-secondary">
+            <button type="button" class="btn">
               <i class="bi bi-search"></i> Search&#8230;
             </button>
           </div> <!-- .search -->
           <nav>\n#{nav nav_items}\n</nav>
-          </div> <!-- .sidebar -->
-          <div class="content">
+          </div>).gsub("\n          ", "\n")
+      end
+
+      def self.main(content, chapnum, chaptitle, author, year)
+        %(<main class="main">
+          <div class="content-container">
           <h2>#{nav_text chapnum, chaptitle}</h2>
           #{content}
-          </div> <!-- .content -->
+          </div>
+          #{footer author, year}
           </main>\n).gsub("\n          ", "\n")
       end
 
       def self.header(title)
-        %(<header>
-          <div class="home">
-            <a href="">#{title}</a>
-          </div>
-          <div class="menu">
-            <button type="button" class="btn">
+        %(<header class="header">
+            <a class="home" href="./">#{title}</a>
+            <button type="button" class="btn menu">
               <i class="bi bi-list"></i>
             </button>
-          </div>
           </header>\n).gsub("\n          ", "\n")
       end
 
       def self.footer(author, year)
-        %(<footer>&#169; #{year} #{author}</footer>\n)
+        %(<footer class="footer">&#169; #{year} #{author}</footer>\n)
       end
 
       def self.highlightjs(langs)
@@ -95,8 +95,8 @@ module Asciidoctor
           </head>
           <body>
           #{header opts[:title]}
-          #{main content, nav_items, opts[:chapnum], opts[:chaptitle]}
-          #{footer opts[:author], opts[:date].year}
+          #{sidebar nav_items}
+          #{main content, opts[:chapnum], opts[:chaptitle], opts[:author], opts[:date].year}
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
                   integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
                   crossorigin="anonymous"></script>

@@ -6,10 +6,6 @@ $content-width: 45rem;
     --paritemsep: #{0.25*$spacer};
 }
 
-main {
-    margin: $spacer auto;
-}
-
 .full-width-bg {
     padding-left: $content-padding-x;
     padding-right: $content-padding-x;
@@ -17,18 +13,13 @@ main {
     margin-right: -$content-padding-x;
 }
 
-.content-container {
-    max-width: $content-width;
-    padding-left: $content-padding-x;
-    padding-right: $content-padding-x;
-}
-
 .title-mark {
-    margin-right: 1.5ex;
+    display: inline-block;
+    width: 2.2ex;
 }
 
 .title-prefix {
-    margin-right: 1ex;
+    margin-right: 0.8ex;
     &::after {
         content: ':';
     }

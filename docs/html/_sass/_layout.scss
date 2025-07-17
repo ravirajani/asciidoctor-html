@@ -1,0 +1,86 @@
+$header-height: 2.5rem;
+html {
+    scroll-padding-top: $header-height;
+}
+
+.header {
+    height: $header-height;
+    background-color: var(--bs-dark);
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0 $content-padding-x;
+    z-index: 2;
+    box-shadow: 0 .5rem 1rem #00000026, inset 0 -1px #ffffff26;
+    justify-content: space-between;
+    align-items: center;
+    flex-flow: row nowrap;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    @include color-mode(dark) {
+        border-bottom: 1px solid var(--bs-gray-200);
+    }
+    a.home {
+        color: var(--bs-gray-200);
+        text-decoration: none;
+        text-wrap: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        &:hover, &:active {
+            color: var(--bs-white);
+        }
+    }
+    .btn.menu {
+        --bs-btn-padding-x: 0;
+        --bs-btn-padding-y: 0;
+        --bs-btn-color: var(--bs-gray-200);
+        --bs-btn-font-weight: 600;
+        --bs-btn-font-size: 1.8rem;
+        --bs-btn-line-height: 1;
+        --bs-btn-hover-color: var(--bs-white);
+        --bs-btn-active-color: var(--bs-white);
+        --bs-btn-active-border-color: transparent;
+        .bi {
+            display: inline-block;
+            &::before {
+                vertical-align: -0.075em;
+            }
+        }
+    }
+}
+
+.sidebar {
+    margin-top: $header-height;
+}
+
+.main {
+    .content-container {
+        max-width: $content-width;
+        padding-left: $content-padding-x;
+        padding-right: $content-padding-x;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .sidebar {
+        width: 30%;
+        position: fixed;
+        margin-top: 0;
+        top: $header-height;
+        max-height: calc(100vh - $header-height);
+        overflow-y: auto;
+    }
+    .main {
+        position: relative;
+        left: 30%;
+        width: 70%;
+        margin-top: calc($header-height + $spacer);
+    }
+}
+
+.footer {
+    font-size: 90%;
+    padding: $content-padding-x;
+}
