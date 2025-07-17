@@ -6,6 +6,7 @@ html {
 }
 
 .header {
+    @extend .lead;
     height: $header-height;
     background-color: var(--bs-dark);
     display: flex;

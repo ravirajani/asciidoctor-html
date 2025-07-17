@@ -38,14 +38,14 @@ module Asciidoctor
         if node.style == "source"
           lang = node.attr "language"
           code_open = %(<code#{%( class="language-#{lang}") if lang}>)
-          pre_open = %(<pre#{Utils.dyn_id_class_attr_str(node, nowrap ? "nowrap" : "")}>#{code_open})
+          pre_open = %(<pre#{%( class="nowrap") if nowrap}>#{code_open})
           pre_close = "</code></pre>"
         else
-          pre_open = %(<pre#{Utils.dyn_id_class_attr_str(node, nowrap ? "nowrap" : "")}>)
+          pre_open = %(<pre#{%( class="nowrap") if nowrap}>)
           pre_close = "</pre>"
         end
         content = pre_open + node.content + pre_close
-        Utils.wrap_node_with_title content, node
+        Utils.wrap_node content, node
       end
 
       def convert_example(node)

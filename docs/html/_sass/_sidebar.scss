@@ -13,6 +13,8 @@
                 a {
                     --bs-nav-link-padding-x: #{$content-padding-x + $active-border-width};
                     --bs-nav-link-padding-y: 0.25rem;
+                    --bs-nav-link-color: var(--bs-emphasis-color);
+                    --bs-nav-link-hover-color: var(--bs-emphasis-color);
                     @extend .nav-link;
                 }
                 ul li a {
@@ -23,8 +25,6 @@
                 &.active {
                     > a {
                         --bs-nav-link-padding-x: #{$content-padding-x};
-                        --bs-nav-link-color: var(--bs-emphasis-color);
-                        --bs-nav-link-hover-color: var(--bs-emphasis-color);
                         --bs-nav-link-font-weight: 600;
                         border-left: $active-border-width solid var(--bs-emphasis-color);
                     }
