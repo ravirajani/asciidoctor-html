@@ -89,7 +89,7 @@ module Asciidoctor
             <link rel="icon" type="image/png" sizes="16x16" href="#{FAVICON_PATH}/favicon-16x16.png">
             <link rel="manifest" href="#{FAVICON_PATH}/site.webmanifest">
             <link rel="stylesheet" href="#{CSS_PATH}/styles.css">
-            <link rel="stylesheet" href="#{Highlightjs::CDN_PATH}/styles/default.min.css">
+            <link rel="stylesheet" href="#{Highlightjs::CDN_PATH}/styles/tomorrow-night-blue.min.css">
             <link rel="stylesheet" href="#{Highlightjs::COPY_CDN_PATH}/highlightjs-copy.min.css">
             <script src="#{Highlightjs::CDN_PATH}/highlight.min.js"></script>
             <script src="#{Highlightjs::COPY_CDN_PATH}/highlightjs-copy.min.js"></script>

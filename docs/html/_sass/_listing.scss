@@ -1,13 +1,14 @@
 .listing {
+    --listing-bg: #002451;
     .pre-wrapper {
         @extend .full-width-bg;
-        background-color: #f3f3f3;
+        background-color: var(--listing-bg);
         padding-top: 0.5rem;
         padding-bottom: 0.5rem;
     }
     .block-title {
-        background-color: #f3f3f3;
-        color: $body-color;
+        color: $body-color-dark;
+        background-color: var(--listing-bg);
         @extend .full-width-bg;
         margin-bottom: 0;
         padding-top: 0.5rem;
