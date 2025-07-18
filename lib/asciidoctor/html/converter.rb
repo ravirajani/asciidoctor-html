@@ -33,6 +33,13 @@ module Asciidoctor
         Utils.wrap_node_with_title content, node
       end
 
+      def convert_stem(node)
+        open, close = BLOCK_MATH_DELIMITERS[node.style.to_sym]
+        equation = node.content || ""
+        equation = "#{open}#{equation}#{close}" unless (equation.start_with? open) && (equation.end_with? close)
+        Utils.wrap_node equation, node
+      end
+
       def convert_listing(node)
         nowrap = (node.option? "nowrap") || !(node.document.attr? "prewrap")
         if node.style == "source"
