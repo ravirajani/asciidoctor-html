@@ -72,7 +72,7 @@ module Asciidoctor
         when :stem
           block.option? "numbered"
         else
-          NUMBERED_CONTEXTS.include?(context)
+          NUMBERED_CONTEXTS.include? context
         end
       end
 
