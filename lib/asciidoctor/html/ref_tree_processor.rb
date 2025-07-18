@@ -46,7 +46,7 @@ module Asciidoctor
         style = block.style
         context = :image if style == "figlist"
         env = env context, style
-        block.set_attr("showcaption", context != :stem)
+        block.set_attr("showcaption", true) unless context == :stem
         assign_numeral! block, document, NUMBERED_CONTEXTS[context]
         relative_numeral = relative_numeral block, document, sectnum
         reftext = if context == :stem
