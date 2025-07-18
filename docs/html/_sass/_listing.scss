@@ -6,20 +6,28 @@
         padding-bottom: 0.5rem;
     }
     .block-title {
-        background-color: var(--bs-secondary-color);
-        color: var(--bs-white);
-        height: 1.75rem;
-        line-height: 1.75rem;
-        font-weight: normal;
-        font-size: 100%;
+        background-color: #f3f3f3;
+        color: $body-color;
         @extend .full-width-bg;
         margin-bottom: 0;
+        padding-top: 0.5rem;
+        padding-bottom: 0.25rem;
     }
     pre {
         margin-bottom: 0;
         .hljs {
             padding: 0;
+            background: none;
         }
     }
     margin-bottom: $spacer;
+}
+
+.example .listing {
+    .pre-wrapper, .block-title {
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
 }

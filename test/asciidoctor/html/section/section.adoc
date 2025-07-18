@@ -55,3 +55,10 @@ This is a theorem with title.
 ====
 This is a corollary to <<thm-important>>.
 ====
+
+[listing]
+====
+----
+This is a listing within an example.
+----
+====
