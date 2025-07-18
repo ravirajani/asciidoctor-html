@@ -42,12 +42,19 @@ module Asciidoctor
 
       def process_numbered_block!(block, document, sectnum)
         context = block.context
-        env = (block.style || context).to_s
-        env = "figure" if context == :image || env == "figlist"
+        style = block.style
+        context = :image if style == "figlist"
+        env = env context, style
         block.set_attr "showcaption", true
         assign_numeral! block, document, NUMBERED_CONTEXTS[context]
         title_prefix = "#{env.capitalize} #{relative_numeral block, document, sectnum}"
         block.set_attr "reftext", title_prefix
+      end
+
+      def env(context, style)
+        return "figure" if context == :image
+
+        (style || context).to_s
       end
 
       def process_numbered_block?(block)
