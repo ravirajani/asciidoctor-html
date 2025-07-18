@@ -17,7 +17,8 @@ module Asciidoctor
       NUMBERED_CONTEXTS = {
         example: "thm-number",
         table: "tbl-number",
-        image: "fig-number"
+        image: "fig-number",
+        stem: "eqn-number"
       }.freeze
 
       def number_within(document)
@@ -47,18 +48,32 @@ module Asciidoctor
         env = env context, style
         block.set_attr "showcaption", true
         assign_numeral! block, document, NUMBERED_CONTEXTS[context]
-        title_prefix = "#{env.capitalize} #{relative_numeral block, document, sectnum}"
-        block.set_attr "reftext", title_prefix
+        relative_numeral = relative_numeral block, document, sectnum
+        reftext = if context == :stem
+                    "(#{relative_numeral})"
+                  else
+                    "#{env.capitalize} #{relative_numeral}"
+                  end
+        block.set_attr "reftext", reftext
       end
 
       def env(context, style)
         return "figure" if context == :image
+        return "equation" if context == :stem
 
         (style || context).to_s
       end
 
       def process_numbered_block?(block)
-        NUMBERED_CONTEXTS.include?(block.context) || block.style == "figlist"
+        context = block.context
+        case context
+        when :olist
+          block.style == "figlist"
+        when :stem
+          block.option? "numbered"
+        else
+          NUMBERED_CONTEXTS.include?(context)
+        end
       end
 
       def li_mark(depth, idx)

@@ -1,0 +1,8 @@
+.stem-equation {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: last baseline;
+    .equation {
+        flex: 1;
+    }
+}

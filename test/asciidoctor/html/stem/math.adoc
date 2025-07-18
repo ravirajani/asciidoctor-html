@@ -1,4 +1,6 @@
 [stem]
 ++++
+\begin{equation}
 \frac{\epsilon}{n}\sum_{i=1}^n x_i
+\end{equation}
 ++++

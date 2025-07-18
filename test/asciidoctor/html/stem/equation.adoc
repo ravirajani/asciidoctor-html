@@ -1,0 +1,7 @@
+[stem%numbered]
+++++
+\begin{align*}
+\sum_i^n \left\{ x_i + (y + z_i) \right\} &= \sum_i^n \left\{ (x_i + z_i) + y \right\} \\
+&= ny + \sum_i^n (x_i + z_i)
+\end{align*}
+++++

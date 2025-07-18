@@ -70,6 +70,25 @@ module Asciidoctor
         end.join("\n  ")
       end
 
+      def self.head(title, langs)
+        %(<head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>#{title}</title>
+            <link rel="apple-touch-icon" sizes="180x180" href="#{FAVICON_PATH}/apple-touch-icon.png">
+            <link rel="icon" type="image/png" sizes="32x32" href="#{FAVICON_PATH}/favicon-32x32.png">
+            <link rel="icon" type="image/png" sizes="16x16" href="#{FAVICON_PATH}/favicon-16x16.png">
+            <link rel="manifest" href="#{FAVICON_PATH}/site.webmanifest">
+            <link rel="stylesheet" href="#{CSS_PATH}/styles.css">
+            <link rel="stylesheet" href="#{Highlightjs::CDN_PATH}/styles/tomorrow-night-blue.min.css">
+            <link rel="stylesheet" href="#{Highlightjs::COPY_CDN_PATH}/highlightjs-copy.min.css">
+            <script src="#{Highlightjs::CDN_PATH}/highlight.min.js"></script>
+            <script src="#{Highlightjs::COPY_CDN_PATH}/highlightjs-copy.min.js"></script>
+            #{highlightjs langs}
+            <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+          </head>).gsub("\n          ", "\n")
+      end
+
       # opts:
       # - title: String
       # - author: String
@@ -80,22 +99,7 @@ module Asciidoctor
       def self.html(content, nav_items, opts = {})
         %(<!DOCTYPE html>
           <html lang="en">
-          <head>
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <title>#{opts[:title]}</title>
-            <link rel="apple-touch-icon" sizes="180x180" href="#{FAVICON_PATH}/apple-touch-icon.png">
-            <link rel="icon" type="image/png" sizes="32x32" href="#{FAVICON_PATH}/favicon-32x32.png">
-            <link rel="icon" type="image/png" sizes="16x16" href="#{FAVICON_PATH}/favicon-16x16.png">
-            <link rel="manifest" href="#{FAVICON_PATH}/site.webmanifest">
-            <link rel="stylesheet" href="#{CSS_PATH}/styles.css">
-            <link rel="stylesheet" href="#{Highlightjs::CDN_PATH}/styles/tomorrow-night-blue.min.css">
-            <link rel="stylesheet" href="#{Highlightjs::COPY_CDN_PATH}/highlightjs-copy.min.css">
-            <script src="#{Highlightjs::CDN_PATH}/highlight.min.js"></script>
-            <script src="#{Highlightjs::COPY_CDN_PATH}/highlightjs-copy.min.js"></script>
-            #{highlightjs opts[:langs]}
-            <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-          </head>
+          #{head opts[:title], opts[:langs]}
           <body>
           #{header opts[:title]}
           #{sidebar nav_items}
@@ -106,10 +110,21 @@ module Asciidoctor
           <script>
             hljs.addPlugin(new CopyButtonPlugin());
             hljs.highlightAll();
-            addEventListener("hashchange", function(){
+            addEventListener("hashchange", function() {
               collapse = bootstrap.Collapse.getInstance("#sidebar");
               if(collapse) collapse.hide();
-            })
+            });
+            MathJax = {
+              loader: {load: ['[tex]/tagformat']},
+              tex: {
+                packages: {'[+]': ['tagformat']},
+                tags: 'ams',
+                tagformat: {
+                  number: (n) => '#{opts[:refnum]}.' + n,
+                  id: (tag) => 'eqn-' + tag
+                }
+              }
+            };
           </script>
           </body>
           </html>\n).gsub("\n          ", "\n")

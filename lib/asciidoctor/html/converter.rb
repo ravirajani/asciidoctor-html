@@ -37,7 +37,13 @@ module Asciidoctor
         open, close = BLOCK_MATH_DELIMITERS[node.style.to_sym]
         equation = node.content || ""
         equation = "#{open}#{equation}#{close}" unless (equation.start_with? open) && (equation.end_with? close)
-        Utils.wrap_node equation, node
+        classes = ["stem"]
+        if node.option? "numbered"
+          equation = %(<div class="equation">\n#{equation}\n</div> <!-- .equation -->)
+          equation = %(#{equation}\n<div class="equation-number">#{node.reftext}</div>)
+          classes << "stem-equation"
+        end
+        Utils.wrap_id_classes equation, node.id, classes.join(" ")
       end
 
       def convert_listing(node)
