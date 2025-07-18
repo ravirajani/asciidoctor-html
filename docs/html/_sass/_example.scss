@@ -20,6 +20,14 @@ $thm-types: theorem, proposition, lemma, corollary;
     }
 }
 
+.example-listing {
+    --example-border-color: transparent;
+    --example-bg-color: transparent;
+    > .block-title:first-child {
+        margin-bottom: 0.25rem;
+    }
+}
+
 .example-algorithm {
     --example-border-color: #{tint-color($orange, 60%)};
     --example-bg-color: #{tint-color($orange, 80%)};

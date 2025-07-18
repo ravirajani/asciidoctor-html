@@ -1,6 +1,7 @@
 .listing {
     --listing-bg: #002451;
     color: $body-color-dark;
+    @extend .full-width-bg;
     .pre-wrapper {
         @extend .full-width-bg;
         background-color: var(--listing-bg);
@@ -22,13 +23,4 @@
         }
     }
     margin-bottom: $spacer;
-}
-
-.example .listing {
-    .pre-wrapper, .block-title {
-        margin-left: 0;
-        margin-right: 0;
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-    }
 }
