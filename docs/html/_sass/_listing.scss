@@ -13,7 +13,8 @@
         @extend .full-width-bg;
         margin-bottom: 0;
         padding-top: 0.5rem;
-        padding-bottom: 0.25rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid $gray-600;
     }
     pre {
         margin-bottom: 0;

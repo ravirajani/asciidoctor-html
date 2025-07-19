@@ -43,7 +43,8 @@ module Asciidoctor
           equation = %(#{equation}\n<div class="equation-number">#{node.reftext}</div>)
           classes << "stem-equation"
         end
-        Utils.wrap_id_classes equation, node.id, classes.join(" ")
+        content = %(<div#{Utils.dyn_id_class_attr_str node, classes.join(" ")}>\n#{equation}\n</div>\n)
+        Utils.wrap_id_classes_with_title content, node, node.id, "stem-wrapper"
       end
 
       def convert_listing(node)

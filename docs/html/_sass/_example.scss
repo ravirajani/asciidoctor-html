@@ -24,11 +24,11 @@ $thm-types: theorem, proposition, lemma, corollary;
     --example-border-color: transparent;
     --example-bg-color: #{$listing-blue};
     color: $body-color-dark;
-    > .block-title:first-child {
-        margin-bottom: 0;
-    }
-    > .listing:last-child {
-        margin-bottom: 0;
+    > .listing {
+        border-top: 1px solid $gray-600;
+        &:last-child {
+            margin-bottom: 0;
+        }
     }
 }
 

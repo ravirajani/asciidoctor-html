@@ -1,0 +1,5 @@
+.Title for expression
+[stem]
+++++
+\[\frac{\epsilon}{n}\sum_{i=1}^n x_i\]
+++++
