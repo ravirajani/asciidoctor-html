@@ -1,4 +1,4 @@
-[stem%numbered]
+[stem#eqn-multi%numbered]
 ++++
 \begin{align}
 \sum_{i=1}^n \left\{ x_i + (y + z_i) \right\} &= \sum_{i=1}^n \left\{ (x_i + z_i) + y \right\} \\
