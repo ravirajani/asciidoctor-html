@@ -180,7 +180,6 @@ module Asciidoctor
           title: @title,
           author: @author,
           date: @date,
-          refnum: doc.attr("chapnum"),
           chapnum: tdata.chapnum,
           chaptitle: tdata.chaptitle,
           langs: langs(doc)

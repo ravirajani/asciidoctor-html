@@ -1,5 +1,6 @@
 $content-padding-x: 12px;
 $content-width: map-get($container-max-widths, md) - 2*$content-padding-x;
+$listing-blue: #002451;
 
 :root {
     --parsep: #{$spacer};

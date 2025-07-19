@@ -114,17 +114,6 @@ module Asciidoctor
               collapse = bootstrap.Collapse.getInstance("#sidebar");
               if(collapse) collapse.hide();
             });
-            MathJax = {
-              loader: {load: ['[tex]/tagformat']},
-              tex: {
-                packages: {'[+]': ['tagformat']},
-                tags: 'ams',
-                tagformat: {
-                  number: (n) => '#{opts[:refnum]}.' + n,
-                  id: (tag) => 'eqn-' + tag
-                }
-              }
-            };
           </script>
           </body>
           </html>\n).gsub("\n          ", "\n")

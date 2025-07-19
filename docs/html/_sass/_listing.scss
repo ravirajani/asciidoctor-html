@@ -1,5 +1,5 @@
 .listing {
-    --listing-bg: #002451;
+    --listing-bg: #{$listing-blue};
     color: $body-color-dark;
     @extend .full-width-bg;
     .pre-wrapper {
