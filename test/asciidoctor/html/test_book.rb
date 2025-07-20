@@ -15,8 +15,8 @@ module Asciidoctor
         def test_first_refs_initialized
           assert_equal "Welcome", @book.refs.dig("index", "chapref")
           assert_equal "A Section", @book.refs.dig("index", "welcome-section")
-          assert_equal "Theorem 0.1", @book.refs.dig("index", "thm-welcome")
-          assert_equal "Figure 0.1", @book.refs.dig("index", "img-cat")
+          assert_equal "Theorem 1", @book.refs.dig("index", "thm-welcome")
+          assert_equal "Figure 1", @book.refs.dig("index", "img-cat")
         end
 
         def test_second_refs_initialized

@@ -31,7 +31,7 @@ module Asciidoctor
         return "" unless node.numeral
 
         chapnum = document.attr "chapnum"
-        has_prefix = chapnum && !chapnum.empty?
+        has_prefix = chapnum && !chapnum.empty? && chapnum != "0"
         has_prefix ? "#{chapnum}.#{node.numeral}" : node.numeral.to_s
       end
 
