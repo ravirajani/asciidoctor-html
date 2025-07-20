@@ -45,3 +45,10 @@ with an <<alg-serious-init>>.
 .. Second item, level 2
 . Third item, level 1
 ====
+
+The following <<ltg-numbered-2>> is interesting.
+
+[#ltg-numbered-2%numbered]
+----
+Numbered listing.
+----

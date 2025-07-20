@@ -59,7 +59,7 @@ module Asciidoctor
           pre_close = "</pre>\n</div> <!-- .pre-wrapper -->"
         end
         needs_prefix = node.option? "numbered"
-        title = if node.title?
+        title = if Utils.show_title? node
                   %(<div class="listing-title-wrapper">\n#{Utils.display_title(node, needs_prefix:)}</div>\n)
                 else
                   ""
