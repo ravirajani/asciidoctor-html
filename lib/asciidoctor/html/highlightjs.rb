@@ -51,7 +51,7 @@ module Asciidoctor
         copyIcon.classList.toggle("bi-clipboard-check");
       }
       hljs.addPlugin({
-        "after:highlightElement": function({ el, text }) {
+        "after:highlightElement": function({ el, result, text }) {
           const wrapper = el.parentElement; // pre element
           if(wrapper == null) { return; }
 
@@ -60,6 +60,7 @@ module Asciidoctor
           copyButton.setAttribute("type", "button");
           copyButton.setAttribute("data-bs-toggle", "tooltip");
           copyButton.setAttribute("data-bs-title", "Copy to clipboard");
+          copyButton.textContent = result.language.toUpperCase() + ' ';
           bootstrap.Tooltip.getOrCreateInstance(copyButton);
 
           const copyIcon = document.createElement("i");

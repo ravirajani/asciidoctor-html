@@ -48,7 +48,11 @@ with an <<alg-serious-init>>.
 
 The following <<ltg-numbered-2>> is interesting.
 
-[#ltg-numbered-2%numbered]
+[source#ltg-numbered-2%numbered,python]
 ----
-Numbered listing.
+def say_hello():
+    <1>
+    print("Hello World!") <2>
 ----
+<1> A docstring should go here.
+<2> A semicolon is not required.

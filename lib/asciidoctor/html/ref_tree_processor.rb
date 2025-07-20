@@ -22,34 +22,27 @@ module Asciidoctor
         listing: "ltg-number"
       }.freeze
 
-      def number_within(document)
-        return :chapter if document.attr? "chapnum"
-        return :section if document.attr? "sectnums"
-
-        :document
-      end
-
       def assign_numeral!(node, document, counter_name)
         document.counters[counter_name] ||= 0
         node.numeral = (document.counters[counter_name] += 1)
       end
 
-      def relative_numeral(node, document, sectnum)
+      def relative_numeral(node, document)
         return "" unless node.numeral
 
         chapnum = document.attr "chapnum"
-        has_prefix = (chapnum && !chapnum.empty?) || sectnum.positive?
-        has_prefix ? "#{chapnum || sectnum}.#{node.numeral}" : node.numeral.to_s
+        has_prefix = chapnum && !chapnum.empty?
+        has_prefix ? "#{chapnum}.#{node.numeral}" : node.numeral.to_s
       end
 
-      def process_numbered_block!(block, document, sectnum)
+      def process_numbered_block!(block, document)
         context = block.context
         style = block.style
         context = :image if style == "figlist"
         env = env context, style
         block.set_attr("showcaption", true) unless context == :stem
         assign_numeral! block, document, NUMBERED_CONTEXTS[context]
-        relative_numeral = relative_numeral block, document, sectnum
+        relative_numeral = relative_numeral block, document
         reftext = if context == :stem
                     "(#{relative_numeral})"
                   else
@@ -59,10 +52,12 @@ module Asciidoctor
       end
 
       def env(context, style)
-        return "figure" if context == :image
-        return "equation" if context == :stem
-
-        (style || context).to_s
+        case context
+        when :image then "figure"
+        when :stem then "equation"
+        when :listing then "listing"
+        else style || context.to_s
+        end
       end
 
       def process_numbered_block?(block)
@@ -131,6 +126,15 @@ module Asciidoctor
         end
       end
 
+      def process_colist!(block)
+        block.set_attr "list-depth", 0
+        block.items.each_with_index do |item, idx|
+          icon = %(<i class="bi bi-#{idx + 1}-circle"></i>)
+          item.set_attr "mark", icon
+          register_reftext! item, icon
+        end
+      end
+
       def process_flat_item!(item, idx)
         mark = li_mark(0, idx)
         item.set_attr "mark", mark
@@ -162,22 +166,24 @@ module Asciidoctor
         node.context == :olist
       end
 
+      def colist?(node)
+        node.context == :colist
+      end
+
       def source_code?(node)
         node.context == :listing && node.style == "source" && node.attr?("language")
       end
 
       def process(document)
-        sectnum = 0
         listdepth = 0
         flat_style = false
         flat_idx = 0 # flat index for (pseudocode) list
-        tw = TreeWalker.new(document)
+        tw = TreeWalker.new document
         while (block = tw.next_block)
           unless block.attr? "refprocessed"
-            process_numbered_block!(block, document, sectnum) if process_numbered_block?(block)
-            if level1_section?(block) && number_within(document) == :section
-              sectnum += 1
-              reset_counters! document
+            process_numbered_block!(block, document) if process_numbered_block?(block)
+            if colist?(block)
+              process_colist! block
             elsif olist?(block)
               if listdepth.zero?
                 flat_style = (block.style == "pseudocode")

@@ -14,7 +14,7 @@
     }
 }
 
-.olist {
+.olist, .colist {
     @extend .list-unstyled;
     li {
         display: flex;
@@ -63,6 +63,11 @@
             color: var(--bs-tertiary-color);
         }
     }
+}
+
+.colist {
+    --paritemsep: 0;
+    margin-top: calc(-0.5*var(--parsep));
 }
 
 .figlist-wrapper {
