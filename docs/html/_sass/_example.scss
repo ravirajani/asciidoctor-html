@@ -28,6 +28,7 @@ $thm-types: theorem, proposition, lemma, corollary;
         margin-bottom: 0;
         padding-bottom: var(--parsep);
         border-bottom: 1px solid $gray-600;
+        font-weight: normal;
     }
     > .listing {
         &:last-child {
