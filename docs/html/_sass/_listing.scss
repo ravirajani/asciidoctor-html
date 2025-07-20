@@ -3,37 +3,31 @@
     --listing-padding: 0.5rem;
     color: $body-color-dark;
     @extend .full-width-bg;
-    .pre-wrapper {
-        @extend .full-width-bg;
-        background-color: var(--listing-bg);
+    background-color: var(--listing-bg);
+    .block-title {
+        margin-bottom: 0;
         padding-top: var(--listing-padding);
         padding-bottom: var(--listing-padding);
-    }
-    .listing-title-wrapper {
-        background-color: var(--listing-bg);
-        @extend .full-width-bg;
-        .block-title {
-            margin-bottom: 0;
-            padding-top: var(--listing-padding);
-            padding-bottom: var(--listing-padding);
-            border-bottom: 1px solid $gray-600;
-            font-weight: normal;
-        }
+        border-bottom: 1px solid $gray-600;
+        font-weight: normal;
     }
     pre {
+        padding-top: var(--listing-padding);
+        padding-bottom: var(--listing-padding);
         position: relative;
+        .copy-button {
+            position: absolute;
+            top: var(--listing-padding);
+            right: 0;
+            --bs-btn-color: #{$body-color-dark};
+            --bs-btn-padding-x: 0;
+            --bs-btn-border-width: 0;
+            --bs-btn-padding-y: 0;
+        }
         margin-bottom: 0;
         .hljs {
             padding: 0;
             background: none;
-        }
-        .copy-button {
-            position: absolute;
-            top: 0;
-            right: 0;
-            --bs-btn-color: #{$body-color-dark};
-            --bs-btn-padding-x: 0;
-            --bs-btn-padding-y: 0;
         }
     }
     margin-bottom: $spacer;

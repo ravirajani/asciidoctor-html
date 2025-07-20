@@ -52,18 +52,14 @@ module Asciidoctor
         if node.style == "source"
           lang = node.attr "language"
           code_open = %(<code#{%( class="language-#{lang}") if lang}>)
-          pre_open = %(<div class="pre-wrapper">\n<pre#{%( class="nowrap") if nowrap}>#{code_open})
-          pre_close = "</code></pre>\n</div> <!-- .pre-wrapper -->"
+          pre_open = %(<pre#{%( class="nowrap") if nowrap}>#{code_open})
+          pre_close = "</code></pre>"
         else
-          pre_open = %(<div class="pre-wrapper">\n<pre#{%( class="nowrap") if nowrap}>)
-          pre_close = "</pre>\n</div> <!-- .pre-wrapper -->"
+          pre_open = %(<pre#{%( class="nowrap") if nowrap}>)
+          pre_close = "</pre>"
         end
         needs_prefix = node.option? "numbered"
-        title = if Utils.show_title? node
-                  %(<div class="listing-title-wrapper">\n#{Utils.display_title(node, needs_prefix:)}</div>\n)
-                else
-                  ""
-                end
+        title = Utils.display_title(node, needs_prefix:)
         content = title + pre_open + node.content + pre_close
         Utils.wrap_node content, node
       end
