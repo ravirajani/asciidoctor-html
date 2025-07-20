@@ -78,7 +78,7 @@ module Asciidoctor
           wrapper.appendChild(copyButton);
 
           // Find and replace inline callouts
-          rgx = /[\u2460-\u2468]/gu;
+          const rgx = /[\u2460-\u2468]/gu;
           if(text.match(rgx)) {
             text = text.replaceAll(rgx, "");
             el.innerHTML = el.innerHTML.replaceAll(rgx, (match) => {
