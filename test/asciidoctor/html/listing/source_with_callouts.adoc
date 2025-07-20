@@ -1,0 +1,6 @@
+[source,ruby]
+----
+def fun # <1>
+  "Hello World!" # <2>
+end # <3>
+----
