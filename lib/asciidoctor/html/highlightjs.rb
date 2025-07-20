@@ -45,7 +45,11 @@ module Asciidoctor
         "yaml" => true
       }.freeze
 
-      COPY_PLUGIN = %[
+      PLUGIN = %[
+      function toggleCopyIcon(copyIcon) {
+        copyIcon.classList.toggle("bi-clipboard");
+        copyIcon.classList.toggle("bi-clipboard-check");
+      }
       hljs.addPlugin({
         "after:highlightElement": function({ el, text }) {
           const wrapper = el.parentElement; // pre element
@@ -62,23 +66,27 @@ module Asciidoctor
 
           copyButton.append(copyIcon);
 
-          function toggleCopyIcon() {
-            copyIcon.classList.toggle("bi-clipboard");
-            copyIcon.classList.toggle("bi-clipboard-check");
-          }
-
           copyButton.onclick = function() {
             navigator.clipboard.writeText(text);
             if(!copyIcon.classList.contains("bi-clipboard-check")) {
-              toggleCopyIcon();
-              setTimeout(toggleCopyIcon, 2000);
+              toggleCopyIcon(copyIcon);
+              setTimeout(() => { toggleCopyIcon(copyIcon); }, 1500);
             }
           };
 
           // Append the copy button to the wrapper
           wrapper.appendChild(copyButton);
+
+          // Find and replace inline callouts
+          rgx = /[\u2460-\u2468]/gu;
+          if(text.match(rgx)) {
+            text = text.replaceAll(rgx, "");
+            el.innerHTML = el.innerHTML.replaceAll(rgx, (match) => {
+              return '<i class="bi bi-' + (match.charCodeAt() - 9311) + '-circle"></i>';
+            });
+          }
         }
-      });].gsub(/^    /, "")
+      });].gsub("\n      ", "\n")
     end
   end
 end

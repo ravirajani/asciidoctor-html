@@ -47,6 +47,18 @@ module Asciidoctor
         Utils.wrap_id_classes_with_title content, node, node.id, "stem-wrapper"
       end
 
+      def convert_inline_callout(node)
+        i = node.text.to_i
+        case i
+        when 1..20
+          (i + 9311).chr(Encoding::UTF_8)
+        when 21..50
+          (i + 3230).chr(Encoding::UTF_8)
+        else
+          "[#{node.text}]"
+        end
+      end
+
       def convert_listing(node)
         nowrap = (node.option? "nowrap") || !(node.document.attr? "prewrap")
         if node.style == "source"

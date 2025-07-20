@@ -105,12 +105,13 @@ module Asciidoctor
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
                   integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
                   crossorigin="anonymous"></script>
-          <script>#{Highlightjs::COPY_PLUGIN}
-            hljs.highlightAll();
-            addEventListener("hashchange", function() {
-              collapse = bootstrap.Collapse.getInstance("#sidebar");
-              if(collapse) collapse.hide();
-            });
+          <script>#{Highlightjs::PLUGIN}
+          hljs.configure({ cssSelector: "code" });
+          hljs.highlightAll();
+          addEventListener("hashchange", function() {
+            collapse = bootstrap.Collapse.getInstance("#sidebar");
+            if(collapse) collapse.hide();
+          });
           </script>
           </body>
           </html>\n).gsub("\n          ", "\n")
