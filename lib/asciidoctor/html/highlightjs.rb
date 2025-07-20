@@ -69,8 +69,10 @@ module Asciidoctor
 
           copyButton.onclick = function() {
             navigator.clipboard.writeText(text);
-            toggleCopyIcon();
-            setTimeout(toggleCopyIcon, 2000);
+            if(!copyIcon.classList.contains("bi-clipboard-check")) {
+              toggleCopyIcon();
+              setTimeout(toggleCopyIcon, 2000);
+            }
           };
 
           // Append the copy button to the wrapper
