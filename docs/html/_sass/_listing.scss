@@ -8,13 +8,15 @@
         padding-top: 0.5rem;
         padding-bottom: 0.5rem;
     }
-    .block-title {
+    .listing-title-wrapper {
         background-color: var(--listing-bg);
         @extend .full-width-bg;
-        margin-bottom: 0;
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
-        border-bottom: 1px solid $gray-600;
+        .block-title {
+            margin-bottom: 0;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid $gray-600;
+        }
     }
     pre {
         margin-bottom: 0;

@@ -78,6 +78,10 @@ html {
     }
 }
 
+.section {
+    margin-bottom: 2*$spacer;
+}
+
 @include media-breakpoint-up(lg) {
     .header .btn.menu {
         display: none;

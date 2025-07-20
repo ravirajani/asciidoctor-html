@@ -1,0 +1,5 @@
+.Listing Title
+[#ltg-numbered%numbered]
+----
+Listing with title.
+----

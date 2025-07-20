@@ -58,7 +58,13 @@ module Asciidoctor
           pre_open = %(<div class="pre-wrapper">\n<pre#{%( class="nowrap") if nowrap}>)
           pre_close = "</pre>\n</div> <!-- .pre-wrapper -->"
         end
-        content = Utils.display_title(node, needs_prefix: false) + pre_open + node.content + pre_close
+        needs_prefix = node.option? "numbered"
+        title = if node.title?
+                  %(<div class="listing-title-wrapper">\n#{Utils.display_title(node, needs_prefix:)}</div>\n)
+                else
+                  ""
+                end
+        content = title + pre_open + node.content + pre_close
         Utils.wrap_node content, node
       end
 

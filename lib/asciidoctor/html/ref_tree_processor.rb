@@ -18,7 +18,8 @@ module Asciidoctor
         example: "thm-number",
         table: "tbl-number",
         image: "fig-number",
-        stem: "eqn-number"
+        stem: "eqn-number",
+        listing: "ltg-number"
       }.freeze
 
       def number_within(document)
@@ -69,7 +70,7 @@ module Asciidoctor
         case context
         when :olist
           block.style == "figlist"
-        when :stem
+        when :stem, :listing
           block.option? "numbered"
         else
           NUMBERED_CONTEXTS.include? context
