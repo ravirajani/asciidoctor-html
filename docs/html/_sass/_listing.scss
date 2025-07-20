@@ -1,28 +1,38 @@
 .listing {
     --listing-bg: #{$listing-blue};
+    --listing-padding: 0.5rem;
     color: $body-color-dark;
     @extend .full-width-bg;
     .pre-wrapper {
         @extend .full-width-bg;
         background-color: var(--listing-bg);
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
+        padding-top: var(--listing-padding);
+        padding-bottom: var(--listing-padding);
     }
     .listing-title-wrapper {
         background-color: var(--listing-bg);
         @extend .full-width-bg;
         .block-title {
             margin-bottom: 0;
-            padding-top: 0.5rem;
-            padding-bottom: 0.5rem;
+            padding-top: var(--listing-padding);
+            padding-bottom: var(--listing-padding);
             border-bottom: 1px solid $gray-600;
         }
     }
     pre {
+        position: relative;
         margin-bottom: 0;
         .hljs {
             padding: 0;
             background: none;
+        }
+        .copy-button {
+            position: absolute;
+            top: 0;
+            right: 0;
+            --bs-btn-color: #{$body-color-dark};
+            --bs-btn-padding-x: 0;
+            --bs-btn-padding-y: 0;
         }
     }
     margin-bottom: $spacer;

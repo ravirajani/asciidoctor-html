@@ -5,7 +5,6 @@ module Asciidoctor
     # Constants for the highlightjs syntax highlighting library
     module Highlightjs
       CDN_PATH = "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build"
-      COPY_CDN_PATH = "https://unpkg.com/highlightjs-copy/dist"
 
       INCLUDED_LANGS = {
         "bash" => true,
@@ -45,6 +44,39 @@ module Asciidoctor
         "xml" => true,
         "yaml" => true
       }.freeze
+
+      COPY_PLUGIN = %[
+      hljs.addPlugin({
+        "after:highlightElement": function({ el, text }) {
+          const wrapper = el.parentElement; // pre element
+          if (wrapper == null) {
+            return;
+          }
+
+          const copyButton = document.createElement("button");
+          copyButton.classList.add("btn", "copy-button");
+          copyButton.setAttribute("type", "button");
+
+          const copyIcon = document.createElement("i");
+          copyIcon.classList.add("bi", "bi-clipboard");
+
+          copyButton.append(copyIcon);
+
+          function toggleCopyIcon() {
+            copyIcon.classList.toggle("bi-clipboard");
+            copyIcon.classList.toggle("bi-clipboard-check");
+          }
+
+          copyButton.onclick = function() {
+            navigator.clipboard.writeText(text);
+            toggleCopyIcon();
+            setTimeout(toggleCopyIcon, 2000);
+          };
+
+          // Append the copy button to the wrapper
+          wrapper.appendChild(copyButton);
+        }
+      });].gsub(/^    /, "")
     end
   end
 end

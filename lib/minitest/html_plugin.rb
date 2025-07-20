@@ -25,7 +25,7 @@ module Minitest
     end
 
     def display_result_title(name, failed, color)
-      status_icon = %(pass:[<i class="bi bi-#{failed ? "x" : "check"}-square text-#{color}"></i>])
+      status_icon = %(pass:[<i class="bi bi-#{failed ? "x" : "check"}-lg text-#{color}"></i>])
       %(#{status_icon} #{name.tr("_", " ").capitalize})
     end
 
