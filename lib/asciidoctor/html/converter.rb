@@ -120,6 +120,16 @@ module Asciidoctor
         node.style = "arabic-circled"
         convert_olist node
       end
+
+      def convert_inline_anchor(node)
+        if node.type == :xref && !node.text
+          target = node.document.catalog[:refs][node.attr("refid")]
+          if target.inline? && (text = target.text)&.match?(/\A<i class="bi/)
+            return %(<a href="#{node.target}">#{text}</a>)
+          end
+        end
+        super
+      end
     end
   end
 end

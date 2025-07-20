@@ -46,7 +46,8 @@ with an <<alg-serious-init>>.
 . Third item, level 1
 ====
 
-The following <<ltg-numbered-2>> is interesting.
+The following <<ltg-numbered-2>> is interesting,
+especially <<co-docstring>>.
 
 [source#ltg-numbered-2%numbered,python]
 ----
@@ -54,5 +55,5 @@ def say_hello():
     <1>
     print("Hello World!") <2>
 ----
-<1> A docstring should go here.
+<1> [[co-docstring]]A docstring should go here.
 <2> A semicolon is not required.
