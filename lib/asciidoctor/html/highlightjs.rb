@@ -53,13 +53,14 @@ module Asciidoctor
       hljs.addPlugin({
         "after:highlightElement": function({ el, text }) {
           const wrapper = el.parentElement; // pre element
-          if (wrapper == null) {
-            return;
-          }
+          if(wrapper == null) { return; }
 
           const copyButton = document.createElement("button");
           copyButton.classList.add("btn", "copy-button");
           copyButton.setAttribute("type", "button");
+          copyButton.setAttribute("data-bs-toggle", "tooltip");
+          copyButton.setAttribute("data-bs-title", "Copy to clipboard");
+          bootstrap.Tooltip.getOrCreateInstance(copyButton);
 
           const copyIcon = document.createElement("i");
           copyIcon.classList.add("bi", "bi-clipboard");
