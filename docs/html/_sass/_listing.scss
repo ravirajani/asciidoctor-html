@@ -19,10 +19,12 @@
             position: absolute;
             top: var(--listing-padding);
             right: 0;
-            --bs-btn-color: #{$body-color-dark};
-            --bs-btn-padding-x: 0;
-            --bs-btn-border-width: 0;
-            --bs-btn-padding-y: 0;
+            .btn {
+                --bs-btn-color: #{$body-color-dark};
+                --bs-btn-padding-x: 0;
+                --bs-btn-border-width: 0;
+                --bs-btn-padding-y: 0;
+            }
         }
         margin-bottom: 0;
         .hljs {
