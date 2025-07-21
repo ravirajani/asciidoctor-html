@@ -74,21 +74,24 @@ module Asciidoctor
 
       def li_mark(depth, idx)
         case depth
-        when 0
-          idx + 1
-        when 1
-          ("a".."z").to_a[idx]
-        when 2
-          RomanNumerals.to_roman(idx + 1).downcase
-        when 3
-          ("a".."z").to_a[idx].upcase
+        when 1 then ("a".."z").to_a[idx]
+        when 2 then RomanNumerals.to_roman(idx + 1).downcase
+        when 3 then ("a".."z").to_a[idx].upcase
+        else idx + 1
+        end
+      end
+
+      def bullet(depth)
+        case depth
+        when 1 then "&#8208;"
+        when 2 then "&#8727;"
+        when 3 then "&#9702;"
+        else "&#8226;"
         end
       end
 
       def ref_li_mark(mark, depth)
-        return mark.to_s if depth.even?
-
-        "(#{mark})"
+        depth.even? ? mark.to_s : "(#{mark})"
       end
 
       def offset(list)
@@ -135,6 +138,18 @@ module Asciidoctor
         end
       end
 
+      def process_ulist!(block, depth)
+        block.set_attr "list-depth", depth
+        block.items.each do |item|
+          is_checkbox = item.attr? "checkbox"
+          icon_class = item.attr?("checked") ? "check-" : ""
+          icon = %(<i class="bi bi-#{icon_class}square"></i>)
+          mark = is_checkbox ? icon : bullet(depth)
+          item.role = "checked" if is_checkbox
+          item.set_attr "mark", mark
+        end
+      end
+
       def process_flat_item!(item, idx)
         mark = li_mark(0, idx)
         item.set_attr "mark", mark
@@ -147,19 +162,16 @@ module Asciidoctor
         langs[lang] = true unless Highlightjs::INCLUDED_LANGS.include?(lang)
       end
 
-      def reset_counters!(document)
-        counters = document.counters
-        NUMBERED_CONTEXTS.each_value do |counter_name|
-          counters[counter_name] = 0
-        end
-      end
-
       def olist_item?(node)
         node.context == :list_item && node.parent.context == :olist
       end
 
-      def level1_section?(node)
-        node.context == :section && node.level == 1
+      def ulist_item?(node)
+        node.context == :list_item && node.parent.context == :ulist
+      end
+
+      def ulist?(node)
+        node.context == :ulist
       end
 
       def olist?(node)
@@ -175,16 +187,16 @@ module Asciidoctor
       end
 
       def process(document)
-        listdepth = 0
+        listdepth = bulletdepth = 0
         flat_style = false
         flat_idx = 0 # flat index for (pseudocode) list
         tw = TreeWalker.new document
         while (block = tw.next_block)
           unless block.attr? "refprocessed"
             process_numbered_block!(block, document) if process_numbered_block?(block)
-            if colist?(block)
+            if colist? block
               process_colist! block
-            elsif olist?(block)
+            elsif olist? block
               if listdepth.zero?
                 flat_style = (block.style == "pseudocode")
                 flat_idx = offset block
@@ -193,14 +205,18 @@ module Asciidoctor
             elsif olist_item?(block) && flat_style
               process_flat_item! block, flat_idx
               flat_idx += 1
-            elsif source_code?(block)
+            elsif source_code? block
               process_source_code! document, block.attr("language")
+            elsif ulist? block
+              process_ulist! block, bulletdepth
             end
             block.set_attr "refprocessed", true
           end
           tw.walk do |move|
             listdepth += 1 if olist?(block) && move == :explore
             listdepth -= 1 if olist_item?(block) && move == :retreat
+            bulletdepth += 1 if ulist?(block) && move == :explore
+            bulletdepth -= 1 if ulist_item?(block) && move == :retreat
           end
         end
       end
