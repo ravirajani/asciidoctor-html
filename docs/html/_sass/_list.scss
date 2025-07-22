@@ -14,7 +14,7 @@
     }
 }
 
-.olist, .colist, .ulist {
+.list {
     @extend .list-unstyled;
     li {
         display: flex;
@@ -22,12 +22,17 @@
         gap: 0.5rem;
         align-items: first baseline;
         .li-mark {
-            flex: 0 0 1.5rem;
             text-align: right;
         }
         .li-content {
             flex: 1;
         }
+    }
+}
+
+.list-olist {
+    li .li-mark {
+        flex: 0 0 1.5rem;
     }
     &.pseudocode {
         @mixin pcode-style($initial-gap, $indent) {
@@ -65,13 +70,13 @@
     }
 }
 
-.ulist {
+.list-ulist {
     li .li-mark {
         flex: 0 0 0.75rem;
     }
 }
 
-.colist {
+.list-colist {
     --paritemsep: 0;
     margin-top: calc(-0.5*var(--parsep));
 }
