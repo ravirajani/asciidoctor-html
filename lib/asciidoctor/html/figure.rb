@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative "olist"
-
 module Asciidoctor
   module Html
     # Helper functions for the image/figure conversion.

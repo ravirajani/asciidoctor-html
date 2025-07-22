@@ -46,6 +46,7 @@ module Asciidoctor
       }.freeze
 
       PLUGIN = %[
+      const touch = matchMedia('(hover: none)').matches;
       function toggleCopyIcon(copyIcon) {
         copyIcon.classList.toggle("bi-clipboard");
         copyIcon.classList.toggle("bi-clipboard-check");
@@ -64,7 +65,7 @@ module Asciidoctor
           copyButton.setAttribute("type", "button");
           copyButton.setAttribute("data-bs-toggle", "tooltip");
           copyButton.setAttribute("data-bs-title", "Copy to clipboard");
-          bootstrap.Tooltip.getOrCreateInstance(copyButton);
+          if(!touch) {bootstrap.Tooltip.getOrCreateInstance(copyButton);}
 
           const copyIcon = document.createElement("i");
           copyIcon.classList.add("bi", "bi-clipboard");
