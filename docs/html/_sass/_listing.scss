@@ -18,6 +18,7 @@
         .copy-button {
             position: absolute;
             top: var(--listing-padding);
+            background-color: color-mix(in srgb-linear, var(--listing-bg) 70%, transparent);
             right: 0;
             .btn {
                 --bs-btn-color: #{$body-color-dark};
