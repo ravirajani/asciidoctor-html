@@ -33,6 +33,14 @@ $listing-blue: #002451;
     }
 }
 
+.block {
+    --parsep: 0.5rem;
+    margin-bottom: $spacer;
+    > .block-title:first-child {
+        margin-bottom: var(--parsep);
+    }
+}
+
 .block-title {
     margin-bottom: 0.25rem;
 }

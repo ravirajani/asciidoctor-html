@@ -18,6 +18,12 @@ Building on <<lem-minor>>:
 This is a proposition.
 ====
 
+[#prf-prop]
+.Proof
+--
+The proof is complicated. bi:square[]
+--
+
 The following describes an <<alg-easy>>.
 The main work is done inside step <<alg-easy-loop-body>>,
 not <<alg-easy-condition-statement>>.

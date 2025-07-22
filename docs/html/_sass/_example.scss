@@ -1,14 +1,10 @@
 .example {
-    --parsep: 0.5rem;
-    padding-top: var(--parsep);
+    @extend .block;
     @extend .full-width-bg;
-    margin-bottom: $spacer;
+    padding-top: var(--parsep);
     border-top: 2px solid var(--example-border-color, var(--bs-secondary-border-subtle));
     border-bottom: 2px solid var(--example-border-color, var(--bs-secondary-border-subtle));
     background-color: var(--example-bg-color, var(--bs-secondary-bg-subtle));
-    > .block-title:first-child {
-        margin-bottom: var(--parsep);
-    }
 }
 
 $thm-types: theorem, proposition, lemma, corollary;

@@ -75,8 +75,13 @@ module Asciidoctor
         Utils.wrap_node content, node
       end
 
+      def convert_open(node)
+        title = Utils.display_title(node, needs_prefix: false)
+        content = title + node.content
+        Utils.wrap_node content, node
+      end
+
       def convert_example(node)
-        p node.context unless Utils.show_title?(node)
         Utils.wrap_node_with_title node.content, node, needs_prefix: true
       end
 

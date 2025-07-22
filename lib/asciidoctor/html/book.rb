@@ -7,6 +7,7 @@ require "asciidoctor"
 require_relative "converter"
 require_relative "ref_tree_processor"
 require_relative "cref_inline_macro"
+require_relative "bi_inline_macro"
 require_relative "template"
 
 module Asciidoctor
@@ -20,6 +21,7 @@ module Asciidoctor
       Asciidoctor::Extensions.register do
         tree_processor RefTreeProcessor
         inline_macro CrefInlineMacro
+        inline_macro BiInlineMacro
       end
 
       DOCATTRS = {

@@ -1,0 +1,6 @@
+.Block Title
+--
+This is wrapped content.
+
+Another paragraph within block.
+--
