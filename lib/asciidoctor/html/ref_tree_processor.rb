@@ -201,7 +201,7 @@ module Asciidoctor
                 flat_style = (block.style == "pseudocode")
                 flat_idx = offset block
               end
-              process_olist!(block, listdepth, flat_style:)
+              process_olist! block, listdepth, flat_style:
             elsif olist_item?(block) && flat_style
               process_flat_item! block, flat_idx
               flat_idx += 1

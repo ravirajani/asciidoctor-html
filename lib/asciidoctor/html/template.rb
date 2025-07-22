@@ -105,13 +105,20 @@ module Asciidoctor
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
                   integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
                   crossorigin="anonymous"></script>
-          <script>#{Highlightjs::PLUGIN}
-          hljs.configure({ cssSelector: "code" });
+          <script>
+          const touch = matchMedia('(hover: none)').matches;
+          #{Highlightjs::PLUGIN}
+          hljs.configure({ cssSelector: 'code' });
           hljs.highlightAll();
-          addEventListener("hashchange", function() {
+          addEventListener('hashchange', function() {
             collapse = bootstrap.Collapse.getInstance("#sidebar");
             if(collapse) collapse.hide();
           });
+          if(!touch) {
+            document.querySelectorAll('img[data-bs-toggle="tooltip"]').forEach((el) => {
+              bootstrap.Tooltip.getOrCreateInstance(el);
+            });
+          }
           </script>
           </body>
           </html>\n).gsub("\n          ", "\n")

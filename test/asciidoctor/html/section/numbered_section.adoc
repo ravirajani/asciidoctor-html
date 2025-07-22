@@ -2,7 +2,7 @@
 
 == Section Title
 
-This is some content.
+This is a cat: image:cat2.jpg[Cat,100,title=A beautiful cat].
 
 ====
 This is an example.

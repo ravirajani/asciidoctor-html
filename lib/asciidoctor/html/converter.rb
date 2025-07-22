@@ -91,9 +91,10 @@ module Asciidoctor
         return super if node.option?("inline") || node.option?("interactive")
 
         target = node.target
-        mark = node.parent.attr("mark")
+        mark = node.parent.attr "mark"
+        title_attr = node.attr? "title"
         if mark # The image is part of a figlist
-          title = node.attr?("title") ? node.attr("title") : ""
+          title = title_attr ? node.attr("title") : ""
           %(    #{display_image node, target}
           <figcaption><span class="li-mark">#{mark}</span>#{title}</figcaption>).gsub(/^      /, "")
         else

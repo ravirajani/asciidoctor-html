@@ -46,7 +46,6 @@ module Asciidoctor
       }.freeze
 
       PLUGIN = %[
-      const touch = matchMedia('(hover: none)').matches;
       function toggleCopyIcon(copyIcon) {
         copyIcon.classList.toggle("bi-clipboard");
         copyIcon.classList.toggle("bi-clipboard-check");

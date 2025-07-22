@@ -14,7 +14,7 @@ module Asciidoctor
         width = node.attr?("width") ? %( width="#{node.attr "width"}") : ""
         height = node.attr?("height") ? %( height="#{node.attr "height"}") : ""
         title = encode_attribute_value node.attr("title") if node.attr?("title") && title_attr
-        title = title ? %( title="#{title}") : ""
+        title = title ? %( data-bs-toggle="tooltip" data-bs-title="#{title}") : ""
         alt = encode_attribute_value node.alt
         %(alt="#{alt}"#{width}#{height}#{title})
       end
