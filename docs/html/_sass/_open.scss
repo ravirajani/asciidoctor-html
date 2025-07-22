@@ -1,3 +1,22 @@
 .open {
     @extend .block;
+    *:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.open-proof {
+    @extend .full-width-bg;
+    position: relative;
+    *:last-child::after {
+        content: '\a0\a0\220e';
+        visibility: hidden;
+    }
+    &::after {
+        content: '\220e';
+        display: block;
+        position: absolute;
+        bottom: 0;
+        right: var(--fw-padding);
+    }
 }

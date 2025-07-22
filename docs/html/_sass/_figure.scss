@@ -1,5 +1,5 @@
 .figbox {
-    margin: 1.5rem -#{$content-padding-x};
+    margin: 1.5rem var(--fw-margin);
 }
 figure {
     text-align: center;
@@ -10,8 +10,8 @@ figure {
         vertical-align: text-top;
     }
     figcaption {
-        padding-left: $content-padding-x;
-        padding-right: $content-padding-x;
+        padding-left: var(--fw-padding);
+        padding-right: var(--fw-padding);
         text-align: center;
         @extend .figure-caption;
     }

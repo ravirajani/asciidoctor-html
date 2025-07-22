@@ -18,10 +18,10 @@ Building on <<lem-minor>>:
 This is a proposition.
 ====
 
-[#prf-prop]
+[proof#prf-prop]
 .Proof
 --
-The proof is complicated. bi:square[]
+The proof is complicated.
 --
 
 The following describes an <<alg-easy>>.
