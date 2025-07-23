@@ -1,0 +1,4 @@
+[%collapsible]
+--
+This is hidden by default.
+--

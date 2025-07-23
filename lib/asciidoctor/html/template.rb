@@ -36,7 +36,7 @@ module Asciidoctor
               <i class="bi bi-search"></i> Search&#8230;
             </button>
           </div> <!-- .search -->
-          <nav>\n#{nav nav_items}\n</nav>
+          <nav id="sidenav">\n#{nav nav_items}\n</nav>
           </div>).gsub("\n          ", "\n")
       end
 
@@ -98,7 +98,7 @@ module Asciidoctor
         %(<!DOCTYPE html>
           <html lang="en">
           #{head opts[:title], opts[:langs]}
-          <body>
+          <body data-bs-spy="scroll" data-bs-target="#sidenav">
           #{header opts[:title]}
           #{sidebar nav_items}
           #{main content, opts[:chapnum], opts[:chaptitle], opts[:author], opts[:date].year}
@@ -115,7 +115,7 @@ module Asciidoctor
             if(collapse) collapse.hide();
           });
           if(!touch) {
-            document.querySelectorAll('img[data-bs-toggle="tooltip"]').forEach((el) => {
+            document.querySelectorAll('img[data-bs-toggle="tooltip"]').forEach(el => {
               bootstrap.Tooltip.getOrCreateInstance(el);
             });
           }
