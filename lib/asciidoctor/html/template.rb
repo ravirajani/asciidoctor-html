@@ -98,7 +98,7 @@ module Asciidoctor
         %(<!DOCTYPE html>
           <html lang="en">
           #{head opts[:title], opts[:langs]}
-          <body data-bs-spy="scroll" data-bs-target="#sidenav">
+          <body>
           #{header opts[:title]}
           #{sidebar nav_items}
           #{main content, opts[:chapnum], opts[:chaptitle], opts[:author], opts[:date].year}
