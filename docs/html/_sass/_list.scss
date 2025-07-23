@@ -109,8 +109,8 @@
         }
     }
     .figlist-title {
-        padding-left: $content-padding-x;
-        padding-right: $content-padding-x;
+        padding-left: var(--fw-padding);
+        padding-right: var(--fw-padding);
         text-align: center;
         @extend .figure-caption;
     }

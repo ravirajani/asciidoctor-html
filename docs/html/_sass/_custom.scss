@@ -4,7 +4,7 @@ $listing-blue: #002451;
 
 :root {
     --parsep: #{$spacer};
-    --paritemsep: #{0.25*$spacer};
+    --paritemsep: #{0.125*$spacer};
     --fw-padding: max(#{$content-padding-x}, calc(50vw - #{0.5*$content-width}));
     --fw-margin: min(-#{$content-padding-x}, calc(#{0.5*$content-width} - 50vw));
     @include media-breakpoint-up(md) {
