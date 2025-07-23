@@ -68,9 +68,15 @@
     }
 }
 
-.list-ulist:not(.checklist) {
-    > li .li-mark {
-        flex: 0 0 0.75rem;
+.list-ulist {
+    &:not(.checklist) {
+        > li > .li-mark {
+            flex: 0 0 0.75rem;
+        }
+    }
+    > li:not(.checked) > .li-mark {
+        font-size: 1.2rem;
+        font-weight: 500;
     }
 }
 

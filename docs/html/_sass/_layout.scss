@@ -6,7 +6,6 @@ html {
 }
 
 .header {
-    @extend .lead;
     height: $header-height;
     background-color: var(--bs-dark);
     display: flex;
@@ -22,6 +21,7 @@ html {
     flex-flow: row nowrap;
     gap: 0.5rem;
     font-size: 1.1rem;
+    font-weight: 300;
     @include color-mode(dark) {
         border-bottom: 1px solid var(--bs-gray-200);
     }
