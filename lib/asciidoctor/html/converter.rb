@@ -76,9 +76,14 @@ module Asciidoctor
       end
 
       def convert_open(node)
-        title = Utils.display_title(node, needs_prefix: false)
-        content = title + node.content
-        Utils.wrap_node content, node
+        collapsible = node.option? "collapsible"
+        title = if collapsible
+                  %(<summary>#{node.title || "Details"}</summary>\n)
+                else
+                  Utils.display_title(node, needs_prefix: false)
+                end
+        tag_name = collapsible ? :details : :div
+        Utils.wrap_node(title + node.content, node, tag_name)
       end
 
       def convert_example(node)

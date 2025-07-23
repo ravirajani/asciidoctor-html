@@ -35,8 +35,10 @@ $listing-blue: #002451;
 .block {
     --parsep: 0.5rem;
     margin-bottom: $spacer;
-    > .block-title:first-child {
-        margin-bottom: var(--parsep);
+    > .block-title, > summary {
+        &:first-child {
+            margin-bottom: var(--parsep);
+        }
     }
 }
 
@@ -51,4 +53,8 @@ p {
 ol, ul, dl {
     margin-bottom: calc(var(--parsep) - var(--paritemsep));
     p { margin-bottom: var(--paritemsep); }
+}
+
+summary {
+    font-weight: 600;
 }
