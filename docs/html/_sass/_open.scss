@@ -1,6 +1,6 @@
 .open {
     @extend .block;
-    *:last-child {
+    > *:last-child {
         margin-bottom: 0;
     }
 }
@@ -8,7 +8,7 @@
 .open-proof {
     @extend .full-width-bg;
     position: relative;
-    *:last-child::after {
+    > p:last-child::after {
         content: '\a0\a0\220e';
         visibility: hidden;
     }
