@@ -1,0 +1,30 @@
+.admonition {
+    position: relative;
+    @extend .block;
+    @extend .full-width-bg;
+    background-color: var(--admonition-bg, var(--bs-info-bg-subtle));
+    color: var(--admonition-text, var(--bs-info-text-emphasis));
+    padding-top: var(--parsep);
+    border-bottom: 1px solid transparent;
+    &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        width: 4px;
+        bottom: 0;
+        top: 0;
+        background-color: var(--admonition-border, var(--bs-info-border-subtle));
+    }
+}
+
+.admonition-important, .admonition-caution {
+    --admonition-text: var(--bs-warning-text-emphasis);
+    --admonition-bg: var(--bs-warning-bg-subtle);
+    --admonition-border: var(--bs-warning-border-subtle);
+}
+
+.admonition-warning {
+    --admonition-text: var(--bs-danger-text-emphasis);
+    --admonition-bg: var(--bs-danger-bg-subtle);
+    --admonition-border: var(--bs-danger-border-subtle);
+}

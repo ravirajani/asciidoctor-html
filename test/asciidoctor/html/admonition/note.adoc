@@ -1,0 +1,4 @@
+[NOTE]
+--
+This is a note.
+--

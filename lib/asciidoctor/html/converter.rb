@@ -32,6 +32,12 @@ module Asciidoctor
         Utils.wrap_node_with_title content, node
       end
 
+      def convert_admonition(node)
+        name = node.attr "name"
+        content = %(#{Utils.display_title node, needs_prefix: false}#{node.content})
+        Utils.wrap_id_classes content, node.id, "admonition admonition-#{name}"
+      end
+
       def convert_stem(node)
         open, close = BLOCK_MATH_DELIMITERS[node.style.to_sym]
         equation = node.content || ""
