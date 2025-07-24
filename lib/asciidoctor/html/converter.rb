@@ -127,6 +127,24 @@ module Asciidoctor
         List.convert node, :ul
       end
 
+      def convert_dlist(node)
+        classes = ["dlist", node.style, node.role].compact.join(" ")
+        result = [%(<dl#{Utils.dyn_id_class_attr_str node, classes}>)]
+        node.items.each do |terms, dd|
+          terms.each do |dt|
+            result << %(<dt>#{dt.text}</dt>)
+          end
+          next unless dd
+
+          result << "<dd>"
+          result << %(<p>#{dd.text}</p>) if dd.text?
+          result << dd.content if dd.blocks?
+          result << "</dd>"
+        end
+        result << "</dl>\n"
+        Utils.wrap_id_classes_with_title result.join("\n"), node, node.id, "dlist-wrapper"
+      end
+
       def convert_inline_anchor(node)
         if node.type == :xref && !node.text
           target = node.document.catalog[:refs][node.attr("refid")]

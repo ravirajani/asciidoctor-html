@@ -23,7 +23,9 @@ module Asciidoctor
 
         if block.blocks? && @level < @max_levels && @idx[@level + 1] < block.blocks.size
           @level += 1
-          @path.push(block.blocks[@idx[@level]])
+          el = block.blocks[@idx[@level]]
+          el = el.last if el.is_a?(Array) # Get the <dd> from an array of <dt>'s followed by <dd>
+          @path.push(el)
           callback.call(:explore)
         else
           @idx[@level + 1] = 0 if @level < @max_levels

@@ -85,6 +85,22 @@
     margin-top: calc(-0.5*var(--parsep));
 }
 
+.dlist {
+    dt {
+        font-style: italic;
+        margin-bottom: 0;
+        font-weight: 600;
+    }
+    dd {
+        margin-left: 0.75rem;
+        margin-bottom: 0.5rem;
+    }
+}
+
+.dlist-wrapper {
+    @extend .block;
+}
+
 .figlist-wrapper {
     @extend .figbox;
     .figlist {
