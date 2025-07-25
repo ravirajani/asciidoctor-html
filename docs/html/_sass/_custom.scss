@@ -31,6 +31,10 @@ $listing-blue: #002451;
     }
 }
 
+.attribution + cite::before {
+    content: ', ';
+}
+
 .block {
     --parsep: 0.5rem;
     margin-bottom: $spacer;

@@ -32,6 +32,20 @@ module Asciidoctor
         Utils.wrap_node_with_title content, node
       end
 
+      def convert_quote(node)
+        attribution = node.attr?("attribution") ? node.attr("attribution") : nil
+        citetitle = node.attr?("citetitle") ? node.attr("citetitle") : nil
+        classes = ["blockquote", node.role].compact.join(" ")
+        cite_element = citetitle ? %(<cite>#{citetitle}</cite>) : ""
+        attr_element = attribution ? %(<span class="attribution">#{attribution}</span>) : ""
+        content = %(<blockquote#{Utils.dyn_id_class_attr_str node, classes}>\n#{node.content}\n</blockquote>)
+        if attribution || citetitle
+          caption = %(<figcaption class="blockquote-footer">\n#{attr_element}#{cite_element}\n</figcaption>)
+          content = %(<figure>\n#{content}\n#{caption}\n</figure>\n)
+        end
+        Utils.wrap_node_with_title content, node
+      end
+
       def convert_admonition(node)
         name = node.attr "name"
         icon_class = case name
