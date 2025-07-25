@@ -13,3 +13,7 @@
         flex: 1;
     }
 }
+
+p + .stem {
+    margin-top: calc(-1*var(--parsep));
+}

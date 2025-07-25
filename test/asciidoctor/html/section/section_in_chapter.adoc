@@ -46,6 +46,13 @@ with an <<alg-serious-init>>.
 . Third item, level 1
 ====
 
+Equation <<eqn-fermat>> has no integer solutions for stem:[n>2].
+
+[stem#eqn-fermat%numbered]
+++++
+a^n + b^n = c^n
+++++
+
 The following <<ltg-numbered-2>> is interesting,
 especially <<co-docstring>>.
 

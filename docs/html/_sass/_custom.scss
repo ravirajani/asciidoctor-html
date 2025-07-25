@@ -14,6 +14,9 @@ $listing-blue: #002451;
     padding-right: var(--fw-padding);
     margin-left: var(--fw-margin);
     margin-right: var(--fw-margin);
+    * {
+        --fw-margin: 0;
+    }
 }
 
 .title-mark {
