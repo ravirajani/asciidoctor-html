@@ -5,7 +5,7 @@
     @extend .full-width-bg;
     background-color: var(--admonition-bg, var(--bs-info-bg-subtle));
     color: var(--admonition-text, var(--bs-info-text-emphasis));
-    padding-top: calc(var(--parsep) + #{0.125*$icon-size});
+    padding-top: calc(var(--parsep) + #{0.25*$icon-size});
     margin-top: calc(#{$spacer} + #{0.5*$icon-size});
     border-bottom: 1px solid transparent;
     .icon {
@@ -21,7 +21,7 @@
 }
 
 .admonition-note .icon {
-    font-size: 75%;
+    font-size: 65%;
 }
 
 .admonition-note, .admonition-tip {
