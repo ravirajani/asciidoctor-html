@@ -1,30 +1,48 @@
 .admonition {
+    $icon-size: 2*$content-padding-x;
     position: relative;
     @extend .block;
     @extend .full-width-bg;
     background-color: var(--admonition-bg, var(--bs-info-bg-subtle));
     color: var(--admonition-text, var(--bs-info-text-emphasis));
-    padding-top: var(--parsep);
+    padding-top: calc(var(--parsep) + #{0.25*$icon-size});
+    padding-bottom: 0.25*$icon-size;
+    margin-top: calc(#{$spacer} + #{0.5*$icon-size});
     border-bottom: 1px solid transparent;
-    &::before {
-        content: '';
+    .icon {
         position: absolute;
-        left: 0;
-        width: 4px;
-        bottom: 0;
-        top: 0;
-        background-color: var(--admonition-border, var(--bs-info-border-subtle));
+        top: -#{0.5*$icon-size};
+        left: #{0.5*$icon-size};
+        width: $icon-size;
+        height: $icon-size;
+        border-radius: 0.5*$icon-size;
+        text-align: center;
+        line-height: $icon-size;
+    }
+}
+
+.admonition-note .icon {
+    font-size: 75%;
+}
+
+.admonition-note, .admonition-tip {
+    .icon {
+        @extend .text-bg-info;
     }
 }
 
 .admonition-important, .admonition-caution {
     --admonition-text: var(--bs-warning-text-emphasis);
     --admonition-bg: var(--bs-warning-bg-subtle);
-    --admonition-border: var(--bs-warning-border-subtle);
+    .icon {
+        @extend .text-bg-warning;
+    }
 }
 
 .admonition-warning {
     --admonition-text: var(--bs-danger-text-emphasis);
     --admonition-bg: var(--bs-danger-bg-subtle);
-    --admonition-border: var(--bs-danger-border-subtle);
+    .icon {
+        @extend .text-bg-danger;
+    }
 }

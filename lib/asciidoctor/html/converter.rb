@@ -34,7 +34,13 @@ module Asciidoctor
 
       def convert_admonition(node)
         name = node.attr "name"
-        content = %(#{Utils.display_title node, needs_prefix: false}#{node.content})
+        icon_class = case name
+                     when "note" then "pencil-fill"
+                     when "tip" then "info-lg"
+                     else "exclamation-lg"
+                     end
+        icon = %(<div class="icon"><i class="bi bi-#{icon_class}"></i></div>)
+        content = %(#{icon}\n#{Utils.display_title node, needs_prefix: false}#{node.content})
         Utils.wrap_id_classes content, node.id, "admonition admonition-#{name}"
       end
 
