@@ -1,0 +1,14 @@
+.Sidebar Title
+[#sb-extra-listing]
+****
+Some extra source code for advanced students.
+
+[source,ruby]
+----
+def fun(name = nil)
+  "Hello #{name || "World!"}" # <1>
+end # <2>
+----
+<1> Prefer double quotes over single.
+<2> Don't forget Ruby requires an `end` statement.
+****

@@ -108,7 +108,7 @@ module Asciidoctor
           <script>
           const touch = matchMedia('(hover: none)').matches;
           #{Highlightjs::PLUGIN}
-          hljs.configure({ cssSelector: 'code' });
+          hljs.configure({ cssSelector: 'pre code' });
           hljs.highlightAll();
           addEventListener('hashchange', function() {
             collapse = bootstrap.Collapse.getInstance("#sidebar");

@@ -2,9 +2,9 @@
     @extend .block;
     @extend .full-width-bg;
     padding-top: var(--parsep);
-    border-top: 2px solid var(--example-border-color, var(--bs-secondary-border-subtle));
-    border-bottom: 2px solid var(--example-border-color, var(--bs-secondary-border-subtle));
-    background-color: var(--example-bg-color, var(--bs-secondary-bg-subtle));
+    border-top: 2px solid var(--example-border-color, var(--bs-success-border-subtle));
+    border-bottom: 2px solid var(--example-border-color, var(--bs-success-border-subtle));
+    background-color: var(--example-bg-color, var(--bs-success-bg-subtle));
 }
 
 $thm-types: theorem, proposition, lemma, corollary;

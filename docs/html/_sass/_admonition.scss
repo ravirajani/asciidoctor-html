@@ -20,10 +20,6 @@
     }
 }
 
-.admonition-note .icon {
-    font-size: 65%;
-}
-
 .admonition-note, .admonition-tip {
     .icon {
         @extend .text-bg-info;

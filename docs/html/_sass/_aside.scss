@@ -1,0 +1,14 @@
+.aside { 
+    @extend .block;
+    @extend .full-width-bg;
+    padding-top: var(--parsep);
+    border-top: 2px solid var(--bs-secondary-border-subtle);
+    border-bottom: 2px solid var(--bs-secondary-border-subtle);
+    background-color: var(--bs-secondary-bg-subtle);
+    * {
+        --fw-margin: 0;
+    }
+    .aside-title {
+        text-align: center;
+    }
+}
