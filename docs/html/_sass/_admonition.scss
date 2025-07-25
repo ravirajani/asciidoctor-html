@@ -20,10 +20,12 @@
     }
 }
 
-.admonition-note, .admonition-tip {
-    .icon {
-        @extend .text-bg-info;
-    }
+.admonition-tip .icon {
+    @extend .text-bg-warning;
+}
+
+.admonition-note .icon {
+    @extend .text-bg-info;
 }
 
 .admonition-important, .admonition-caution {
