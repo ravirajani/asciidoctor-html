@@ -21,7 +21,7 @@ module Minitest
     end
 
     def display_failure(failure)
-      %([source,shell,role="border border-danger"]\n----\n#{failure}\n----\n)
+      %([source,shell,role="text-bg-danger"]\n----\n#{failure}\n----\n)
     end
 
     def display_result_title(name, failed, color)

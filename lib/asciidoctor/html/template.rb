@@ -2,6 +2,7 @@
 
 require "date"
 require_relative "highlightjs"
+require_relative "popovers"
 
 module Asciidoctor
   module Html
@@ -108,17 +109,12 @@ module Asciidoctor
           <script>
           const touch = matchMedia('(hover: none)').matches;
           #{Highlightjs::PLUGIN}
-          hljs.configure({ cssSelector: 'pre code' });
           hljs.highlightAll();
           addEventListener('hashchange', function() {
             collapse = bootstrap.Collapse.getInstance("#sidebar");
             if(collapse) collapse.hide();
           });
-          if(!touch) {
-            document.querySelectorAll('img[data-bs-toggle="tooltip"]').forEach(el => {
-              bootstrap.Tooltip.getOrCreateInstance(el);
-            });
-          }
+          #{Popovers.init_all}
           </script>
           </body>
           </html>\n).gsub("\n          ", "\n")

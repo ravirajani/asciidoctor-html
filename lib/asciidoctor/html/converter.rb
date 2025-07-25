@@ -91,6 +91,15 @@ module Asciidoctor
         end
       end
 
+      def convert_inline_footnote(node)
+        if (index = node.attr "index")
+          attrs = %( type="button" class="btn btn-fnref" data-contentid="_footnotedef_#{index}")
+          %(<sup class="footnoteref"><button#{attrs}>[#{index}]</button></sup>)
+        else
+          %(<sup class="footnoteref text-red">[??]</sup>)
+        end
+      end
+
       def convert_listing(node)
         nowrap = (node.option? "nowrap") || !(node.document.attr? "prewrap")
         if node.style == "source"
