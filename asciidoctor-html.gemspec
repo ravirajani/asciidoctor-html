@@ -1,11 +1,8 @@
 # frozen_string_literal: true
 
-$LOAD_PATH.unshift File.expand_path("lib", __dir__)
-require "asciidoctor/html"
-
 Gem::Specification.new do |spec|
   spec.name = "asciidoctor-html"
-  spec.version = Asciidoctor::Html::VERSION
+  spec.version = "0.1.2"
   spec.authors = ["Ravi Rajani"]
   spec.email = ["ravi.inajar@gmail.com"]
 
