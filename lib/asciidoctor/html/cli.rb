@@ -80,7 +80,7 @@ module Asciidoctor
         book_opts[:short_title] ||= book_opts[:title]
         setup_outdir outdir
         generate_webmanifest outdir, book_opts[:title], book_opts[:short_title]
-        book = Book.new(book_opts)
+        book = Book.new book_opts
         book.write config["chapters"], config["appendices"], config["outdir"]
       end
     end
