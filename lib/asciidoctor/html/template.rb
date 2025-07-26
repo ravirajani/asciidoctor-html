@@ -123,7 +123,7 @@ module Asciidoctor
             collapse = bootstrap.Collapse.getInstance("#sidebar");
             if(collapse) collapse.hide();
           });
-          #{Popovers::INIT}
+          #{Popovers::POPOVERS}
           </script>
           </body>
           </html>

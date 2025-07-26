@@ -65,6 +65,12 @@ module Asciidoctor
       def self.wrap_id_classes_with_title(content, node, id, classes, needs_prefix: false)
         show_title?(node) ? wrap_id_classes(display_title(node, needs_prefix:) + content, id, classes) : content
       end
+
+      def self.popover_button(content, content_id, classes = nil)
+        extra_classes = classes ? " #{classes}" : ""
+        attrs = %( type="button" class="btn btn-po#{extra_classes}" data-contentid="#{content_id}")
+        %(<button#{attrs}>#{content}</button>)
+      end
     end
   end
 end

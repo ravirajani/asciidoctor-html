@@ -106,8 +106,7 @@ module Asciidoctor
       def convert_inline_footnote(node)
         if (index = node.attr "index")
           icon = %(<i class="bi bi-question-circle-fill"></i>)
-          attrs = %( type="button" class="btn btn-fnref" data-contentid="_footnotedef_#{index}")
-          %(<sup><button#{attrs}>#{icon}</button></sup>)
+          %(<sup>#{Utils.popover_button icon, "_footnotedef_#{index}"}</sup>)
         else
           %(<sup class="text-danger">[??]</sup>)
         end
@@ -199,8 +198,12 @@ module Asciidoctor
       def convert_inline_anchor(node)
         if node.type == :xref && !node.text
           target = node.document.catalog[:refs][node.attr("refid")]
-          if target&.inline? && (text = target.text)&.match?(/\A<i class="bi/)
-            return %(<a href="#{node.target}">#{text}</a>)
+          if target&.inline?
+            text = target.text
+            return %(<a href="#{node.target}">#{text}</a>) if text&.match?(/\A<i class="bi/)
+
+            list_style = target.parent&.parent&.style
+            return Utils.popover_button(target.reftext, target.id, "bibref") if list_style == "bibliography"
           end
         end
         super

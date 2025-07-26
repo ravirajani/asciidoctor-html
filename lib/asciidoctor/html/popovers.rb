@@ -4,14 +4,20 @@ module Asciidoctor
   module Html
     # Configure the popovers for footnotes and citations.
     module Popovers
-      FOOTNOTES = <<~JS
-        function initFootnotes() {
-          document.querySelectorAll(".btn-fnref[data-contentid]").forEach(btn => {
+      POPOVERS = <<~JS
+        function initPopovers() {
+          document.querySelectorAll(".btn-po[data-contentid]").forEach(btn => {
             const id = btn.dataset.contentid;
-            const footnote = document.getElementById(id);
-            if(footnote) {
+            let content = document.getElementById(id);
+            if(content) {
+              if(content.tagName == "A") {
+                // This is an anchor of a bibitem
+                const listItem = content.parentElement.cloneNode(true)
+                listItem.removeChild(listItem.firstChild)
+                content = listItem
+              }
               new bootstrap.Popover(btn, {
-                content: footnote,
+                content: content,
                 html: true,
                 sanitize: false
               });
@@ -21,7 +27,7 @@ module Asciidoctor
         MathJax = {
           startup: {
             pageReady: function() {
-              return MathJax.startup.defaultPageReady().then(initFootnotes);
+              return MathJax.startup.defaultPageReady().then(initPopovers);
             }
           }
         };
@@ -36,7 +42,7 @@ module Asciidoctor
         }
       JS
 
-      INIT = "#{TOOLTIPS}\n#{FOOTNOTES}".freeze
+      INIT = "#{TOOLTIPS}\n#{POPOVERS}".freeze
     end
   end
 end
