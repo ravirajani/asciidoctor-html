@@ -90,7 +90,9 @@ module Asciidoctor
         end
       end
 
-      def ref_li_mark(mark, depth)
+      def ref_li_mark(mark, depth, style = nil)
+        return "[#{mark}]" if style == "bibliography"
+
         depth.even? ? mark.to_s : "(#{mark})"
       end
 
@@ -119,11 +121,12 @@ module Asciidoctor
           block.set_attr("flat-style", true)
         else
           offset = offset block
+          style = block.style
           block.items.each_with_index do |item, idx|
-            d = block.style == "figlist" ? 1 : depth
+            d = style == "figlist" ? 1 : depth
             mark = li_mark(d, idx + offset)
             item.set_attr "mark", mark
-            item_reftext = "#{parent_reftext}#{ref_li_mark mark, d}"
+            item_reftext = "#{parent_reftext}#{ref_li_mark mark, d, style}"
             register_reftext! item, item_reftext
           end
         end

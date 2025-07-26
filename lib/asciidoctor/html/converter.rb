@@ -199,7 +199,7 @@ module Asciidoctor
       def convert_inline_anchor(node)
         if node.type == :xref && !node.text
           target = node.document.catalog[:refs][node.attr("refid")]
-          if target.inline? && (text = target.text)&.match?(/\A<i class="bi/)
+          if target&.inline? && (text = target.text)&.match?(/\A<i class="bi/)
             return %(<a href="#{node.target}">#{text}</a>)
           end
         end

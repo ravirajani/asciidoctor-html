@@ -13,6 +13,10 @@
         }
     }
 }
+.bibliography > li > .li-mark {
+    &::before { content: '['; }
+    &::after { content: ']'; }
+}
 
 .list {
     @extend .list-unstyled;
