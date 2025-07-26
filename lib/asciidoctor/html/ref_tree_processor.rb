@@ -202,7 +202,7 @@ module Asciidoctor
             elsif olist? block
               if listdepth.zero?
                 flat_style = (block.style == "pseudocode")
-                flat_idx = offset block
+                flat_idx = offset block # rubocop:disable Lint/UselessAssignment
               end
               process_olist! block, listdepth, flat_style:
             elsif olist_item?(block) && flat_style
