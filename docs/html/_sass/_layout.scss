@@ -76,6 +76,9 @@ html {
     .content-container {
         max-width: $content-width;
         margin: 0 auto;
+        .gsc-control-cse {
+            padding: 0;
+        }
     }
 }
 

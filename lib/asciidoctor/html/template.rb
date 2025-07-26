@@ -15,10 +15,6 @@ module Asciidoctor
         %(<li#{active_class}>#{link}#{subnav}</li>\n)
       end
 
-      def self.nav(items = [])
-        %(<ul>\n#{items.join "\n"}\n</ul>)
-      end
-
       def self.nav_text(chapnum, chaptitle)
         return chaptitle if chapnum.empty?
 
@@ -33,12 +29,9 @@ module Asciidoctor
       def self.sidebar(nav_items)
         <<~HTML
           <div id="sidebar" class="sidebar collapse collapse-horizontal">
-          <div class="search">
-            <button type="button" class="btn">
-              <i class="bi bi-search"></i> Search&#8230;
-            </button>
-          </div> <!-- .search -->
-          <nav id="sidenav">\n#{nav nav_items}\n</nav>
+          <nav id="sidenav"><ul>
+          #{nav_items.join "\n"}
+          </ul></nav>
           </div> <!-- .sidebar -->
         HTML
       end

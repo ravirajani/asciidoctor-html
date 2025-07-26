@@ -73,7 +73,7 @@ module Asciidoctor
         config = read_config opts[:"config-file"]
         outdir = config["outdir"]
         book_opts = {}
-        %i[title short_title author date chapname].each do |opt|
+        %i[title short_title author date se_id chapname].each do |opt|
           key = opt.to_s
           book_opts[opt] = config[key] if config.include?(key)
         end

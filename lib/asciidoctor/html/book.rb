@@ -51,6 +51,7 @@ module Asciidoctor
         @title = ERB::Escape.html_escape opts[:title]
         @author = ERB::Escape.html_escape opts[:author]
         @date = opts.include?(:date) ? Date.parse(opts[:date]) : Date.today
+        @se_id = opts[:se_id]
         @chapname = opts[:chapname]
         @refs = {} # Hash(docname => Hash(id => reftext))
         @templates = {} # Hash(docname => TData)
@@ -81,9 +82,31 @@ module Asciidoctor
         read(chapters, appendices).each do |name, html|
           File.write("#{outdir}/#{name}.html", html)
         end
+        File.write("#{outdir}/#{SEARCH_PAGE}", search_page)
       end
 
       private
+
+      def search_page
+        content = if @se_id
+                    <<~HTML
+                      <script async src="https://cse.google.com/cse.js?cx=#{@se_id}"></script>
+                      <div class="gcse-search"></div>
+                    HTML
+                  else
+                    %(<p class="lead text-bg-danger p-1">Search Engine ID not provided.</p>)
+                  end
+        Template.html(
+          content,
+          nav_items,
+          title: @title,
+          author: @author,
+          date: @date,
+          chapnum: "",
+          chaptitle: "Search",
+          langs: []
+        )
+      end
 
       def register!(docs, filename, doc)
         key = key filename
@@ -156,7 +179,7 @@ module Asciidoctor
 
           items << Template.nav_item("##{section.id}", section.title)
         end
-        items.size > 1 ? Template.nav(items) : ""
+        items.size > 1 ? "<ul>#{items.join "\n"}</ul>" : ""
       end
 
       def html(docs)
@@ -167,14 +190,21 @@ module Asciidoctor
         html
       end
 
+      def nav_items(active_key = -1, doc = nil)
+        [Template.nav_item(SEARCH_PAGE,
+                           %(<i class="bi bi-search"></i> Search),
+                           active: (active_key == -1))] +
+          @templates.map do |k, td|
+            active = (k == active_key)
+            subnav = active ? outline(doc) : ""
+            navtext = Template.nav_text td.chapnum, td.chaptitle
+            Template.nav_item "#{k}.html", navtext, subnav, active:
+          end
+      end
+
       def build_template(key, doc)
         tdata = @templates[key]
-        nav_items = @templates.map do |k, td|
-          active = (k == key)
-          subnav = active ? outline(doc) : ""
-          navtext = Template.nav_text td.chapnum, td.chaptitle
-          Template.nav_item "#{k}.html", navtext, subnav, active:
-        end
+        nav_items = nav_items key, doc
         content = ERB.new(doc.convert).result(binding)
         Template.html(
           content,

@@ -8,6 +8,7 @@ module Asciidoctor
     FAVICON_PATH = "#{ASSETS_PATH}/favicon".freeze
     CSS_PATH = "#{ASSETS_PATH}/css".freeze
     IMG_PATH = "#{ASSETS_PATH}/img".freeze
+    SEARCH_PAGE = "search.html"
   end
 end
 
