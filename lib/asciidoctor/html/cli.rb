@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
-require "optparse"
-require "psych"
-require "pathname"
 require "fileutils"
+require "filewatcher"
+require "optparse"
+require "pathname"
+require "psych"
 require_relative "book"
 require_relative "webmanifest"
 
@@ -41,10 +42,12 @@ module Asciidoctor
         end
         config_dir = Pathname(config_file).dirname
         %w[outdir srcdir].each do |prop|
-          config[prop] = "#{config_dir}/#{config[prop] || DEFAULT_DIRS[prop]}"
+          config[prop] = File.expand_path(config[prop] || DEFAULT_DIRS[prop], config_dir)
         end
         %w[chapters appendices].each do |prop|
-          config[prop] &&= config[prop].map { |f| "#{config_dir}/#{f}" }
+          config[prop] &&= config[prop].map do |f|
+            File.expand_path(f, config_dir)
+          end
         end
         config
       end
@@ -81,7 +84,23 @@ module Asciidoctor
         setup_outdir outdir
         generate_webmanifest outdir, book_opts[:title], book_opts[:short_title]
         book = Book.new book_opts
+        puts "Writing book to #{outdir}"
         book.write config["chapters"], config["appendices"], config["outdir"]
+        return unless opts[:watch]
+
+        Filewatcher.new("#{config["srcdir"]}/*.adoc").watch do |changes|
+          chapters = []
+          appendices = []
+          changes.each_key do |filename|
+            puts "Detected change in #{filename}"
+            chapters.append(filename) if config["chapters"].include?(filename)
+            appendices.append(filename) if config["appendices"].include?(filename)
+          end
+          puts "Regenerating book:"
+          puts "    Chapters: #{chapters.map { |c| Pathname(c).basename }.join ", "}" unless chapters.empty?
+          puts "    Appendices: #{appendices.map { |a| Pathname(a).basename }.join ", "}" unless appendices.empty?
+          book.write chapters, appendices, config["outdir"]
+        end
       end
     end
   end

@@ -3,6 +3,7 @@ PATH
   specs:
     asciidoctor-html (0.1.2)
       asciidoctor (~> 2.0)
+      filewatcher (~> 2.1)
       psych (~> 5.2)
       roman-numerals (~> 0.3)
 
@@ -35,6 +36,8 @@ GEM
     ffi (1.17.2-x86_64-darwin)
     ffi (1.17.2-x86_64-linux-gnu)
     ffi (1.17.2-x86_64-linux-musl)
+    filewatcher (2.1.0)
+      module_methods (~> 0.1.0)
     forwardable-extended (2.6.0)
     google-protobuf (4.31.1)
       bigdecimal
@@ -108,6 +111,7 @@ GEM
     logger (1.7.0)
     mercenary (0.4.0)
     minitest (5.25.5)
+    module_methods (0.1.0)
     parallel (1.27.0)
     parser (3.3.9.0)
       ast (~> 2.4.1)
