@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-require_relative "lib/asciidoctor/html.rb" # rubocop:disable Style/RedundantFileExtensionInRequire
+$LOAD_PATH.unshift File.expand_path("lib", __dir__)
+require_relative "lib/asciidoctor/html"
 
 Gem::Specification.new do |spec|
   spec.name = "asciidoctor-html"
