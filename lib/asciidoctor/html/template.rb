@@ -31,34 +31,40 @@ module Asciidoctor
       end
 
       def self.sidebar(nav_items)
-        %(<div id="sidebar" class="sidebar collapse collapse-horizontal">
+        <<~HTML
+          <div id="sidebar" class="sidebar collapse collapse-horizontal">
           <div class="search">
             <button type="button" class="btn">
               <i class="bi bi-search"></i> Search&#8230;
             </button>
           </div> <!-- .search -->
           <nav id="sidenav">\n#{nav nav_items}\n</nav>
-          </div>).gsub("\n          ", "\n")
+          </div> <!-- .sidebar -->
+        HTML
       end
 
       def self.main(content, chapnum, chaptitle, author, year)
-        %(<main class="main">
+        <<~HTML
+          <main class="main">
           <div class="content-container">
           <h2>#{nav_text chapnum, chaptitle}</h2>
           #{content}
           #{footer author, year}
           </div>
-          </main>\n).gsub("\n          ", "\n")
+          </main>
+        HTML
       end
 
       def self.header(title)
-        %(<header class="header">
+        <<~HTML
+          <header class="header">
             <a class="home" href="./">#{title}</a>
             <button type="button" class="btn menu" data-bs-toggle="collapse" data-bs-target="#sidebar"
                     aria-expanded="false" aria-controls="sidebar">
               <i class="bi bi-list"></i>
             </button>
-          </header>\n).gsub("\n          ", "\n")
+          </header>
+        HTML
       end
 
       def self.footer(author, year)
@@ -72,7 +78,8 @@ module Asciidoctor
       end
 
       def self.head(title, langs)
-        %(<head>
+        <<~HTML
+          <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <title>#{title}</title>
@@ -85,7 +92,8 @@ module Asciidoctor
             <script src="#{Highlightjs::CDN_PATH}/highlight.min.js"></script>
             #{highlightjs langs}
             <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-          </head>).gsub("\n          ", "\n")
+          </head>
+        HTML
       end
 
       # opts:
@@ -96,7 +104,8 @@ module Asciidoctor
       # - chaptitle: String
       # - langs: Array[String]
       def self.html(content, nav_items, opts = {})
-        %(<!DOCTYPE html>
+        <<~HTML
+          <!DOCTYPE html>
           <html lang="en">
           #{head opts[:title], opts[:langs]}
           <body>
@@ -114,10 +123,11 @@ module Asciidoctor
             collapse = bootstrap.Collapse.getInstance("#sidebar");
             if(collapse) collapse.hide();
           });
-          #{Popovers.init_all}
+          #{Popovers::INIT}
           </script>
           </body>
-          </html>\n).gsub("\n          ", "\n")
+          </html>
+        HTML
       end
     end
   end

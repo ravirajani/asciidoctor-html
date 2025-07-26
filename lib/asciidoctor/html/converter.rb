@@ -13,6 +13,18 @@ module Asciidoctor
 
       include Figure
 
+      def convert_embedded(node)
+        result = [node.content]
+        if node.footnotes?
+          result << %(<div class="footnotes">)
+          node.footnotes.each do |fn|
+            result << %(<div class="footnote" id="_footnotedef_#{fn.index}">#{fn.text}</div>)
+          end
+          result << %(</div>)
+        end
+        result.join("\n")
+      end
+
       def convert_preamble(node)
         %(<div class="preamble">\n#{node.content}</div> <!-- .preamble -->\n)
       end
@@ -93,10 +105,11 @@ module Asciidoctor
 
       def convert_inline_footnote(node)
         if (index = node.attr "index")
+          icon = %(<i class="bi bi-question-circle-fill"></i>)
           attrs = %( type="button" class="btn btn-fnref" data-contentid="_footnotedef_#{index}")
-          %(<sup class="footnoteref"><button#{attrs}>[#{index}]</button></sup>)
+          %(<sup><button#{attrs}>#{icon}</button></sup>)
         else
-          %(<sup class="footnoteref text-red">[??]</sup>)
+          %(<sup class="text-danger">[??]</sup>)
         end
       end
 
@@ -133,15 +146,11 @@ module Asciidoctor
       end
 
       def convert_image(node)
-        return super if node.option?("inline") || node.option?("interactive")
-
         content = display_figure node
         Utils.wrap_id_classes content, node.id, ["figbox", node.role].compact.join(" ")
       end
 
       def convert_inline_image(node)
-        return super if node.option?("inline") || node.option?("interactive")
-
         target = node.target
         mark = node.parent.attr "mark"
         title_attr = node.attr? "title"
