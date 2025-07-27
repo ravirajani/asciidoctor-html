@@ -45,6 +45,7 @@ and then run
 
 ```shell
 bundle exec rake stylesheet
+git commit -am "build stylesheet for new release"
 bundle exec rake release
 ```
 
