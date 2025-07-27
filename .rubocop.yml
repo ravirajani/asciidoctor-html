@@ -3,7 +3,7 @@ AllCops:
   NewCops: enable
 
 Metrics/AbcSize:
-  Max: 60
+  Max: 45
 
 Metrics/CyclomaticComplexity:
   Max: 20

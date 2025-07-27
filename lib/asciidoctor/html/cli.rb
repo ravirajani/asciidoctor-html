@@ -71,16 +71,21 @@ module Asciidoctor
         File.write filename, Webmanifest.generate(name, short_name)
       end
 
-      def self.run(opts = nil)
-        opts ||= parse_opts
-        config = read_config opts[:"config-file"]
-        outdir = config["outdir"]
+      def self.generate_bookopts(config)
         book_opts = {}
         %i[title short_title author date se_id chapname].each do |opt|
           key = opt.to_s
           book_opts[opt] = config[key] if config.include?(key)
         end
         book_opts[:short_title] ||= book_opts[:title]
+        book_opts
+      end
+
+      def self.run(opts = nil)
+        opts ||= parse_opts
+        config = read_config opts[:"config-file"]
+        outdir = config["outdir"]
+        book_opts = generate_bookopts config
         setup_outdir outdir
         generate_webmanifest outdir, book_opts[:title], book_opts[:short_title]
         book = Book.new book_opts
