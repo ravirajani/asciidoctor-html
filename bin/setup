@@ -7,5 +7,5 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 
 bundle install
 
-cd $DIR/../docs/test
+cd $DIR/../docs/html
 npm i

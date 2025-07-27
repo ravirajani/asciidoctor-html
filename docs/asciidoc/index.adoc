@@ -1,5 +1,5 @@
 = Welcome
 
-`asciidoctor-html` is a simple static site generator that converts a set of https://asciidoc.org/[AsciiDoc] files into an HTML website.
+https://github.com/ravirajani/asciidoctor-html[asciidoctor-html] is a simple static site generator that converts a set of https://asciidoc.org/[AsciiDoc] files into an HTML website.
 It extends the default HTML converter provided by https://asciidoctor.org/[Asciidoctor] to make it easy for lecturers to write and
 publish notes or short technical monographs online.

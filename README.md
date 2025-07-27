@@ -1,10 +1,8 @@
 [![Build](https://github.com/ravirajani/asciidoctor-html/actions/workflows/main.yml/badge.svg)](https://github.com/ravirajani/asciidoctor-html/actions/workflows/main.yml)
 
-# Asciidoctor::Html
+# asciidoctor-html
 
-**The code in this repo is being actively developed and currently has limited functionality.**
-
-When complete, this gem will provide an alternative HTML converter for [Asciidoctor](https://github.com/asciidoctor/asciidoctor) as well as a simple static site generator.
+**The code in this repo is being actively developed. Use at your own risk.**
 
 ## Installation
 
@@ -19,21 +17,40 @@ If bundler is not being used to manage dependencies, install the gem by executin
 ```bash
 gem install asciidoctor-html
 ```
+## Configuration
 
-## Usage
+See [documentation config](docs/asciidoc/config.yml) for an example of a configuration file.
+In a typical scenario, you would put this file in the same directory as your AsciiDoc
+sources.
 
-```ruby
-require "asciidoctor"
-require "asciidoctor/html"
+## Basic Usage
 
-Asciidoctor.convert_file "mydoc.adoc"
+Assuming your config file is in the same directory as your AsciiDoc sources, execute:
+
+```shell
+cd <ASCIIDOC_SOURCES_DIR>
+adoctohtml [--watch]
 ```
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+After checking out the repo, run `bin/setup` to install dependencies.
+Then, run `bundle exec rake` to run the tests. You can also run `bin/cli` to test the CLI after making changes.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+Run `jekyll serve --livereload` inside the `docs/html` directory to preview your changes after running `bundle exec rake`.
+
+To install this gem onto your local machine, run `bundle exec rake install`.
+To release a new version, update the version number in `asciidoctor-html.gemspec`,
+and then run
+
+```shell
+bundle exec rake stylesheet
+bundle exec rake release
+```
+
+The first line runs the tests and builds the stylesheet `assets/css/styles.css`.
+The second line creates a git tag for the version, pushes git commits and the created tag,
+and pushes the `.gem` file to [rubygems.org](https://rubygems.org).
 
 
 ## License
