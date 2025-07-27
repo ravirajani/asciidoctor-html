@@ -40,12 +40,16 @@ Then, run `bundle exec rake` to run the tests. You can also run `bin/cli` to tes
 Run `jekyll serve --livereload` inside the `docs/html` directory to preview your changes after running `bundle exec rake`.
 
 To install this gem onto your local machine, run `bundle exec rake install`.
-To release a new version, update the version number in `asciidoctor-html.gemspec`,
+To release a new version,
+
+- update the version number in `asciidoctor-html.gemspec`,
+- update the `CHANGELOG.md`,
+
 and then run
 
 ```shell
 bundle exec rake stylesheet
-git commit -am "build stylesheet for new release"
+git commit -am "prepare for new release"
 bundle exec rake release
 ```
 
