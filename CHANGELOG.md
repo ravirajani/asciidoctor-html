@@ -22,4 +22,7 @@
 ## [0.1.4] - 2025-07-27
 
 - Support for single page site.
- 
+
+## [0.1.5] - 2025-07-27
+
+- CSS adjusted to handle single page site.
