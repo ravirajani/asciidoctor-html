@@ -84,7 +84,7 @@ module Asciidoctor
       def bullet(depth)
         case depth
         when 1 then "&#8208;"
-        when 2 then "&#8727;"
+        when 2 then "&#11089;"
         when 3 then "&#9702;"
         else "&#8226;"
         end
