@@ -43,12 +43,15 @@ module Asciidoctor
 
       # opts:
       # - title
+      # - short_title
       # - author
       # - date
+      # - se_id
       # - chapname
       def initialize(opts = {})
         opts = DEFAULT_OPTS.merge opts
         @title = ERB::Escape.html_escape opts[:title]
+        @short_title = ERB::Escape.html_escape opts[:short_title]
         @author = ERB::Escape.html_escape opts[:author]
         @date = opts.include?(:date) ? Date.parse(opts[:date]) : Date.today
         @se_id = opts[:se_id]
@@ -96,6 +99,7 @@ module Asciidoctor
           content,
           nav_items,
           title: @title,
+          short_title: @short_title,
           author: @author,
           date: @date,
           chapnum: "",
@@ -210,6 +214,7 @@ module Asciidoctor
           content,
           nav_items,
           title: @title,
+          short_title: @short_title,
           author: @author,
           date: @date,
           chapnum: tdata.chapnum,

@@ -48,10 +48,11 @@ module Asciidoctor
         HTML
       end
 
-      def self.header(title)
+      def self.header(title, short_title)
         <<~HTML
           <header class="header">
-            <a class="home" href="./">#{title}</a>
+            <a class="home d-none d-sm-block" href="./">#{title}</a>
+            <a class="home d-block d-sm-none" href="./">#{short_title}</a>
             <button type="button" class="btn menu" data-bs-toggle="collapse" data-bs-target="#sidebar"
                     aria-expanded="false" aria-controls="sidebar">
               <i class="bi bi-list"></i>
@@ -91,6 +92,7 @@ module Asciidoctor
 
       # opts:
       # - title: String
+      # - short_title: String
       # - author: String
       # - date: Date
       # - chapnum: Int
@@ -102,7 +104,7 @@ module Asciidoctor
           <html lang="en">
           #{head opts[:title], opts[:langs]}
           <body>
-          #{header opts[:title]}
+          #{header opts[:title], opts[:short_title]}
           #{sidebar nav_items}
           #{main content, opts[:chapnum], opts[:chaptitle], opts[:author], opts[:date].year}
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
