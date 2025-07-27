@@ -82,20 +82,16 @@ module Asciidoctor
         read(chapters, appendices).each do |name, html|
           File.write("#{outdir}/#{name}.html", html)
         end
-        File.write("#{outdir}/#{SEARCH_PAGE}", search_page) if @se_id
+        File.write("#{outdir}/#{SEARCH_PAGE}", search_page(@se_id)) if @se_id
       end
 
       private
 
-      def search_page
-        content = if @se_id
-                    <<~HTML
-                      <script async src="https://cse.google.com/cse.js?cx=#{@se_id}"></script>
-                      <div class="gcse-search"></div>
-                    HTML
-                  else
-                    %(<p class="lead text-bg-danger p-1">Search Engine ID not provided.</p>)
-                  end
+      def search_page(se_id)
+        content = <<~HTML
+          <script async src="https://cse.google.com/cse.js?cx=#{se_id}"></script>
+          <div class="gcse-search"></div>
+        HTML
         Template.html(
           content,
           nav_items,
