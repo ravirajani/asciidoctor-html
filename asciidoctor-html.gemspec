@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name = "asciidoctor-html"
-  spec.version = "0.1.3"
+  spec.version = "0.1.4"
   spec.authors = ["Ravi Rajani"]
   spec.email = ["ravi.inajar@gmail.com"]
 
