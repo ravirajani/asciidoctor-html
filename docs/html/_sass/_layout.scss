@@ -90,18 +90,18 @@ html {
         a {
             text-wrap: wrap;
         }
-    }
-    .main {
-        width: $main-width;
+        + .main {
+            width: $main-width;
+        }
     }
 }
 
 @include media-breakpoint-up(xl) {
     .sidebar {
         width: 30%;
-    }
-    .main {
-        width: 70%;
+        + .main {
+            width: 70%;
+        }
     }
 }
 
