@@ -19,7 +19,7 @@ gem install asciidoctor-html
 ```
 ## Configuration
 
-See [](docs/asciidoc/config.yml) for an example of a configuration file.
+See docs/asciidoc/config.yml for an example of a configuration file.
 In a typical scenario, you would put this file in the same directory as your AsciiDoc
 sources.
 
