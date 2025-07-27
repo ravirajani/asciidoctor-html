@@ -68,8 +68,8 @@ module Asciidoctor
 
       def self.popover_button(content, content_id, classes = nil)
         extra_classes = classes ? " #{classes}" : ""
-        attrs = %( type="button" class="btn btn-po#{extra_classes}" data-contentid="#{content_id}")
-        %(<button#{attrs}>#{content}</button>)
+        attrs = %( tabindex="0" role="button" class="btn-po#{extra_classes}" data-contentid="#{content_id}")
+        %(<a#{attrs}>#{content}</a>)
       end
     end
   end

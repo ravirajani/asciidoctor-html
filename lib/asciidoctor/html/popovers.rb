@@ -6,8 +6,8 @@ module Asciidoctor
     module Popovers
       POPOVERS = <<~JS
         function initPopovers() {
-          document.querySelectorAll(".btn-po[data-contentid]").forEach(btn => {
-            const id = btn.dataset.contentid;
+          document.querySelectorAll(".btn-po[data-contentid]").forEach(el => {
+            const id = el.dataset.contentid;
             let content = document.getElementById(id);
             if(content) {
               if(content.tagName == "A") {
@@ -16,7 +16,8 @@ module Asciidoctor
                 listItem.removeChild(listItem.firstChild)
                 content = listItem
               }
-              new bootstrap.Popover(btn, {
+              new bootstrap.Popover(el, {
+                trigger: "focus",
                 content: content,
                 html: true,
                 sanitize: false

@@ -1,9 +1,6 @@
-.btn.btn-po {
-    --bs-btn-padding-x: 0;
-    --bs-btn-padding-y: 0;
-    @extend .btn-link;
+.btn-po {
     text-decoration: none;
-    &.bibref {
-        vertical-align: baseline;
+    &.fnref {
+        font-size: 120%;
     }
 }

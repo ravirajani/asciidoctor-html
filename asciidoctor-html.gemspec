@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.authors = ["Ravi Rajani"]
   spec.email = ["ravi.inajar@gmail.com"]
 
-  spec.summary = "An alternative HTML converter for Asciidoctor."
+  spec.summary = "An AsciiDoc-to-HTML static site generator based on Asciidoctor."
   spec.homepage = "https://github.com/ravirajani/asciidoctor-html"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 3.1.0"
