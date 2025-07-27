@@ -44,8 +44,6 @@ jobs:
           bundler-cache: true
       - name: Build the Jekyll docs site
         run: bundle exec rake jekyll
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
