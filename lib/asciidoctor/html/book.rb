@@ -82,7 +82,7 @@ module Asciidoctor
         read(chapters, appendices).each do |name, html|
           File.write("#{outdir}/#{name}.html", html)
         end
-        File.write("#{outdir}/#{SEARCH_PAGE}", search_page)
+        File.write("#{outdir}/#{SEARCH_PAGE}", search_page) if @se_id
       end
 
       private
@@ -191,15 +191,19 @@ module Asciidoctor
       end
 
       def nav_items(active_key = -1, doc = nil)
-        [Template.nav_item(SEARCH_PAGE,
-                           %(<i class="bi bi-search"></i> Search),
-                           active: (active_key == -1))] +
-          @templates.map do |k, td|
-            active = (k == active_key)
-            subnav = active ? outline(doc) : ""
-            navtext = Template.nav_text td.chapnum, td.chaptitle
-            Template.nav_item "#{k}.html", navtext, subnav, active:
-          end
+        items = @templates.map do |k, td|
+          active = (k == active_key)
+          subnav = active ? outline(doc) : ""
+          navtext = Template.nav_text td.chapnum, td.chaptitle
+          Template.nav_item "#{k}.html", navtext, subnav, active:
+        end
+        return items unless @se_id
+
+        items.unshift(Template.nav_item(
+                        SEARCH_PAGE,
+                        %(<i class="bi bi-search"></i> Search),
+                        active: (active_key == -1)
+                      ))
       end
 
       def build_template(key, doc)

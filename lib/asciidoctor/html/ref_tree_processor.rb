@@ -190,7 +190,8 @@ module Asciidoctor
       end
 
       def process(document)
-        listdepth = bulletdepth = 0
+        listdepth = 0
+        bulletdepth = 0
         flat_style = false
         flat_idx = 0 # flat index for (pseudocode) list
         tw = TreeWalker.new document
