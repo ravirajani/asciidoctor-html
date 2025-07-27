@@ -45,7 +45,8 @@ module Asciidoctor
           config[prop] = File.expand_path(config[prop] || DEFAULT_DIRS[prop], config_dir)
         end
         %w[chapters appendices].each do |prop|
-          config[prop] &&= config[prop].map do |f|
+          config[prop] ||= []
+          config[prop] = config[prop].map do |f|
             File.expand_path(f, config_dir)
           end
         end

@@ -48,15 +48,23 @@ module Asciidoctor
         HTML
       end
 
-      def self.header(title, short_title)
+      def self.header(title, short_title, nav: true)
+        nav_btn = if nav
+                    <<~HTML
+                      <button type="button" class="btn menu"
+                              data-bs-toggle="collapse" data-bs-target="#sidebar"
+                              aria-expanded="false" aria-controls="sidebar">
+                        <i class="bi bi-list"></i>
+                      </button>
+                    HTML
+                  else
+                    ""
+                  end
         <<~HTML
           <header class="header">
             <a class="home d-none d-sm-block" href="./">#{title}</a>
             <a class="home d-block d-sm-none" href="./">#{short_title}</a>
-            <button type="button" class="btn menu" data-bs-toggle="collapse" data-bs-target="#sidebar"
-                    aria-expanded="false" aria-controls="sidebar">
-              <i class="bi bi-list"></i>
-            </button>
+            #{nav_btn}
           </header>
         HTML
       end
@@ -95,17 +103,28 @@ module Asciidoctor
       # - short_title: String
       # - author: String
       # - date: Date
+      # - nav: Boolean
       # - chapnum: Int
       # - chaptitle: String
       # - langs: Array[String]
       def self.html(content, nav_items, opts = {})
+        hash_listener = if opts[:nav]
+                          <<~JS
+                            addEventListener('hashchange', function() {
+                              collapse = bootstrap.Collapse.getInstance('#sidebar');
+                              if(collapse) collapse.hide();
+                            });
+                          JS
+                        else
+                          ""
+                        end
         <<~HTML
           <!DOCTYPE html>
           <html lang="en">
           #{head opts[:title], opts[:langs]}
           <body>
-          #{header opts[:title], opts[:short_title]}
-          #{sidebar nav_items}
+          #{header opts[:title], opts[:short_title], nav: opts[:nav]}
+          #{sidebar(nav_items) if opts[:nav]}
           #{main content, opts[:chapnum], opts[:chaptitle], opts[:author], opts[:date].year}
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
                   integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
@@ -114,10 +133,7 @@ module Asciidoctor
           const touch = matchMedia('(hover: none)').matches;
           #{Highlightjs::PLUGIN}
           hljs.highlightAll();
-          addEventListener('hashchange', function() {
-            collapse = bootstrap.Collapse.getInstance("#sidebar");
-            if(collapse) collapse.hide();
-          });
+          #{hash_listener}
           #{Popovers::POPOVERS}
           </script>
           </body>

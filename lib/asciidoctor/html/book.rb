@@ -219,7 +219,8 @@ module Asciidoctor
           date: @date,
           chapnum: tdata.chapnum,
           chaptitle: tdata.chaptitle,
-          langs: langs(doc)
+          langs: langs(doc),
+          nav: (nav_items.size > 1)
         )
       end
     end
