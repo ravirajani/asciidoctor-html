@@ -50,7 +50,7 @@ bundle exec rake release
 ```
 
 The first line runs the tests and builds the stylesheet `assets/css/styles.css`.
-The second line creates a git tag for the version, pushes git commits and the created tag,
+The third line creates a git tag for the version, pushes commits and the created tag to GitHub,
 and pushes the `.gem` file to [rubygems.org](https://rubygems.org).
 
 
