@@ -72,7 +72,12 @@ The `adoctohtml` script only listens to changes to the source files listed under
 in <<config-yaml>>. If you change the configuration file itself, or any includes, you will need to restart the
 script to see the effect of your changes.
 
-[source#config-yaml,yaml]
+:!sectnums:
+
+[#sec-configuration]
+== Configuration
+
+[source#config-yaml.monotitle,yaml]
 .config.yml
 ----
 include::config.yml[]

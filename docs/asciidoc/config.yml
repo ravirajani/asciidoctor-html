@@ -1,7 +1,15 @@
+# displayed in the nav bar
 title: Documentation for asciidoctor-html
+
+# when space is tight
 short_title: asciidoctor-html docs
+
+# displayed in the footer
 author: Ravi Rajani
 date: "10 July 2025"
+
+# chapters and appendices are lists of AsciiDoc
+# documents to be converted to HTML
 
 chapters:
   - index.adoc
@@ -12,7 +20,14 @@ chapters:
 appendices:
   - tests.adoc
 
-srcdir: .
-outdir: ../html
+# these directories are relative to this file
+srcdir: .         # default: .
+outdir: ../html   # default: www
 
+# provide a Google Search Engine ID if you want
+# to generate a search page
 se_id: b5711c050271f4ccc
+
+# provide a base_url if you want to generate
+# a sitemap
+base_url: https://ravirajani.github.io/asciidoctor-html/

@@ -55,6 +55,7 @@ module Asciidoctor
         @author = ERB::Escape.html_escape opts[:author]
         @date = opts.include?(:date) ? Date.parse(opts[:date]) : Date.today
         @se_id = opts[:se_id]
+        @base_url = opts[:base_url]
         @chapname = opts[:chapname]
         @refs = {} # Hash(docname => Hash(id => reftext))
         @templates = {} # Hash(docname => TData)
@@ -81,11 +82,16 @@ module Asciidoctor
       # - chapters: array of filenames
       # - appendices: array of filenames
       # - outdir: directory to write the converted html files to
-      def write(chapters, appendices, outdir)
+      def write(chapters, appendices, outdir, sitemap: false)
+        needs_sitemap = sitemap && @base_url
+        urls = []
         read(chapters, appendices).each do |name, html|
-          File.write("#{outdir}/#{name}.html", html)
+          filename = "#{name}.html"
+          File.write("#{outdir}/#{filename}", html)
+          urls << "#{@base_url}#{filename}" if needs_sitemap
         end
         File.write("#{outdir}/#{SEARCH_PAGE}", search_page(@se_id)) if @se_id
+        File.write("#{outdir}/sitemap.txt", urls.join("\n")) if needs_sitemap
       end
 
       private

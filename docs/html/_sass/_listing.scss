@@ -11,6 +11,9 @@
         border-bottom: 1px solid $gray-600;
         font-weight: normal;
     }
+    &.monotitle .block-title {
+        font-family: var(--bs-font-monospace);
+    }
     pre {
         padding-top: var(--listing-padding);
         padding-bottom: var(--listing-padding);
