@@ -1,5 +1,15 @@
-= Welcome
+= Getting Started
 
-https://github.com/ravirajani/asciidoctor-html[asciidoctor-html] is a simple static site generator that converts a set of https://asciidoc.org/[AsciiDoc] files into an HTML website.
-It extends the default HTML converter provided by https://asciidoctor.org/[Asciidoctor] to make it easy for lecturers to write and
-publish notes or short technical monographs online.
+https://github.com/ravirajani/asciidoctor-html[asciidoctor-html] is a simple static site generator
+that converts a set of https://asciidoc.org/[AsciiDoc] files into an HTML website. It extends the default
+HTML converter provided by https://asciidoctor.org/[Asciidoctor] to make it easy for lecturers to write
+and publish notes or short technical monographs online.
+
+== Quick Start
+
+. Create a new repository from the public template https://github.com/ravirajani/ravirajani.github.io.
+. Modify the `index.adoc` file to include your custom content for the landing page.
+. Create additional AsciiDoc files for additional pages or for includes to be shared among pages.
+. Modify the `config.yml` file. List additional pages under `chapters` or `appendices` as appropriate.
+. Under your repository's bi:gear[] Settings, navigate to the Pages tab, and enable *GitHub Actions* as your Build and Deployment Source.
+. Commit and push your changes. The site will get built and deployed on GitHub's servers.
