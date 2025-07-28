@@ -48,12 +48,8 @@ module Asciidoctor
 
       def self.wrap_node(content, node, tag_name = :div)
         base_class = node.context
-        mod = node.attr?("env") ? node.attr("env") : node.style
-        mod_class = if mod && mod != base_class.to_s
-                      "#{base_class}-#{mod}"
-                    else
-                      ""
-                    end
+        mod = node.style
+        mod_class = "#{base_class}-#{mod}" if mod && mod != base_class.to_s
         classes = [base_class, mod_class, node.role].compact.map(&:to_s).uniq.join(" ").strip
         wrap_id_classes content, node.id, classes, tag_name
       end

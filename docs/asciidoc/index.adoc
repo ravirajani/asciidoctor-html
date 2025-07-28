@@ -1,5 +1,7 @@
 = Getting Started
 :sectnumlevels: 2
+:description: Instructions on how to configure and start using the \
+static site generator asciidoctor-html.
 include::includes/variables.adoc[]
 
 {asciidoctor-html} is a simple static site generator
@@ -37,7 +39,7 @@ will regenerate the HTML for modified AsciiDoc sources.
 The above two tools can be used together to instantly view an HTML preview when you change a source file. They
 can be installed with:
 
-[source,shell]
+[source,bash]
 ----
 gem install bundler <1>
 bundle init         <2>
@@ -51,14 +53,14 @@ bundle add logger jekyll asciidoctor-html <3>
 
 Open a terminal window and, in the working directory, run
 
-[source,shell]
+[source,bash]
 ----
 adoctohtml --watch
 ----
 
 In another terminal, run
 
-[source,shell]
+[source,bash]
 ----
 cd wwww <1>
 jekyll serve --livereload
@@ -77,8 +79,21 @@ script to see the effect of your changes.
 [#sec-configuration]
 == Configuration
 
+The `adoctohtml` script loads its configuration from a file which can be specified on the command line.
+
+.Usage: `adoctohtml [options]`
+`-w`, `--watch`::
+Watch for file changes in `srcdir`. Default: unset
+`-c CONFIG`, `--config-file CONFIG`::
+Location of config file. Default: `config.yml`
+
+The available configuration options are shown in the {docs-yaml}[config.yml] for this
+documentation site which we reproduce below.
+
 [source#config-yaml.monotitle,yaml]
 .config.yml
 ----
 include::config.yml[]
 ----
+<1> This is the ID from Google's
+https://programmablesearchengine.google.com/[Programmable Search Engine]

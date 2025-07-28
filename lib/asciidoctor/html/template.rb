@@ -104,11 +104,13 @@ module Asciidoctor
         end.join("\n  ")
       end
 
-      def self.head(title, langs)
+      def self.head(title, description, author, langs)
         <<~HTML
           <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
+            #{%(<meta name="description" content="#{description}">) if description}
+            #{%(<meta name="author" content="#{author}">) if author}
             <title>#{title}</title>
             <link rel="apple-touch-icon" sizes="180x180" href="#{FAVICON_PATH}/apple-touch-icon.png">
             <link rel="icon" type="image/png" sizes="32x32" href="#{FAVICON_PATH}/favicon-32x32.png">
@@ -127,6 +129,7 @@ module Asciidoctor
       # - title: String
       # - short_title: String
       # - author: String
+      # - description: String
       # - date: Date
       # - chapnum: Int
       # - chaptitle: String
@@ -146,7 +149,7 @@ module Asciidoctor
         <<~HTML
           <!DOCTYPE html>
           <html lang="en">
-          #{head opts[:title], opts[:langs]}
+          #{head opts[:title], opts[:description], opts[:author], opts[:langs]}
           <body>
           #{header opts[:title], opts[:short_title], nav:}
           #{sidebar(nav_items) if nav}

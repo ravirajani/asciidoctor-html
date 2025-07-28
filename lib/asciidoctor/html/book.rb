@@ -223,6 +223,7 @@ module Asciidoctor
           short_title: @short_title,
           author: @author,
           date: @date,
+          description: doc.attr("description"),
           chapnum: tdata.chapnum,
           chaptitle: tdata.chaptitle,
           langs: langs(doc)

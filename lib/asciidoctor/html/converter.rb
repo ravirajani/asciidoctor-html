@@ -132,6 +132,13 @@ module Asciidoctor
         Utils.wrap_node content, node
       end
 
+      def convert_literal(node)
+        nowrap = !(node.document.attr? "prewrap") || (node.option? "nowrap")
+        pre = %(<pre#{%( class="nowrap") if nowrap}>#{node.content}</pre>)
+        title = Utils.display_title(node, needs_prefix: false)
+        Utils.wrap_node "#{title}#{pre}", node
+      end
+
       def convert_open(node)
         collapsible = node.option? "collapsible"
         title = if collapsible

@@ -10,15 +10,16 @@ date: "10 July 2025"
 
 # chapters and appendices are lists of AsciiDoc
 # documents to be converted to HTML
-
 chapters:
   - index.adoc
   - typography.adoc
   - numbered-environments.adoc
   - referencing.adoc
-
 appendices:
   - tests.adoc
+
+# how to refer to a page
+chapname: Page    # default: Chapter
 
 # these directories are relative to this file
 srcdir: .         # default: .
@@ -26,7 +27,7 @@ outdir: ../html   # default: www
 
 # provide a Google Search Engine ID if you want
 # to generate a search page
-se_id: b5711c050271f4ccc
+se_id: b5711c050271f4ccc # <1>
 
 # provide a base_url if you want to generate
 # a sitemap

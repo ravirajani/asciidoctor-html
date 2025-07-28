@@ -1,1 +1,2 @@
 :asciidoctor-html: https://github.com/ravirajani/asciidoctor-html[asciidoctor-html]
+:docs-yaml: https://github.com/ravirajani/asciidoctor-html/blob/main/docs/asciidoc/config.yml

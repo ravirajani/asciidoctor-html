@@ -88,7 +88,7 @@ module Asciidoctor
             if(text.match(rgx)) {
               text = text.replaceAll(rgx, "");
               el.innerHTML = el.innerHTML.replaceAll(rgx, (match) => {
-                return '<i class="bi bi-' + (match.charCodeAt() - 9311) + '-circle"></i>';
+                return '<i class="hljs-comment bi bi-' + (match.charCodeAt() - 9311) + '-circle"></i>';
               });
             }
           }
