@@ -48,6 +48,24 @@ module Asciidoctor
         HTML
       end
 
+      def self.sitemap(entries)
+        <<~XML
+          <?xml version="1.0" encoding="UTF-8"?>
+          <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+          #{entries.join "\n"}
+          </urlset>
+        XML
+      end
+
+      def self.sitemap_entry(url)
+        <<~XML
+          <url>
+            <loc>#{url}</loc>
+          </url>
+        XML
+      end
+
       def self.header(title, short_title, nav: true)
         nav_btn = if nav
                     <<~HTML

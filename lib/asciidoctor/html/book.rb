@@ -84,14 +84,14 @@ module Asciidoctor
       # - outdir: directory to write the converted html files to
       def write(chapters, appendices, outdir, sitemap: false)
         needs_sitemap = sitemap && @base_url
-        urls = []
+        entries = [] # for sitemap
         read(chapters, appendices).each do |name, html|
           filename = "#{name}.html"
           File.write("#{outdir}/#{filename}", html)
-          urls << "#{@base_url}#{filename}" if needs_sitemap
+          entries << Template.sitemap_entry("#{@base_url}#{filename}") if needs_sitemap
         end
         File.write("#{outdir}/#{SEARCH_PAGE}", search_page(@se_id)) if @se_id
-        File.write("#{outdir}/sitemap.txt", urls.join("\n")) if needs_sitemap
+        File.write("#{outdir}/sitemap.xml", Template.sitemap(entries)) if needs_sitemap
       end
 
       private
