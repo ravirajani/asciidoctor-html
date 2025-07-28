@@ -34,7 +34,8 @@ module Asciidoctor
         document = node.document
         level = node.level
         show_sectnum = node.numbered && level <= (document.attr("sectnumlevels") || 1).to_i
-        tag_name = %(h#{[level + 2, 6].min})
+        tag_level = [level == 1 ? level + 1 : level + 2, 6].min
+        tag_name = %(h#{tag_level})
         sectnum = show_sectnum ? %(<span class="title-mark">#{node.sectnum ""}</span>) : ""
         content = %(<#{tag_name}>#{sectnum}#{node.title}</#{tag_name}>\n#{node.content})
         Utils.wrap_node content, node, :section
@@ -67,7 +68,8 @@ module Asciidoctor
                      else "exclamation-lg"
                      end
         icon = %(<div class="icon"><i class="bi bi-#{icon_class}"></i></div>)
-        content = %(#{icon}\n#{Utils.display_title node, needs_prefix: false}#{node.content})
+        content = node.blocks? ? node.content : "<p>#{node.content}</p>"
+        content = %(#{icon}\n#{Utils.display_title node, needs_prefix: false}#{content})
         Utils.wrap_id_classes content, node.id, "admonition admonition-#{name}"
       end
 

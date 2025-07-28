@@ -1,4 +1,2 @@
 [IMPORTANT#adm-important]
---
 This is important.
---

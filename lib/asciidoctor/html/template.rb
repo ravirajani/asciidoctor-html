@@ -40,7 +40,7 @@ module Asciidoctor
         <<~HTML
           <main class="main">
           <div class="content-container">
-          <h2>#{nav_text chapnum, chaptitle}</h2>
+          <h1>#{nav_text chapnum, chaptitle}</h1>
           #{content}
           #{footer author, year}
           </div>

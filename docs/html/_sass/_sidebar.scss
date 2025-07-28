@@ -18,18 +18,23 @@
                     --bs-nav-link-hover-color: var(--bs-emphasis-color);
                     @extend .nav-link;
                 }
-                ul li a {
-                    --bs-nav-link-padding-x: 1rem;
-                    --bs-nav-link-color: var(--bs-light-text-emphasis);
-                    --bs-nav-link-hover-color: var(--bs-light-text-emphasis);
-                    &.active {
-                        --bs-nav-link-color: var(--bs-info-text-emphasis);
-                        --bs-nav-link-hover-color: var(--bs-info-text-emphasis);
-                        background-color: var(--bs-info-bg-subtle);
-                        border-radius: 0.375rem;
+                ul {
+                    margin-top: -0.125rem;
+                    margin-bottom: 0.25rem;
+                    li a {
+                        --bs-nav-link-padding-x: 1rem;
+                        --bs-nav-link-padding-y: 0.125rem;
+                        --bs-nav-link-color: var(--bs-light-text-emphasis);
+                        --bs-nav-link-hover-color: var(--bs-light-text-emphasis);
+                        &.active {
+                            --bs-nav-link-color: var(--bs-info-text-emphasis);
+                            --bs-nav-link-hover-color: var(--bs-info-text-emphasis);
+                            background-color: var(--bs-info-bg-subtle);
+                            border-radius: 0.375rem;
+                        }
+                        margin-left: 1rem;
+                        margin-right: 1rem;
                     }
-                    margin-left: 1rem;
-                    margin-right: 1rem;
                 }
                 &.active {
                     > a {
