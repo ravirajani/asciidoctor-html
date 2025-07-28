@@ -3,6 +3,7 @@ title: asciidoctor-html docs
 exclude:
   - package.json
   - package-lock.json
+  - .gitignore
 
 sass:
   style: compressed
