@@ -103,12 +103,12 @@ module Asciidoctor
       # - short_title: String
       # - author: String
       # - date: Date
-      # - nav: Boolean
       # - chapnum: Int
       # - chaptitle: String
       # - langs: Array[String]
       def self.html(content, nav_items, opts = {})
-        hash_listener = if opts[:nav]
+        nav = (nav_items.size > 1)
+        hash_listener = if nav
                           <<~JS
                             addEventListener('hashchange', function() {
                               collapse = bootstrap.Collapse.getInstance('#sidebar');
@@ -123,8 +123,8 @@ module Asciidoctor
           <html lang="en">
           #{head opts[:title], opts[:langs]}
           <body>
-          #{header opts[:title], opts[:short_title], nav: opts[:nav]}
-          #{sidebar(nav_items) if opts[:nav]}
+          #{header opts[:title], opts[:short_title], nav:}
+          #{sidebar(nav_items) if nav}
           #{main content, opts[:chapnum], opts[:chaptitle], opts[:author], opts[:date].year}
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
                   integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
