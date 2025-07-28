@@ -70,7 +70,14 @@ module Asciidoctor
       end
 
       def self.footer(author, year)
-        %(<footer class="footer">&#169; #{year} #{author}</footer>\n)
+        <<~HTML
+          <footer class="footer">
+            <div class="footer-left">&#169; #{year} #{author}</div>
+            <div class="footer-right">Built with
+              <a href="https://github.com/ravirajani/asciidoctor-html">asciidoctor-html</a>
+            </div>
+          </footer>
+        HTML
       end
 
       def self.highlightjs(langs)

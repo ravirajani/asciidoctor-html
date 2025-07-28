@@ -34,14 +34,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Set up Sass
-        working-directory: docs/html
-        run: npm ci
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
-          bundler-cache: true
+      - name: Install dependencies
+        run: bin/setup
       - name: Build the Jekyll docs site
         run: bundle exec rake jekyll
       - name: Upload artifact

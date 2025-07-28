@@ -112,4 +112,8 @@ html {
 .footer {
     font-size: 90%;
     padding: $spacer 0;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    gap: 1rem;
 }
