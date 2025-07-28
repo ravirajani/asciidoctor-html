@@ -4,6 +4,7 @@ require "asciidoctor"
 require_relative "list"
 require_relative "utils"
 require_relative "figure"
+require_relative "table"
 
 module Asciidoctor
   module Html
@@ -207,6 +208,34 @@ module Asciidoctor
           end
         end
         super
+      end
+
+      def convert_table(node)
+        classes = ["table", node.role].compact
+        classes << "table-striped" if node.option? "striped"
+        classes << "table-bordered" if node.option? "bordered"
+        classes << "table-sm" if node.option? "compact"
+        width_attribute = ""
+        if (autowidth = node.option? "autowidth") && !(node.attr? "width")
+          classes << "table-fit"
+        elsif (tablewidth = node.attr "width")
+          width_attribute = %( width="#{tablewidth}%")
+        end
+        result = [%(<table#{Utils.id_class_attr_str node.id, classes.join(" ")}#{width_attribute}>)]
+        result << %(<caption class="table-title">#{Utils.display_title_prefix node}#{node.title}</caption>)
+        if node.attr("rowcount").positive?
+          result << "<colgroup>"
+          if autowidth
+            result += (Array.new node.columns.size, %(<col>))
+          else
+            node.columns.each do |col|
+              result << (col.option?("autowidth") ? %(<col>) : %(<col style="width:#{col.attr "colpcwidth"}%;">))
+            end
+          end
+          result << "</colgroup>"
+        end
+        result << "#{Table.display_rows(node)}</table>"
+        Utils.wrap_id_classes result.join("\n"), nil, "table-responsive"
       end
     end
   end

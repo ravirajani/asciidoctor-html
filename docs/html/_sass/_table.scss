@@ -1,0 +1,23 @@
+.table {
+    @each $direction in (left, right) {
+        .halign-#{$direction} {
+            text-align: $direction;
+        }
+    }
+    margin: 0;
+    @extend .caption-top;
+    .table-title {
+        text-align: center;
+    }
+    &.table-fit {
+        width: auto;
+        margin: 0 auto;
+    }
+    thead + tbody {
+        @extend .table-group-divider;
+    }
+}
+
+.table-responsive {
+    margin: 1.5rem 0;
+}

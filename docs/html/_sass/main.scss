@@ -30,6 +30,7 @@ $color-mode-type: media-query;
 @import "../node_modules/bootstrap/scss/nav";
 @import "../node_modules/bootstrap/scss/tooltip";
 @import "../node_modules/bootstrap/scss/popover";
+@import "../node_modules/bootstrap/scss/tables";
 // ...
 
 // 7. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
@@ -50,3 +51,4 @@ $color-mode-type: media-query;
 @import "aside";
 @import "quote";
 @import "popovers";
+@import "table";

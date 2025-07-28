@@ -18,10 +18,10 @@ Metrics/MethodLength:
   Max: 35
 
 Metrics/ClassLength:
-  Max: 200
+  Max: 300
 
 Metrics/ModuleLength:
-  Max: 200
+  Max: 300
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
