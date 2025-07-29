@@ -1,21 +1,23 @@
-.arabic, .lowerroman {
-    > li {
-        > .li-mark, > figure .li-mark {
-            &::after { content: '.'; }
+.mark-dot {
+    > .li-mark, figure > figcaption > .li-mark {
+        &::after {
+            content: '.'; 
         }
     }
 }
-.loweralpha, .upperalpha {
-    > li {
-        > .li-mark, > figure .li-mark {
-            &::before { content: '('; }
-            &::after { content: ')'; }
-        }
+
+.mark-round-brackets {
+    > .li-mark, figure > figcaption > .li-mark {
+        &::before { content: '('; }
+        &::after { content: ')'; }
     }
 }
-.bibliography > li > .li-mark {
-    &::before { content: '['; }
-    &::after { content: ']'; }
+
+.mark-square-brackets {
+    > .li-mark, figure > figcaption > .li-mark {
+        &::before { content: '['; }
+        &::after { content: ']'; }
+    }
 }
 
 .list {

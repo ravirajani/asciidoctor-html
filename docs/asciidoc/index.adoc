@@ -81,11 +81,13 @@ script to see the effect of your changes.
 
 The `adoctohtml` script loads its configuration from a file which can be specified on the command line.
 
+****
 .Usage: `adoctohtml [options]`
 `-w`, `--watch`::
 Watch for file changes in `srcdir`. Default: unset
 `-c CONFIG`, `--config-file CONFIG`::
 Location of config file. Default: `config.yml`
+****
 
 The available configuration options are shown in the {docs-yaml}[config.yml] for this
 documentation site which we reproduce below.

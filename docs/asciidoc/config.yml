@@ -2,11 +2,11 @@
 title: Documentation for asciidoctor-html
 
 # when space is tight
-short_title: asciidoctor-html docs
+short_title: asciidoctor-html
 
 # displayed in the footer
 author: Ravi Rajani
-date: "10 July 2025"
+date: "30 July 2025"
 
 # chapters and appendices are lists of AsciiDoc
 # documents to be converted to HTML

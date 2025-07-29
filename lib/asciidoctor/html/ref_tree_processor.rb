@@ -91,13 +91,31 @@ module Asciidoctor
       end
 
       def ref_li_mark(mark, depth, style = nil)
-        return "[#{mark}]" if style == "bibliography"
+        return mark.to_s unless style
 
-        depth.even? ? mark.to_s : "(#{mark})"
+        case li_style depth, style
+        when "mark-square-brackets" then "[#{mark}]"
+        when "mark-round-brackets" then "(#{mark})"
+        else mark.to_s
+        end
+      end
+
+      def li_style(depth, list_style)
+        return "mark-square-brackets" if list_style == "bibliography"
+        return "mark-round-brackets" if list_style == "figlist"
+
+        case depth
+        when 1, 3 then "mark-round-brackets"
+        else "mark-dot"
+        end
       end
 
       def offset(list)
         list.attr?("start") ? (list.attr("start").to_i - 1) : 0
+      end
+
+      def shift(list)
+        list.attr?("shift") ? list.attr("shift").to_i : 0
       end
 
       # Finds an anchor at the start of item.text and updates
@@ -121,11 +139,14 @@ module Asciidoctor
           block.set_attr("flat-style", true)
         else
           offset = offset block
+          shift = shift block
           style = block.style
+          d = (style == "figlist" ? 1 : depth) + shift
+          role = li_style d, style
           block.items.each_with_index do |item, idx|
-            d = style == "figlist" ? 1 : depth
             mark = li_mark(d, idx + offset)
             item.set_attr "mark", mark
+            item.role = role
             item_reftext = "#{parent_reftext}#{ref_li_mark mark, d, style}"
             register_reftext! item, item_reftext
           end

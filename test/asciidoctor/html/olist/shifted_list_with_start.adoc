@@ -1,0 +1,6 @@
+[shift=2,start=3]
+. First item, level 1
+. Second item, level 1
+.. First item, level 2
+.. Second item, level 2
+. Third item, level 1

@@ -29,9 +29,9 @@ module Asciidoctor
 
       def convert_figlist(node)
         result = node.items.map do |item|
-          %(<li#{Utils.id_class_attr_str item.id}><figure>\n#{item.text}\n</figure></li>)
+          %(<li#{Utils.id_class_attr_str item.id, item.role}><figure>\n#{item.text}\n</figure></li>)
         end
-        content = Utils.wrap_id_classes result.join("\n"), nil, "figlist loweralpha", :ol
+        content = Utils.wrap_id_classes result.join("\n"), nil, "figlist", :ol
         title = %(<div class="figlist-title">#{Utils.display_title_prefix(node)}#{node.title}</div>)
         classes = ["figlist-wrapper", node.role].compact.join(" ")
         Utils.wrap_id_classes %(#{content}#{title}), node.id, classes
