@@ -5,6 +5,7 @@ $listing-blue: #002451;
 :root {
     --parsep: #{$spacer};
     --paritemsep: #{0.125*$spacer};
+    --blocksep: #{$spacer};
     --fw-padding: #{$content-padding-x};
     --fw-margin: -#{$content-padding-x};
 }
@@ -41,7 +42,10 @@ $listing-blue: #002451;
 
 .block {
     --parsep: 0.5rem;
-    margin-bottom: var(--parsep);
+    .block {
+        --blocksep: var(--parsep);
+    }
+    margin-bottom: var(--blocksep);
     > .block-title, > summary {
         &:first-child {
             margin-bottom: calc(0.5*var(--parsep));

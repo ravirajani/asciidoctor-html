@@ -87,7 +87,7 @@
 
 .list-colist {
     --paritemsep: 0px;
-    margin-top: -#{0.5*$spacer};
+    margin-top: calc(-0.5 * var(--blocksep));
 }
 
 .dlist {
