@@ -69,8 +69,7 @@ jekyll serve --livereload
 
 This will serve a preview on `localhost:4000` which automatically refreshes when you change a source file.
 
-[WARNING]
-The `adoctohtml` script only listens to changes to the source files listed under `chapters` and `appendices`
+WARNING: The `adoctohtml` script only listens to changes to the source files listed under `chapters` and `appendices`
 in <<config-yaml>>. If you change the configuration file itself, or any includes, you will need to restart the
 script to see the effect of your changes.
 

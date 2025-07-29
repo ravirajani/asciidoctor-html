@@ -1,5 +1,3 @@
 [WARNING]
 .Pay Attention!
---
 Beware of the dog.
---
