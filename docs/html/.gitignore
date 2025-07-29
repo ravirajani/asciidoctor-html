@@ -1,3 +1,4 @@
+*.html
 !google*.html
 sitemap.xml
-assets/favicon/*
+assets/favicon
