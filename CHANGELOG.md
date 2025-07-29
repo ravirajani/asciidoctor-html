@@ -26,3 +26,11 @@
 ## [0.1.5] - 2025-07-27
 
 - CSS adjusted to handle single page site.
+
+## [0.1.6] - 2025-07-29
+
+- CSS improvements.
+- Added conversion of tables and literal blocks.
+- Support for shifted ordered lists.
+- Generation of XML sitemap.
+- New favicon.
