@@ -48,7 +48,7 @@ $listing-blue: #002451;
     margin-bottom: var(--blocksep);
     > .block-title, > summary {
         &:first-child {
-            margin-bottom: calc(0.5*var(--parsep));
+            margin-bottom: calc(0.5 * var(--parsep));
         }
     }
 }

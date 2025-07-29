@@ -81,10 +81,10 @@ script to see the effect of your changes.
 The `adoctohtml` script loads its configuration from a file which can be specified on the command line.
 
 ****
-.Usage: `adoctohtml [options]`
-`-w`, `--watch`::
+.[.title-prefix]#Usage#`adoctohtml [options]`
+`-w, --watch`::
 Watch for file changes in `srcdir`. Default: unset
-`-c CONFIG`, `--config-file CONFIG`::
+`-c, --config-file CONFIG`::
 Location of config file. Default: `config.yml`
 ****
 
@@ -98,3 +98,14 @@ include::config.yml[]
 ----
 <1> This is the ID from Google's
 https://programmablesearchengine.google.com/[Programmable Search Engine]
+
+[#sec-acknowledgements]
+== Acknowledgements
+
+In addition to https://github.com/ravirajani/asciidoctor-html/blob/main/Gemfile[gems from the Ruby ecosystem],
+this software makes use of the following indispensible open source libraries.
+
+* https://github.com/asciidoctor/asciidoctor[Asciidoctor]
+* https://github.com/twbs/bootstrap[Bootstrap]
+* https://github.com/twbs/icons[Bootstrap Icons]
+* https://github.com/highlightjs/highlight.js[Highlight.js]
