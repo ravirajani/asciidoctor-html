@@ -145,7 +145,6 @@ module Asciidoctor
           #{header opts[:title], opts[:short_title], nav:}
           #{sidebar(nav_items) if nav}
           #{main content, opts[:chapnum], opts[:chaptitle], opts[:author], opts[:date].year}
-          <div id="scroll-border" class="scroll-border"></div>
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
                   integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
                   crossorigin="anonymous"></script>
@@ -155,7 +154,7 @@ module Asciidoctor
           hljs.highlightAll();
           #{Popovers::POPOVERS}
           #{Sidebar::TOGGLE}
-          #{Scrollbar::ADJUST_SCROLL_BORDER}
+          #{Scrollbar::SCROLL_BORDER}
           </script>
           </body>
           </html>

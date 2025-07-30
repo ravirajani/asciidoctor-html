@@ -3,7 +3,6 @@ $main-width: $content-width + 2*$content-padding-x;
 
 .header {
     height: $header-height;
-    background-color: var(--bs-dark);
     display: flex;
     position: fixed;
     top: 0;
@@ -11,17 +10,13 @@ $main-width: $content-width + 2*$content-padding-x;
     right: 0;
     padding: 0 $content-padding-x;
     z-index: 3;
-    box-shadow: 0 .5rem 1rem #00000026, inset 0 -1px #ffffff26;
     justify-content: space-between;
     align-items: center;
     flex-flow: row nowrap;
     gap: 0.5rem;
     font-size: 1.1rem;
     font-weight: 300;
-    @include color-mode(dark) {
-        border-bottom: 1px solid var(--bs-gray-600);
-        background-color: var(--bs-black);
-    }
+    background-color: var(--header-bg);
     a.home {
         color: var(--bs-gray-200);
         text-decoration: none;
@@ -50,10 +45,7 @@ $main-width: $content-width + 2*$content-padding-x;
     z-index: 2;
     position: fixed;
     top: $header-height;
-    background-color: var(--bs-body-bg);
     bottom: 0;
-    border-left: 1px solid var(--sidebar-border-color);
-    scrollbar-color: var(--sidebar-thumb-color) transparent;
     right: 0;
     overflow-y: auto;
     width: 100%;
@@ -70,6 +62,7 @@ $main-width: $content-width + 2*$content-padding-x;
     bottom: 0;
     width: 100%;
     overflow-y: auto;
+    border-top: 1px solid var(--header-bg);
     padding: $spacer $content-padding-x 0 $content-padding-x;
     scrollbar-color: var(--sidebar-thumb-color) var(--gutter-bg);
     scroll-padding-top: $spacer;
@@ -81,17 +74,6 @@ $main-width: $content-width + 2*$content-padding-x;
             padding: 0;
         }
     }
-}
-
-.scroll-border {
-    position: fixed;
-    display: none;
-    top: $header-height;
-    bottom: 0;
-    width: 1px;
-    z-index: 1;
-    right: 0;
-    background-color: var(--sidebar-border-color);
 }
 
 .section {
@@ -127,10 +109,8 @@ $main-width: $content-width + 2*$content-padding-x;
 }
 
 @include color-mode(dark) {
-    body {
-        --sidebar-border-color: var(--bs-gray-600);
-        --sidebar-thumb-color: var(--bs-gray-600);
-        --gutter-bg: var(--bs-secondary-bg-subtle);
+    body{
+        --header-bg: var(--bs-black);
     }
 }
 

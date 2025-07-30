@@ -1,10 +1,18 @@
 .sidebar {
-    padding: 0.875rem 0;
+    $active-nav-emphasis-color: $warning-text-emphasis-dark;
+    $active-nav-color: shade-color($warning-text-emphasis-dark, 20%);
+    $inactive-nav-color: #cccccc;
+    padding: 0.75rem 0;
+    background-color: $body-bg-dark;
+    border-top: 1px solid var(--bs-gray-600);
+    &.sb-visible {
+        border-left: 1px solid var(--bs-gray-600);
+    }
+    scrollbar-color: var(--sidebar-thumb-color) transparent;
     .search button {
         --bs-btn-padding-x: #{$content-padding-x};
     }
     nav {
-        $active-border-width: 4px;
         display: flex;
         ul {
             @extend .nav;
@@ -12,10 +20,10 @@
             li {
                 @extend .nav-item;
                 a {
-                    --bs-nav-link-padding-x: #{$content-padding-x + $active-border-width};
+                    --bs-nav-link-padding-x: 1rem;
                     --bs-nav-link-padding-y: 0.375rem;
-                    --bs-nav-link-color: var(--bs-emphasis-color);
-                    --bs-nav-link-hover-color: var(--bs-emphasis-color);
+                    --bs-nav-link-color: #{$inactive-nav-color};
+                    --bs-nav-link-hover-color: #{$inactive-nav-color};
                     @extend .nav-link;
                 }
                 ul {
@@ -24,13 +32,11 @@
                     li a {
                         --bs-nav-link-padding-x: 1rem;
                         --bs-nav-link-padding-y: 0.25rem;
-                        --bs-nav-link-color: var(--bs-light-text-emphasis);
-                        --bs-nav-link-hover-color: var(--bs-light-text-emphasis);
+                        --bs-nav-link-color: #{$active-nav-color};
+                        --bs-nav-link-hover-color: #{$active-nav-color};
                         &.active {
-                            --bs-nav-link-color: var(--bs-info-text-emphasis);
-                            --bs-nav-link-hover-color: var(--bs-info-text-emphasis);
-                            background-color: var(--bs-info-bg-subtle);
-                            border-radius: 0.375rem;
+                            --bs-nav-link-color: #{$info-text-emphasis-dark};
+                            --bs-nav-link-hover-color: #{$info-text-emphasis-dark};
                         }
                         margin-left: 1rem;
                         margin-right: 1rem;
@@ -38,9 +44,8 @@
                 }
                 &.active {
                     > a {
-                        --bs-nav-link-padding-x: #{$content-padding-x};
-                        --bs-nav-link-font-weight: 600;
-                        border-left: $active-border-width solid var(--bs-emphasis-color);
+                        --bs-nav-link-color: #{$active-nav-emphasis-color};
+                        --bs-nav-link-hover-color: #{$active-nav-emphasis-color};
                     }
                 }
             }
