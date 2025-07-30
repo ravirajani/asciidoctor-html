@@ -2,7 +2,7 @@
 
 module Asciidoctor
   module Html
-    # Helper functions for the list conversion.
+    # Helper functions for the list conversion
     module List
       def self.convert(node, tag_name = :ol)
         depth = node.attr "list-depth"
@@ -11,8 +11,7 @@ module Asciidoctor
         classes = [
           "list",
           "list-#{node.context}",
-          "level-#{level}",
-          flat ? "pseudocode" : node.style,
+          ("level-#{level} pseudocode" if flat),
           node.role
         ].compact
         classes << "checklist" if node.option?("checklist")

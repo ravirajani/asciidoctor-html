@@ -179,7 +179,6 @@ module Asciidoctor
       end
 
       def convert_colist(node)
-        node.style = "arabic-circled"
         List.convert node
       end
 
