@@ -8,6 +8,9 @@ $listing-blue: #002451;
     --blocksep: #{$spacer};
     --fw-padding: #{$content-padding-x};
     --fw-margin: -#{$content-padding-x};
+    --sidebar-border-color: var(--bs-dark);
+    --sidebar-thumb-color: var(--bs-gray-500);
+    --gutter-bg: var(--bs-gray-100);
 }
 
 .full-width-bg {

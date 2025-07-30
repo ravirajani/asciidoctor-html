@@ -3,6 +3,8 @@
 require "date"
 require_relative "highlightjs"
 require_relative "popovers"
+require_relative "scrollbar"
+require_relative "sidebar"
 
 module Asciidoctor
   module Html
@@ -28,8 +30,8 @@ module Asciidoctor
 
       def self.sidebar(nav_items)
         <<~HTML
-          <div id="sidebar" class="sidebar collapse collapse-horizontal">
-          <nav id="sidenav"><ul>
+          <div id="sidebar" class="sidebar">
+          <nav><ul>
           #{nav_items.join "\n"}
           </ul></nav>
           </div> <!-- .sidebar -->
@@ -38,8 +40,8 @@ module Asciidoctor
 
       def self.main(content, chapnum, chaptitle, author, year)
         <<~HTML
-          <main class="main">
-          <div class="content-container">
+          <main id="main" class="main">
+          <div id="content-container" class="content-container">
           <h1>#{nav_text chapnum, chaptitle}</h1>
           #{content}
           #{footer author, year}
@@ -69,8 +71,7 @@ module Asciidoctor
       def self.header(title, short_title, nav: true)
         nav_btn = if nav
                     <<~HTML
-                      <button type="button" class="btn menu"
-                              data-bs-toggle="collapse" data-bs-target="#sidebar"
+                      <button type="button" id="menu-btn" class="btn menu"
                               aria-expanded="false" aria-controls="sidebar">
                         <i class="bi bi-list"></i>
                       </button>
@@ -136,16 +137,6 @@ module Asciidoctor
       # - langs: Array[String]
       def self.html(content, nav_items, opts = {})
         nav = (nav_items.size > 1)
-        hash_listener = if nav
-                          <<~JS
-                            addEventListener('hashchange', function() {
-                              collapse = bootstrap.Collapse.getInstance('#sidebar');
-                              if(collapse) collapse.hide();
-                            });
-                          JS
-                        else
-                          ""
-                        end
         <<~HTML
           <!DOCTYPE html>
           <html lang="en">
@@ -154,6 +145,7 @@ module Asciidoctor
           #{header opts[:title], opts[:short_title], nav:}
           #{sidebar(nav_items) if nav}
           #{main content, opts[:chapnum], opts[:chaptitle], opts[:author], opts[:date].year}
+          <div id="scroll-border" class="scroll-border"></div>
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
                   integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
                   crossorigin="anonymous"></script>
@@ -161,8 +153,9 @@ module Asciidoctor
           const touch = matchMedia('(hover: none)').matches;
           #{Highlightjs::PLUGIN}
           hljs.highlightAll();
-          #{hash_listener}
           #{Popovers::POPOVERS}
+          #{Sidebar::TOGGLE}
+          #{Scrollbar::ADJUST_SCROLL_BORDER}
           </script>
           </body>
           </html>

@@ -78,7 +78,7 @@ script to see the effect of your changes.
 [#sec-configuration]
 == Configuration
 
-The `adoctohtml` script loads its configuration from a file which can be specified on the command line.
+The `adoctohtml` script loads its configuration from a file whose location can be specified on the command line.
 
 ****
 .[.title-prefix]#Usage#`adoctohtml [options]`
