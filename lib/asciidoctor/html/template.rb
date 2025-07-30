@@ -3,7 +3,6 @@
 require "date"
 require_relative "highlightjs"
 require_relative "popovers"
-require_relative "scrollbar"
 require_relative "sidebar"
 
 module Asciidoctor
@@ -31,6 +30,7 @@ module Asciidoctor
       def self.sidebar(nav_items)
         <<~HTML
           <div id="sidebar" class="sidebar">
+          <button id="sidebar-dismiss-btn" class="btn dismiss"><i class="bi bi-x-lg"></i></button>
           <nav><ul>
           #{nav_items.join "\n"}
           </ul></nav>
@@ -69,21 +69,17 @@ module Asciidoctor
       end
 
       def self.header(title, short_title, nav: true)
-        nav_btn = if nav
-                    <<~HTML
-                      <button type="button" id="menu-btn" class="btn menu"
-                              aria-expanded="false" aria-controls="sidebar">
-                        <i class="bi bi-list"></i>
-                      </button>
-                    HTML
-                  else
-                    ""
-                  end
+        nav_btn = <<~HTML
+          <button type="button" id="menu-btn" class="btn menu"
+                  aria-expanded="false" aria-controls="sidebar">
+            <i class="bi bi-list"></i>
+          </button>
+        HTML
         <<~HTML
           <header class="header">
             <a class="home d-none d-sm-block" href="./">#{title}</a>
             <a class="home d-block d-sm-none" href="./">#{short_title}</a>
-            #{nav_btn}
+            #{nav_btn if nav}
           </header>
         HTML
       end
@@ -154,7 +150,6 @@ module Asciidoctor
           hljs.highlightAll();
           #{Popovers::POPOVERS}
           #{Sidebar::TOGGLE}
-          #{Scrollbar::SCROLL_BORDER}
           </script>
           </body>
           </html>

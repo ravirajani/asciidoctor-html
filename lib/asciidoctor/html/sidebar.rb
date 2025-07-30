@@ -8,6 +8,7 @@ module Asciidoctor
         (function() {
           const sidebar = document.getElementById('sidebar');
           const menuBtn = document.getElementById('menu-btn');
+          const dismissBtn = document.getElementById('sidebar-dismiss-btn');
           function hideSidebar() {
             sidebar && sidebar.classList.remove('shown');
           }
@@ -16,6 +17,7 @@ module Asciidoctor
           });
           addEventListener('hashchange', hideSidebar);
           addEventListener('resize', hideSidebar);
+          dismissBtn && dismissBtn.addEventListener('click', hideSidebar);
         })();
       JS
     end

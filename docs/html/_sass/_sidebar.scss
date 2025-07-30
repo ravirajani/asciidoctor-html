@@ -1,19 +1,26 @@
 .sidebar {
     $active-nav-emphasis-color: $warning-text-emphasis-dark;
-    $active-nav-color: shade-color($warning-text-emphasis-dark, 20%);
+    $active-nav-color: #cfcfcf;
     $inactive-nav-color: #cccccc;
-    padding: 0.75rem 0;
+    $nav-item-padding-x: 1rem;
+    $nav-item-padding-y: 0.375rem;
+    $sidebar-padding-y: 0.75rem;
+    $active-line-width: 4px;
+    padding: $sidebar-padding-y 0;
     background-color: $body-bg-dark;
-    border-top: 1px solid var(--bs-gray-600);
-    &.sb-visible {
-        border-left: 1px solid var(--bs-gray-600);
-    }
-    @include color-mode(dark) {
-        border-left: 1px solid var(--bs-gray-600);
-    }
-    scrollbar-color: var(--sidebar-thumb-color) transparent;
     .search button {
         --bs-btn-padding-x: #{$content-padding-x};
+    }
+    .btn.dismiss {
+        color: $inactive-nav-color;
+        position: absolute;
+        right: 0;
+        top: $sidebar-padding-y;
+        --bs-btn-box-shadow: none;
+        --bs-btn-focus-box-shadow: none;
+        --bs-btn-border-width: 0;
+        --bs-btn-bg: $body-bg-dark;
+        --bs-btn-padding-y: #{$nav-item-padding-y};
     }
     nav {
         display: flex;
@@ -23,17 +30,18 @@
             li {
                 @extend .nav-item;
                 a {
-                    --bs-nav-link-padding-x: 1rem;
-                    --bs-nav-link-padding-y: 0.375rem;
+                    --bs-nav-link-padding-x: #{$nav-item-padding-x};
+                    --bs-nav-link-padding-y: #{$nav-item-padding-y};
                     --bs-nav-link-color: #{$inactive-nav-color};
                     --bs-nav-link-hover-color: #{$inactive-nav-color};
                     @extend .nav-link;
                 }
                 ul {
-                    margin-top: -0.125rem;
                     margin-bottom: 0.25rem;
+                    margin-left: calc(#{$nav-item-padding-x} + #{$active-line-width});
+                    border-left: $active-line-width solid shade-color($active-nav-emphasis-color, 25%);
                     li a {
-                        --bs-nav-link-padding-x: 1rem;
+                        --bs-nav-link-padding-x: 0.125rem;
                         --bs-nav-link-padding-y: 0.25rem;
                         --bs-nav-link-color: #{$active-nav-color};
                         --bs-nav-link-hover-color: #{$active-nav-color};
