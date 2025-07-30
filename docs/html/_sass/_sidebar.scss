@@ -8,6 +8,9 @@
     &.sb-visible {
         border-left: 1px solid var(--bs-gray-600);
     }
+    @include color-mode(dark) {
+        border-left: 1px solid var(--bs-gray-600);
+    }
     scrollbar-color: var(--sidebar-thumb-color) transparent;
     .search button {
         --bs-btn-padding-x: #{$content-padding-x};

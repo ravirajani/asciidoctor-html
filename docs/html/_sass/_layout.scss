@@ -62,7 +62,6 @@ $main-width: $content-width + 2*$content-padding-x;
     bottom: 0;
     width: 100%;
     overflow-y: auto;
-    border-top: 1px solid var(--header-bg);
     padding: $spacer $content-padding-x 0 $content-padding-x;
     scrollbar-color: var(--sidebar-thumb-color) var(--gutter-bg);
     scroll-padding-top: $spacer;
