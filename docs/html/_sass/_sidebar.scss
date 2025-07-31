@@ -6,9 +6,13 @@
     $nav-item-padding-y: 0.375rem;
     $sidebar-padding-y: 0.75rem;
     $active-line-width: 4px;
+    --sidebar-bg: #{$body-bg-dark};
     padding: $sidebar-padding-y 0;
-    background-color: $body-bg-dark;
-    scrollbar-color: $gray-600 $body-bg-dark;
+    background-color: var(--sidebar-bg);
+    scrollbar-color: $gray-600 var(--sidebar-bg);
+    @include color-mode(dark) {
+        --sidebar-bg: #2b2b2b;
+    }
     .search button {
         --bs-btn-padding-x: #{$content-padding-x};
     }

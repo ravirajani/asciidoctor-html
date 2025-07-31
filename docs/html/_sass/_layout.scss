@@ -73,6 +73,7 @@ html {
         font-size: 1.1rem;
         font-weight: 300;
         background-color: var(--header-bg);
+        box-shadow: 0px 7px 22px 0px rgba(var(--header-bg-rgb), 0.5);
         a.home {
             color: var(--bs-gray-200);
             text-decoration: none;
@@ -116,7 +117,7 @@ html {
     .sidebar {
         display: block;
         box-shadow: none;
-        z-index: 0;
+        z-index: 1;
         min-width: 0;
         .dismiss {
             display: none;
