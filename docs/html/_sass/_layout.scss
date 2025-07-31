@@ -25,12 +25,11 @@ html {
 }
 
 .btn.menu {
-    $icon-size: 1.75rem;
+    $icon-size: 1.625rem;
     position: fixed;
     display: block;
     right: $content-padding-x;
     z-index: $zindex-fixed;
-    box-shadow: 0 0 10px 2px rgba(var(--header-bg-rgb), 0.3);
     top: calc(0.5 * ($header-height - $icon-size - 0.25rem));
     --bs-btn-bg: rgba(var(--header-bg-rgb), 0.7);
     --bs-btn-hover-bg: var(--header-bg);
@@ -38,6 +37,7 @@ html {
     --bs-btn-padding-y: 0;
     --bs-btn-color: var(--bs-gray-200);
     --bs-btn-border-color: var(--bs-gray-200);
+    --bs-btn-border-width: 1px;
     --bs-btn-hover-border-color: var(--bs-white);
     --bs-btn-font-weight: 600;
     --bs-btn-font-size: #{$icon-size};
@@ -45,6 +45,9 @@ html {
     --bs-btn-hover-color: var(--bs-white);
     --bs-btn-active-color: var(--bs-white);
     --bs-btn-active-border-color: transparent;
+    --bs-btn-box-shadow: 0 0 10px 2px rgba(var(--header-bg-rgb), 0.3);
+    --bs-btn-focus-box-shadow: var(--bs-btn-box-shadow);
+    box-shadow: var(--bs-btn-box-shadow);
 }
 
 .page {
