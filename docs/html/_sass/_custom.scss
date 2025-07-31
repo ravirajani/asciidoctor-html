@@ -9,7 +9,7 @@ $listing-blue: #002451;
     --fw-padding: #{$content-padding-x};
     --fw-margin: -#{$content-padding-x};
     --header-bg-rgb: 22, 13, 39;
-    --header-bg: rgb(var(--header-bg-rgb));
+    --header-bg: var(--bs-gray-900);
 }
 
 .full-width-bg {
