@@ -9,6 +9,13 @@ module Asciidoctor
   module Html
     # The template for the book layout
     module Template
+      MENU_BTN = <<~HTML
+        <button type="button" id="menu-btn" class="btn menu"
+                aria-expanded="false" aria-controls="sidebar">
+          <i class="bi bi-list"></i>
+        </button>
+      HTML
+
       def self.nav_item(target, text, content = "", active: false)
         active_class = active ? %( class="active") : ""
         link = %(<a href="#{target}">#{text}</a>)
@@ -38,13 +45,19 @@ module Asciidoctor
         HTML
       end
 
-      def self.main(content, chapnum, chaptitle, author, year)
+      # opts:
+      # - chapnum: String
+      # - chaptitle: String
+      # - content: String
+      # - author: String
+      # - date: Date
+      def self.main(opts)
         <<~HTML
           <main id="main" class="main">
           <div id="content-container" class="content-container">
-          <h1>#{nav_text chapnum, chaptitle}</h1>
-          #{content}
-          #{footer author, year}
+          <h1>#{nav_text opts[:chapnum], opts[:chaptitle]}</h1>
+          #{opts[:content]}
+          #{footer opts[:author], opts[:date].year}
           </div>
           </main>
         HTML
@@ -68,18 +81,11 @@ module Asciidoctor
         XML
       end
 
-      def self.header(title, short_title, nav: true)
-        nav_btn = <<~HTML
-          <button type="button" id="menu-btn" class="btn menu"
-                  aria-expanded="false" aria-controls="sidebar">
-            <i class="bi bi-list"></i>
-          </button>
-        HTML
+      def self.header(title, short_title)
         <<~HTML
           <header class="header">
             <a class="home d-none d-sm-block" href="./">#{title}</a>
             <a class="home d-block d-sm-none" href="./">#{short_title}</a>
-            #{nav_btn if nav}
           </header>
         HTML
       end
@@ -138,9 +144,12 @@ module Asciidoctor
           <html lang="en">
           #{head opts[:title], opts[:description], opts[:author], opts[:langs]}
           <body>
-          #{header opts[:title], opts[:short_title], nav:}
           #{sidebar(nav_items) if nav}
-          #{main content, opts[:chapnum], opts[:chaptitle], opts[:author], opts[:date].year}
+          <div id="page" class="page">
+          #{MENU_BTN if nav}
+          #{header opts[:title], opts[:short_title]}
+          #{main content:, **opts}
+          </div> <!-- .page -->
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
                   integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
                   crossorigin="anonymous"></script>

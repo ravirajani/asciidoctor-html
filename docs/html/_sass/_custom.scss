@@ -8,7 +8,8 @@ $listing-blue: #002451;
     --blocksep: #{$spacer};
     --fw-padding: #{$content-padding-x};
     --fw-margin: -#{$content-padding-x};
-    --header-bg: #{shade-color($blue, 60%)};
+    --header-bg-rgb: 22, 13, 39;
+    --header-bg: rgb(var(--header-bg-rgb));
 }
 
 .full-width-bg {

@@ -13,14 +13,19 @@
     }
     .btn.dismiss {
         color: $inactive-nav-color;
+        $size: 1.2rem;
+        $padding: calc($sidebar-padding-y + $size - 1rem);
         position: absolute;
         right: 0;
-        top: $sidebar-padding-y;
+        font-size: $size;
+        top: 0;
         --bs-btn-box-shadow: none;
         --bs-btn-focus-box-shadow: none;
         --bs-btn-border-width: 0;
         --bs-btn-bg: $body-bg-dark;
-        --bs-btn-padding-y: #{$nav-item-padding-y};
+        --bs-btn-padding-x: #{$padding};
+        padding-bottom: 0;
+        padding-top: calc($padding - 0.125rem);
     }
     nav {
         display: flex;
@@ -40,17 +45,25 @@
                     margin-bottom: 0.25rem;
                     margin-left: calc(#{$nav-item-padding-x} + #{$active-line-width});
                     border-left: $active-line-width solid shade-color($active-nav-emphasis-color, 25%);
-                    li a {
-                        --bs-nav-link-padding-x: 0.125rem;
-                        --bs-nav-link-padding-y: 0.25rem;
-                        --bs-nav-link-color: #{$active-nav-color};
-                        --bs-nav-link-hover-color: #{$active-nav-color};
-                        &.active {
-                            --bs-nav-link-color: #{$info-text-emphasis-dark};
-                            --bs-nav-link-hover-color: #{$info-text-emphasis-dark};
+                    li {
+                        a {
+                            --bs-nav-link-padding-x: 0.125rem;
+                            --bs-nav-link-padding-y: 0.25rem;
+                            --bs-nav-link-color: #{$active-nav-color};
+                            --bs-nav-link-hover-color: #{$active-nav-color};
+                            &.active {
+                                --bs-nav-link-color: #{$info-text-emphasis-dark};
+                                --bs-nav-link-hover-color: #{$info-text-emphasis-dark};
+                            }
+                            margin-left: 1rem;
+                            margin-right: 1rem;
                         }
-                        margin-left: 1rem;
-                        margin-right: 1rem;
+                        &:first-child a {
+                            padding-top: 0;
+                        }
+                        &:last-child a {
+                            padding-bottom: 0;
+                        }
                     }
                 }
                 &.active {

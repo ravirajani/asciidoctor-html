@@ -18,6 +18,12 @@ module Asciidoctor
           addEventListener('hashchange', hideSidebar);
           addEventListener('resize', hideSidebar);
           dismissBtn && dismissBtn.addEventListener('click', hideSidebar);
+
+          // Nudge menuBtn in case there is a scrollbar
+          const page = document.getElementById('page');
+          const main = document.getElementById('main');
+          const scrollbarWidth = page.offsetWidth - main.offsetWidth;
+          menuBtn && (menuBtn.style.right = (scrollbarWidth + 12) + 'px');
         })();
       JS
     end

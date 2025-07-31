@@ -1,48 +1,16 @@
-$header-height: 2.5rem;
+$header-height: 3rem;
 $main-width: $content-width + 2*$content-padding-x;
 
-.header {
-    height: $header-height;
-    display: flex;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    padding: 0 $content-padding-x;
-    z-index: 2;
-    justify-content: space-between;
-    align-items: center;
-    flex-flow: row nowrap;
-    gap: 0.5rem;
-    font-size: 1.1rem;
-    font-weight: 300;
-    background-color: var(--header-bg);
-    a.home {
-        color: var(--bs-gray-200);
-        text-decoration: none;
-        text-wrap: nowrap;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        &:hover, &:active {
-            color: var(--bs-white);
-        }
-    }
-    .btn.menu {
-        --bs-btn-padding-x: 0;
-        --bs-btn-padding-y: 0;
-        --bs-btn-color: var(--bs-gray-200);
-        --bs-btn-font-weight: 600;
-        --bs-btn-font-size: 1.8rem;
-        --bs-btn-line-height: 1;
-        --bs-btn-hover-color: var(--bs-white);
-        --bs-btn-active-color: var(--bs-white);
-        --bs-btn-active-border-color: transparent;
+html {
+    height: 100%;
+    body {
+        height: 100%;
     }
 }
 
 .sidebar {
     display: none;
-    z-index: 3;
+    z-index: 2000;
     position: fixed;
     top: 0;
     bottom: 0;
@@ -53,26 +21,78 @@ $main-width: $content-width + 2*$content-padding-x;
     &.shown {
         display: block;
     }
+    box-shadow: 20px 0 40px 20px $body-bg-dark;
 }
 
-.main {
+.btn.menu {
+    $icon-size: 1.75rem;
     position: fixed;
-    top: $header-height;
+    display: block;
+    right: $content-padding-x;
+    z-index: $zindex-fixed;
+    box-shadow: 0 0 10px 2px rgba(var(--header-bg-rgb), 0.3);
+    top: calc(0.5 * ($header-height - $icon-size - 0.25rem));
+    --bs-btn-bg: rgba(var(--header-bg-rgb), 0.7);
+    --bs-btn-hover-bg: var(--header-bg);
+    --bs-btn-padding-x: 0;
+    --bs-btn-padding-y: 0;
+    --bs-btn-color: var(--bs-gray-200);
+    --bs-btn-border-color: var(--bs-gray-200);
+    --bs-btn-hover-border-color: var(--bs-white);
+    --bs-btn-font-weight: 600;
+    --bs-btn-font-size: #{$icon-size};
+    --bs-btn-line-height: 1;
+    --bs-btn-hover-color: var(--bs-white);
+    --bs-btn-active-color: var(--bs-white);
+    --bs-btn-active-border-color: transparent;
+}
+
+.page {
+    position: fixed;
+    top: 0;
     left: 0;
     bottom: 0;
     width: 100%;
     overflow-y: auto;
-    padding: $spacer $content-padding-x 0 $content-padding-x;
+    padding: 0;
     scroll-padding-top: $spacer;
     scroll-behavior: smooth;
-    .content-container {
-        max-width: $content-width;
-        margin: 0 auto;
-        .gsc-control-cse {
-            padding: 0;
+    scrollbar-color: $gray-600 $gray-800;
+    .header {
+        height: $header-height;
+        display: flex;
+        padding: 0 $content-padding-x;
+        margin-bottom: $spacer;
+        justify-content: space-between;
+        align-items: center;
+        flex-flow: row nowrap;
+        gap: 0.5rem;
+        font-size: 1.1rem;
+        font-weight: 300;
+        background-color: var(--header-bg);
+        a.home {
+            color: var(--bs-gray-200);
+            text-decoration: none;
+            text-wrap: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            &:hover, &:active {
+                color: var(--bs-white);
+            }
         }
     }
+    .main {
+        .content-container {
+            max-width: $content-width;
+            margin: 0 auto;
+            .gsc-control-cse {
+                padding: 0;
+            }
+        }
+        padding: 0 $content-padding-x;
+    }
 }
+
 
 .section {
     margin-bottom: 2*$spacer;
@@ -83,45 +103,32 @@ $main-width: $content-width + 2*$content-padding-x;
         width: auto;
         min-width: 30%;
         border-left: 1px solid $gray-700;
-        @include color-mode(dark) {
-            border-left: 1px solid $gray-700;
-        }
     }
 }
 
 @include media-breakpoint-up(lg) {
-    .header {
-        width: $main-width;
-        border-right: 1px solid $gray-700;
-        @include color-mode(dark) {
-            border-right: none;
-        }
-        .btn.menu {
-            display: none;
-        }
-
+    .btn.menu {
+        display: none;
     }
     .sidebar {
         display: block;
+        box-shadow: none;
+        z-index: 0;
         min-width: 0;
-        border-left: none;
         .dismiss {
             display: none;
         }
         width: calc(100% - $main-width);
-        + .main {
+        + .page {
             width: $main-width;
         }
     }
 }
 
 @include media-breakpoint-up(xl) {
-    .header {
-        width: 70%;
-    }
     .sidebar {
         width: 30%;
-        + .main {
+        + .page {
             width: 70%;
         }
     }
@@ -129,7 +136,6 @@ $main-width: $content-width + 2*$content-padding-x;
 
 @include color-mode(dark) {
     body{
-        --header-bg: var(--bs-black);
         .header {
             border-bottom: 1px solid $gray-700;
         }
