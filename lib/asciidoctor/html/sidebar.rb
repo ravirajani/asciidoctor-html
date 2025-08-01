@@ -6,21 +6,23 @@ module Asciidoctor
     module Sidebar
       TOGGLE = <<~JS
         (function() {
+          const page = document.getElementById('page');
           const sidebar = document.getElementById('sidebar');
           const menuBtn = document.getElementById('menu-btn');
           const dismissBtn = document.getElementById('sidebar-dismiss-btn');
           function hideSidebar() {
             sidebar && sidebar.classList.remove('shown');
+            page.classList.remove('noscroll');
           }
           menuBtn && menuBtn.addEventListener('click', function() {
             sidebar && sidebar.classList.toggle('shown');
+            page.classList.toggle('noscroll');
           });
           addEventListener('hashchange', hideSidebar);
           addEventListener('resize', hideSidebar);
           dismissBtn && dismissBtn.addEventListener('click', hideSidebar);
 
           // Nudge menuBtn in case there is a scrollbar
-          const page = document.getElementById('page');
           const main = document.getElementById('main');
           const scrollbarWidth = page.offsetWidth - main.offsetWidth;
           menuBtn && (menuBtn.style.right = (scrollbarWidth + 12) + 'px');

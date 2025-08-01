@@ -1,0 +1,13 @@
+.paginator {
+    display: flex;
+    flex-flow: row wrap;
+    &.has-prev {
+        justify-content: flex-start;
+    }
+    &.has-next {
+        justify-content: flex-end;
+    }
+    &.has-prev.has-next {
+        justify-content: space-between;
+    }
+}

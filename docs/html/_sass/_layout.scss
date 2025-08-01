@@ -57,6 +57,9 @@ html {
     bottom: 0;
     width: 100%;
     overflow-y: auto;
+    &.noscroll {
+        overflow-y: hidden;
+    }
     padding: 0;
     scroll-padding-top: $spacer;
     scroll-behavior: smooth;

@@ -157,8 +157,8 @@ module Asciidoctor
           const touch = matchMedia('(hover: none)').matches;
           #{Highlightjs::PLUGIN}
           hljs.highlightAll();
-          #{Popovers::POPOVERS}
-          #{Sidebar::TOGGLE}
+          #{Popovers::INIT}
+          #{Sidebar::TOGGLE if nav}
           </script>
           </body>
           </html>

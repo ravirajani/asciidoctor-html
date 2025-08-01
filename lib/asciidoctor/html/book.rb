@@ -9,6 +9,7 @@ require_relative "ref_tree_processor"
 require_relative "cref_inline_macro"
 require_relative "bi_inline_macro"
 require_relative "template"
+require_relative "pagination"
 
 module Asciidoctor
   module Html
@@ -95,6 +96,8 @@ module Asciidoctor
       end
 
       private
+
+      include Pagination
 
       def search_page(se_id)
         content = <<~HTML
@@ -215,7 +218,7 @@ module Asciidoctor
       def build_template(key, doc)
         tdata = @templates[key]
         nav_items = nav_items key, doc
-        content = ERB.new(doc.convert).result(binding)
+        content = "#{ERB.new(doc.convert).result(binding)}\n#{pagination key}"
         Template.html(
           content,
           nav_items,
