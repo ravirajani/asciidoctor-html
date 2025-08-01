@@ -109,3 +109,4 @@ this software makes use of the following indispensible open source libraries.
 * https://github.com/twbs/bootstrap[Bootstrap]
 * https://github.com/twbs/icons[Bootstrap Icons]
 * https://github.com/highlightjs/highlight.js[Highlight.js]
+* https://github.com/mathjax/MathJax[MathJax]
