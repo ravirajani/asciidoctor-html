@@ -40,7 +40,7 @@ module Asciidoctor
       }.freeze
 
       # Template data to be processed by each document
-      TData = Struct.new("TData", :chapnum, :chaptitle)
+      TData = Struct.new("TData", :chapnum, :chaptitle, :index)
 
       # opts:
       # - title
@@ -131,22 +131,26 @@ module Asciidoctor
       end
 
       def chapter(filename, idx)
+        key = key filename
+        idx = @templates.dig(key, :index) || idx
         numeral = idx.to_s
         doc = parse_file filename, @chapname, numeral
         chaptitle = doctitle doc
         chapref = idx.zero? ? chaptitle : chapref_default(@chapname, numeral)
         chapnum = idx.zero? ? "" : numeral
-        process_doc key(filename), doc, chapnum:, chaptitle:, chapref:
+        process_doc key, doc, idx:, chapnum:, chaptitle:, chapref:
       end
 
       def appendix(filename, idx, num_appendices)
+        key = key filename
+        idx = @templates.dig(key, :index) || idx
         chapname = "Appendix"
         numeral = ("a".."z").to_a[idx].upcase
         doc = parse_file filename, chapname, numeral
         chapref = num_appendices == 1 ? chapname : chapref_default(chapname, numeral)
         chapnum = ""
         chaptitle = Template.appendix_title chapname, numeral, doctitle(doc), num_appendices
-        process_doc key(filename), doc, chapnum:, chaptitle:, chapref:
+        process_doc key, doc, idx:, chapnum:, chaptitle:, chapref:
       end
 
       def key(filename)
@@ -157,13 +161,15 @@ module Asciidoctor
       # - chapnum
       # - chaptitle
       # - chapref
+      # - idx
       def process_doc(key, doc, opts)
         val = doc.catalog[:refs].transform_values(&method(:reftext)).compact
         val["chapref"] = opts[:chapref]
         @refs[key] = val
         @templates[key] = TData.new(
           chapnum: opts[:chapnum],
-          chaptitle: opts[:chaptitle]
+          chaptitle: opts[:chaptitle],
+          index: opts[:idx]
         )
         doc
       end

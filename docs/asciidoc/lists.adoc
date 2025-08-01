@@ -1,0 +1,68 @@
+= Ordered Lists
+
+include::includes/variables.adoc[]
+
+{asciidoctor-html} provides some additional features for https://docs.asciidoctor.org/asciidoc/latest/lists/ordered/[ordered lists], including automatic generation of reference text.
+
+[#sec-basic-list]
+== Basic List
+
+The default ordered list looks like <<ex-basic-list>>.
+
+[#ex-basic-list]
+====
+. Level 1 list item, marked with an arabic numeral followed by a dot.
+. Another level 1 list item.
+.. [[li-level2]]A level 2 list item, marked with a bracketed lowercase letter.
+... A level 3 list item, marked with a lowercase roman numeral followed by a dot.
+.... A level 4 list item, marked with a bracketed uppercase letter.
+.... [[li-level4]]Another level 4 list item.
+... Another level 3 list item.
+.. Another level 2 list item.
+====
+
+If you put an anchor at the start of a list item, then you will
+be able to refer to that list item elsewhere in the text. This is already
+possible with {asciidoctor-org} but requires explicit specification of reference text. {asciidoctor-html}, by
+contrast, will automatically substitute appropriate default reference text when it is unspecified. For example,
+putting the anchor `\[[li-level2]]` at the start of the first level-2 list item in <<ex-basic-list>> will generate
+the reference link <<li-level2>> when typing `\<<li-level2>>`.
+Similarly, you can generate the link <<li-level4>> to the second level-4 list item.
+
+[#sec-start-shift]
+== Start and Shift Attributes
+
+As with {asciidoctor-org}, you can choost to start any of the levels at a different "`number`" with the `start`
+attribute.
+For example, with <<ex-basic-list>>, using `[start=3]` on the first level and `[start=4]` on the second level,
+gives <<ex-start>>.
+
+[#ex-start]
+====
+[start=3]
+. Level 1 list item, marked with an arabic numeral followed by a dot.
+. Another level 1 list item.
+[start=4]
+.. A level 2 list item, marked with a bracketed lowercase letter.
+... A level 3 list item, marked with a lowercase roman numeral followed by a dot.
+.... A level 4 list item, marked with a bracketed uppercase letter.
+.... Another level 4 list item.
+... Another level 3 list item.
+.. Another level 2 list item.
+====
+
+You can also change the type of marker used at any list level with the `shift` attribute.
+For example, setting `[shift=3]` on the first level and `[start=2,shift=-1]`
+on the second level gives <<ex-shift>>.
+
+[#ex-shift]
+====
+[shift=3]
+. Level 1 list item, marked with a bracketed uppercase letter.
+. Another level 1 list item.
+[start=2, shift=-1]
+.. A level 2 list item, marked with an arabic numeral followed by a dot.
+.. [[li-lvl2-alt]]Another level 2 list item.
+====
+
+Again, reference text gets resolved propertly. E.g., <<li-lvl2-alt>>.

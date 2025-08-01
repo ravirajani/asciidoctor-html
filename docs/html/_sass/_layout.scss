@@ -59,6 +59,7 @@ html {
     overflow-y: auto;
     &.noscroll {
         overflow-y: hidden;
+        scrollbar-gutter: stable;
     }
     padding: 0;
     scroll-padding-top: $spacer;
@@ -76,7 +77,7 @@ html {
         font-size: 1.1rem;
         font-weight: 300;
         background-color: var(--header-bg);
-        box-shadow: 0px 7px 22px 0px rgba(var(--header-bg-rgb), 0.5);
+        box-shadow: 0px 7px 22px 0px rgba(var(--header-bg-rgb), 0.3);
         a.home {
             color: var(--bs-gray-200);
             text-decoration: none;

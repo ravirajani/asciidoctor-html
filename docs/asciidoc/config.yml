@@ -12,14 +12,15 @@ date: "30 July 2025"
 # documents to be converted to HTML
 chapters:
   - index.adoc
-  - typography.adoc
+  - getting-started.adoc
+  - lists.adoc
   - numbered-environments.adoc
-  - referencing.adoc
+  - macros.adoc
 appendices:
   - tests.adoc
 
 # how to refer to a page
-chapname: Page    # default: Chapter
+chapname: Part    # default: Chapter
 
 # these directories are relative to this file
 srcdir: .         # default: .

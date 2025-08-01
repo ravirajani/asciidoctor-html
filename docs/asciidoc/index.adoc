@@ -1,106 +1,14 @@
-= Getting Started
-:sectnumlevels: 2
-:description: Instructions on how to configure and start using the \
-static site generator asciidoctor-html.
+= Welcome
+
 include::includes/variables.adoc[]
 
 {asciidoctor-html} is a simple static site generator
 that converts a set of https://asciidoc.org/[AsciiDoc] files into an HTML website. It extends the default
-HTML converter provided by https://asciidoctor.org/[Asciidoctor] to make it easy for lecturers to write
+HTML converter provided by {asciidoctor-org} to make it easy for lecturers to write
 and publish notes or short technical monographs online.
 
-[#sec-quick-start]
-== Quick Start
-
-. Create a new repository from the public template https://github.com/ravirajani/ravirajani.github.io.
-. Modify the `index.adoc` file to include your custom content for the landing page.
-. Create AsciiDoc files for additional pages or for includes to be shared among pages.
-. Modify the `config.yml` file. List additional pages under `chapters` or `appendices` as appropriate.
-. Under your repository's bi:gear[] Settings, navigate to the Pages tab, and enable *GitHub Actions*
-  as your Build and Deployment Source.
-. Commit and push your changes. The site will get built and deployed on GitHub's servers.
-
-[#sec-advanced-usage]
-== Advanced Usage
-
-[CAUTION]
-.Prerequisite
-You have https://www.ruby-lang.org/en/documentation/installation/[Ruby] installed on your system.
-
-:sectnums:
-
-=== Install gems
-
-* https://jekyllrb.com/[Jekyll] is a https://rubygems.org/gems/jekyll[Ruby gem] that includes a
-lightweight webserver that will automatically reload pages when it detects changed files.
-* The executable `adoctohtml`  that comes with {asciidoctor-html} has a `--watch` option that
-will regenerate the HTML for modified AsciiDoc sources.
-
-The above two tools can be used together to instantly view an HTML preview when you change a source file. They
-can be installed with:
-
-[source,bash]
-----
-gem install bundler <1>
-bundle init         <2>
-bundle add logger jekyll asciidoctor-html <3>
-----
-<1> Skip this if you already have https://bundler.io/[Bundler] installed.
-<2> Creates a default https://bundler.io/guides/gemfile.html[Gemfile].
-<3> Adds the required dependencies to the Gemfile and installs them.
-
-=== Run the live preview
-
-Open a terminal window and, in the working directory, run
-
-[source,bash]
-----
-adoctohtml --watch
-----
-
-In another terminal, run
-
-[source,bash]
-----
-cd wwww <1>
-jekyll serve --livereload
-----
-<1> This is the output directory, and can be changed in the <<config-yaml,configuration file>>.
-
-This will serve a preview on `localhost:4000` which automatically refreshes when you change a source file.
-
-WARNING: The `adoctohtml` script only listens to changes to the source files listed under `chapters` and `appendices`
-in <<config-yaml>>. If you change the configuration file itself, or any includes, you will need to restart the
-script to see the effect of your changes.
-
-:!sectnums:
-
-[#sec-configuration]
-== Configuration
-
-The `adoctohtml` script loads its configuration from a file whose location can be specified on the command line.
-
-****
-.[.title-prefix]#Usage#`adoctohtml [options]`
-`-w, --watch`::
-Watch for file changes in `srcdir`. Default: unset
-`-c, --config-file CONFIG`::
-Location of config file. Default: `config.yml`
-****
-
-The available configuration options are shown in the {docs-yaml}[config.yml] for this
-documentation site which we reproduce below.
-
-[source#config-yaml.monotitle,yaml]
-.config.yml
-----
-include::config.yml[]
-----
-<1> This is the ID from Google's
-https://programmablesearchengine.google.com/[Programmable Search Engine]
-
-[#sec-acknowledgements]
-== Acknowledgements
+The best way to learn how to use {asciidoctor-html} is by reading these docs and looking at the
+https://github.com/ravirajani/asciidoctor-html/tree/main/docs/asciidoc[source files] from which they were generated.
 
 In addition to https://github.com/ravirajani/asciidoctor-html/blob/main/Gemfile[gems from the Ruby ecosystem],
 this software makes use of the following indispensible open source libraries.
