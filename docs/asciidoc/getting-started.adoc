@@ -73,8 +73,8 @@ jekyll serve --livereload
 This will serve a preview on `localhost:4000` which automatically refreshes when you change a source file.
 
 WARNING: The `adoctohtml` script only listens to changes to the source files listed under `chapters` and `appendices`
-in <<config-yaml>>. If you change the configuration file itself, or any includes, you will need to restart the
-script to see the effect of your changes.
+in <<config-yaml>>. If you change the configuration file itself, or any includes or <<sec-assets,assets>>,
+you will need to restart the script to see the effect of your changes.
 
 :!sectnums:
 
@@ -110,7 +110,11 @@ contains multiple pages. Furthermore, a navigation submenu will be displayed bel
 active navigation item provided the active page contains multiple level-1 (`==`) sections
 *with an ID attribute*.
 
-[#sec-images]
-== Images
+[#sec-assets]
+== Assets
+
 Images should be added to the folder `<srcdir>/assets/img` and referred to in the AsciiDoc sources
 by just the name of the file.
+
+Subfolders `img`, `css`, `favicon` of `<srcdir>/assets` will get copied over to `<outdir>`. You may use
+this feature to replace the {default-assets}[default assets] included with {asciidoctor-html}.

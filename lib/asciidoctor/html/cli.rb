@@ -37,7 +37,8 @@ module Asciidoctor
         begin
           config = Psych.safe_load_file config_file
         rescue StandardError
-          puts "Error opening configuration file #{config_file}"
+          puts "Error opening configuration file\n  #{config_file}"
+          puts
           exit 1
         end
         config_dir = Pathname(config_file).dirname
@@ -54,23 +55,31 @@ module Asciidoctor
       end
 
       def self.setup_outdir(srcdir, outdir)
-        img_src = "#{srcdir}/#{IMG_PATH}"
         assets_out = "#{outdir}/#{ASSETS_PATH}"
         FileUtils.mkdir_p assets_out unless File.directory?(assets_out)
-        FileUtils.cp_r img_src, assets_out if File.directory?(img_src)
+        %W[#{IMG_PATH} #{CSS_PATH} #{FAVICON_PATH}].each do |p|
+          dir = "#{srcdir}/#{p}"
+          next unless Dir.exist?(dir)
+
+          puts "Generating\n  #{assets_out}\nfrom\n  #{dir}"
+          puts
+          FileUtils.cp_r dir, assets_out
+        end
         rootdir = File.absolute_path "#{__dir__}/../../.."
         %W[#{CSS_PATH} #{FAVICON_PATH}].each do |p|
           dir = "#{outdir}/#{p}"
           next if Dir.exist?(dir)
 
-          puts "Generating #{dir}"
+          puts "Putting default '#{p}' files in\n  #{dir}"
+          puts
           FileUtils.cp_r "#{rootdir}/#{p}", assets_out
         end
       end
 
       def self.generate_webmanifest(outdir, name, short_name)
         filename = "#{outdir}/#{FAVICON_PATH}/site.webmanifest"
-        puts "Generating #{filename}"
+        puts "Generating\n  #{filename}"
+        puts
         File.write filename, Webmanifest.generate(name, short_name)
       end
 
@@ -93,7 +102,8 @@ module Asciidoctor
         setup_outdir srcdir, outdir
         generate_webmanifest outdir, book_opts[:title], book_opts[:short_title]
         book = Book.new book_opts
-        puts "Writing book to #{outdir}"
+        puts "Writing book to\n  #{outdir}"
+        puts
         book.write config["chapters"], config["appendices"], outdir, sitemap: true
         return unless opts[:watch]
 
@@ -101,13 +111,15 @@ module Asciidoctor
           chapters = []
           appendices = []
           changes.each_key do |filename|
-            puts "Detected change in #{filename}"
+            puts "Detected change in\n  #{filename}"
+            puts
             chapters.append(filename) if config["chapters"].include?(filename)
             appendices.append(filename) if config["appendices"].include?(filename)
           end
           puts "Regenerating book:"
-          puts "    Chapters: #{chapters.map { |c| Pathname(c).basename }.join ", "}" unless chapters.empty?
-          puts "    Appendices: #{appendices.map { |a| Pathname(a).basename }.join ", "}" unless appendices.empty?
+          puts "  Chapters: #{chapters.map { |c| Pathname(c).basename }.join ", "}" unless chapters.empty?
+          puts "  Appendices: #{appendices.map { |a| Pathname(a).basename }.join ", "}" unless appendices.empty?
+          puts
           book.write chapters, appendices, config["outdir"]
         end
       end

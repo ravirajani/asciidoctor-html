@@ -66,3 +66,19 @@ on the second level gives <<ex-shift>>.
 ====
 
 Again, reference text gets resolved properly. E.g., <<li-lvl2-alt>>.
+
+[#sec-figlists]
+== Lists of Figures
+
+One often wants to display two images as subfigures of one figure with automatic label numbers.
+You can do this easily by declaring the `figlist` style on an ordered list, and
+putting an inline image in each list item. The list title will get rendered as
+an overall caption, and each image's title attribute will get
+rendered as a subcaption.
+
+[figlist]
+.Marginal posteriors of Poisson parameters in change point detection of UK coal mining disasters. Computed by Gibbs algorithm with stem:[B = G = 1000].
+. image:gb73b.svg[Posterior theta1,title=Posterior distribution of first Poisson parameter stem:[\theta_1].]
+. [[fig-posterior-theta2]]image:gb73c.svg[Posterior theta2,title=Posterior distribution of second Poisson parameter stem:[\theta_2] after change point.]
+
+Again, reference text is properly resolved. Just look at <<fig-posterior-theta2>>.

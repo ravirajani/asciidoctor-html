@@ -11,6 +11,8 @@
             --bs-btn-border-radius: 0;
             --bs-btn-bg: #{$pagination-bg};
             --bs-btn-border-width: #{$pagination-border-width};
+            --bs-btn-border-color: #{$pagination-border-color};
+            --bs-btn-hover-border-color: #{$pagination-border-color};
             + a {
                 border-left: none;
             }
