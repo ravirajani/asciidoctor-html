@@ -3,6 +3,10 @@ $content-width: map-get($container-max-widths, md) - 2*$content-padding-x;
 $listing-blue: #002451;
 
 :root {
+    --unit-100vh: 100vh;
+    @supports (height: 100dvh) {
+        --unit-100vh: 100dvh;
+    }
     --parsep: #{$spacer};
     --paritemsep: #{0.125*$spacer};
     --blocksep: #{$spacer};

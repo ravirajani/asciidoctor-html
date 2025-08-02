@@ -2,7 +2,7 @@ $header-height: 3rem;
 $main-width: $content-width + 2*$content-padding-x;
 
 html {
-    height: 100vh;
+    height: var(--unit-100vh);
     body {
         height: 100%;
     }
