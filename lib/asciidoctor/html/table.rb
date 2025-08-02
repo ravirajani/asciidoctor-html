@@ -14,7 +14,7 @@ module Asciidoctor
                          else
                            cell.content.join "\n"
                          end
-          cell_tag_name = (tsec == :head || cell.style == :header ? %(th scope="col") : "td")
+          cell_tag_name = (tsec == :head || cell.style == :header ? "th" : "td")
           cell_class_attribute = %( class="halign-#{cell.attr "halign"} align-#{cell.attr "valign"}")
           cell_colspan_attribute = cell.colspan ? %( colspan="#{cell.colspan}") : ""
           cell_rowspan_attribute = cell.rowspan ? %( rowspan="#{cell.rowspan}") : ""
