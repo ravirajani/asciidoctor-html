@@ -61,7 +61,7 @@ module Asciidoctor
           dir = "#{srcdir}/#{p}"
           next unless Dir.exist?(dir)
 
-          puts "Generating\n  #{assets_out}\nfrom\n  #{dir}"
+          puts "Copying\n  #{dir}\nto\n  #{assets_out}"
           puts
           FileUtils.cp_r dir, assets_out
         end

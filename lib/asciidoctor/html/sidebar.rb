@@ -8,24 +8,28 @@ module Asciidoctor
         (function() {
           const page = document.getElementById('page');
           const sidebar = document.getElementById('sidebar');
-          const menuBtn = document.getElementById('menu-btn');
           const dismissBtn = document.getElementById('sidebar-dismiss-btn');
           function hideSidebar() {
             sidebar && sidebar.classList.remove('shown');
             page.classList.remove('noscroll');
           }
-          menuBtn && menuBtn.addEventListener('click', function() {
-            sidebar && sidebar.classList.toggle('shown');
-            page.classList.toggle('noscroll');
-          });
           addEventListener('hashchange', hideSidebar);
           addEventListener('resize', hideSidebar);
           dismissBtn && dismissBtn.addEventListener('click', hideSidebar);
 
+          const menuBtn = document.getElementById('menu-btn');
+          if(!menuBtn) return;
+
           // Nudge menuBtn in case there is a scrollbar
           const main = document.getElementById('main');
           const scrollbarWidth = page.offsetWidth - main.offsetWidth;
-          menuBtn && (menuBtn.style.right = (scrollbarWidth + 12) + 'px');
+          menuBtn.style.right = (scrollbarWidth + 12) + 'px';
+
+          // Add click listener to toggle sidebar
+          menuBtn.addEventListener('click', function() {
+            sidebar && sidebar.classList.toggle('shown');
+            if(scrollbarWidth > 0) page.classList.toggle('noscroll');
+          });
         })();
       JS
     end
