@@ -161,6 +161,8 @@ module Asciidoctor
 
       def convert_inline_image(node)
         target = node.target
+        return read_svg_contents(node, target) if node.option?("inline")
+
         mark = node.parent.attr "mark"
         title_attr = node.attr? "title"
         if mark # The image is part of a figlist
