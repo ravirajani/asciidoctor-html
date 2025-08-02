@@ -1,4 +1,6 @@
 = Welcome
+:description: Landing page for static site generator asciidoctor-html, an extension of \
+Asciidoctor. Uses Bootstrap CSS framework, Bootstrap Icons, Highlight.js, and MathJax.
 
 include::includes/variables.adoc[]
 

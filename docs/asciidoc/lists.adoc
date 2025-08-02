@@ -66,3 +66,5 @@ on the second level gives <<ex-shift>>.
 ====
 
 Again, reference text gets resolved properly. E.g., <<li-lvl2-alt>>.
+
+image::gb7.3a.svg[Graph,opts=inline]

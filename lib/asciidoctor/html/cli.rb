@@ -53,16 +53,18 @@ module Asciidoctor
         config
       end
 
-      def self.setup_outdir(outdir)
-        assets_dir = "#{outdir}/#{ASSETS_PATH}"
-        FileUtils.mkdir_p assets_dir unless File.directory?(assets_dir)
+      def self.setup_outdir(srcdir, outdir)
+        img_src = "#{srcdir}/#{IMG_PATH}"
+        assets_out = "#{outdir}/#{ASSETS_PATH}"
+        FileUtils.mkdir_p assets_out unless File.directory?(assets_out)
+        FileUtils.cp_r img_src, assets_out if File.directory?(img_src)
         rootdir = File.absolute_path "#{__dir__}/../../.."
         %W[#{CSS_PATH} #{FAVICON_PATH}].each do |p|
           dir = "#{outdir}/#{p}"
           next if Dir.exist?(dir)
 
           puts "Generating #{dir}"
-          FileUtils.cp_r "#{rootdir}/#{p}", assets_dir
+          FileUtils.cp_r "#{rootdir}/#{p}", assets_out
         end
       end
 
@@ -86,15 +88,16 @@ module Asciidoctor
         opts ||= parse_opts
         config = read_config opts[:"config-file"]
         outdir = config["outdir"]
+        srcdir = config["srcdir"]
         book_opts = generate_bookopts config
-        setup_outdir outdir
+        setup_outdir srcdir, outdir
         generate_webmanifest outdir, book_opts[:title], book_opts[:short_title]
         book = Book.new book_opts
         puts "Writing book to #{outdir}"
-        book.write config["chapters"], config["appendices"], config["outdir"], sitemap: true
+        book.write config["chapters"], config["appendices"], outdir, sitemap: true
         return unless opts[:watch]
 
-        Filewatcher.new("#{config["srcdir"]}/*.adoc").watch do |changes|
+        Filewatcher.new("#{srcdir}/*.adoc").watch do |changes|
           chapters = []
           appendices = []
           changes.each_key do |filename|

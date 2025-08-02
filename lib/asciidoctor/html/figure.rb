@@ -6,6 +6,8 @@ module Asciidoctor
     # Mixed into the Converter class.
     module Figure
       def display_image(node, target, title_attr: false)
+        return read_svg_contents(node, target) if node.option?("inline")
+
         attrs = image_attrs(node, title_attr:)
         %(<img src="#{node.image_uri target}" #{attrs}#{@void_element_slash}>)
       end

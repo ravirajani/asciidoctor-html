@@ -112,5 +112,5 @@ active navigation item provided the active page contains multiple level-1 (`==`)
 
 [#sec-images]
 == Images
-Images should be added to the folder `<outdir>/assets/img` and referred to in the AsciiDoc sources
+Images should be added to the folder `<srcdir>/assets/img` and referred to in the AsciiDoc sources
 by just the name of the file.
