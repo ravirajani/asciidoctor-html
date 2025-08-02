@@ -8,12 +8,10 @@ module Asciidoctor
       PagItem = Struct.new("PagItem", :url, :title)
 
       def display_paginator(prv, nxt)
-        classes = ["paginator"]
-        classes << "has-prev" if prv
-        classes << "has-next" if nxt
         <<~HTML
-          <div class="#{classes.join " "}">
+          <div class="paginator">
             #{%(<a href="#{prv.url}">&laquo; #{prv.title}</a>) if prv}
+            #{%(<span class="blank">&nbsp;</span>) unless prv && nxt}
             #{%(<a href="#{nxt.url}">#{nxt.title} &raquo;</a>) if nxt}
           </div>
         HTML

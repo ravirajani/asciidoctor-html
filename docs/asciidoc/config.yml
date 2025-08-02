@@ -16,6 +16,7 @@ chapters:
   - lists.adoc
   - numbered-environments.adoc
   - macros.adoc
+  
 appendices:
   - tests.adoc
 

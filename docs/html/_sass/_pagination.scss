@@ -1,13 +1,20 @@
 .paginator {
     display: flex;
     flex-flow: row wrap;
-    &.has-prev {
-        justify-content: flex-start;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: $spacer;
+    a {
+        @extend .btn;
+        @extend .btn-outline-primary;
+        @extend .btn-sm;
+        --bs-btn-border-radius: 0;
+        flex: 1;
+        + a {
+            border-left: none;
+        }
     }
-    &.has-next {
-        justify-content: flex-end;
-    }
-    &.has-prev.has-next {
-        justify-content: space-between;
+    .blank {
+        flex: 1;
     }
 }

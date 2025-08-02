@@ -23,10 +23,10 @@ module Asciidoctor
         %(<li#{active_class}>#{link}#{subnav}</li>\n)
       end
 
-      def self.nav_text(chapnum, chaptitle)
-        return chaptitle if chapnum.empty?
+      def self.nav_text(chapprefix, chaptitle)
+        return chaptitle if chapprefix.empty?
 
-        %(<span class="title-mark">#{chapnum}</span>#{chaptitle})
+        %(<span class="title-mark">#{chapprefix}</span>#{chaptitle})
       end
 
       def self.appendix_title(chapname, numeral, doctitle, num_appendices)
@@ -46,8 +46,8 @@ module Asciidoctor
       end
 
       # opts:
-      # - chapnum: String
-      # - chaptitle: String
+      # - chapheading: String
+      # - chapsubheading: String
       # - content: String
       # - author: String
       # - date: Date
@@ -55,7 +55,8 @@ module Asciidoctor
         <<~HTML
           <main id="main" class="main">
           <div id="content-container" class="content-container">
-          <h1>#{nav_text opts[:chapnum], opts[:chaptitle]}</h1>
+          #{%(<h1 class="chapheading">#{opts[:chapheading]}</h1>) if opts[:chapheading]}
+          <h1 class="chaptitle">#{opts[:chapsubheading]}</h1>
           #{opts[:content]}
           #{footer opts[:author], opts[:date].year}
           </div>
@@ -134,7 +135,7 @@ module Asciidoctor
       # - author: String
       # - description: String
       # - date: Date
-      # - chapnum: Int
+      # - chapheading: String
       # - chaptitle: String
       # - langs: Array[String]
       def self.html(content, nav_items, opts = {})

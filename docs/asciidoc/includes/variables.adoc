@@ -2,3 +2,4 @@
 :template-repo: https://github.com/ravirajani/ravirajani.github.io
 :asciidoctor-org: https://asciidoctor.org/[Asciidoctor]
 :docs-yaml: https://github.com/ravirajani/asciidoctor-html/blob/main/docs/asciidoc/config.yml
+:colon: pass:[<span class="title-prefix"></span>]

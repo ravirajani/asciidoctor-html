@@ -84,7 +84,7 @@ script to see the effect of your changes.
 The `adoctohtml` script loads its configuration from a file whose location can be specified on the command line.
 
 ****
-.[.title-prefix]#Usage#`adoctohtml [options]`
+.Usage{colon}``adoctohtml [options]``
 `-w, --watch`::
 Watch for file changes in `srcdir`. Default: unset
 `-c, --config-file CONFIG`::

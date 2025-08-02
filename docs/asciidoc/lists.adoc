@@ -23,8 +23,8 @@ The default ordered list looks like <<ex-basic-list>>.
 
 If you put an anchor at the start of a list item, then you will
 be able to refer to that list item elsewhere in the text. This is already
-possible with {asciidoctor-org} but requires explicit specification of reference text. {asciidoctor-html}, by
-contrast, will automatically substitute appropriate default reference text when it is unspecified. For example,
+possible with {asciidoctor-org} but requires explicit specification of reference text. By contrast,
+{asciidoctor-html} will automatically substitute appropriate default reference text when it is unspecified. For example,
 putting the anchor `\[[li-level2]]` at the start of the first level-2 list item in <<ex-basic-list>> will generate
 the reference link <<li-level2>> when typing `\<<li-level2>>`.
 Similarly, you can generate the link <<li-level4>> to the second level-4 list item.
@@ -65,4 +65,4 @@ on the second level gives <<ex-shift>>.
 .. [[li-lvl2-alt]]Another level 2 list item.
 ====
 
-Again, reference text gets resolved propertly. E.g., <<li-lvl2-alt>>.
+Again, reference text gets resolved properly. E.g., <<li-lvl2-alt>>.

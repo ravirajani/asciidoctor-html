@@ -40,7 +40,12 @@ module Asciidoctor
       }.freeze
 
       # Template data to be processed by each document
-      TData = Struct.new("TData", :chapnum, :chaptitle, :index)
+      TData = Struct.new("TData",
+                         :chapprefix,
+                         :chaptitle,
+                         :chapheading,
+                         :chapsubheading,
+                         :index)
 
       # opts:
       # - title
@@ -111,7 +116,6 @@ module Asciidoctor
           short_title: @short_title,
           author: @author,
           date: @date,
-          chapnum: "",
           chaptitle: "Search",
           langs: []
         )
@@ -132,55 +136,58 @@ module Asciidoctor
 
       def chapter(filename, idx)
         key = key filename
-        idx = @templates.dig(key, :index) || idx
-        numeral = idx.to_s
-        doc = parse_file filename, @chapname, numeral
-        chaptitle = doctitle doc
-        chapref = idx.zero? ? chaptitle : chapref_default(@chapname, numeral)
-        chapnum = idx.zero? ? "" : numeral
-        process_doc key, doc, idx:, chapnum:, chaptitle:, chapref:
+        index = @templates.dig(key, :index) || idx
+        chapnum = index.to_s
+        doc = parse_file filename, @chapname, chapnum
+        chapsubheading = doctitle doc
+        chapref = index.zero? ? chapsubheading : chapref_default(@chapname, chapnum)
+        tdata = TData.new(
+          chapprefix: index.zero? ? "" : chapnum,
+          chaptitle: chapsubheading,
+          chapheading: (chapref unless index.zero?),
+          chapsubheading:,
+          index:
+        )
+        process_doc key, doc, tdata, chapref
       end
 
       def appendix(filename, idx, num_appendices)
         key = key filename
-        idx = @templates.dig(key, :index) || idx
+        index = @templates.dig(key, :index) || idx
         chapname = "Appendix"
-        numeral = ("a".."z").to_a[idx].upcase
-        doc = parse_file filename, chapname, numeral
-        chapref = num_appendices == 1 ? chapname : chapref_default(chapname, numeral)
-        chapnum = ""
-        chaptitle = Template.appendix_title chapname, numeral, doctitle(doc), num_appendices
-        process_doc key, doc, idx:, chapnum:, chaptitle:, chapref:
+        chapnum = ("a".."z").to_a[index].upcase
+        doc = parse_file filename, chapname, chapnum
+        chapsubheading = doctitle doc
+        chapref = num_appendices == 1 ? chapname : chapref_default(chapname, chapnum)
+        tdata = TData.new(
+          chapprefix: "",
+          chaptitle: Template.appendix_title(chapname, chapnum, chapsubheading, num_appendices),
+          chapheading: chapref,
+          chapsubheading:,
+          index:
+        )
+        process_doc key, doc, tdata, chapref
       end
 
       def key(filename)
         Pathname(filename).basename.sub_ext("").to_s
       end
 
-      # opts:
-      # - chapnum
-      # - chaptitle
-      # - chapref
-      # - idx
-      def process_doc(key, doc, opts)
+      def process_doc(key, doc, tdata, chapref)
         val = doc.catalog[:refs].transform_values(&method(:reftext)).compact
-        val["chapref"] = opts[:chapref]
+        val["chapref"] = chapref
         @refs[key] = val
-        @templates[key] = TData.new(
-          chapnum: opts[:chapnum],
-          chaptitle: opts[:chaptitle],
-          index: opts[:idx]
-        )
+        @templates[key] = tdata
         doc
       end
 
-      def parse_file(filename, chapname, numeral)
-        attributes = { "chapnum" => numeral, "chapname" => chapname }.merge DOCATTRS
+      def parse_file(filename, chapname, chapnum)
+        attributes = { "chapnum" => chapnum, "chapname" => chapname }.merge DOCATTRS
         Asciidoctor.load_file filename, safe: :unsafe, attributes:
       end
 
-      def chapref_default(chapname, numeral)
-        "#{ERB::Escape.html_escape chapname} #{numeral}"
+      def chapref_default(chapname, chapnum)
+        "#{ERB::Escape.html_escape chapname} #{chapnum}"
       end
 
       def reftext(node)
@@ -209,7 +216,7 @@ module Asciidoctor
         items = @templates.map do |k, td|
           active = (k == active_key)
           subnav = active && doc ? outline(doc) : ""
-          navtext = Template.nav_text td.chapnum, td.chaptitle
+          navtext = Template.nav_text td.chapprefix, td.chaptitle
           Template.nav_item "#{k}.html", navtext, subnav, active:
         end
         return items unless @se_id
@@ -233,8 +240,9 @@ module Asciidoctor
           author: @author,
           date: @date,
           description: doc.attr("description"),
-          chapnum: tdata.chapnum,
           chaptitle: tdata.chaptitle,
+          chapheading: tdata.chapheading,
+          chapsubheading: tdata.chapsubheading,
           langs: langs(doc)
         )
       end

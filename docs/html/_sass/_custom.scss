@@ -63,6 +63,15 @@ $listing-blue: #002451;
     margin-bottom: 0;
 }
 
+.chapheading {
+    @extend .display-6;
+    margin-bottom: 0;
+}
+
+.chaptitle {
+    margin-bottom: 1.25*$spacer;
+}
+
 p {
     margin-bottom: var(--parsep);
 }

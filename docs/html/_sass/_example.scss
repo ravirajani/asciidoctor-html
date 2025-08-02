@@ -1,10 +1,15 @@
 .example {
+    $default-border-color: var(--bs-secondary-border-subtle);
+    $default-bg-color: #f8f9fa;
+    @include color-mode(dark) {
+        --example-bg-color: #{shade-color($default-bg-color, 80%)};
+    }
     @extend .block;
     @extend .full-width-bg;
     padding-top: var(--parsep);
-    border-top: 2px solid var(--example-border-color, var(--bs-success-border-subtle));
-    border-bottom: 2px solid var(--example-border-color, var(--bs-success-border-subtle));
-    background-color: var(--example-bg-color, var(--bs-success-bg-subtle));
+    border-top: 2px solid var(--example-border-color, #{$default-border-color});
+    border-bottom: 2px solid var(--example-border-color, #{$default-border-color});
+    background-color: var(--example-bg-color, #{$default-bg-color});
 }
 
 $thm-types: theorem, proposition, lemma, corollary;

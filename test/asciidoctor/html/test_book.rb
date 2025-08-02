@@ -29,9 +29,9 @@ module Asciidoctor
         end
 
         def test_first_templates_initialized
-          assert_equal "", @book.templates["index"]&.chapnum
+          assert_equal "", @book.templates["index"]&.chapprefix
           assert_equal "Welcome", @book.templates["index"]&.chaptitle
-          assert_equal "1", @book.templates["01-introduction"]&.chapnum
+          assert_equal "1", @book.templates["01-introduction"]&.chapprefix
           assert_equal "Book&#8217;s Introduction", @book.templates["01-introduction"]&.chaptitle
         end
       end
@@ -73,7 +73,7 @@ module Asciidoctor
         end
 
         def test_second_templates_initialized
-          assert_equal "", @book.templates["appendix-a"]&.chapnum
+          assert_equal "", @book.templates["appendix-a"]&.chapprefix
           assert_equal %(<span class="title-prefix">Appendix</span>Linear Algebra Background),
                        @book.templates["appendix-a"]&.chaptitle
         end
@@ -100,10 +100,10 @@ module Asciidoctor
         end
 
         def test_second_templates_initialized
-          assert_equal "", @book.templates["appendix-a"]&.chapnum
+          assert_equal "", @book.templates["appendix-a"]&.chapprefix
           assert_equal %(<span class="title-prefix">Appendix A</span>Linear Algebra Background),
                        @book.templates["appendix-a"]&.chaptitle
-          assert_equal "", @book.templates["appendix-b"]&.chapnum
+          assert_equal "", @book.templates["appendix-b"]&.chapprefix
           assert_equal %(<span class="title-prefix">Appendix B</span>Analysis Background),
                        @book.templates["appendix-b"]&.chaptitle
         end
