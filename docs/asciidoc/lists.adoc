@@ -26,8 +26,8 @@ be able to refer to that list item elsewhere in the text. This is already
 possible with {asciidoctor-org} but requires explicit specification of reference text. By contrast,
 {asciidoctor-html} will automatically substitute appropriate default reference text when it is unspecified. For example,
 putting the anchor `\[[li-level2]]` at the start of the first level-2 list item in <<ex-basic-list>> will generate
-the reference link <<li-level2>> when typing `\<<li-level2>>`.
-Similarly, you can generate the link <<li-level4>> to the second level-4 list item.
+the reference link <<li-level2>> with `\<<li-level2>>`.
+In a similar way, you can generate the link <<li-level4>> to the second level-4 list item.
 
 [#sec-start-shift]
 == Start and Shift Attributes

@@ -101,3 +101,16 @@ include::config.yml[]
 ----
 <1> This is the ID from Google's
 https://programmablesearchengine.google.com/[Programmable Search Engine]
+
+[#sec-nav]
+== Navigation Menus and Submenus
+
+{asciidoctor-html} will automatically generate a navigation menu if the site
+contains multiple pages. Furthermore, a navigation submenu will be displayed below the
+active navigation item provided the active page contains multiple level-1 (`==`) sections
+*with an ID attribute*.
+
+[#sec-images]
+== Images
+Images should be added to the folder `<outdir>/assets/img` and referred to in the AsciiDoc sources
+by just the name of the file.

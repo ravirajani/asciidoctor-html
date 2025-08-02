@@ -1,20 +1,30 @@
-.paginator {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: $spacer;
-    a {
-        @extend .btn;
-        @extend .btn-outline-primary;
-        @extend .btn-sm;
-        --bs-btn-border-radius: 0;
-        flex: 1;
-        + a {
-            border-left: none;
+.paginator-wrapper {
+    margin: $spacer 0;
+    text-align: center;
+    .paginator {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        a {
+            @extend .btn;
+            @extend .btn-outline-primary;
+            @extend .btn-sm;
+            --bs-btn-border-radius: 0;
+            --bs-btn-bg: #{$pagination-bg};
+            --bs-btn-border-width: #{$pagination-border-width};
+            + a {
+                border-left: none;
+            }
+            + .blank {
+                border-right: $pagination-border-width solid $pagination-border-color;
+            }
         }
-    }
-    .blank {
-        flex: 1;
+        .blank {
+            background-color: $pagination-bg;
+            border-top: $pagination-border-width solid $pagination-border-color;
+            border-bottom: $pagination-border-width solid $pagination-border-color;
+            &:first-child {
+                border-left: $pagination-border-width solid $pagination-border-color;
+            }
+        }
     }
 }

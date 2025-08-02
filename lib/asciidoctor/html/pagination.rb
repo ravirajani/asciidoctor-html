@@ -9,10 +9,14 @@ module Asciidoctor
 
       def display_paginator(prv, nxt)
         <<~HTML
+          <div class="paginator-wrapper">
+          <div class="d-inline-block">
           <div class="paginator">
             #{%(<a href="#{prv.url}">&laquo; #{prv.title}</a>) if prv}
             #{%(<span class="blank">&nbsp;</span>) unless prv && nxt}
             #{%(<a href="#{nxt.url}">#{nxt.title} &raquo;</a>) if nxt}
+          </div>
+          </div>
           </div>
         HTML
       end

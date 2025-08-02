@@ -104,6 +104,9 @@ html {
 
 .section {
     margin-bottom: 2*$spacer;
+    .section {
+        margin-bottom: 1.25*$spacer;
+    }
 }
 
 @include media-breakpoint-up(sm) {
