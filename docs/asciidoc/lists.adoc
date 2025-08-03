@@ -1,4 +1,5 @@
 = Ordered Lists
+:bubblesort: pass:q[[.smallcaps]#BubbleSort#]
 
 include::includes/variables.adoc[]
 
@@ -10,6 +11,7 @@ include::includes/variables.adoc[]
 The default ordered list looks like <<ex-basic-list>>.
 
 [#ex-basic-list]
+.Basic list with 4 levels
 ====
 . Level 1 list item, marked with an arabic numeral followed by a dot.
 . Another level 1 list item.
@@ -25,9 +27,9 @@ If you put an anchor at the start of a list item, then you will
 be able to refer to that list item elsewhere in the text. This is already
 possible with {asciidoctor-org} but requires explicit specification of reference text. By contrast,
 {asciidoctor-html} will automatically substitute appropriate default reference text when it is unspecified. For example,
-putting the anchor `\[[li-level2]]` at the start of the first level-2 list item in <<ex-basic-list>> will generate
+putting the anchor `\[[li-level2]]` at the start of the first level 2 list item in <<ex-basic-list>> will generate
 the reference link <<li-level2>> with `\<<li-level2>>`.
-In a similar way, you can generate the link <<li-level4>> to the second level-4 list item.
+In a similar way, you can generate the link <<li-level4>> to the second level 4 list item.
 
 [#sec-start-shift]
 == Start and Shift Attributes
@@ -38,6 +40,7 @@ For example, with <<ex-basic-list>>, using `[start=3]` on the first level and `[
 gives <<ex-start>>.
 
 [#ex-start]
+.List with start attributes
 ====
 [start=3]
 . Level 1 list item, marked with an arabic numeral followed by a dot.
@@ -56,6 +59,7 @@ For example, setting `[shift=3]` on the first level and `[start=2,shift=-1]`
 on the second level gives <<ex-shift>>.
 
 [#ex-shift]
+.List with start and shift attributes
 ====
 [shift=3]
 . Level 1 list item, marked with a bracketed uppercase letter.
@@ -67,8 +71,68 @@ on the second level gives <<ex-shift>>.
 
 Again, reference text gets resolved properly. E.g., <<li-lvl2-alt>>.
 
-[#sec-figlists]
-== Lists of Figures
+[#sec-pseudocode]
+== Pseudocode Style
+
+You can make all levels of a list share the same counter (and marker) by declaring
+the `pseudocode` style on the top level. The markers will all be aligned as in <<ex-pseudocode>>.
+
+[#ex-pseudocode]
+.Pseudocode list
+====
+[pseudocode]
+. Level 1 item of a pseudocode list.
+. Another level 1 list item.
+.. A level 2 item will be indented.
+... And a level 3 item will be indented more.
+.. Another level 2 list item.
+====
+
+== Bibiliography Style
+Setting a list's style to `bibliography` will render the markers as arabic numerals in square brackets.
+When clicking on a generated reference link to a bibliography item, such as <<bib-roughgarden>>,
+the citation will appear in a popover. If you specify reference text in a bibliography citation, it will appear
+next to the generated number as in <<bib-roughgarden,p.10>>.
+
+[#ex-bibliography]
+.Bibliography list
+====
+[bibliography]
+. [[bib-cormen]]Cormen, T.H. et al. (2022) Introduction to Algorithms. Cambridge, MA: The Mit Press.
+. [[bib-roughgarden]]Roughgarden, T. (2022) Algorithms Illuminated: Omnibus Edition. Cambridge: CUP.
+====
+
+[#sec-real-example]
+== Real Example
+
+<<alg-bubblesort>> is taken from <<bib-cormen>>.
+
+[algorithm#alg-bubblesort]
+.{bubblesort}stem:[(A,n)]
+====
+This procedure sorts array stem:[A[1:n\]].
+
+[pseudocode#bubblesort,reftext={bubblesort}]
+. *for* stem:[i=1] *to* stem:[n-1]
+.. *for* stem:[j=n] *downto* stem:[i+1]
+... *if* stem:[A[j\] < A[j-1\]]
+.... swap stem:[A[j\]] with stem:[A[j-1\]]
+====
+
+Let us also typeset the corresponding exercise from <<bib-cormen,p.46>>.
+[exercise]
+.Correctness of <<alg-bubblesort>>
+====
+Bubblesort is a popular, but inefficient, sorting algorithm.
+It works by repeatedly swapping adjacent elements that are out of order.
+
+[shift=1]
+. Let stem:[A'] denote the array stem:[A] after <<bubblesort>>stem:[(A,n)] is executed.
+To prove that {bubblesort} is correct, you need to prove that it terminates and that
+====
+
+[#sec-figlist]
+== List of Figures
 
 One often wants to display two images as subfigures of one figure with automatic label numbers.
 You can do this easily by declaring the `figlist` style on an ordered list, and
@@ -82,3 +146,4 @@ rendered as a subcaption.
 . [[fig-posterior-theta2]]image:gb73c.svg[Posterior theta2,title=Posterior distribution of second Poisson parameter stem:[\theta_2] after change point.]
 
 Again, reference text is properly resolved. Just look at <<fig-posterior-theta2>>.
+

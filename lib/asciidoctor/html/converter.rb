@@ -207,14 +207,23 @@ module Asciidoctor
       end
 
       def convert_inline_anchor(node)
-        if node.type == :xref && !node.text
+        node_text = node.text
+        if node.type == :xref
           target = node.document.catalog[:refs][node.attr("refid")]
-          if target&.inline?
-            text = target.text
-            return %(<a href="#{node.target}">#{text}</a>) if text&.match?(/\A<i class="bi/)
+          unless node_text
+            text = target&.inline? ? target&.text : target&.attr("reftext")
+            if %r{\A<(?<tag>i|span)(?<attrs>.*?)>(?<content>.*?)</\g<tag>>\z} =~ text
+              subs = %i[specialcharacters quotes replacements macros]
+              text = "<#{tag}#{attrs}>#{node.apply_subs content, subs}</#{tag}>"
+              return %(<a href="#{node.target}">#{text}</a>)
+            end
+          end
 
-            list_style = target.parent&.parent&.style
-            return Utils.popover_button(target.reftext, target.id, "bibref") if list_style == "bibliography"
+          if target&.inline? && target.parent&.parent&.style == "bibliography"
+            reftext = target.reftext
+            /\A\[(?<numeral>\d+)\]\z/ =~ reftext
+            reftext = "[#{numeral}, #{node_text}]" if node_text && numeral
+            return Utils.popover_button(reftext, target.id, "bibref")
           end
         end
         super

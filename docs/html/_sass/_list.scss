@@ -103,6 +103,12 @@
     }
 }
 
+.list-wrapper {
+    .block-title {
+        margin-bottom: var(--paritemsep);      
+    }
+}
+
 .dlist-wrapper {
     @extend .block;
 }
