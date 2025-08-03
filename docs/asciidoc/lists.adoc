@@ -127,7 +127,7 @@ Bubblesort is a popular, but inefficient, sorting algorithm.
 It works by repeatedly swapping adjacent elements that are out of order.
 
 [shift=1]
-. Let stem:[A'] denote the array stem:[A] after <<bubblesort>>stem:[(A,n)] is executed.
+. Let stem:[A'] denote the array stem:[A] after {bubblesort}stem:[(A,n)] is executed.
 To prove that {bubblesort} is correct, you need to prove that it terminates and that
 ====
 

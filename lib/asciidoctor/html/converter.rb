@@ -213,8 +213,7 @@ module Asciidoctor
           unless node_text
             text = target&.inline? ? target&.text : target&.attr("reftext")
             if %r{\A<(?<tag>i|span)(?<attrs>.*?)>(?<content>.*?)</\g<tag>>\z} =~ text
-              subs = %i[specialcharacters quotes replacements macros]
-              text = "<#{tag}#{attrs}>#{node.apply_subs content, subs}</#{tag}>"
+              text = "<#{tag}#{attrs}>#{node.apply_reftext_subs content}</#{tag}>"
               return %(<a href="#{node.target}">#{text}</a>)
             end
           end
