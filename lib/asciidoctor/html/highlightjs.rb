@@ -77,13 +77,13 @@ module Asciidoctor
               copyButton.append(copyIcon);
               overlay.append(copyButton);
 
-              copyButton.onclick = function() {
+              copyButton.addEventListener("click", function() {
                 navigator.clipboard.writeText(text);
                 if(!copyIcon.classList.contains("bi-clipboard-check")) {
                   toggleCopyIcon(copyIcon);
                   setTimeout(() => { toggleCopyIcon(copyIcon); }, 1500);
                 }
-              };
+              });
 
               // Append the copy button to the wrapper
               wrapper.appendChild(overlay);
