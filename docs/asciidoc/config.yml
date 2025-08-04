@@ -14,7 +14,7 @@ chapters:
   - index.adoc
   - getting-started.adoc
   - lists.adoc
-  - numbered-environments.adoc
+  - numbered-blocks.adoc
   - macros.adoc
   
 appendices:

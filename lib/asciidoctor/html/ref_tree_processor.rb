@@ -43,12 +43,14 @@ module Asciidoctor
         block.set_attr("showcaption", true) unless context == :stem
         assign_numeral! block, document, NUMBERED_CONTEXTS[context]
         relative_numeral = relative_numeral block, document
+
         reftext = if context == :stem
                     "(#{relative_numeral})"
                   else
                     "#{env.capitalize} #{relative_numeral}"
                   end
-        block.set_attr "reftext", reftext
+        block.set_attr "reftext", reftext unless block.reftext?
+        block.set_attr "title-prefix", reftext
       end
 
       def env(context, style)
@@ -156,9 +158,10 @@ module Asciidoctor
       def process_colist!(block)
         block.set_attr "list-depth", 0
         block.items.each_with_index do |item, idx|
-          icon = %(<i class="bi bi-#{idx + 1}-circle"></i>)
+          icon_type = "#{idx + 1}-circle"
+          icon = %(<i class="bi bi-#{icon_type}"></i>)
           item.set_attr "mark", icon
-          register_reftext! item, icon
+          register_reftext! item, "bi:#{icon_type}[]"
         end
       end
 

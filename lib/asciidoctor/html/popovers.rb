@@ -5,45 +5,48 @@ module Asciidoctor
     # Configure the popovers for footnotes and citations.
     module Popovers
       POPOVERS = <<~JS
-        function initPopovers() {
-          document.querySelectorAll(".btn-po[data-contentid]").forEach(el => {
-            const id = el.dataset.contentid;
-            let content = document.getElementById(id);
-            if(content) {
-              if(content.tagName == "A") {
-                // This is an anchor of a bibitem
-                const listItem = content.parentElement.cloneNode(true)
-                listItem.removeChild(listItem.firstChild)
-                content = listItem
+        (function() {
+          let popoversInitialised = false
+          function initPopovers() {
+            document.querySelectorAll(".btn-po[data-contentid]").forEach(el => {
+              const id = el.dataset.contentid;
+              let content = document.getElementById(id);
+              if(content) {
+                if(content.tagName == "A") {
+                  // This is an anchor of a bibitem
+                  const listItem = content.parentElement.cloneNode(true)
+                  listItem.removeChild(listItem.firstChild)
+                  content = listItem
+                }
+                new bootstrap.Popover(el, {
+                  trigger: "focus",
+                  content: content,
+                  html: true,
+                  sanitize: false
+                });
               }
-              new bootstrap.Popover(el, {
-                trigger: "focus",
-                content: content,
-                html: true,
-                sanitize: false
+            });
+            popoversInitialised = true
+          }
+          MathJax = {
+            startup: {
+              pageReady: function() {
+                return MathJax.startup.defaultPageReady().then(initPopovers);
+              }
+            }
+          };
+          addEventListener("load", function() {
+            // Only enable tooltips on images if not a touch screen device
+            if(!touch) {
+              document.querySelectorAll('img[data-bs-toggle="tooltip"]').forEach(el => {
+                bootstrap.Tooltip.getOrCreateInstance(el);
               });
             }
+            // Initialise Popovers if not already done
+            if(!popoversInitialised) initPopovers();
           });
-        }
-        MathJax = {
-          startup: {
-            pageReady: function() {
-              return MathJax.startup.defaultPageReady().then(initPopovers);
-            }
-          }
-        };
+        })();
       JS
-
-      TOOLTIPS = <<~JS
-        // Only enable tooltips on images if not a touch screen device
-        if(!touch) {
-          document.querySelectorAll('img[data-bs-toggle="tooltip"]').forEach(el => {
-            bootstrap.Tooltip.getOrCreateInstance(el);
-          });
-        }
-      JS
-
-      INIT = "#{TOOLTIPS}\n#{POPOVERS}".freeze
     end
   end
 end

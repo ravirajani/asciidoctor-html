@@ -31,14 +31,15 @@ module Asciidoctor
         node.attr?("showcaption") || node.title?
       end
 
-      def self.display_title(node, needs_prefix: true)
-        prefix = needs_prefix ? display_title_prefix(node) : ""
+      def self.display_title(node)
+        prefix = display_title_prefix(node)
         show_title?(node) ? %(<h6 class="block-title">#{prefix}#{node.title}</h6>\n) : ""
       end
 
       def self.display_title_prefix(node)
-        prefix = node.reftext? ? node.reftext : ""
-        node.title? && !node.title.empty? ? %(<span class="title-prefix">#{prefix}</span>) : prefix
+        prefix = node.attr?("title-prefix") ? node.attr("title-prefix") : ""
+        prefix = %(<span class="title-prefix">#{prefix}</span>) if node.title? && !node.title.empty? && !prefix.empty?
+        prefix
       end
 
       def self.wrap_id_classes(content, id, classes, tag_name = :div)
@@ -54,12 +55,12 @@ module Asciidoctor
         wrap_id_classes content, node.id, classes, tag_name
       end
 
-      def self.wrap_node_with_title(content, node, tag_name = :div, needs_prefix: false)
-        show_title?(node) ? wrap_node(display_title(node, needs_prefix:) + content, node, tag_name) : content
+      def self.wrap_node_with_title(content, node, tag_name = :div)
+        show_title?(node) ? wrap_node(display_title(node) + content, node, tag_name) : content
       end
 
-      def self.wrap_id_classes_with_title(content, node, id, classes, needs_prefix: false)
-        show_title?(node) ? wrap_id_classes(display_title(node, needs_prefix:) + content, id, classes) : content
+      def self.wrap_id_classes_with_title(content, node, id, classes)
+        show_title?(node) ? wrap_id_classes(display_title(node) + content, id, classes) : content
       end
 
       def self.popover_button(content, content_id, classes = nil)

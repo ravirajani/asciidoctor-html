@@ -5,23 +5,22 @@ html {
     height: var(--unit-100vh);
     body {
         height: 100%;
+        > .sidebar {
+            display: none;
+            z-index: 2000;
+            position: fixed;
+            top: 0;
+            height: 100%;
+            right: 0;
+            overflow-y: auto;
+            width: 100%;
+            max-width: 100%;
+            &.shown {
+                display: block;
+            }
+            box-shadow: 20px 0 40px 20px $body-bg-dark;
+        }
     }
-}
-
-.sidebar {
-    display: none;
-    z-index: 2000;
-    position: fixed;
-    top: 0;
-    height: 100%;
-    right: 0;
-    overflow-y: auto;
-    width: 100%;
-    max-width: 100%;
-    &.shown {
-        display: block;
-    }
-    box-shadow: 20px 0 40px 20px $body-bg-dark;
 }
 
 .btn.menu {
@@ -59,7 +58,6 @@ html {
         scrollbar-gutter: stable;
     }
     padding: 0;
-    scroll-padding-top: $spacer;
     scroll-behavior: smooth;
     scrollbar-color: $gray-600 $gray-800;
     .header {
@@ -107,7 +105,7 @@ html {
 }
 
 @include media-breakpoint-up(sm) {
-    .sidebar {
+    html body > .sidebar {
         width: auto;
         min-width: 30%;
         border-left: 1px solid $gray-700;
@@ -118,7 +116,7 @@ html {
     .btn.menu {
         display: none;
     }
-    .sidebar {
+    html body > .sidebar {
         display: block;
         box-shadow: none;
         z-index: 1;
@@ -134,7 +132,7 @@ html {
 }
 
 @include media-breakpoint-up(xl) {
-    .sidebar {
+    html body > .sidebar {
         width: 30%;
         + .page {
             width: 70%;
@@ -143,7 +141,7 @@ html {
 }
 
 @include color-mode(dark) {
-    body{
+    body {
         .header {
             border-bottom: 1px solid $gray-700;
         }

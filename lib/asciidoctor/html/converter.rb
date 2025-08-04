@@ -69,7 +69,7 @@ module Asciidoctor
                      end
         icon = %(<div class="icon"><i class="bi bi-#{icon_class}"></i></div>)
         content = node.blocks? ? node.content : "<p>#{node.content}</p>"
-        content = %(#{icon}\n#{Utils.display_title node, needs_prefix: false}#{content})
+        content = %(#{icon}\n#{Utils.display_title node}#{content})
         Utils.wrap_id_classes content, node.id, "admonition admonition-#{name}"
       end
 
@@ -126,8 +126,7 @@ module Asciidoctor
           pre_open = %(<pre#{%( class="nowrap") if nowrap}>)
           pre_close = "</pre>"
         end
-        needs_prefix = node.option? "numbered"
-        title = Utils.display_title(node, needs_prefix:)
+        title = Utils.display_title(node)
         content = title + pre_open + node.content + pre_close
         Utils.wrap_node content, node
       end
@@ -135,7 +134,7 @@ module Asciidoctor
       def convert_literal(node)
         nowrap = !(node.document.attr? "prewrap") || (node.option? "nowrap")
         pre = %(<pre#{%( class="nowrap") if nowrap}>#{node.content}</pre>)
-        title = Utils.display_title(node, needs_prefix: false)
+        title = Utils.display_title(node)
         Utils.wrap_node "#{title}#{pre}", node
       end
 
@@ -144,14 +143,14 @@ module Asciidoctor
         title = if collapsible
                   %(<summary>#{node.title || "Details"}</summary>\n)
                 else
-                  Utils.display_title(node, needs_prefix: false)
+                  Utils.display_title(node)
                 end
         tag_name = collapsible ? :details : :div
         Utils.wrap_node(title + node.content, node, tag_name)
       end
 
       def convert_example(node)
-        Utils.wrap_node_with_title node.content, node, needs_prefix: true
+        Utils.wrap_node_with_title node.content, node
       end
 
       def convert_image(node)
@@ -210,19 +209,16 @@ module Asciidoctor
         node_text = node.text
         if node.type == :xref
           target = node.document.catalog[:refs][node.attr("refid")]
-          unless node_text
-            text = target&.inline? ? target&.text : target&.attr("reftext")
-            if %r{\A<(?<tag>i|span)(?<attrs>.*?)>(?<content>.*?)</\g<tag>>\z} =~ text
-              text = "<#{tag}#{attrs}>#{node.apply_reftext_subs content}</#{tag}>"
-              return %(<a href="#{node.target}">#{text}</a>)
-            end
-          end
-
           if target&.inline? && target.parent&.parent&.style == "bibliography"
             reftext = target.reftext
             /\A\[(?<numeral>\d+)\]\z/ =~ reftext
-            reftext = "[#{numeral}, #{node_text}]" if node_text && numeral
+            reftext = "[#{numeral},&nbsp;#{node_text}]" if node_text && numeral
             return Utils.popover_button(reftext, target.id, "bibref")
+          end
+
+          if !node_text && (text = target&.inline? ? target&.text : target&.attr("reftext"))
+            subs = %i[specialcharacters quotes replacements macros]
+            return %(<a href="#{node.target}">#{node.apply_subs text, subs}</a>)
           end
         end
         super

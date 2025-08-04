@@ -1,5 +1,4 @@
 = Ordered Lists
-:bubblesort: pass:q[[.smallcaps]#BubbleSort#]
 
 include::includes/variables.adoc[]
 
@@ -105,30 +104,51 @@ next to the generated number as in <<bib-roughgarden,p.10>>.
 [#sec-real-example]
 == Real Example
 
-<<alg-bubblesort>> is taken from <<bib-cormen>>.
+In this example, we reproduce an exercise from <<bib-cormen,p.46>>. It demonstrates all the list
+features introduced thus far in the context of a "`real`" example.
 
 [algorithm#alg-bubblesort]
-.{bubblesort}stem:[(A,n)]
+.sc:[BubbleSort]stem:[(A,n)]
 ====
 This procedure sorts array stem:[A[1:n\]].
 
-[pseudocode#bubblesort,reftext={bubblesort}]
-. *for* stem:[i=1] *to* stem:[n-1]
-.. *for* stem:[j=n] *downto* stem:[i+1]
+[pseudocode]
+. [[line-outer-for]]*for* stem:[i=1] *to* stem:[n-1]
+.. [[line-inner-for]]*for* stem:[j=n] *downto* stem:[i+1]
 ... *if* stem:[A[j\] < A[j-1\]]
-.... swap stem:[A[j\]] with stem:[A[j-1\]]
+.... [[line-statement]]swap stem:[A[j\]] with stem:[A[j-1\]]
 ====
 
-Let us also typeset the corresponding exercise from <<bib-cormen,p.46>>.
+In the following exercise, you will prove the correctness of <<alg-bubblesort>>.
+
 [exercise]
-.Correctness of <<alg-bubblesort>>
+.Correctness of <<alg-bubblesort,sc:[BubbleSort]>>
 ====
 Bubblesort is a popular, but inefficient, sorting algorithm.
 It works by repeatedly swapping adjacent elements that are out of order.
 
 [shift=1]
-. Let stem:[A'] denote the array stem:[A] after {bubblesort}stem:[(A,n)] is executed.
-To prove that {bubblesort} is correct, you need to prove that it terminates and that
+. Let stem:[A'] denote the array stem:[A] after sc:[BubbleSort]stem:[(A,n)] is executed.
+To prove that sc:[BubbleSort] is correct, you need to prove that it terminates and that
++
+[stem#bs-inequality%numbered]
+++++
+A'[1] \leq A'[2] \leq \dots \leq A'[n]
+++++
++
+In order to show that sc:[BubbleSort] actually sorts, what else do you need to prove?
+
+The next two parts prove inequality <<bs-inequality>>.
+
+[start=2,shift=1]
+. [[bs-loop-invariant]]State precisely a loop invariant for the for loop in lines <<line-inner-for>>-<<line-statement>>,
+and prove that this loop invariant holds.
+Your proof should use the structure of the loop-invariant proof presented in <<bib-cormen,ch.2>>.
+. Using the termination condition of the loop invariant proved in part <<bs-loop-invariant>>, state
+a loop invariant for the for loop in lines <<line-outer-for>>-<<line-statement>> that allows you to prove inequality <<bs-inequality>>.
+Your proof should use the structure of the loop-invariant proof presented in <<bib-cormen,ch.2>>.
+. What is the worst-case running time of sc:[BubbleSort]? How does it compare
+with the running time of sc:[InsertionSort]?
 ====
 
 [#sec-figlist]

@@ -3,4 +3,3 @@
 :asciidoctor-org: https://asciidoctor.org/[Asciidoctor]
 :docs-yaml: https://github.com/ravirajani/asciidoctor-html/blob/main/docs/asciidoc/config.yml
 :default-assets: https://github.com/ravirajani/asciidoctor-html/tree/main/assets
-:colon: pass:[<span class="title-prefix"></span>]

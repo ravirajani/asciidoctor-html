@@ -16,10 +16,12 @@ This is a lemma.
 
 Building on <<lem-minor-3>>:
 
-[proposition]
+[proposition#prop-reftext,reftext=sc:[PropositionSC]]
 ====
 This is a proposition.
 ====
+
+The above proposition has custom reftext <<prop-reftext>>.
  
 See <<fig-cute-cat>> for a picture of a cute cat.
 
