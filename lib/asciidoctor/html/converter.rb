@@ -211,8 +211,14 @@ module Asciidoctor
           target = node.document.catalog[:refs][node.attr("refid")]
           if target&.inline? && target.parent&.parent&.style == "bibliography"
             reftext = target.reftext
-            /\A\[(?<numeral>\d+)\]\z/ =~ reftext
-            reftext = "[#{numeral},&nbsp;#{node_text}]" if node_text && numeral
+            if node_text
+              /\A\[(?<numeral>\d+)\]\z/ =~ reftext
+              reftext = if numeral
+                          "[#{numeral},&nbsp;#{node_text}]"
+                        else
+                          "#{reftext},&nbsp;#{node_text}"
+                        end
+            end
             return Utils.popover_button(reftext, target.id, "bibref")
           end
 

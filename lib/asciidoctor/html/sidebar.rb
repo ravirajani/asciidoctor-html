@@ -15,12 +15,12 @@ module Asciidoctor
           }
           function clickLocalLink(e) {
             e.preventDefault();
+            hideSidebar();
             id = this.getAttribute('href').substring(1);
             target = document.getElementById(id);
             target && target.scrollIntoView();
           }
           function listenToLocalLink(link) {
-            hideSidebar();
             href = link.getAttribute('href');
             if(href.startsWith('#')) {
               link.addEventListener('click', clickLocalLink);

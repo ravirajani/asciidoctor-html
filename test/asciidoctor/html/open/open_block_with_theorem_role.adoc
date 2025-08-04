@@ -1,0 +1,5 @@
+[.example.example-theorem]
+.Block Title
+--
+This is an open block styled as a theorem.
+--

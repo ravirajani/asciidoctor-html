@@ -119,7 +119,7 @@ This procedure sorts array stem:[A[1:n\]].
 .... [[line-statement]]swap stem:[A[j\]] with stem:[A[j-1\]]
 ====
 
-In the following exercise, the correctness of <<alg-bubblesort>> is analysed.
+In the following exercise, the correctness of <<alg-bubblesort>> is proved.
 
 [exercise]
 .Correctness of <<alg-bubblesort,sc:[BubbleSort]>>
