@@ -1,8 +1,5 @@
 .open {
     @extend .block;
-    > *:last-child {
-        margin-bottom: 0;
-    }
 }
 
 .open-proof {

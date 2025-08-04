@@ -13,7 +13,9 @@ module Asciidoctor
             sidebar && sidebar.classList.remove('shown');
             page.classList.remove('noscroll');
           }
-          addEventListener('hashchange', hideSidebar);
+          document.querySelectorAll('#sidebar a').forEach(link => {
+            link.addEventListener('click', hideSidebar);
+          });
           addEventListener('resize', hideSidebar);
           dismissBtn && dismissBtn.addEventListener('click', hideSidebar);
 

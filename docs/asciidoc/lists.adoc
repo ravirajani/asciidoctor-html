@@ -104,7 +104,7 @@ next to the generated number as in <<bib-roughgarden,p.10>>.
 [#sec-real-example]
 == Real Example
 
-In this example, we reproduce an exercise from <<bib-cormen,p.46>>. It demonstrates all the list
+In this section, we reproduce an exercise from <<bib-cormen,p.46>>. It demonstrates all the list
 features introduced thus far in the context of a "`real`" example.
 
 [algorithm#alg-bubblesort]
@@ -119,7 +119,7 @@ This procedure sorts array stem:[A[1:n\]].
 .... [[line-statement]]swap stem:[A[j\]] with stem:[A[j-1\]]
 ====
 
-In the following exercise, you will prove the correctness of <<alg-bubblesort>>.
+In the following exercise, the correctness of <<alg-bubblesort>> is analysed.
 
 [exercise]
 .Correctness of <<alg-bubblesort,sc:[BubbleSort]>>
