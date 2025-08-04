@@ -46,53 +46,59 @@ module Asciidoctor
       }.freeze
 
       PLUGIN = <<~JS
-        function toggleCopyIcon(copyIcon) {
-          copyIcon.classList.toggle("bi-clipboard");
-          copyIcon.classList.toggle("bi-clipboard-check");
-        }
-        hljs.addPlugin({
-          "after:highlightElement": function({ el, result, text }) {
-            const wrapper = el.parentElement; // pre element
-            if(wrapper == null) { return; }
-
-            const overlay = document.createElement("div");
-            overlay.classList.add("copy-button");
-            overlay.textContent = result.language.toUpperCase() + ' ';
-
-            const copyButton = document.createElement("button");
-            copyButton.classList.add("btn");
-            copyButton.setAttribute("type", "button");
-            copyButton.setAttribute("data-bs-toggle", "tooltip");
-            copyButton.setAttribute("data-bs-title", "Copy to clipboard");
-            if(!touch) {bootstrap.Tooltip.getOrCreateInstance(copyButton);}
-
-            const copyIcon = document.createElement("i");
-            copyIcon.classList.add("bi", "bi-clipboard");
-
-            copyButton.append(copyIcon);
-            overlay.append(copyButton);
-
-            copyButton.onclick = function() {
-              navigator.clipboard.writeText(text);
-              if(!copyIcon.classList.contains("bi-clipboard-check")) {
-                toggleCopyIcon(copyIcon);
-                setTimeout(() => { toggleCopyIcon(copyIcon); }, 1500);
-              }
-            };
-
-            // Append the copy button to the wrapper
-            wrapper.appendChild(overlay);
-
-            // Find and replace inline callouts
-            const rgx = /[\u2460-\u2468]/gu;
-            if(text.match(rgx)) {
-              text = text.replaceAll(rgx, "");
-              el.innerHTML = el.innerHTML.replaceAll(rgx, (match) => {
-                return '<i class="hljs-comment bi bi-' + (match.charCodeAt() - 9311) + '-circle"></i>';
-              });
-            }
+        (function() {
+          function canHover() {
+            return matchMedia('(hover: hover)').matches &&
+                   matchMedia('(pointer: fine)').matches;
           }
-        });
+          function toggleCopyIcon(copyIcon) {
+            copyIcon.classList.toggle("bi-clipboard");
+            copyIcon.classList.toggle("bi-clipboard-check");
+          }
+          hljs.addPlugin({
+            "after:highlightElement": function({ el, result, text }) {
+              const wrapper = el.parentElement; // pre element
+              if(wrapper == null) { return; }
+
+              const overlay = document.createElement("div");
+              overlay.classList.add("copy-button");
+              overlay.textContent = result.language.toUpperCase() + ' ';
+
+              const copyButton = document.createElement("button");
+              copyButton.classList.add("btn");
+              copyButton.setAttribute("type", "button");
+              copyButton.setAttribute("data-bs-toggle", "tooltip");
+              copyButton.setAttribute("data-bs-title", "Copy to clipboard");
+              if(canHover()) bootstrap.Tooltip.getOrCreateInstance(copyButton);
+
+              const copyIcon = document.createElement("i");
+              copyIcon.classList.add("bi", "bi-clipboard");
+
+              copyButton.append(copyIcon);
+              overlay.append(copyButton);
+
+              copyButton.onclick = function() {
+                navigator.clipboard.writeText(text);
+                if(!copyIcon.classList.contains("bi-clipboard-check")) {
+                  toggleCopyIcon(copyIcon);
+                  setTimeout(() => { toggleCopyIcon(copyIcon); }, 1500);
+                }
+              };
+
+              // Append the copy button to the wrapper
+              wrapper.appendChild(overlay);
+
+              // Find and replace inline callouts
+              const rgx = /[\u2460-\u2468]/gu;
+              if(text.match(rgx)) {
+                text = text.replaceAll(rgx, "");
+                el.innerHTML = el.innerHTML.replaceAll(rgx, (match) => {
+                  return '<i class="hljs-comment bi bi-' + (match.charCodeAt() - 9311) + '-circle"></i>';
+                });
+              }
+            }
+          });
+        })();
       JS
     end
   end

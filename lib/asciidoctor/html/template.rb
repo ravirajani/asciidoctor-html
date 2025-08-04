@@ -155,7 +155,6 @@ module Asciidoctor
                   integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
                   crossorigin="anonymous"></script>
           <script>
-          const touch = matchMedia('(hover: none)').matches;
           #{Highlightjs::PLUGIN}
           hljs.highlightAll();
           #{Popovers::POPOVERS}

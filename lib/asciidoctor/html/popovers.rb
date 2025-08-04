@@ -36,12 +36,10 @@ module Asciidoctor
             }
           };
           addEventListener("load", function() {
-            // Only enable tooltips on images if not a touch screen device
-            if(!touch) {
-              document.querySelectorAll('img[data-bs-toggle="tooltip"]').forEach(el => {
-                bootstrap.Tooltip.getOrCreateInstance(el);
-              });
-            }
+            // Enable tooltips on images
+            document.querySelectorAll('img[data-bs-toggle="tooltip"]').forEach(el => {
+              bootstrap.Tooltip.getOrCreateInstance(el);
+            });
             // Initialise Popovers if not already done
             if(!popoversInitialised) initPopovers();
           });
