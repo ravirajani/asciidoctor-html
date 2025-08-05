@@ -4,6 +4,7 @@ require "date"
 require_relative "highlightjs"
 require_relative "popovers"
 require_relative "sidebar"
+require_relative "scroll"
 
 module Asciidoctor
   module Html
@@ -159,6 +160,7 @@ module Asciidoctor
           hljs.highlightAll();
           #{Popovers::POPOVERS}
           #{Sidebar::TOGGLE if nav}
+          #{Scroll::SCROLL}
           </script>
           </body>
           </html>

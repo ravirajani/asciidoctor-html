@@ -8,18 +8,18 @@ module Asciidoctor
         (function() {
           let popoversInitialised = false
           function initPopovers() {
-            document.querySelectorAll(".btn-po[data-contentid]").forEach(el => {
+            document.querySelectorAll('.btn-po[data-contentid]').forEach(el => {
               const id = el.dataset.contentid;
               let content = document.getElementById(id);
               if(content) {
-                if(content.tagName == "A") {
+                if(content.tagName == 'A') {
                   // This is an anchor of a bibitem
                   const listItem = content.parentElement.cloneNode(true)
                   listItem.removeChild(listItem.firstChild)
                   content = listItem
                 }
                 new bootstrap.Popover(el, {
-                  trigger: "focus",
+                  trigger: 'focus',
                   content: content,
                   html: true,
                   sanitize: false
@@ -35,7 +35,7 @@ module Asciidoctor
               }
             }
           };
-          addEventListener("load", function() {
+          addEventListener('load', function() {
             // Enable tooltips on images
             document.querySelectorAll('img[data-bs-toggle="tooltip"]').forEach(el => {
               bootstrap.Tooltip.getOrCreateInstance(el);

@@ -13,22 +13,11 @@ module Asciidoctor
             sidebar && sidebar.classList.remove('shown');
             page.classList.remove('noscroll');
           }
-          function clickLocalLink(e) {
-            e.preventDefault();
-            hideSidebar();
-            id = this.getAttribute('href').substring(1);
-            target = document.getElementById(id);
-            target && target.scrollIntoView();
-          }
-          function listenToLocalLink(link) {
-            href = link.getAttribute('href');
-            if(href.startsWith('#')) {
-              link.addEventListener('click', clickLocalLink);
-            }
-          }
-          // Sidebar should be hidden on any link click
-          // Also: custom handling of event due to mobile bugs
-          document.querySelectorAll('a[href]').forEach(listenToLocalLink);
+
+          // Sidebar should be hidden on any local link click
+          document.querySelectorAll('a[href^="#"]').forEach(el => {
+            el.addEventListener('click', hideSidebar);
+          });
           addEventListener('resize', hideSidebar);
           dismissBtn && dismissBtn.addEventListener('click', hideSidebar);
 
