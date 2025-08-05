@@ -6,7 +6,6 @@ module Asciidoctor
     module Popovers
       POPOVERS = <<~JS
         (function() {
-          let popoversInitialised = false
           function initPopovers() {
             document.querySelectorAll('.btn-po[data-contentid]').forEach(el => {
               const id = el.dataset.contentid;
@@ -26,22 +25,13 @@ module Asciidoctor
                 });
               }
             });
-            popoversInitialised = true
           }
-          MathJax = {
-            startup: {
-              pageReady: function() {
-                return MathJax.startup.defaultPageReady().then(initPopovers);
-              }
-            }
-          };
+          MathJax.startup.promise.then(initPopovers);
           addEventListener('load', function() {
             // Enable tooltips on images
             document.querySelectorAll('img[data-bs-toggle="tooltip"]').forEach(el => {
               bootstrap.Tooltip.getOrCreateInstance(el);
             });
-            // Initialise Popovers if not already done
-            if(!popoversInitialised) initPopovers();
           });
         })();
       JS

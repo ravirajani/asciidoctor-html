@@ -3,6 +3,10 @@
     position: relative;
     @extend .block;
     @extend .full-width-bg;
+    --block-strong-text: #{$cyan-900};
+    @include color-mode(dark) {
+        --block-strong-text: #{$cyan-200};
+    }
     background-color: var(--admonition-bg, var(--bs-info-bg-subtle));
     color: var(--admonition-text, var(--bs-info-text-emphasis));
     padding-top: calc(var(--parsep) + #{0.25*$icon-size});
@@ -31,6 +35,10 @@
 .admonition-important, .admonition-caution {
     --admonition-text: var(--bs-warning-text-emphasis);
     --admonition-bg: var(--bs-warning-bg-subtle);
+    --block-strong-text: #{$yellow-900};
+    @include color-mode(dark) {
+        --block-strong-text: #{$yellow-200};
+    }
     .icon {
         @extend .text-bg-warning;
     }
@@ -39,6 +47,10 @@
 .admonition-warning {
     --admonition-text: var(--bs-danger-text-emphasis);
     --admonition-bg: var(--bs-danger-bg-subtle);
+    --block-strong-text: #{$red-900};
+    @include color-mode(dark) {
+        --block-strong-text: #{$red-200};
+    }
     .icon {
         @extend .text-bg-danger;
     }

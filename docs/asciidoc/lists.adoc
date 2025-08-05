@@ -1,4 +1,7 @@
 = Ordered Lists
+:description: asciidoctor-html includes new features for ordered lists that include \
+automatic generation of reference text and support for pseudocode, bibliographies, and \
+lists of figures.
 
 include::includes/variables.adoc[]
 
@@ -108,15 +111,15 @@ In this section, we reproduce an exercise from <<bib-cormen,p.46>>. It demonstra
 features introduced thus far in the context of a "`real`" example.
 
 [algorithm#alg-bubblesort]
-.sc:[BubbleSort]stem:[(A,n)]
+.sc:[BubbleSort]$(A,n)$
 ====
-This procedure sorts array stem:[A[1:n\]].
+This procedure sorts array $A[1:n]$.
 
 [pseudocode]
-. [[line-outer-for]]*for* stem:[i=1] *to* stem:[n-1]
-.. [[line-inner-for]]*for* stem:[j=n] *downto* stem:[i+1]
-... *if* stem:[A[j\] < A[j-1\]]
-.... [[line-statement]]swap stem:[A[j\]] with stem:[A[j-1\]]
+. [[line-outer-for]]*for* $i=1$ *to* $n-1$
+.. [[line-inner-for]]*for* $j=n$ *downto* $i+1$
+... *if* $A[j] < A[j-1]$
+.... [[line-statement]]swap $A[j]$ with $A[j-1]$
 ====
 
 In the following exercise, the correctness of <<alg-bubblesort>> is proved.
@@ -128,7 +131,7 @@ Bubblesort is a popular, but inefficient, sorting algorithm.
 It works by repeatedly swapping adjacent elements that are out of order.
 
 [shift=1]
-. Let stem:[A'] denote the array stem:[A] after sc:[BubbleSort]stem:[(A,n)] is executed.
+. Let $A'$ denote the array $A$ after sc:[BubbleSort]$(A,n)$ is executed.
 To prove that sc:[BubbleSort] is correct, you need to prove that it terminates and that
 +
 [stem#bs-inequality%numbered]
@@ -160,10 +163,10 @@ putting an inline image in each list item. The list title will get rendered as
 an overall caption, and each image's title attribute will get
 rendered as a subcaption.
 
-[figlist]
-.Marginal posteriors of Poisson parameters in change point detection of UK coal mining disasters. Computed by Gibbs algorithm with stem:[B = G = 1000].
-. image:gb73b.svg[Posterior theta1,title=Posterior distribution of first Poisson parameter stem:[\theta_1].]
-. [[fig-posterior-theta2]]image:gb73c.svg[Posterior theta2,title=Posterior distribution of second Poisson parameter stem:[\theta_2] after change point.]
+[figlist#fig-changepoint-mcmc]
+.Marginal posteriors of Poisson parameters in change point detection of UK coal mining disasters. Computed by Gibbs algorithm with $B = G = 1000$.
+. image:gb73b.svg[Posterior theta1,title=Posterior distribution of first Poisson parameter $\theta_1$.]
+. [[fig-posterior-theta2]]image:gb73c.svg[Posterior theta2,title=Posterior distribution of second Poisson parameter $\theta_2$ after change point.]
 
 Again, reference text is properly resolved. Just look at <<fig-posterior-theta2>>.
 

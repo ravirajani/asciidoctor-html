@@ -17,11 +17,13 @@ This is a lemma.
 Building on <<lem-minor-3>>:
 
 [proposition#prop-reftext,reftext=sc:[PropositionSC]]
+.sc:[PropositionSC]
 ====
 This is a proposition.
 ====
 
-The above proposition has custom reftext <<prop-reftext>>.
+The above proposition has custom reftext <<prop-reftext>>. It is nothing like
+anything in <<bib-roughgarden>> or <<bib-cormen,ch.3>>.
  
 See <<fig-cute-cat>> for a picture of a cute cat.
 
@@ -66,3 +68,8 @@ def say_hello():
 ----
 <1> [[co-docstring]]A docstring should go here.
 <2> A semicolon is not required.
+
+[bibliography]
+.References
+. [[bib-cormen]]Cormen, T.H. et al. (2022) Introduction to Algorithms. Cambridge, MA: The Mit Press.
+. [[bib-roughgarden]]Roughgarden, T. (2022) Algorithms Illuminated: Omnibus Edition. Cambridge: CUP.

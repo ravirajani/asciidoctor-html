@@ -1,1 +1,123 @@
 = Numbered Blocks
+
+include::includes/variables.adoc[]
+
+[stem.hidden]
+++++
+include::includes/macros.tex[]
+++++
+
+{asciidoctor-html} automatically adds a number of the form `chapnum.blocknum` to the
+block contexts `example`, `image`, and `table`. Each of these has a unique counter.
+You have already seen numbered example blocks used to typset cref:lists[]. There, you may have
+noticed that the list of figures cref:lists#fig-changepoint-mcmc[] is also numbered.
+
+NOTE: An ordered list with the `figlist` style shares a counter with the `image` counter.
+
+The block contexts `stem` and `listing` get numbered only when the `numbered` option is set.
+They each have a unique counter.
+
+[#sec-reference-table]
+== Reference Table
+
+For each numbered block, automatic reference text gets generated. The details are in <<tbl-reference>>.
+
+[#tbl-reference]
+.Numbered block contexts, counters and reference text
+|===
+|Context |Numbered |Counter |Reference Text
+
+|example |automatic |thm{nbhy}number |E.g., "`Example {chapnum}.1`" (default) +
+                                      Depends on block style if set +
+                                      (see <<sec-example-blocks>>)
+
+|image |automatic |fig{nbhy}number |E.g., "`Figure {chapnum}.1`"
+
+|table |automatic |tbl{nbhy}number |E.g., "`Table {chapnum}.1`"
+
+|olist |when style is `figlist` |fig{nbhy}number |E.g., "`Figure {chapnum}.2`"
+
+|stem |with `numbered` option |eqn{nbhy}number |E.g., "`({chapnum}.1)`"
+|listing |with `numbered` option |ltg{nbhy}number |E.g., "`Listing {chapnum}.1`"
+|===
+
+[#sec-example-blocks]
+== Example Blocks
+
+You can set a custom name and reference text on an example block by setting the
+block's style to the desired text (in lowercase). In <<def-ump>> we used `[definition]`.
+
+[definition#def-ump,title-suffix="<<bib-shao,Definition 6.1>>"]
+.UMP test
+====
+A test $T_\ast$ of size $\alpha$ is a _uniformly most powerful_ (UMP)
+test if and only if $\beta_{T_\ast}(P)\geq\beta_T(P)$ for all $P\in\mathcal{P}_1$
+and $T$ of level $\alpha$.
+====
+
+TIP: You can add a bracketed title suffix by setting the `title-suffix` attribute. This is perfect
+for including citations.
+
+The styles `theorem`, `proposition`, `lemma`, and `corollary` on example blocks
+get a blue colour, and the `algorithm` style gets an orange colour as in cref:lists#alg-bubblesort[].
+
+[lemma,title-suffix="<<bib-shao,Lemma 6.3>>"]
+====
+Suppose that the distribution of $X$ is in a parametric family
+$\mathcal{P}$ indexed by a real-valued $\theta$ and that 
+$\mathcal{P}$ has monotone likelihood ratio in
+$Y(X)$. If $\psi$ is a nondecreasing function of $Y$,
+then $g(\theta) = E\left[\psi(Y)\right]$ is a nondecreasing function of $\theta$.
+====
+
+You may find it useful for your listings to share the same counter as examples. To
+achieve this, nest a listing inside an example block with style `listing`, and
+put the listing title on the example as we have done in <<ex-hello-world>>.
+
+[listing#ex-hello-world]
+.Hello World program
+====
+[source,python]
+----
+def say_hi():
+  """Says hello to the world"""
+  print("Hello World!")
+----
+====
+
+Finally, you may wish to have a block styled like an example, but without a
+number.
+
+[WARNING]
+--
+There is almost *never* a good reason to have an unnumbered
+example, theorem, algorithm, listing, etc. The numbering helps the
+reader understand where your block is situated on the page. For example,
+if you are at Proposition 2.1, and you see a reference to Lemma 2.5, you know
+that is further ahead of where you are, and not something you should already have
+come across.
+--
+
+To typset a block that looks like an _unnumbered_ example, use an open block with the `example`
+role. And if you want one of the example variant styles, additionally add a role
+of the form `example-<variant>`, such as `example-algorithm` as we have used below.
+
+[.example.example-algorithm,title-suffix="<<bib-boyd, Algorithm 9.1>>"]
+.General descent method
+--
+[.unmarked]
+* *given* a starting point $x\in\dom f$.
+* *repeat*
+. Determine a descent direction $\Delta x$.
+. _Line search._ Choose a step size $t > 0$.
+. _Update._ $x\gets x + t\Delta x$.
+* *until* stopping criterion is satisfied.
+--
+
+
+
+== References
+
+[bibliography]
+. [[bib-boyd]]Boyd, S. and Vandenberghe, L. (2004) Convex Optimization. Cambridge: Cambridge University Press.
+. [[bib-shao]]Shao, J. (2007) Mathematical Statistics. 2nd ed. New York, NY: Springer.

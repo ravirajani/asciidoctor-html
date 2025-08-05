@@ -8,7 +8,7 @@ $listing-blue: #002451;
         --unit-100vh: 100dvh;
     }
     --parsep: #{$spacer};
-    --paritemsep: #{0.125*$spacer};
+    --paritemsep: 0px;
     --blocksep: #{$spacer};
     --fw-padding: #{$content-padding-x};
     --fw-margin: -#{$content-padding-x};
@@ -22,7 +22,7 @@ $listing-blue: #002451;
     margin-left: var(--fw-margin);
     margin-right: var(--fw-margin);
     &:not(.example-listing) * {
-        --fw-margin: 0;
+        --fw-margin: 0px;
     }
 }
 
@@ -32,6 +32,10 @@ $listing-blue: #002451;
 
 .smallcaps {
     font-variant-caps: small-caps;
+}
+
+.bibref {
+    text-wrap: nowrap;
 }
 
 .title-mark {
@@ -46,6 +50,13 @@ $listing-blue: #002451;
     }
 }
 
+.title-suffix {
+    margin-left: 0.85ex;
+    font-weight: normal;
+    &::before { content: '('; }
+    &::after { content: ')'; }
+}
+
 .attribution + cite::before {
     content: ', ';
 }
@@ -54,6 +65,9 @@ $listing-blue: #002451;
     --parsep: 0.5rem;
     .block {
         --blocksep: var(--parsep);
+    }
+    strong, .block-title {
+        color: var(--block-strong-text, var(--bs-emphasis-color));
     }
     margin-bottom: var(--blocksep);
     > .block-title, > summary {
@@ -88,6 +102,6 @@ ol, ul, dl {
     p { margin-bottom: var(--paritemsep); }
 }
 
-summary {
-    font-weight: 500;
+summary, strong, h6 {
+    font-weight: 600;
 }

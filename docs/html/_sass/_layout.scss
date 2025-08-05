@@ -32,8 +32,8 @@ html {
     top: calc(0.5 * ($header-height - $icon-size - 0.25rem));
     --bs-btn-bg: rgba(var(--header-bg-rgb), 0.7);
     --bs-btn-hover-bg: var(--header-bg);
-    --bs-btn-padding-x: 0;
-    --bs-btn-padding-y: 0;
+    --bs-btn-padding-x: 0px;
+    --bs-btn-padding-y: 0px;
     --bs-btn-color: var(--bs-gray-200);
     --bs-btn-border-color: var(--bs-gray-200);
     --bs-btn-border-width: 1px;

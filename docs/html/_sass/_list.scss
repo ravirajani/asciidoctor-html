@@ -83,6 +83,14 @@
     > li:not(.checked) > .li-mark {
         font-weight: 500;
     }
+    &.unmarked:not(.checklist) {
+        > li {
+            gap: 0;
+            > .li-mark {
+                display: none;
+            }
+        }
+    }
 }
 
 .list-colist {

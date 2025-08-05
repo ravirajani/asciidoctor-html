@@ -103,6 +103,13 @@ include::config.yml[]
 <1> This is the ID from Google's
 https://programmablesearchengine.google.com/[Programmable Search Engine]
 
+[#sec-latex]
+== LaTeX
+
+You can insert inline LaTeX code within single `{dollar}` signs or using the inline `stem`
+macro. Displaymath code can be inserted within `\[` and `\]` delimiters or inside
+a passthrough block with the `stem` style. 
+
 [#sec-nav]
 == Navigation Menus and Submenus
 

@@ -32,8 +32,16 @@ module Asciidoctor
       end
 
       def self.display_title(node)
-        prefix = display_title_prefix(node)
-        show_title?(node) ? %(<h6 class="block-title">#{prefix}#{node.title}</h6>\n) : ""
+        prefix = display_title_prefix node
+        suffix = display_title_suffix node
+        show_title?(node) ? %(<h6 class="block-title">#{prefix}#{node.title}#{suffix}</h6>\n) : ""
+      end
+
+      def self.display_title_suffix(node)
+        return "" unless node.attr?("title-suffix")
+
+        suffix = node.attr "title-suffix"
+        %(<span class="title-suffix">#{node.apply_subs suffix}</span>)
       end
 
       def self.display_title_prefix(node)

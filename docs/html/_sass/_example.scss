@@ -1,12 +1,15 @@
 .example {
     $default-border-color: var(--bs-secondary-border-subtle);
     $default-bg-color: #f8f9fa;
+    $default-text-color: var(--bs-body-color);
+    --block-strong-text: var(--bs-emphasis-color);
     @include color-mode(dark) {
         --example-bg-color: #{shade-color($default-bg-color, 80%)};
     }
     @extend .block;
     @extend .full-width-bg;
     padding-top: var(--parsep);
+    color: var(--example-text, #{$default-text-color});
     border-top: 2px solid var(--example-border-color, #{$default-border-color});
     border-bottom: 2px solid var(--example-border-color, #{$default-border-color});
     background-color: var(--example-bg-color, #{$default-bg-color});
@@ -16,15 +19,21 @@ $thm-types: theorem, proposition, lemma, corollary;
 
 @each $type in $thm-types {
     .example-#{$type} {
+        --example-text: var(--bs-primary-text-emphasis);
         --example-border-color: var(--bs-primary-border-subtle);
         --example-bg-color: var(--bs-primary-bg-subtle);
+        --block-strong-text: #{$blue-900};
+        @include color-mode(dark) {
+            --block-strong-text: #{$blue-100};
+        }
     }
 }
 
 .example-listing {
     --example-border-color: transparent;
     --example-bg-color: #{$listing-blue};
-    color: $body-color-dark;
+    --example-text: #{$body-color-dark};
+    --block-strong-text: #{$body-emphasis-color-dark};
     > .block-title:first-child {
         margin-bottom: 0;
         padding-bottom: var(--parsep);
@@ -39,10 +48,14 @@ $thm-types: theorem, proposition, lemma, corollary;
 }
 
 .example-algorithm {
-    --example-border-color: #{tint-color($orange, 60%)};
-    --example-bg-color: #{tint-color($orange, 80%)};
+    --example-border-color: #{$orange-200};
+    --example-bg-color: #{$orange-100};
+    --example-text: #{$orange-800};
+    --block-strong-text: #{$orange-900};
     @include color-mode(dark) {
-        --example-border-color: #{shade-color($orange, 40%)};
-        --example-bg-color: #{shade-color($orange, 80%)};
+        --example-text: #{$orange-300};
+        --example-border-color: #{$orange-700};
+        --example-bg-color: #{$orange-900};
+        --block-strong-text: #{$orange-200};
     }
 }

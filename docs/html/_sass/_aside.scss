@@ -2,10 +2,16 @@
     @extend .block;
     @extend .full-width-bg;
     padding-top: var(--parsep);
+    color: var(--bs-secondary-text-emphasis);
     border-top: 2px solid var(--bs-secondary-border-subtle);
     border-bottom: 2px solid var(--bs-secondary-border-subtle);
     background-color: var(--bs-secondary-bg-subtle);
+    --block-strong-text: #{shade-color($secondary, 80%)};
+    @include color-mode(dark) {
+        --block-strong-text: #{tint-color($secondary, 60%)};
+    }
     .aside-title {
         text-align: center;
+        color: var(--block-strong-text);
     }
 }

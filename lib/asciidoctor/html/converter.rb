@@ -84,7 +84,7 @@ module Asciidoctor
         open, close = BLOCK_MATH_DELIMITERS[node.style.to_sym]
         equation = node.content || ""
         equation = "#{open}#{equation}#{close}" unless (equation.start_with? open) && (equation.end_with? close)
-        classes = ["stem"]
+        classes = ["stem", node.role].compact
         if node.option? "numbered"
           equation = %(<div class="equation">\n#{equation}\n</div> <!-- .equation -->)
           equation = %(#{equation}\n<div class="equation-number">#{node.reftext}</div>)
@@ -214,9 +214,9 @@ module Asciidoctor
             if node_text
               /\A\[(?<numeral>\d+)\]\z/ =~ reftext
               reftext = if numeral
-                          "[#{numeral},&nbsp;#{node_text}]"
+                          "[#{numeral}, #{node_text}]"
                         else
-                          "#{reftext},&nbsp;#{node_text}"
+                          "#{reftext}, #{node_text}"
                         end
             end
             return Utils.popover_button(reftext, target.id, "bibref")
@@ -243,7 +243,7 @@ module Asciidoctor
         end
         result = [%(<table#{Utils.id_class_attr_str node.id, classes.join(" ")}#{width_attribute}>)]
         result << %(<caption class="table-title">#{Utils.display_title_prefix node}#{node.title}</caption>)
-        if node.attr("rowcount").positive?
+        if node.attr("rowcount").positive? && node.attr?("cols")
           result << "<colgroup>"
           if autowidth
             result += (Array.new node.columns.size, %(<col>))
