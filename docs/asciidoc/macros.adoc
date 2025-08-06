@@ -59,7 +59,7 @@ color:: A https://developer.mozilla.org/en-US/docs/Web/CSS/color_value[color val
 
 |pass:q[`bi:arrow-through-heart[\]`] |bi:arrow-through-heart[]
 |pass:q[`bi:bicycle[130%\]`] |bi:bicycle[130%]
-|pass:q[`bi-balloon-fill[100%,magenta\]`] |bi:balloon-fill[100%,magenta]
+|pass:q[`bi:balloon-fill[100%,magenta\]`] |bi:balloon-fill[100%,magenta]
 |===
 
 [#sec-sc]
