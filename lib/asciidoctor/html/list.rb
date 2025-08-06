@@ -14,7 +14,9 @@ module Asciidoctor
           ("level-#{level} pseudocode" if flat),
           node.role
         ].compact
-        classes << "checklist" if node.option?("checklist")
+        classes << "list-checklist" if node.option?("checklist")
+        classes << "list-unmarked" if node.option?("unmarked")
+        classes << "list-roomy" if node.option?("roomy")
         result = [%(<#{tag_name}#{Utils.dyn_id_class_attr_str node, classes.join(" ")}>)]
         node.items.each do |item|
           result << display_list_item(item)

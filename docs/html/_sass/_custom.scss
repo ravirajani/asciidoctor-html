@@ -111,7 +111,12 @@ p {
 
 ol, ul, dl {
     margin-bottom: calc(var(--parsep) - var(--paritemsep));
-    p { margin-bottom: var(--paritemsep); }
+    p { 
+        margin-bottom: var(--paritemsep);
+        + .stem {
+            margin-top: calc(-1 * var(--paritemsep));
+        }
+    }
 }
 
 summary, h6 {

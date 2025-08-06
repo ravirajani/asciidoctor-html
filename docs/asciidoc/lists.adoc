@@ -134,7 +134,7 @@ In the following exercise, the correctness of <<alg-bubblesort>> is proved.
 Bubblesort is a popular, but inefficient, sorting algorithm.
 It works by repeatedly swapping adjacent elements that are out of order.
 
-[shift=1]
+[%roomy,shift=1]
 . Let $A'$ denote the array $A$ after sc:[BubbleSort]$(A,n)$ is executed.
 To prove that sc:[BubbleSort] is correct, you need to prove that it terminates and that
 +
@@ -147,7 +147,7 @@ In order to show that sc:[BubbleSort] actually sorts, what else do you need to p
 
 The next two parts prove inequality <<bs-inequality>>.
 
-[start=2,shift=1]
+[%roomy,start=2,shift=1]
 . [[bs-loop-invariant]]State precisely a loop invariant for the for loop in lines <<line-inner-for>>-<<line-statement>>,
 and prove that this loop invariant holds.
 Your proof should use the structure of the loop-invariant proof presented in <<bib-cormen,ch.2>>.
@@ -157,6 +157,8 @@ Your proof should use the structure of the loop-invariant proof presented in <<b
 . What is the worst-case running time of sc:[BubbleSort]? How does it compare
 with the running time of sc:[InsertionSort]?
 ====
+
+TIP: Use the `roomy` option if you want some extra space between list items.
 
 [#sec-figlist]
 == List of Figures

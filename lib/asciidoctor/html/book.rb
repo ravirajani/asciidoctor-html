@@ -120,7 +120,7 @@ module Asciidoctor
           short_title: @short_title,
           author: @author,
           date: @date,
-          chaptitle: "Search",
+          chapsubheading: "Search",
           langs: []
         )
       end
@@ -244,7 +244,6 @@ module Asciidoctor
           author: @author,
           date: @date,
           description: doc.attr("description"),
-          chaptitle: tdata.chaptitle,
           chapheading: tdata.chapheading,
           chapsubheading: tdata.chapsubheading,
           langs: langs(doc)

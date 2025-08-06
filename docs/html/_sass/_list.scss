@@ -75,7 +75,7 @@
 }
 
 .list-ulist {
-    &:not(.checklist) {
+    &:not(.list-checklist) {
         > li > .li-mark {
             flex: 0 0 0.75rem;
         }
@@ -83,7 +83,7 @@
     > li:not(.checked) > .li-mark {
         font-weight: 500;
     }
-    &.unmarked:not(.checklist) {
+    &.list-unmarked:not(.list-checklist) {
         > li {
             gap: 0;
             > .li-mark {
@@ -91,6 +91,10 @@
             }
         }
     }
+}
+
+.list-roomy {
+    --paritemsep: 0.375rem;
 }
 
 .list-colist {

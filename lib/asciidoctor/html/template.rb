@@ -147,7 +147,7 @@ module Asciidoctor
       # - description: String
       # - date: Date
       # - chapheading: String
-      # - chaptitle: String
+      # - chapsubheading: String
       # - langs: Array[String]
       def self.html(content, nav_items, opts = {})
         nav = (nav_items.size > 1)

@@ -51,8 +51,8 @@ $thm-types: theorem, proposition, lemma, corollary;
 .example-algorithm {
     --example-border-color: #{$orange-200};
     --example-bg-color: #{$orange-100};
-    --example-text: #{$orange-800};
-    --strong-text-color: #{$orange-900};
+    --example-text: #{shade-color($orange, 70%)};
+    --strong-text-color: #{shade-color($orange, 90%)};
     @include color-mode(dark) {
         --example-text: #{$orange-300};
         --example-border-color: #{$orange-700};

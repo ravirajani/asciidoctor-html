@@ -128,7 +128,7 @@ of the form `example-{dollar}variant`, such as `example-algorithm` as we have us
 [.example.example-algorithm,title-suffix="<<bib-boyd, Algorithm 9.1>>"]
 .General descent method
 --
-[.unmarked]
+[%unmarked]
 * *given* a starting point $x\in\dom f$.
 * *repeat*
 . Determine a descent direction $\Delta x$.
@@ -137,8 +137,8 @@ of the form `example-{dollar}variant`, such as `example-algorithm` as we have us
 * *until* stopping criterion is satisfied.
 --
 
-TIP: Above, we added the `unmarked` role to the top-level list. Use this
-role if you want to hide the markers in an *unordered* list.
+TIP: Above, we added the `unmarked` option to the top-level list. Use this
+option if you want to hide the markers in an *unordered* list.
 
 == References
 
