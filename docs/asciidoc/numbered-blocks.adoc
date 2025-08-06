@@ -1,4 +1,7 @@
 = Numbered Blocks
+:description: asciidoctor-html features automatic numbering of theorems and theorem-like \
+environments (based on LaTeX's amsthm package), as well as numbering of figures, tables, \
+equations, and listings.
 
 include::includes/variables.adoc[]
 

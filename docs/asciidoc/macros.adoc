@@ -1,4 +1,8 @@
 = Macros
+:description: Useful macros are included with asciidoctor-html that allow for: proper \
+cross referencing of content on other pages with full resolution of reference text; \
+footnotes that are rendered in popovers; easy insertion of icons; and rendering text in \
+smallcaps.
 
 include::includes/variables.adoc[]
 

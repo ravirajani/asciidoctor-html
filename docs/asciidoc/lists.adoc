@@ -1,7 +1,8 @@
 = Ordered Lists
-:description: asciidoctor-html includes new features for ordered lists that include \
+:description: asciidoctor-html has many useful features for ordered lists that include \
 automatic generation of reference text and support for pseudocode, bibliographies, and \
-lists of figures.
+lists of figures. These features are demonstrated by means of \
+an example of typesetting an exercise from a textbook in theoretical computer science.
 
 include::includes/variables.adoc[]
 

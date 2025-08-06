@@ -1,7 +1,8 @@
 = Getting Started
 :sectnumlevels: 2
 :description: Instructions on how to configure and start using the \
-static site generator asciidoctor-html.
+static site generator asciidoctor-html. Describes a quick start GitHub \
+publishing workflow as well as a Ruby-based local toolchain.
 
 include::includes/variables.adoc[]
 
