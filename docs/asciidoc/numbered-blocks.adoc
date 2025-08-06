@@ -7,7 +7,8 @@ include::includes/variables.adoc[]
 include::includes/macros.tex[]
 ++++
 
-{asciidoctor-html} automatically adds a number of the form `chapnum.blocknum` to the
+{asciidoctor-html} automatically adds a number of the form
+`{dollar}chapnum.{dollar}blocknum` to the
 block contexts `example`, `image`, and `table`. Each of these has a unique counter.
 You have already seen numbered example blocks used to typset cref:lists[]. There, you may have
 noticed that the list of figures cref:lists#fig-changepoint-mcmc[] is also numbered.
@@ -27,22 +28,26 @@ For each numbered block, automatic reference text gets generated. The details ar
 |===
 |Context |Numbered |Counter |Reference Text
 
-|example |automatic |thm{nbhy}number |E.g., "`Example {chapnum}.1`" (default) +
+|example |automatic |thm |E.g., "`Example {chapnum}.1`" (default) +
                                       Depends on block style if set +
                                       (see <<sec-example-blocks>>)
 
-|image |automatic |fig{nbhy}number |E.g., "`Figure {chapnum}.1`"
+|image |automatic |fig |E.g., "`Figure {chapnum}.1`"
 
-|table |automatic |tbl{nbhy}number |E.g., "`Table {chapnum}.1`"
+|table |automatic |tbl |E.g., "`Table {chapnum}.1`"
 
-|olist |when style is `figlist` |fig{nbhy}number |E.g., "`Figure {chapnum}.2`"
+|olist |when style is `figlist` |fig |E.g., "`Figure {chapnum}.2`"
 
-|stem |with `numbered` option |eqn{nbhy}number |E.g., "`({chapnum}.1)`"
-|listing |with `numbered` option |ltg{nbhy}number |E.g., "`Listing {chapnum}.1`"
+|stem |with `numbered` option |eqn |E.g., "`({chapnum}.1)`"
+|listing |with `numbered` option |ltg |E.g., "`Listing {chapnum}.1`"
 |===
 
 [#sec-example-blocks]
 == Example Blocks
+
+NOTE: Example blocks play the role of `amsthm` LaTeX environments.
+
+=== Theorems and other mathematical blocks
 
 You can set a custom name and reference text on an example block by setting the
 block's style to the desired text (in lowercase). In <<def-ump>> we used `[definition]`.
@@ -61,7 +66,7 @@ for including citations.
 The styles `theorem`, `proposition`, `lemma`, and `corollary` on example blocks
 get a blue colour, and the `algorithm` style gets an orange colour as in cref:lists#alg-bubblesort[].
 
-[lemma,title-suffix="<<bib-shao,Lemma 6.3>>"]
+[lemma#lem-monotone-likelihood,title-suffix="<<bib-shao,Lemma 6.3>>"]
 ====
 Suppose that the distribution of $X$ is in a parametric family
 $\mathcal{P}$ indexed by a real-valued $\theta$ and that 
@@ -69,6 +74,19 @@ $\mathcal{P}$ has monotone likelihood ratio in
 $Y(X)$. If $\psi$ is a nondecreasing function of $Y$,
 then $g(\theta) = E\left[\psi(Y)\right]$ is a nondecreasing function of $\theta$.
 ====
+
+You can typeset a proof using an open block with the `proof` style.
+
+[proof]
+.Proof
+--
+See <<bib-shao,p.398>>.
+--
+
+TIP: You can make any open block collapsible with the `collapsible` option. This may be useful
+for hiding solutions to exercises for instance.
+
+=== Example Listings
 
 You may find it useful for your listings to share the same counter as examples. To
 achieve this, nest a listing inside an example block with style `listing`, and
@@ -85,6 +103,8 @@ def say_hi():
 ----
 ====
 
+=== Unnumbered Example Blocks
+
 Finally, you may wish to have a block styled like an example, but without a
 number.
 
@@ -100,7 +120,7 @@ come across.
 
 To typset a block that looks like an _unnumbered_ example, use an open block with the `example`
 role. And if you want one of the example variant styles, additionally add a role
-of the form `example-<variant>`, such as `example-algorithm` as we have used below.
+of the form `example-{dollar}variant`, such as `example-algorithm` as we have used below.
 
 [.example.example-algorithm,title-suffix="<<bib-boyd, Algorithm 9.1>>"]
 .General descent method
@@ -114,7 +134,7 @@ of the form `example-<variant>`, such as `example-algorithm` as we have used bel
 * *until* stopping criterion is satisfied.
 --
 
-
+Above, we added the `unmarked` role to the unordered list. This role hides the markers.
 
 == References
 

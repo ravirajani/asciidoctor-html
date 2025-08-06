@@ -2,7 +2,7 @@
     $default-border-color: var(--bs-secondary-border-subtle);
     $default-bg-color: #f8f9fa;
     $default-text-color: var(--bs-body-color);
-    --block-strong-text: var(--bs-emphasis-color);
+    --strong-text-color: var(--bs-emphasis-color);
     @include color-mode(dark) {
         --example-bg-color: #{shade-color($default-bg-color, 80%)};
     }
@@ -22,9 +22,10 @@ $thm-types: theorem, proposition, lemma, corollary;
         --example-text: var(--bs-primary-text-emphasis);
         --example-border-color: var(--bs-primary-border-subtle);
         --example-bg-color: var(--bs-primary-bg-subtle);
-        --block-strong-text: #{$blue-900};
+        --strong-text-color: #{$blue-900};
         @include color-mode(dark) {
-            --block-strong-text: #{$blue-100};
+            --strong-text-color: #{$blue-100};
+            --example-text: #{$blue-200};
         }
     }
 }
@@ -33,7 +34,7 @@ $thm-types: theorem, proposition, lemma, corollary;
     --example-border-color: transparent;
     --example-bg-color: #{$listing-blue};
     --example-text: #{$body-color-dark};
-    --block-strong-text: #{$body-emphasis-color-dark};
+    --strong-text-color: #{$body-color-dark};
     > .block-title:first-child {
         margin-bottom: 0;
         padding-bottom: var(--parsep);
@@ -51,11 +52,11 @@ $thm-types: theorem, proposition, lemma, corollary;
     --example-border-color: #{$orange-200};
     --example-bg-color: #{$orange-100};
     --example-text: #{$orange-800};
-    --block-strong-text: #{$orange-900};
+    --strong-text-color: #{$orange-900};
     @include color-mode(dark) {
         --example-text: #{$orange-300};
         --example-border-color: #{$orange-700};
         --example-bg-color: #{$orange-900};
-        --block-strong-text: #{$orange-200};
+        --strong-text-color: #{$orange-200};
     }
 }

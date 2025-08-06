@@ -235,6 +235,8 @@ module Asciidoctor
         classes << "table-striped" if node.option? "striped"
         classes << "table-bordered" if node.option? "bordered"
         classes << "table-sm" if node.option? "compact"
+        classes << "table-v#{node.attr "valign"}" if node.attr?("valign")
+        classes << "table-h#{node.attr "halign"}" if node.attr?("halign")
         width_attribute = ""
         if (autowidth = node.option? "autowidth") && !(node.attr? "width")
           classes << "table-fit"

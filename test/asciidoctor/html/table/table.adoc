@@ -1,4 +1,4 @@
-[opts="header,striped"]
+[opts="header,striped",halign=center]
 |===
 |Column 1, header row |Column 2, header row
 

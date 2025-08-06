@@ -1,9 +1,4 @@
 .table {
-    @each $direction in (left, right) {
-        .halign-#{$direction} {
-            text-align: $direction;
-        }
-    }
     margin: 0;
     @extend .caption-top;
     .table-title {
@@ -13,6 +8,28 @@
         width: auto;
         margin: 0 auto;
     }
+    $valign: top, bottom, middle;
+    @each $prop in $valign {
+        &.table-v#{$prop} {
+            th, td {
+                vertical-align: $prop;
+            }
+        }
+    }
+    $halign: left, right, center;
+    @each $prop in $halign {
+        &.table-h#{$prop} {
+            th, td {
+                text-align: $prop;
+            }
+        }
+        th, td {
+            &.halign-#{$prop} {
+                text-align: $prop;
+            }
+        }
+    }
+    &.table-h
     thead + tbody {
         @extend .table-group-divider;
     }

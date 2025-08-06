@@ -14,6 +14,7 @@ $listing-blue: #002451;
     --fw-margin: -#{$content-padding-x};
     --header-bg-rgb: 32, 33, 36;
     --header-bg: rgb(var(--header-bg-rgb));
+    --strong-text-color: var(--bs-emphasis-color);
 }
 
 .full-width-bg {
@@ -32,6 +33,16 @@ $listing-blue: #002451;
 
 .smallcaps {
     font-variant-caps: small-caps;
+}
+
+.footnote {
+    --parsep: 0.5rem;
+}
+
+.parskip {
+    vertical-align: top;
+    display: inline-block;
+    height: calc(var(--bs-body-line-height) * (var(--parsep) + var(--bs-body-font-size)));
 }
 
 .bibref {
@@ -55,6 +66,9 @@ $listing-blue: #002451;
     font-weight: normal;
     &::before { content: '('; }
     &::after { content: ')'; }
+    &::before, &::after {
+        font-weight: 500;
+    }
 }
 
 .attribution + cite::before {
@@ -66,9 +80,6 @@ $listing-blue: #002451;
     .block {
         --blocksep: var(--parsep);
     }
-    strong, .block-title {
-        color: var(--block-strong-text, var(--bs-emphasis-color));
-    }
     margin-bottom: var(--blocksep);
     > .block-title, > summary {
         &:first-child {
@@ -79,6 +90,7 @@ $listing-blue: #002451;
 
 .block-title {
     margin-bottom: 0.25rem;
+    color: var(--strong-text-color);
 }
 
 .paragraph .block-title {
@@ -102,6 +114,14 @@ ol, ul, dl {
     p { margin-bottom: var(--paritemsep); }
 }
 
-summary, strong, h6 {
-    font-weight: 600;
+summary, h6 {
+    font-weight: 500;
+}
+
+strong, th {
+    font-weight: 600 !important;
+}
+
+strong {
+    color: var(--strong-text-color);
 }

@@ -108,7 +108,9 @@ https://programmablesearchengine.google.com/[Programmable Search Engine]
 
 You can insert inline LaTeX code within single `{dollar}` signs or using the inline `stem`
 macro. Displaymath code can be inserted within `\[` and `\]` delimiters or inside
-a passthrough block with the `stem` style. 
+a passthrough block with the `stem` style.
+
+TIP: If you want to display a dollar sign, use the `\{dollar}` variable.
 
 [#sec-nav]
 == Navigation Menus and Submenus

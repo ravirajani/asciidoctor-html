@@ -32,7 +32,9 @@ module Asciidoctor
         "stem" => "latexmath",
         "hide-uri-scheme" => true,
         "source-highlighter" => "highlight.js",
-        "imagesdir" => IMG_PATH
+        "imagesdir" => IMG_PATH,
+        "dollar" => "&#36;",
+        "parskip" => %(<span class="parskip"></span><br>)
       }.freeze
 
       DEFAULT_OPTS = {

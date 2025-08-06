@@ -2,6 +2,7 @@
     --listing-bg: #{$listing-blue};
     --listing-padding: 0.5rem;
     color: $body-color-dark;
+    --strong-text-color: #{$body-color-dark};
     @extend .full-width-bg;
     background-color: var(--listing-bg);
     .block-title {

@@ -1,3 +1,67 @@
 = Macros
 
+include::includes/variables.adoc[]
 
+{asciidoctor-html} includes some convenient inline macros
+in addition to those made available by {asciidoctor-org}.
+
+[#sec-cref]
+== cref
+
+The `cref` inline macro allows you to cross reference blocks or anchors in other pages.
+Reference text gets properly resolved if unspecified.
+
+.Example uses of the cref macro
+[%compact]
+|===
+|Source |Generated Link
+
+|pass:q[`cref:index[\]`] |cref:index[]
+|pass:q[`cref:lists[\]`] |cref:lists[]
+|pass:q[`cref:lists[Ordered Lists\]`] |cref:lists[Ordered Lists]
+|pass:q[`cref:numbered-blocks#tbl-reference[Reference Table\]`] |cref:numbered-blocks#tbl-reference[Reference Table]
+|pass:q[`cref:numbered-blocks#lem-monotone-likelihood[\]`] |cref:numbered-blocks#lem-monotone-likelihood[]
+|pass:q[`cref:tests[\]`]
+|cref:tests[]
+|===
+
+[#sec-footnote]
+== footnote
+:fn-demo: pass:c,q,a,p[footnote:[ \
+*Syntax:* `footnote:[{dollar}content\]`{parskip} \
+Content can include LaTeX such as \[x + 1 = 2 \Rightarrow x = 1\\] \
+]] 
+
+The footnote macro is included in {asciidoctor-org}. However, instead of creating a link to a footnote
+at the bottom of the page, {asciidoctor-html} shows the footnote in a
+popover.{fn-demo}
+
+TIP: Use the `\{parskip}` variable to force an appropriate vertical space inside a
+footnote. Insert the variable directly following the preceding text (with no spaces).
+This variable can also be useful inside list items.
+
+[#sec-bi]
+== bi
+
+You can insert any icon from {bs-icons} with the `bi` macro.
+
+****
+[title-prefix=Usage]
+.pass:q,a[`bi:{dollar}name[{dollar}font-size,{dollar}color\]`]
+font-size:: A percentage value relative to the surrounding font.
+color:: A https://developer.mozilla.org/en-US/docs/Web/CSS/color_value[color value].
+****
+
+.Example uses of the bi macro
+[%compact,valign=middle]
+|===
+|Source |Generated Icon
+
+|pass:q[`bi:arrow-through-heart[\]`] |bi:arrow-through-heart[]
+|pass:q[`bi:bicycle[130%\]`] |bi:bicycle[130%]
+|pass:q[`bi-balloon-fill[100%,magenta\]`] |bi:balloon-fill[100%,magenta]
+|===
+
+[#sec-sc]
+== sc
+Convert a piece of text to sc:[SmallCaps] with pass:q,a[`sc:[{dollar}text\]`].
