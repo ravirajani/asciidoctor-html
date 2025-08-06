@@ -40,9 +40,9 @@ $listing-blue: #002451;
 }
 
 .parskip {
-    vertical-align: top;
+    vertical-align: text-top;
     display: inline-block;
-    height: calc(var(--bs-body-line-height) * (var(--parsep) + var(--bs-body-font-size)));
+    height: calc(var(--parsep) + var(--bs-body-font-size));
 }
 
 .bibref {
