@@ -8,6 +8,8 @@ module Asciidoctor
       PagItem = Struct.new("PagItem", :url, :title)
 
       def display_paginator(prv, nxt)
+        return "" unless prv || nxt
+
         <<~HTML
           <div class="paginator-wrapper">
           <div class="d-inline-block">
