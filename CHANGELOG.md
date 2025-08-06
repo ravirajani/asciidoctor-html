@@ -34,3 +34,15 @@
 - Support for shifted ordered lists.
 - Generation of XML sitemap.
 - New favicon.
+
+## [0.1.7] - 2025-08-06
+
+- Completion of documentation.
+- Upgrade to MathJax v4.
+- Fix scrolling bugs on mobile.
+- CSS improvements.
+- {parskip} and {dollar} document attributes.
+- SmallCaps macro.
+- Support for inlining SVGs.
+- CLI now copies assets from srcdir to outdir.
+- Pagination links at the bottom of content.
