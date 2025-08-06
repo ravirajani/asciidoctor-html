@@ -46,3 +46,8 @@
 - Support for inlining SVGs.
 - CLI now copies assets from srcdir to outdir.
 - Pagination links at the bottom of content.
+
+## [0.1.8] - 2025-08-06
+
+- Hide paginator on single page website.
+- Add description meta tags to docs pages.
