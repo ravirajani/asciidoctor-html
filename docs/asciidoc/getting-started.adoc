@@ -124,8 +124,8 @@ active navigation item provided the active page contains multiple level-1 (`==`)
 [#sec-assets]
 == Assets
 
-Images should be added to the folder `<srcdir>/assets/img` and referred to in the AsciiDoc sources
+Images should be added to the folder `{dollar}srcdir/assets/img` and referred to in the AsciiDoc sources
 by just the name of the file.
 
-Subfolders `img`, `css`, `favicon` of `<srcdir>/assets` will get copied over to `<outdir>`. You may use
+Subfolders `img`, `css`, `favicon` of `{dollar}srcdir/assets` will get copied over to `{dollar}outdir`. You may use
 this feature to replace the {default-assets}[default assets] included with {asciidoctor-html}.
