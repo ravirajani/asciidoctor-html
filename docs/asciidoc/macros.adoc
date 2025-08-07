@@ -15,6 +15,14 @@ in addition to those made available by {asciidoctor-org}.
 The `cref` inline macro allows you to cross reference blocks or anchors in other pages.
 Reference text gets properly resolved if unspecified.
 
+****
+[title-prefix=Usage]
+.pass:q,a[`cref:{dollar}docname{dollar}anchor[{dollar}reftext\]`]
+docname:: The name of the AsciiDoc file. The `.adoc` extension may be omitted.
+anchor:: (Optional) The ID of the element referenced in `{dollar}docName` preceded by a `#`.
+reftext:: (Optional) The reference text to be used if the default resolution is not suitable. 
+****
+
 .Example uses of the cref macro
 [%compact]
 |===
