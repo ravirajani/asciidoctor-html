@@ -19,7 +19,7 @@ Reference text gets properly resolved if unspecified.
 [title-prefix=Usage]
 .pass:q,a[`cref:{dollar}docname{dollar}anchor[{dollar}reftext\]`]
 docname:: The name of the AsciiDoc file. The `.adoc` extension may be omitted.
-anchor:: (Optional) The ID of the element referenced in `{dollar}docName` preceded by a `#`.
+anchor:: (Optional) The ID of the element referenced in `{dollar}docname` preceded by a `#`.
 reftext:: (Optional) The reference text to be used if the default resolution is not suitable. 
 ****
 
@@ -60,8 +60,9 @@ You can insert any icon from {bs-icons} with the `bi` macro.
 ****
 [title-prefix=Usage]
 .pass:q,a[`bi:{dollar}name[{dollar}font-size,{dollar}color\]`]
-font-size:: A percentage value relative to the surrounding font.
-color:: A https://developer.mozilla.org/en-US/docs/Web/CSS/color_value[color value].
+name:: Any of the icon names listed https://icons.getbootstrap.com/#icons[here].
+font-size:: (Optional) A percentage value relative to the surrounding font.
+color:: (Optional) A https://developer.mozilla.org/en-US/docs/Web/CSS/color_value[color value].
 ****
 
 .Example uses of the bi macro
