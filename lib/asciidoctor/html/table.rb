@@ -4,7 +4,7 @@ module Asciidoctor
   module Html
     # Helpers for the table conversion
     module Table
-      def self.display_row(node, tsec, row)
+      def self.display_row(tsec, row)
         result = ["<tr>"]
         row.each do |cell|
           cell_content = if tsec == :head
@@ -16,8 +16,8 @@ module Asciidoctor
                          end
           cell_tag_name = (tsec == :head || cell.style == :header ? "th" : "td")
           cell_attrs = []
-          cell_attrs << %(halign-#{cell.attr "halign"}) unless node.attr?("halign")
-          cell_attrs << %(align-#{cell.attr "valign"}) unless node.attr?("valign")
+          cell_attrs << %(halign-#{cell.attr "halign"}) unless cell.attr?("halign", "left")
+          cell_attrs << %(align-#{cell.attr "valign"}) unless cell.attr?("valign", "top")
           cell_class_attribute = %( class="#{cell_attrs.join " "}") unless cell_attrs.empty?
           cell_colspan_attribute = cell.colspan ? %( colspan="#{cell.colspan}") : ""
           cell_rowspan_attribute = cell.rowspan ? %( rowspan="#{cell.rowspan}") : ""
@@ -32,7 +32,7 @@ module Asciidoctor
         node.rows.to_h.map do |tsec, rows|
           next if rows.empty?
 
-          "<t#{tsec}>\n#{rows.map { |row| display_row(node, tsec, row) }.join("\n")}\n</t#{tsec}>"
+          "<t#{tsec}>\n#{rows.map { |row| display_row(tsec, row) }.join("\n")}\n</t#{tsec}>"
         end.join("\n")
       end
     end

@@ -1,20 +1,12 @@
 .table {
     margin: 0;
     @extend .caption-top;
-    .table-title {
-        text-align: center;
-    }
     &.table-fit {
         width: auto;
         margin: 0 auto;
     }
-    $valign: top, bottom, middle;
-    @each $prop in $valign {
-        &.table-v#{$prop} {
-            th, td {
-                vertical-align: $prop;
-            }
-        }
+    .table-title {
+        padding: 0;
     }
     $halign: left, right, center;
     @each $prop in $halign {
@@ -25,11 +17,10 @@
         }
         th, td {
             &.halign-#{$prop} {
-                text-align: $prop;
+                text-align: $prop !important;
             }
         }
     }
-    &.table-h
     thead + tbody {
         @extend .table-group-divider;
     }

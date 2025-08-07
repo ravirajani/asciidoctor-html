@@ -29,7 +29,8 @@ module Asciidoctor
         result = []
         result << %(<li#{Utils.id_class_attr_str item.id,
                                                  item.role}><div class="li-mark">#{item.attr "mark"}</div>)
-        result << %(<div class="li-content"><p>#{item.text}</p>)
+        result << %(<div class="li-content">)
+        result << %(<p>#{item.text}</p>) unless item.text.empty?
         result << "\n#{item.content}" if item.blocks?
         result << %(</div></li>#{Utils.id_class_sel_comment item.id, item.role})
         result.join "\n"

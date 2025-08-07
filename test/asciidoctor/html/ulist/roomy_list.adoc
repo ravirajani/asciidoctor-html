@@ -1,0 +1,18 @@
+[%roomy]
+* First item, level 1
+* Second item, level 1
++
+Paragraph within second item, level 1
+
+** First item, level 2
++
+Paragraph within first item, level 2
++
+[%roomy]
+*** First item, level 3
+*** {empty}
+**** First item, level 4
+**** Second item, level 4
+*** Third item, level 3
+** Second item, level 2
+* Third item, level 1

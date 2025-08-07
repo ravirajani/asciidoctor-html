@@ -1,5 +1,5 @@
 .Table Title
-[cols="1,1",opts="header,autowidth,compact,bordered"]
+[cols="1,1",opts="autowidth,compact,bordered"]
 |===
 |Column 1, header row |Column 2, header row
 

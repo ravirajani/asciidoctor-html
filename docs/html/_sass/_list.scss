@@ -23,6 +23,7 @@
 .list {
     @extend .list-unstyled;
     li {
+        --paritemsep: 0px;
         display: flex;
         flex-flow: row nowrap;
         gap: 0.5rem;
@@ -33,6 +34,9 @@
         }
         .li-content {
             flex: 1;
+        }
+        .list {
+            margin-bottom: var(--paritemsep);
         }
     }
 }
@@ -94,7 +98,9 @@
 }
 
 .list-roomy {
-    --paritemsep: 0.375rem;
+    > li {
+        --paritemsep: 0.375rem;
+    }
 }
 
 .list-colist {
