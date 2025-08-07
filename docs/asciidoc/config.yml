@@ -29,7 +29,7 @@ outdir: ../html   # default: www
 
 # provide a Google Search Engine ID if you want
 # to generate a search page
-se_id: b5711c050271f4ccc # <1>
+# se_id: b5711c050271f4ccc # <1>
 
 # provide a base_url if you want to generate
 # a sitemap
