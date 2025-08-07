@@ -51,3 +51,8 @@
 
 - Hide paginator on single page website.
 - Add description meta tags to docs pages.
+
+## [0.1.9] - 2025-08-07
+
+- Changed unmarked list role to an option.
+- Roomy table option.

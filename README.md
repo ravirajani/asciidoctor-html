@@ -2,7 +2,7 @@
 
 # asciidoctor-html
 
-**The code in this repo is being actively developed. Use at your own risk.**
+A simple static site generator for AsciiDoc documents based on [Asciidoctor](https://github.com/asciidoctor/asciidoctor).
 
 ## Installation
 
@@ -28,7 +28,7 @@ sources.
 Assuming your config file is in the same directory as your AsciiDoc sources, execute:
 
 ```shell
-cd <ASCIIDOC_SOURCES_DIR>
+cd ASCIIDOC_SOURCES_DIR
 adoctohtml [--watch]
 ```
 
