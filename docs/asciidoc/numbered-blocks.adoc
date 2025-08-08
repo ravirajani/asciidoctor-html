@@ -13,7 +13,7 @@ include::includes/macros.tex[]
 {asciidoctor-html} automatically adds a number of the form
 `{dollar}chapnum.{dollar}blocknum` to the
 block contexts `example`, `image`, and `table`. Each of these has a unique counter.
-You have already seen numbered example blocks used to typset cref:lists[]. There, you may have
+You have already seen numbered example blocks used to typeset cref:lists[]. There, you may have
 noticed that the list of figures cref:lists#fig-changepoint-mcmc[] is also numbered.
 
 NOTE: An ordered list with the `figlist` style shares a counter with the `image` counter.
@@ -121,7 +121,7 @@ that is further ahead of where you are, and not something you should already hav
 come across.
 --
 
-To typset a block that looks like an _unnumbered_ example, use an open block with the `example`
+To typeset a block that looks like an _unnumbered_ example, use an open block with the `example`
 role. And if you want one of the example variant styles, additionally add a role
 of the form `example-{dollar}variant`, such as `example-algorithm` as we have used below.
 
