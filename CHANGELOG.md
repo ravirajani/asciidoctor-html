@@ -56,3 +56,10 @@
 
 - Changed unmarked list role to an option.
 - Roomy table option.
+
+## [0.1.10] - 2025-08-08
+
+- Removed sc macro.
+- The text macro adds support for semantic inline text formatting as well
+  as SmallCaps and other styles.
+- Some documentation improvements.
