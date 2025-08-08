@@ -31,8 +31,16 @@ $listing-blue: #002451;
     display: none !important;
 }
 
-.smallcaps {
+.text-sc {
     font-variant-caps: small-caps;
+}
+
+.text-muted {
+    color: rgba(var(--bs-body-color-rgb), 0.5);
+}
+
+abbr[data-bs-original-title] {
+    @extend abbr, [title];
 }
 
 .footnote {

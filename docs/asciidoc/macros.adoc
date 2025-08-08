@@ -39,7 +39,7 @@ reftext:: (Optional) The reference text to be used if the default resolution is 
 
 [#sec-footnote]
 == footnote
-:fn-demo: pass:c,q,a,p[footnote:[ \
+:fn-demo: pass:q,a[footnote:[ \
 *Syntax:* `footnote:[{dollar}content\]`{parskip} \
 Content can include LaTeX such as \[x + 1 = 2 \Rightarrow x = 1\\] \
 ]] 
@@ -75,6 +75,62 @@ color:: (Optional) A https://developer.mozilla.org/en-US/docs/Web/CSS/color_valu
 |pass:q[`bi:balloon-fill[100%,magenta\]`] |bi:balloon-fill[100%,magenta]
 |===
 
-[#sec-sc]
-== sc
-Convert a piece of text to sc:[SmallCaps] with pass:q,a[`sc:[{dollar}text\]`].
+[#sec-text]
+== text
+
+Bootstrap's semantic https://getbootstrap.com/docs/5.3/content/typography/#inline-text-elements[inline text elements]
+are supported via the `text` macro.
+
+****
+[title-prefix=Usage]
+.pass:q,a[`text:{dollar}style[{dollar}text,{dollar}attrs&hellip;\]`]
+style:: The type of formatting to be applied.
+text:: The text to apply the formatting to.
+attrs:: When `{dollar}style=abbr`, supply a hover `title` and optional `role=initialism` for slightly smaller text.
+****
+
+.Example uses of the text macro
+[source,asciidoc]
+----
+These types of #markup# are built in to *AsciiDoc* and _don't_ require the
+`text` macro.
+
+text:del[This line of text is meant to be treated as deleted text.]
+
+text:strike[This line of text is meant to be treated as no longer accurate.]
+
+text:ins[This line of text is meant to be treated as an addition to the document.]
+
+text:underline[This line of text will render as underlined.]
+
+text:small[This line of text is meant to be treated as fine print.]
+
+text:sc[This line is rendered in SmallCaps.]
+
+text:muted[This line is fainter than the others.]
+
+text:danger[This line is a warning.]
+
+This line contains abbreviations like text:abbr[attr,title=attribute] and text:abbr[HTML,title=HyperText Markup Language,role=initialism]
+----
+
+These types of #markup# are built in to *AsciiDoc* and _don't_ require the
+`text` macro.
+
+text:del[This line of text is meant to be treated as deleted text.]
+
+text:strike[This line of text is meant to be treated as no longer accurate.]
+
+text:ins[This line of text is meant to be treated as an addition to the document.]
+
+text:underline[This line of text will render as underlined.]
+
+text:small[This line of text is meant to be treated as fine print.]
+
+text:sc[This line is rendered in SmallCaps.]
+
+text:muted[This line is fainter than the others.]
+
+text:danger[This line is a warning.]
+
+This line contains abbreviations like text:abbr[attr,title=attribute] and text:abbr[HTML,title=HyperText Markup Language,role=initialism]

@@ -115,7 +115,7 @@ In this section, we reproduce an exercise from <<bib-cormen,p.46>>. It demonstra
 features introduced thus far in the context of a "`real`" example.
 
 [algorithm#alg-bubblesort]
-.sc:[BubbleSort]$(A,n)$
+.text:sc[BubbleSort]$(A,n)$
 ====
 This procedure sorts array $A[1:n]$.
 
@@ -129,21 +129,21 @@ This procedure sorts array $A[1:n]$.
 In the following exercise, the correctness of <<alg-bubblesort>> is proved.
 
 [exercise]
-.Correctness of <<alg-bubblesort,sc:[BubbleSort]>>
+.Correctness of <<alg-bubblesort,text:sc[BubbleSort]>>
 ====
 Bubblesort is a popular, but inefficient, sorting algorithm.
 It works by repeatedly swapping adjacent elements that are out of order.
 
 [%roomy,shift=1]
-. Let $A'$ denote the array $A$ after sc:[BubbleSort]$(A,n)$ is executed.
-To prove that sc:[BubbleSort] is correct, you need to prove that it terminates and that
+. Let $A'$ denote the array $A$ after text:sc[BubbleSort]$(A,n)$ is executed.
+To prove that text:sc[BubbleSort] is correct, you need to prove that it terminates and that
 +
 [stem#bs-inequality%numbered]
 ++++
 A'[1] \leq A'[2] \leq \dots \leq A'[n]
 ++++
 +
-In order to show that sc:[BubbleSort] actually sorts, what else do you need to prove?
+In order to show that text:sc[BubbleSort] actually sorts, what else do you need to prove?
 
 The next two parts prove inequality <<bs-inequality>>.
 
@@ -154,8 +154,8 @@ Your proof should use the structure of the loop-invariant proof presented in <<b
 . Using the termination condition of the loop invariant proved in part <<bs-loop-invariant>>, state
 a loop invariant for the for loop in lines <<line-outer-for>>-<<line-statement>> that allows you to prove inequality <<bs-inequality>>.
 Your proof should use the structure of the loop-invariant proof presented in <<bib-cormen,ch.2>>.
-. What is the worst-case running time of sc:[BubbleSort]? How does it compare
-with the running time of sc:[InsertionSort]?
+. What is the worst-case running time of text:sc[BubbleSort]? How does it compare
+with the running time of text:sc[InsertionSort]?
 ====
 
 TIP: Use the `roomy` option if you want some extra space between list items.

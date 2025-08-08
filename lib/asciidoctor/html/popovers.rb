@@ -39,6 +39,10 @@ module Asciidoctor
               bootstrap.Tooltip.getOrCreateInstance(el);
             });
           });
+          // Enable tooltips on abbreviations
+          document.querySelectorAll('abbr[data-bs-toggle="tooltip"]').forEach(el => {
+            bootstrap.Tooltip.getOrCreateInstance(el);
+          });
         })();
       JS
     end

@@ -1,6 +1,6 @@
 == Unnumbered Section
 
-[title-suffix=sc:[HelloWorld]]
+[title-suffix=text:sc[HelloWorld]]
 ====
 This is a simple example.
 ====

@@ -16,8 +16,8 @@ This is a lemma.
 
 Building on <<lem-minor-3>>:
 
-[proposition#prop-reftext,reftext=sc:[PropositionSC]]
-.sc:[PropositionSC]
+[proposition#prop-reftext,reftext=text:sc[PropositionSC]]
+.text:sc[PropositionSC]
 ====
 This is a proposition.
 ====
