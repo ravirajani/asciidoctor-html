@@ -1,8 +1,8 @@
 = Macros
 :description: Useful macros are included with asciidoctor-html that allow for: proper \
 cross referencing of content on other pages with full resolution of reference text; \
-footnotes that are rendered in popovers; easy insertion of icons; and rendering text in \
-smallcaps.
+footnotes that are rendered in popovers; easy insertion of icons; and rendering of \
+semantic inline text elements.
 
 include::includes/variables.adoc[]
 
@@ -86,51 +86,26 @@ are supported via the `text` macro.
 .pass:q,a[`text:{dollar}style[{dollar}text,{dollar}attrs&hellip;\]`]
 style:: The type of formatting to be applied.
 text:: The text to apply the formatting to.
-attrs:: When `{dollar}style=abbr`, supply a hover `title` and optional `role=initialism` for slightly smaller text.
+attrs:: When `{dollar}style=abbr`, supply a hover `title` and optional `role=initialism` for
+slightly smaller uppercase text.
 ****
 
+NOTE: _These_ types of #markup# are built in to the *AsciiDoc* language and _don't_ require the
+`text` macro.
+
 .Example uses of the text macro
-[source,asciidoc]
-----
-These types of #markup# are built in to *AsciiDoc* and _don't_ require the
-`text` macro.
+[%compact]
+|===
+|Source |Generated Text
 
-text:del[This line of text is meant to be treated as deleted text.]
-
-text:strike[This line of text is meant to be treated as no longer accurate.]
-
-text:ins[This line of text is meant to be treated as an addition to the document.]
-
-text:underline[This line of text will render as underlined.]
-
-text:small[This line of text is meant to be treated as fine print.]
-
-text:sc[This line is rendered in SmallCaps.]
-
-text:muted[This line is fainter than the others.]
-
-text:danger[This line is a warning.]
-
-This line contains abbreviations like text:abbr[attr,title=attribute] and text:abbr[HTML,title=HyperText Markup Language,role=initialism]
-----
-
-These types of #markup# are built in to *AsciiDoc* and _don't_ require the
-`text` macro.
-
-text:del[This line of text is meant to be treated as deleted text.]
-
-text:strike[This line of text is meant to be treated as no longer accurate.]
-
-text:ins[This line of text is meant to be treated as an addition to the document.]
-
-text:underline[This line of text will render as underlined.]
-
-text:small[This line of text is meant to be treated as fine print.]
-
-text:sc[This line is rendered in SmallCaps.]
-
-text:muted[This line is fainter than the others.]
-
-text:danger[This line is a warning.]
-
-This line contains abbreviations like text:abbr[attr,title=attribute] and text:abbr[HTML,title=HyperText Markup Language,role=initialism]
+|pass:q[`text:del[deleted text\]`] |text:del[deleted text]
+|pass:q[`text:strike[no longer accurate\]`] |text:strike[no longer accurate]
+|pass:q[`text:ins[an addition\]`] |text:ins[an addition]
+|pass:q[`text:underline[underlined text\]`] |text:underline[underlined text]
+|pass:q[`text:small[fine print\]`] |text:small[fine print]
+|pass:q[`text:sc[SmallCaps\]`] |text:sc[SmallCaps]
+|pass:q[`text:muted[faint text\]`] |text:muted[faint text]
+|pass:q[`text:danger[a warning\]`] |text:danger[a warning]
+|pass:q[`text:abbr[attr,title=attribute\]`] |text:abbr[attr,title=attribute]
+|pass:q[`text:abbr[HTML,title=HyperText Markup Language,role=initialism\]`] |text:abbr[HTML,title=HyperText Markup Language,role=initialism]
+|===
