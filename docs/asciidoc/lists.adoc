@@ -89,8 +89,16 @@ the `pseudocode` style on the top level. The markers will all be aligned as in <
 .. A level 2 item will be indented.
 ... And a level 3 item will be indented more.
 .. Another level 2 list item.
+
+The pseudocode list below is a continuation of the above,
+achieved with `[start=6]`.
+
+[pseudocode,start=6]
+. Continuing the pseudocode list.
+.. Yet another level 2 list item.
 ====
 
+[#sec-bibliography]
 == Bibiliography Style
 Setting a list's style to `bibliography` will render the markers as arabic numerals in square brackets.
 When clicking on a generated reference link to a bibliography item, such as <<bib-roughgarden>>,
