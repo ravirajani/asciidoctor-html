@@ -118,7 +118,7 @@ TIP: If you want to display a dollar sign, use the `\{dollar}` variable.
 
 {asciidoctor-html} will automatically generate a navigation menu if the site
 contains multiple pages. Furthermore, a navigation submenu will be displayed below the
-active navigation item provided the active page contains multiple level-1 (`==`) sections
+active navigation item provided the active page contains multiple level 1 (`==`) sections
 *with an ID attribute*.
 
 [#sec-assets]

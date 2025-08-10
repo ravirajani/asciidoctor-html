@@ -30,10 +30,27 @@
 . Continued item
 .. Another subitem
 
-=== Continue id not found
+=== Continue ID not found
 
 . First item
 . Second item
 
 [continue=lst-not-found]
 . Third item not continued
+
+=== ID found but not a list
+
+[#par-not-list]
+This is a paragraph.
+
+[continue=par-not-list]
+. Trying to continue a paragraph.
+
+=== Continue shifted list
+
+[#lst-shifted,shift=1]
+. First item
+. Second item
+
+[continue=lst-shifted,shift=1]
+. Continued item

@@ -34,40 +34,50 @@ putting the anchor `\[[li-level2]]` at the start of the first level 2 list item 
 the reference link <<li-level2>> with `\<<li-level2>>`.
 In a similar way, you can generate the link <<li-level4>> to the second level 4 list item.
 
-[#sec-start-shift]
-== Start and Shift Attributes
+[#sec-continue]
+== Continue Attribute
 
-As with {asciidoctor-org}, you can choost to start any of the levels at a different "`number`" with the `start`
-attribute.
-For example, with <<ex-basic-list>>, using `[start=3]` on the first level and `[start=4]` on the second level,
-gives <<ex-start>>.
+If you want to define a list that is a continuation of a list defined elsewhere
+(usually appearing before it), you should use the `continue` attribute, set to the
+ID of the other list.
 
-[#ex-start]
-.List with start attributes
+[#ex-continue]
+.Continuing a list
 ====
-[start=3]
-. Level 1 list item, marked with an arabic numeral followed by a dot.
+[#lst-first]
+. Level 1 list item of list with ID `lst-first`.
 . Another level 1 list item.
-[start=4]
-.. A level 2 list item, marked with a bracketed lowercase letter.
-... A level 3 list item, marked with a lowercase roman numeral followed by a dot.
-.... A level 4 list item, marked with a bracketed uppercase letter.
-.... Another level 4 list item.
+.. A level 2 list item.
+... A level 3 list item.
 ... Another level 3 list item.
 .. Another level 2 list item.
+
+The list below is a continuation of the above list,
+achieved with `[continue=lst-first]`.
+
+[continue=lst-first]
+. This is the next level 1 item of the list with ID `lst-first`.
+. Another level 1 item.
 ====
 
-You can also change the type of marker used at any list level with the `shift` attribute.
-For example, setting `[shift=3]` on the first level and `[start=2,shift=-1]`
+WARNING: Lists in AsciiDoc also accept a `start` attribute, with which you can
+start the list at any desired number. There is almost *never* a good reason to do
+this. In most cases you will want to use the `continue` attribute instead. It is always
+best to leave the numbering to the system rather than trying to maintain it yourself.
+
+== Shift Attribute
+
+You can change the type of marker used at any list level with the `shift` attribute.
+For example, setting `[shift=3]` on the first level and `[shift=-1]`
 on the second level gives <<ex-shift>>.
 
 [#ex-shift]
-.List with start and shift attributes
+.List with shift attribute
 ====
 [shift=3]
 . Level 1 list item, marked with a bracketed uppercase letter.
 . Another level 1 list item.
-[start=2, shift=-1]
+[shift=-1]
 .. A level 2 list item, marked with an arabic numeral followed by a dot.
 .. [[li-lvl2-alt]]Another level 2 list item.
 ====
@@ -83,7 +93,7 @@ the `pseudocode` style on the top level. The markers will all be aligned as in <
 [#ex-pseudocode]
 .Pseudocode list
 ====
-[pseudocode]
+[pseudocode#lst-pseudocode]
 . Level 1 item of a pseudocode list.
 . Another level 1 list item.
 .. A level 2 item will be indented.
@@ -91,9 +101,9 @@ the `pseudocode` style on the top level. The markers will all be aligned as in <
 .. Another level 2 list item.
 
 The pseudocode list below is a continuation of the above,
-achieved with `[start=6]`.
+achieved with the `continue` attribute.
 
-[pseudocode,start=6]
+[pseudocode,continue=lst-pseudocode]
 . Continuing the pseudocode list.
 .. Yet another level 2 list item.
 ====
@@ -142,7 +152,7 @@ In the following exercise, the correctness of <<alg-bubblesort>> is proved.
 Bubblesort is a popular, but inefficient, sorting algorithm.
 It works by repeatedly swapping adjacent elements that are out of order.
 
-[%roomy,shift=1]
+[#lst-exercise-parts%roomy,shift=1]
 . Let $A'$ denote the array $A$ after text:sc[BubbleSort]$(A,n)$ is executed.
 To prove that text:sc[BubbleSort] is correct, you need to prove that it terminates and that
 +
@@ -155,7 +165,7 @@ In order to show that text:sc[BubbleSort] actually sorts, what else do you need 
 
 The next two parts prove inequality <<bs-inequality>>.
 
-[%roomy,start=2,shift=1]
+[%roomy,continue=lst-exercise-parts,shift=1]
 . [[bs-loop-invariant]]State precisely a loop invariant for the for loop in lines <<line-inner-for>>-<<line-statement>>,
 and prove that this loop invariant holds.
 Your proof should use the structure of the loop-invariant proof presented in <<bib-cormen,ch.2>>.
