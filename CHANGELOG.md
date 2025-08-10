@@ -63,3 +63,7 @@
 - The text macro adds support for semantic inline text formatting as well
   as SmallCaps and other styles.
 - Some documentation improvements.
+
+## [0.1.11] - 2025-08-10
+
+- Added continue attribute for ordered lists.
