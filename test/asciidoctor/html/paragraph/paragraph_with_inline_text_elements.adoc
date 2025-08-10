@@ -9,4 +9,7 @@ _This line rendered as italicized text._{parskip}
 text:sc[This line is rendered in SmallCaps.]{parskip}
 text:muted[This line is fainter than the others.]{parskip}
 text:danger[This line is a warning.]{parskip}
-This line contains abbreviations like text:abbr[attr,title=attribute] and text:abbr[HTML,title=HyperText Markup Language,role=initialism]
+This line contains abbreviations like text:abbr[attr,title=attribute]
+and text:abbr[HTML,title=HyperText Markup Language,role=initialism]{parskip}
+To switch directories, type text:kbd[cd] followed by the name of the directory. +
+To edit settings, press text:kbd["Ctrl + ,"].

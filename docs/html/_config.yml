@@ -7,3 +7,4 @@ exclude:
 
 sass:
   style: compressed
+  sourcemap: never

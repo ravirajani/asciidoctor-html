@@ -41,9 +41,11 @@ jobs:
       - name: Install dependencies
         run: bin/setup
       - name: Build the Jekyll docs site
-        run: bundle exec rake jekyll
+        run: bundle exec rake autoprefix
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/html/_site/
 
   # Deployment job
   deploy:

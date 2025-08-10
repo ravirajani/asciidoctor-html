@@ -3,6 +3,7 @@
 source "https://rubygems.org"
 
 gemspec
+gem "autoprefixer-rails"
 gem "irb"
 gem "jekyll", "~> 4.4"
 gem "logger"

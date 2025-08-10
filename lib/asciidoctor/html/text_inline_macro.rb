@@ -24,6 +24,8 @@ module Asciidoctor
                     %(<u>#{text}</u>)
                   when "small"
                     %(<small>#{text}</small>)
+                  when "kbd"
+                    %(<kbd>#{text}</kbd>)
                   when "abbr"
                     title = %( title="#{attrs["title"]}" data-bs-toggle="tooltip") if attrs.include?("title")
                     role = %( class="#{attrs["role"]}") if attrs.include?("role")
