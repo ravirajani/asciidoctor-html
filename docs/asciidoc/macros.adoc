@@ -107,5 +107,9 @@ NOTE: _These_ types of #markup# are built in to the *AsciiDoc* language and _don
 |pass:q[`text:muted[faint text\]`] |text:muted[faint text]
 |pass:q[`text:danger[a warning\]`] |text:danger[a warning]
 |pass:q[`text:abbr[attr,title=attribute\]`] |text:abbr[attr,title=attribute]
-|pass:q[`text:abbr[HTML,title=HyperText Markup Language,role=initialism\]`] |text:abbr[HTML,title=HyperText Markup Language,role=initialism]
+
+|pass:q[`text:abbr[HTML,title=HyperText Markup Language,role=initialism\]`]
+|text:abbr[HTML,title=HyperText Markup Language,role=initialism]
+
+|pass:q[`text:kbd[Ctrl + A\]`] |text:kbd[Ctrl + A]
 |===
