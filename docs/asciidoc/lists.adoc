@@ -65,6 +65,7 @@ start the list at any desired number. There is almost *never* a good reason to d
 this. In most cases you will want to use the `continue` attribute instead. It is always
 best to leave the numbering to the system rather than trying to maintain it yourself.
 
+[#sec-shift]
 == Shift Attribute
 
 You can change the type of marker used at any list level with the `shift` attribute.
