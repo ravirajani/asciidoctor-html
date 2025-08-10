@@ -67,3 +67,8 @@
 ## [0.1.11] - 2025-08-10
 
 - Added continue attribute for ordered lists.
+
+## [0.1.12] - 2025-08-10'
+
+- Added vendor prefixes according to Bootstrap's browserslist file.
+- Added kbd HTML element to text macro.
