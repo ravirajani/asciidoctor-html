@@ -113,7 +113,14 @@ module Asciidoctor
       end
 
       def offset(list)
-        list.attr?("start") ? (list.attr("start").to_i - 1) : 0
+        return (list.attr("start").to_i - 1) if list.attr?("start")
+        return 0 unless list.attr?("continue")
+
+        id = list.attr "continue"
+        node = list.document.catalog[:refs][id]
+        return node.attr("nflatitems") || node.items.size if node&.context == :olist
+
+        0
       end
 
       def shift(list)
@@ -227,7 +234,7 @@ module Asciidoctor
             elsif olist? block
               if listdepth.zero?
                 flat_style = (block.style == "pseudocode")
-                flat_idx = offset block # rubocop:disable Lint/UselessAssignment
+                flat_idx = offset block
               end
               process_olist! block, listdepth, flat_style:
             elsif olist_item?(block) && flat_style
@@ -245,6 +252,7 @@ module Asciidoctor
             listdepth -= 1 if olist_item?(block) && move == :retreat
             bulletdepth += 1 if ulist?(block) && move == :explore
             bulletdepth -= 1 if ulist_item?(block) && move == :retreat
+            block.set_attr("nflatitems", flat_idx) if olist?(block) && flat_style && move == :retreat
           end
         end
       end

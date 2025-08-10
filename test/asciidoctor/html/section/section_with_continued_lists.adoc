@@ -1,0 +1,39 @@
+== Section With Continued Lists
+
+=== Normal list
+
+[#lst-normal]
+. First item
+. Second item
+[#lst-normal-sub]
+.. First subitem
+.. Second subitem
+
+[continue=lst-normal]
+. Continued item
+. Another item
+[continue=lst-normal-sub]
+.. Continued subitem
+.. Another subitem
+
+=== Pseudocode list
+
+[pseudocode#lst-pc]
+. First item
+. Second item
+.. First subitem
+.. Second subitem
+... First subsubitem
+.. Third subitem
+
+[pseudocode,continue=lst-pc]
+. Continued item
+.. Another subitem
+
+=== Continue id not found
+
+. First item
+. Second item
+
+[continue=lst-not-found]
+. Third item not continued
