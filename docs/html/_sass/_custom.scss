@@ -113,16 +113,16 @@ abbr[data-bs-original-title] {
     margin-bottom: 1.25*$spacer;
 }
 
-p {
+p, .stem {
     margin-bottom: var(--parsep);
 }
 
 ol, ul, dl {
     margin-bottom: calc(var(--parsep) - var(--paritemsep));
-    p { 
+    p, .stem { 
         margin-bottom: var(--paritemsep);
     }
-    p:has(+ .stem), .stem {
+    p:has(+ .stem), .stem:has(+ p) {
         margin-bottom: calc(0.5 * var(--paritemsep));
     }
 }

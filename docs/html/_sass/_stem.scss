@@ -1,8 +1,11 @@
 .stem-wrapper {
     .block-title {
-        margin-bottom: 0;
         text-align: center;
     }
+    .stem {
+        margin-bottom: 0;
+    }
+    margin-bottom: var(--parsep);
 }
 
 .stem-equation {
@@ -14,10 +17,15 @@
     }
 }
 
-p:has(+ .stem), .stem {
+p:has(+ .stem), .stem:has(+ p), p:has(+ .stem-wrapper), .stem-wrapper:has(+ p) {
     margin-bottom: calc(0.5 * var(--parsep));
 }
 
-body mjx-container[display] {
-    margin: 0;
+body {
+    mjx-container[display] {
+        margin: 0;
+    }
+    p mjx-container[display] {
+        margin: calc(0.5 * var(--parsep)) 0;
+    }
 }
