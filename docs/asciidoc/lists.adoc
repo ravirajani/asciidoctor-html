@@ -153,7 +153,7 @@ In the following exercise, the correctness of <<alg-bubblesort>> is proved.
 Bubblesort is a popular, but inefficient, sorting algorithm.
 It works by repeatedly swapping adjacent elements that are out of order.
 
-[#lst-exercise-parts,shift=1]
+[#lst-exercise-parts%roomy,shift=1]
 . Let $A'$ denote the array $A$ after text:sc[BubbleSort]$(A,n)$ is executed.
 To prove that text:sc[BubbleSort] is correct, you need to prove that it terminates and that
 +

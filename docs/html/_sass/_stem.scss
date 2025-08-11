@@ -14,6 +14,10 @@
     }
 }
 
-p + .stem {
-    margin-top: calc(-1 * var(--parsep));
+p:has(+ .stem), .stem {
+    margin-bottom: calc(0.5 * var(--parsep));
+}
+
+body mjx-container[display] {
+    margin: 0;
 }

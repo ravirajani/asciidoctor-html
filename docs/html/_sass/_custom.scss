@@ -121,9 +121,9 @@ ol, ul, dl {
     margin-bottom: calc(var(--parsep) - var(--paritemsep));
     p { 
         margin-bottom: var(--paritemsep);
-        + .stem {
-            margin-top: calc(-1 * var(--paritemsep));
-        }
+    }
+    p:has(+ .stem), .stem {
+        margin-bottom: calc(0.5 * var(--paritemsep));
     }
 }
 
