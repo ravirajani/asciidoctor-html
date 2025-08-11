@@ -14,9 +14,9 @@ module Asciidoctor
               if(content) {
                 if(content.tagName == 'A') {
                   // This is an anchor of a bibitem
-                  const listItem = content.parentElement.cloneNode(true)
-                  listItem.removeChild(listItem.firstChild)
-                  content = listItem
+                  const bibItem = content.parentElement.cloneNode(true)
+                  bibItem.removeChild(bibItem.firstChild) // remove the anchor
+                  content = bibItem.innerHTML
                 }
                 popovers.push(new bootstrap.Popover(el, {
                   content: content,

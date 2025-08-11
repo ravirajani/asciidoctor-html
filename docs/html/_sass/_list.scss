@@ -35,7 +35,7 @@
         .li-content {
             flex: 1;
         }
-        .list {
+        .list:not(.list-roomy) {
             margin-bottom: var(--paritemsep);
         }
     }
@@ -98,8 +98,10 @@
 }
 
 .list-roomy {
+    $roomyitemsep: 0.375rem;
+    --paritemsep: #{$roomyitemsep};
     > li {
-        --paritemsep: 0.375rem;
+        --paritemsep: #{$roomyitemsep};
     }
 }
 
