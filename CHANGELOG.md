@@ -68,7 +68,12 @@
 
 - Added continue attribute for ordered lists.
 
-## [0.1.12] - 2025-08-10'
+## [0.1.12] - 2025-08-10
 
 - Added vendor prefixes according to Bootstrap's browserslist file.
 - Added kbd HTML element to text macro.
+
+## [0.1.13] - 2025-08-11
+
+- Removed par space after citation in popover.
+- Improved CSS rules for roomy lists.
