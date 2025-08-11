@@ -55,7 +55,7 @@ module Minitest
       Pathname(TESTS_DIR).children.reject { |f| f.file? || f.basename.to_s.start_with?("_") }.sort.each do |pn|
         report_files results, pn
       end
-      adoc = %(= Test Results\n\n#{time}\n#{results.join "\n"})
+      adoc = %(= Test Results\nRavi Rajani\n#{time}\n#{results.join "\n"})
       File.write("#{DOCS_DIR}/tests.adoc", adoc)
       Asciidoctor::Html::CLI.run({ "config-file": CONFIG_FILE, watch: false })
     end

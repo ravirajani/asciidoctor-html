@@ -5,8 +5,9 @@ title: Documentation for asciidoctor-html
 short_title: asciidoctor-html
 
 # displayed in the footer
-author: Ravi Rajani
-date: "30 July 2025"
+# overrideable in the document's author line
+authors:
+  - Ravi Rajani
 
 # chapters and appendices are lists of AsciiDoc
 # documents to be converted to HTML

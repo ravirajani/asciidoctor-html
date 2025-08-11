@@ -85,7 +85,7 @@ module Asciidoctor
 
       def self.generate_bookopts(config)
         book_opts = {}
-        %i[title short_title author date se_id base_url chapname].each do |opt|
+        %i[title short_title authors se_id base_url chapname].each do |opt|
           key = opt.to_s
           book_opts[opt] = config[key] if config.include?(key)
         end

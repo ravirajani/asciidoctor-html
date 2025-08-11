@@ -50,7 +50,7 @@ module Asciidoctor
       # - chapheading: String
       # - chapsubheading: String
       # - content: String
-      # - author: String
+      # - authors: String
       # - date: Date
       def self.main(opts)
         <<~HTML
@@ -59,7 +59,7 @@ module Asciidoctor
           #{%(<h1 class="chapheading">#{opts[:chapheading]}</h1>) if opts[:chapheading]}
           <h1 class="chaptitle">#{opts[:chapsubheading]}</h1>
           #{opts[:content]}
-          #{footer opts[:author], opts[:date].year}
+          #{footer opts[:authors]}
           </div>
           </main>
         HTML
@@ -92,10 +92,10 @@ module Asciidoctor
         HTML
       end
 
-      def self.footer(author, year)
+      def self.footer(authors)
         <<~HTML
           <footer class="footer">
-            <div class="footer-left">&#169; #{year} #{author}</div>
+            <div class="footer-left">&#169; <span id="cr-year"></span> #{authors}</div>
             <div class="footer-right">Built with
               <a href="https://github.com/ravirajani/asciidoctor-html">asciidoctor-html</a>
             </div>
@@ -109,13 +109,13 @@ module Asciidoctor
         end.join("\n  ")
       end
 
-      def self.head(title, description, author, langs)
+      def self.head(title, description, authors, langs)
         <<~HTML
           <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             #{%(<meta name="description" content="#{description}">) if description}
-            #{%(<meta name="author" content="#{author}">) if author}
+            #{%(<meta name="author" content="#{authors}">) if authors}
             <title>#{title}</title>
             <link rel="apple-touch-icon" sizes="180x180" href="#{FAVICON_PATH}/apple-touch-icon.png">
             <link rel="icon" type="image/png" sizes="32x32" href="#{FAVICON_PATH}/favicon-32x32.png">
@@ -143,9 +143,8 @@ module Asciidoctor
       # opts:
       # - title: String
       # - short_title: String
-      # - author: String
+      # - authors: String
       # - description: String
-      # - date: Date
       # - chapheading: String
       # - chapsubheading: String
       # - langs: Array[String]
@@ -154,7 +153,7 @@ module Asciidoctor
         <<~HTML
           <!DOCTYPE html>
           <html lang="en">
-          #{head opts[:title], opts[:description], opts[:author], opts[:langs]}
+          #{head opts[:title], opts[:description], opts[:authors], opts[:langs]}
           <body>
           #{sidebar(nav_items) if nav}
           <div id="page" class="page">
@@ -163,6 +162,7 @@ module Asciidoctor
           #{main content:, **opts}
           </div> <!-- .page -->
           <script type="module">
+          document.getElementById("cr-year").textContent = (new Date()).getFullYear();
           #{Highlightjs::PLUGIN}
           hljs.highlightAll();
           #{Popovers::POPOVERS}

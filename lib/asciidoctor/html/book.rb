@@ -17,8 +17,7 @@ module Asciidoctor
     # A book is a collection of documents with cross referencing
     # supported via the cref macro.
     class Book
-      attr_reader :title, :author, :date, :chapname,
-                  :refs, :templates
+      attr_reader :title, :chapname, :refs, :templates
 
       Asciidoctor::Extensions.register do
         tree_processor RefTreeProcessor
@@ -39,7 +38,6 @@ module Asciidoctor
 
       DEFAULT_OPTS = {
         title: "Untitled Book",
-        author: "Anonymous Author",
         chapname: "Chapter"
       }.freeze
 
@@ -54,16 +52,14 @@ module Asciidoctor
       # opts:
       # - title
       # - short_title
-      # - author
-      # - date
+      # - authors
       # - se_id
       # - chapname
       def initialize(opts = {})
         opts = DEFAULT_OPTS.merge opts
         @title = ERB::Escape.html_escape opts[:title]
         @short_title = ERB::Escape.html_escape opts[:short_title]
-        @author = ERB::Escape.html_escape opts[:author]
-        @date = opts.include?(:date) ? Date.parse(opts[:date]) : Date.today
+        @authors = opts[:authors]
         @se_id = opts[:se_id]
         @base_url = opts[:base_url]
         @chapname = opts[:chapname]
@@ -118,7 +114,7 @@ module Asciidoctor
           nav_items,
           title: @title,
           short_title: @short_title,
-          author: @author,
+          authors: display_authors,
           date: @date,
           chapsubheading: "Search",
           langs: []
@@ -198,6 +194,25 @@ module Asciidoctor
         node.reftext || (node.title unless node.inline?) || "[#{node.id}]" if node.id
       end
 
+      def display_authors(doc)
+        authors = doc.authors.map do |author|
+          doc.sub_replacements author.name
+        end
+
+        if authors.empty? && @authors
+          authors = @authors.map do |author|
+            ERB::Escape.html_escape author
+          end
+        end
+
+        return if authors.empty?
+
+        [
+          authors[0..-2].join(", "),
+          authors[-1]
+        ].reject(&:empty?).join(" and ")
+      end
+
       def outline(doc)
         items = []
         doc.sections.each do |section|
@@ -241,7 +256,7 @@ module Asciidoctor
           nav_items,
           title: @title,
           short_title: @short_title,
-          author: @author,
+          authors: display_authors(doc),
           date: @date,
           description: doc.attr("description"),
           chapheading: tdata.chapheading,
