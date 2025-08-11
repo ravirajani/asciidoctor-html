@@ -77,3 +77,8 @@
 
 - Removed par space after citation in popover.
 - Improved CSS rules for roomy lists.
+
+## [0.1.14] - 2025-08-12
+
+- Copyright date generated on client.
+- Multiple authors and support for AsciiDoc Author Line.
