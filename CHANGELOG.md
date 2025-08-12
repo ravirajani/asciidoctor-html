@@ -86,3 +86,7 @@
 ## [0.1.15] - 2025-08-12
 
 - Full-text search client-side with lunr.js.
+
+## [0.1.16] - 2025-08-12
+
+- Improved search functionality.
