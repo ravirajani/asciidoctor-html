@@ -65,6 +65,22 @@ module Asciidoctor
       def lunr_script
         <<~JS
           (function() {
+            const normalisePossessive = function (builder) {
+              // Define a pipeline function that removes apostrophe
+              const pipelineFunction = function (token) {
+                if (token.toString().endsWith('’s')) {
+                  return token.update(function () { return token.toString().slice(0,-2) })
+                } else {
+                  return token
+                }
+              }
+              // Register the pipeline function so the index can be serialised
+              lunr.Pipeline.registerFunction(pipelineFunction, 'normalisePossessive')
+              // Add the pipeline function to both the indexing pipeline and the
+              // searching pipeline
+              builder.pipeline.before(lunr.stemmer, pipelineFunction)
+              builder.searchPipeline.before(lunr.stemmer, pipelineFunction)
+            }
             const resultsContainer = document.getElementById('search-results-container');
             const nmatches = document.getElementById('search-nmatches');
             const searchResults = document.getElementById('search-results');
@@ -73,8 +89,8 @@ module Asciidoctor
             const positionOverflow = 20;
             const documents = #{search_json};
             const idx = lunr(function() {
+              this.use(normalisePossessive);
               this.ref('id');
-              this.field('title');
               this.field('text');
               this.metadataWhitelist = ['position'];
 
@@ -114,9 +130,15 @@ module Asciidoctor
                       while(text[right] && text[right].trim() == text[right]) {
                         right++;
                       }
-                      overflowLeft.textContent = text.substring(left, start - 1);
+                      let overflowRightText = text.substring(end + 1, right);
+                      if(overflowRightText.length > 0 && text[right - 1] != '.') {
+                        overflowRightText += '… ';
+                      } else {
+                        overflowRightText += ' ';
+                      }
+                      overflowLeft.textContent = text.substring(left + 1, start);
                       matchingText.textContent = textMatch;
-                      overflowRight.textContent = text.substring(end + 1, right);
+                      overflowRight.textContent = overflowRightText
                       result.append(overflowLeft, matchingText, overflowRight);
                     });
                   }

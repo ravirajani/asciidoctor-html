@@ -1,12 +1,6 @@
 .search-results {
     margin: 0 var(--fw-margin);
     --bs-list-group-item-padding-x: var(--fw-padding);
-    .overflow-text-right + .overflow-text-left {
-        margin-left: 1ex;
-    }
-    .overflow-text-right::after {
-        content: '\2026';
-    }
 }
 
 .search-form-container {

@@ -57,6 +57,10 @@ html {
         overflow-y: hidden;
         scrollbar-gutter: stable;
     }
+    &:has(.search-results) {
+        scrollbar-gutter: stable;
+        overflow-y: scroll;
+    }
     padding: 0;
     scroll-behavior: smooth;
     scrollbar-color: $gray-600 $gray-800;
