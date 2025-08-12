@@ -8,6 +8,7 @@ module Asciidoctor
     CSS_PATH = "#{ASSETS_PATH}/css".freeze
     IMG_PATH = "#{ASSETS_PATH}/img".freeze
     SEARCH_PAGE = "search.html"
+    SEARCH_INDEX = "search-index.json"
   end
 end
 

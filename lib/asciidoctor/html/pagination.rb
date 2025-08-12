@@ -5,7 +5,7 @@ module Asciidoctor
     # Mixin to add pagination support to Book class
     module Pagination
       # Pagination item
-      PagItem = Struct.new("PagItem", :url, :title)
+      PagItem = Struct.new "PagItem", :url, :title
 
       def display_paginator(prv, nxt)
         return "" unless prv || nxt

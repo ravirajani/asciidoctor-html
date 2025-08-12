@@ -4,6 +4,7 @@ PATH
     asciidoctor-html (0.1.14)
       asciidoctor (~> 2.0)
       filewatcher (~> 2.1)
+      nokogiri (~> 1.18)
       psych (~> 5.2)
       roman-numerals (~> 0.3)
 
@@ -34,8 +35,6 @@ GEM
     ffi (1.17.2-arm-linux-gnu)
     ffi (1.17.2-arm-linux-musl)
     ffi (1.17.2-arm64-darwin)
-    ffi (1.17.2-x86-linux-gnu)
-    ffi (1.17.2-x86-linux-musl)
     ffi (1.17.2-x86_64-darwin)
     ffi (1.17.2-x86_64-linux-gnu)
     ffi (1.17.2-x86_64-linux-musl)
@@ -52,12 +51,6 @@ GEM
       bigdecimal
       rake (>= 13)
     google-protobuf (4.31.1-arm64-darwin)
-      bigdecimal
-      rake (>= 13)
-    google-protobuf (4.31.1-x86-linux-gnu)
-      bigdecimal
-      rake (>= 13)
-    google-protobuf (4.31.1-x86-linux-musl)
       bigdecimal
       rake (>= 13)
     google-protobuf (4.31.1-x86_64-darwin)
@@ -115,6 +108,22 @@ GEM
     mercenary (0.4.0)
     minitest (5.25.5)
     module_methods (0.1.0)
+    nokogiri (1.18.9-aarch64-linux-gnu)
+      racc (~> 1.4)
+    nokogiri (1.18.9-aarch64-linux-musl)
+      racc (~> 1.4)
+    nokogiri (1.18.9-arm-linux-gnu)
+      racc (~> 1.4)
+    nokogiri (1.18.9-arm-linux-musl)
+      racc (~> 1.4)
+    nokogiri (1.18.9-arm64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.18.9-x86_64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.18.9-x86_64-linux-gnu)
+      racc (~> 1.4)
+    nokogiri (1.18.9-x86_64-linux-musl)
+      racc (~> 1.4)
     parallel (1.27.0)
     parser (3.3.9.0)
       ast (~> 2.4.1)
@@ -171,13 +180,9 @@ GEM
     sass-embedded (1.89.2)
       google-protobuf (~> 4.31)
       rake (>= 13)
-    sass-embedded (1.89.2-aarch64-linux-android)
-      google-protobuf (~> 4.31)
     sass-embedded (1.89.2-aarch64-linux-gnu)
       google-protobuf (~> 4.31)
     sass-embedded (1.89.2-aarch64-linux-musl)
-      google-protobuf (~> 4.31)
-    sass-embedded (1.89.2-arm-linux-androideabi)
       google-protobuf (~> 4.31)
     sass-embedded (1.89.2-arm-linux-gnueabihf)
       google-protobuf (~> 4.31)
@@ -185,15 +190,7 @@ GEM
       google-protobuf (~> 4.31)
     sass-embedded (1.89.2-arm64-darwin)
       google-protobuf (~> 4.31)
-    sass-embedded (1.89.2-riscv64-linux-android)
-      google-protobuf (~> 4.31)
-    sass-embedded (1.89.2-riscv64-linux-gnu)
-      google-protobuf (~> 4.31)
-    sass-embedded (1.89.2-riscv64-linux-musl)
-      google-protobuf (~> 4.31)
     sass-embedded (1.89.2-x86_64-darwin)
-      google-protobuf (~> 4.31)
-    sass-embedded (1.89.2-x86_64-linux-android)
       google-protobuf (~> 4.31)
     sass-embedded (1.89.2-x86_64-linux-gnu)
       google-protobuf (~> 4.31)
@@ -207,23 +204,15 @@ GEM
     webrick (1.9.1)
 
 PLATFORMS
-  aarch64-linux-android
   aarch64-linux-gnu
   aarch64-linux-musl
-  arm-linux-androideabi
   arm-linux-gnu
   arm-linux-gnueabihf
   arm-linux-musl
   arm-linux-musleabihf
   arm64-darwin
-  riscv64-linux-android
-  riscv64-linux-gnu
-  riscv64-linux-musl
-  ruby
-  x86-linux-gnu
-  x86-linux-musl
   x86_64-darwin
-  x86_64-linux-android
+  x86_64-linux
   x86_64-linux-gnu
   x86_64-linux-musl
 

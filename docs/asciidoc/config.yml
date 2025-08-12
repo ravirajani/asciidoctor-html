@@ -14,12 +14,12 @@ authors:
 chapters:
   - index.adoc
   - getting-started.adoc
-  - lists.adoc
-  - numbered-blocks.adoc
-  - macros.adoc
+#   - lists.adoc
+#   - numbered-blocks.adoc
+#   - macros.adoc
   
-appendices:
-  - tests.adoc
+# appendices:
+#   - tests.adoc
 
 # how to refer to a page
 chapname: Part    # default: Chapter
@@ -27,10 +27,6 @@ chapname: Part    # default: Chapter
 # these directories are relative to this file
 srcdir: .         # default: .
 outdir: ../html   # default: www
-
-# provide a Google Search Engine ID if you want
-# to generate a search page
-# se_id: b5711c050271f4ccc # <1>
 
 # provide a base_url if you want to generate
 # a sitemap

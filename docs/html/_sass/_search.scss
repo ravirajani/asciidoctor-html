@@ -1,0 +1,32 @@
+.search-results {
+    margin: 0 var(--fw-margin);
+    --bs-list-group-item-padding-x: var(--fw-padding);
+    .overflow-text-right + .overflow-text-left {
+        margin-left: 1ex;
+    }
+    .overflow-text-right::after {
+        content: '\2026';
+    }
+}
+
+.search-form-container {
+    margin-bottom: var(--blocksep);
+}
+
+.search-form {
+    display: flex;
+    .search-box {
+        flex: 1;
+        border-right: none;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        &:focus {
+            outline: none;
+            box-shadow: none;
+        }
+    }
+    .search-btn {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+}

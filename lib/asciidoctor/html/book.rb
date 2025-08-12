@@ -11,6 +11,7 @@ require_relative "bi_inline_macro"
 require_relative "text_inline_macro"
 require_relative "template"
 require_relative "pagination"
+require_relative "search"
 
 module Asciidoctor
   module Html
@@ -53,16 +54,15 @@ module Asciidoctor
       # - title
       # - short_title
       # - authors
-      # - se_id
       # - chapname
       def initialize(opts = {})
         opts = DEFAULT_OPTS.merge opts
         @title = ERB::Escape.html_escape opts[:title]
         @short_title = ERB::Escape.html_escape opts[:short_title]
         @authors = opts[:authors]
-        @se_id = opts[:se_id]
         @base_url = opts[:base_url]
         @chapname = opts[:chapname]
+        @search_index = {} # Hash(docname => Array[SearchData])
         @refs = {} # Hash(docname => Hash(id => reftext))
         @templates = {} # Hash(docname => TData)
       end
@@ -94,32 +94,17 @@ module Asciidoctor
         read(chapters, appendices).each do |name, html|
           filename = "#{name}.html"
           File.write("#{outdir}/#{filename}", html)
+          build_index(name, html) unless omit_search?
           entries << Template.sitemap_entry("#{@base_url}#{filename}") if needs_sitemap
         end
-        File.write("#{outdir}/#{SEARCH_PAGE}", search_page(@se_id)) if @se_id
+        File.write "#{outdir}/#{SEARCH_PAGE}", search_page unless omit_search?
         File.write("#{outdir}/sitemap.xml", Template.sitemap(entries)) if needs_sitemap
       end
 
       private
 
       include Pagination
-
-      def search_page(se_id)
-        content = <<~HTML
-          <script async src="https://cse.google.com/cse.js?cx=#{se_id}"></script>
-          <div class="gcse-search"></div>
-        HTML
-        Template.html(
-          content,
-          nav_items,
-          title: @title,
-          short_title: @short_title,
-          authors: display_authors,
-          date: @date,
-          chapsubheading: "Search",
-          langs: []
-        )
-      end
+      include Search
 
       def register!(docs, filename, doc)
         key = key filename
@@ -194,17 +179,18 @@ module Asciidoctor
         node.reftext || (node.title unless node.inline?) || "[#{node.id}]" if node.id
       end
 
-      def display_authors(doc)
-        authors = doc.authors.map do |author|
-          doc.sub_replacements author.name
+      def display_authors(doc = nil)
+        authors = []
+        if doc
+          authors = doc.authors.map do |author|
+            doc.sub_replacements author.name
+          end
         end
-
         if authors.empty? && @authors
           authors = @authors.map do |author|
             ERB::Escape.html_escape author
           end
         end
-
         return if authors.empty?
 
         [
@@ -231,6 +217,10 @@ module Asciidoctor
         html
       end
 
+      def omit_search?
+        @templates.size < 2 && @search_index.empty?
+      end
+
       def nav_items(active_key = -1, doc = nil)
         items = @templates.map do |k, td|
           active = (k == active_key)
@@ -238,7 +228,7 @@ module Asciidoctor
           navtext = Template.nav_text td.chapprefix, td.chaptitle
           Template.nav_item "#{k}.html", navtext, subnav, active:
         end
-        return items unless @se_id
+        return items if omit_search?
 
         items.unshift(Template.nav_item(
                         SEARCH_PAGE,
