@@ -17,7 +17,7 @@ module Asciidoctor
             </form>
           </div>
           <div id="search-results-container" class="hidden">
-          <h4>Found <span id="search-nmatches">0 matches</span></h4>
+          <h5 class="search-matches-title">Found <span id="search-nmatches">0 matches</span></h5>
           <ul id="search-results" class="search-results list-group list-group-flush"></ul>
           </div>
           <script src="https://unpkg.com/lunr/lunr.js"></script>
@@ -106,18 +106,13 @@ module Asciidoctor
                       overflowLeft.classList.add('overflow-text-left');
                       const overflowRight = document.createElement('span');
                       overflowRight.classList.add('overflow-text-right');
-                      const reLeft = /.{#{SEARCH_RESULT_OVERFLOW}}$/s;
-                      let left = text.substring(0, start - 1).search(reLeft) + 1;
+                      let left = start - #{SEARCH_RESULT_OVERFLOW};
                       while(text[left] && text[left].trim() == text[left]) {
                         left--;
                       }
-                      const reRight = /^.{#{SEARCH_RESULT_OVERFLOW}}/s;
-                      let right = text.length;
-                      if(rightMatch = text.substring(end + 1).match(reRight)) {
-                        right = rightMatch[0].length + end;
-                        while(text[right] && text[right].trim() == text[right]) {
-                          right++;
-                        }
+                      let right = end + #{SEARCH_RESULT_OVERFLOW};
+                      while(text[right] && text[right].trim() == text[right]) {
+                        right++;
                       }
                       overflowLeft.textContent = text.substring(left, start - 1);
                       matchingText.textContent = textMatch;

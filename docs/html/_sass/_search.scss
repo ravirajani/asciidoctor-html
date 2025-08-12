@@ -10,7 +10,12 @@
 }
 
 .search-form-container {
-    margin-bottom: var(--blocksep);
+    margin-bottom: 1.25*$spacer;
+}
+
+.search-matches-title {
+    margin-bottom: 0;
+
 }
 
 .search-form {
