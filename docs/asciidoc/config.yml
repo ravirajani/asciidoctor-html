@@ -14,12 +14,12 @@ authors:
 chapters:
   - index.adoc
   - getting-started.adoc
-#   - lists.adoc
-#   - numbered-blocks.adoc
-#   - macros.adoc
+  - lists.adoc
+  - numbered-blocks.adoc
+  - macros.adoc
   
-# appendices:
-#   - tests.adoc
+appendices:
+  - tests.adoc
 
 # how to refer to a page
 chapname: Part    # default: Chapter
