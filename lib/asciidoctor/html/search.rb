@@ -36,7 +36,7 @@ module Asciidoctor
       end
 
       def build_index(key, html)
-        doctree = Nokogiri::HTML5.parse(html)
+        doctree = Nokogiri::HTML5.parse html
         ref = @refs[key]
         page_text = "#{doctree.at_css(".chaptitle")&.text} #{doctree.at_css(".preamble")&.text}"
         index = [{

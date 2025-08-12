@@ -82,3 +82,7 @@
 
 - Copyright date generated on client.
 - Multiple authors and support for AsciiDoc Author Line.
+
+## [0.1.15] - 2025-08-12
+
+- Full-text search client-side with lunr.js.
