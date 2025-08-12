@@ -8,7 +8,7 @@ This is a cat: image:cat2.jpg[Cat,100,title=A beautiful cat].
 This is an example.footnote:[Equation stem:[x^2 + y^2 = z^2]]
 ====
 
-This is a stem block with title.
+This is a stem block with title:
 
 [stem]
 .Equation Title

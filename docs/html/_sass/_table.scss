@@ -1,12 +1,14 @@
 .table {
-    margin: 0;
+    margin: 0 auto;
     @extend .caption-top;
     &.table-fit {
         width: auto;
-        margin: 0 auto;
     }
     .table-title {
         padding: 0;
+    }
+    &.table-bordered {
+        max-width: calc(100% - 2 * var(--fw-padding));
     }
     $halign: left, right, center;
     @each $prop in $halign {
@@ -24,8 +26,21 @@
     thead + tbody {
         @extend .table-group-divider;
     }
+    &:not(.table-bordered) {
+        .table-title {
+            padding: 0 var(--fw-padding);
+        }
+        th, td {
+            &:first-child {
+                padding-left: var(--fw-padding);
+            }
+            &:last-child {
+                padding-right: var(--fw-padding);
+            }
+        }
+    }
 }
 
 .table-responsive {
-    margin: 1.5rem 0;
+    @extend .figbox;
 }
