@@ -21,3 +21,4 @@ this software makes use of the following indispensible open source libraries.
 * {bs-icons}
 * https://github.com/highlightjs/highlight.js[Highlight.js]
 * https://github.com/mathjax/MathJax[MathJax]
+* https://github.com/olivernn/lunr.js[Lunr.js]
