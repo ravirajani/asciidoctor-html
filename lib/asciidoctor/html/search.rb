@@ -68,18 +68,18 @@ module Asciidoctor
             const normalisePossessive = function (builder) {
               // Define a pipeline function that removes apostrophe
               const pipelineFunction = function (token) {
-                if (token.toString().endsWith('’s')) {
-                  return token.update(function () { return token.toString().slice(0,-2) })
+                if(token.toString().endsWith('’s')) {
+                  return token.update(() => token.toString().slice(0,-2));
                 } else {
-                  return token
+                  return token;
                 }
               }
               // Register the pipeline function so the index can be serialised
-              lunr.Pipeline.registerFunction(pipelineFunction, 'normalisePossessive')
+              lunr.Pipeline.registerFunction(pipelineFunction, 'normalisePossessive');
               // Add the pipeline function to both the indexing pipeline and the
               // searching pipeline
-              builder.pipeline.before(lunr.stemmer, pipelineFunction)
-              builder.searchPipeline.before(lunr.stemmer, pipelineFunction)
+              builder.pipeline.before(lunr.stemmer, pipelineFunction);
+              builder.searchPipeline.before(lunr.stemmer, pipelineFunction);
             }
             const resultsContainer = document.getElementById('search-results-container');
             const nmatches = document.getElementById('search-nmatches');
@@ -95,7 +95,7 @@ module Asciidoctor
               this.metadataWhitelist = ['position'];
 
               documents.forEach(doc => {
-                this.add(doc)
+                this.add(doc);
               });
             });
             function processSearchText(searchText) {
@@ -116,7 +116,7 @@ module Asciidoctor
                       const start = pos[0];
                       const end = pos[0] + pos[1];
                       const text = doc[type];
-                      const textMatch = text.substring(start, end)
+                      const textMatch = text.substring(start, end);
                       const matchingText = document.createElement('mark');
                       const overflowLeft = document.createElement('span');
                       overflowLeft.classList.add('overflow-text-left');
@@ -138,7 +138,7 @@ module Asciidoctor
                       }
                       overflowLeft.textContent = text.substring(left + 1, start);
                       matchingText.textContent = textMatch;
-                      overflowRight.textContent = overflowRightText
+                      overflowRight.textContent = overflowRightText;
                       result.append(overflowLeft, matchingText, overflowRight);
                     });
                   }
