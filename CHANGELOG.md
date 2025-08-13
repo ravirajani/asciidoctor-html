@@ -95,3 +95,7 @@
 
 - Search will now include all text content of page, not just text
   within preamble and sections with IDs.
+
+## [0.1.18] - 2025-08-13
+
+- Replace list shift attribute with markers attribute.
