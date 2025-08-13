@@ -2,6 +2,7 @@
 . First item, level 1
 . Second item, level 1
 .. First item, level 2
+[markers=nonsense]
 ... First item, level 3
 ... Second item, level 3
 [markers=I.]
