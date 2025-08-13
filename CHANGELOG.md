@@ -99,3 +99,7 @@
 ## [0.1.18] - 2025-08-13
 
 - Replace list shift attribute with markers attribute.
+
+## [0.1.19] - 2025=08-13
+
+- Ensure delimiter is properly escaped in marker format string.
