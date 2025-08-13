@@ -102,10 +102,12 @@ module Asciidoctor
         mark
       end
 
-      def li_mark(idx, depth, format_str)
+      def li_mark(node, idx, depth, format_str)
         rgx = /(?<left>.?)(?<numeral>[1iIaA])(?<right>.?)/
         match = rgx.match(format_str) || rgx.match(li_default_format(depth))
-        "#{match[:left]}#{convert_mark match[:numeral], idx}#{match[:right]}"
+        delim_left = node.sub_specialchars match[:left]
+        delim_right = node.sub_specialchars match[:right]
+        "#{delim_left}#{convert_mark match[:numeral], idx}#{delim_right}"
       end
 
       def bullet(depth)
@@ -152,7 +154,7 @@ module Asciidoctor
           style = block.style
           marker_format = block.attr("markers") || li_default_format(depth, style)
           block.items.each_with_index do |item, idx|
-            mark = li_mark(idx + offset, depth, marker_format)
+            mark = li_mark(block, idx + offset, depth, marker_format)
             item.set_attr "mark", mark
             item_reftext = "#{parent_reftext}#{li_ref_mark mark}"
             register_reftext! item, item_reftext
