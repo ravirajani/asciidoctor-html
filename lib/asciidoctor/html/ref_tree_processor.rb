@@ -84,7 +84,7 @@ module Asciidoctor
         end
       end
 
-      def li_default_format(depth, style)
+      def li_default_format(depth, style = nil)
         return "[1]" if style == "bibliography"
         return "(a)" if style == "figlist"
 
