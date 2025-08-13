@@ -161,7 +161,7 @@ In the following exercise, the correctness of <<alg-bubblesort>> is proved.
 Bubblesort is a popular, but inefficient, sorting algorithm.
 It works by repeatedly swapping adjacent elements that are out of order.
 
-[#lst-exercise-parts%roomy,shift=1]
+[#lst-exercise-parts%roomy,markers=(a)]
 . Let $A'$ denote the array $A$ after text:sc[BubbleSort]$(A,n)$ is executed.
 To prove that text:sc[BubbleSort] is correct, you need to prove that it terminates and that
 +
@@ -174,7 +174,7 @@ In order to show that text:sc[BubbleSort] actually sorts, what else do you need 
 
 The next two parts prove inequality <<bs-inequality>>.
 
-[%roomy,continue=lst-exercise-parts,shift=1]
+[%roomy,continue=lst-exercise-parts,markers=(a)]
 . [[bs-loop-invariant]]State precisely a loop invariant for the for loop in lines <<line-inner-for>>-<<line-statement>>,
 and prove that this loop invariant holds.
 Your proof should use the structure of the loop-invariant proof presented in <<bib-cormen,ch.2>>.
