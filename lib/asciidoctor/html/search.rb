@@ -36,21 +36,32 @@ module Asciidoctor
       end
 
       def build_index(key, html)
-        doctree = Nokogiri::HTML5.parse html
-        ref = @refs[key]
-        page_text = "#{doctree.at_css(".chaptitle")&.text} #{doctree.at_css(".preamble")&.text}"
-        index = [{
-          id: "#{key}.html",
-          title: ref["chapref"],
-          text: page_text
-        }]
-        doctree.css("section[id]").each do |section|
-          sectid = section["id"]
-          id = "#{key}.html##{sectid}"
-          title = "#{ref["chapref"]} › #{ref[sectid]}"
-          text = section.text
-          index << { id:, title:, text: }
+        filename = "#{key}.html"
+        doctree = Nokogiri::HTML5.parse html, max_errors: 10
+        puts("! #{filename}") unless doctree.errors.empty?
+        doctree.errors.each do |err|
+          puts err
         end
+        ref = @refs[key]
+        page_text = []
+        index = [{
+          id: filename,
+          title: ref["chapref"]
+        }]
+        doctree.css(".title-prefix").each { |el| el.content += ": " }
+        doctree.css(".title-suffix").each { |el| el.content = " (#{el.content})" }
+        doctree.at_css("#content-container").elements.each do |el|
+          if el.name == "section" && (sectid = el.attribute "id")
+            index << {
+              id: "#{filename}##{sectid}",
+              title: "#{ref["chapref"]} › #{ref[sectid.to_s]}",
+              text: el.text
+            }
+          else
+            page_text << el.text
+          end
+        end
+        index.first[:text] = page_text.join(" ")
         @search_index[key] = index
       end
 
@@ -130,7 +141,7 @@ module Asciidoctor
                       while(text[right] && text[right].trim() == text[right]) {
                         right++;
                       }
-                      let overflowRightText = text.substring(end + 1, right);
+                      let overflowRightText = text.substring(end, right);
                       if(overflowRightText.length > 0 && text[right - 1] != '.') {
                         overflowRightText += '… ';
                       } else {
@@ -154,6 +165,9 @@ module Asciidoctor
               e.preventDefault();
               const searchText = searchBox.value;
               processSearchText(searchText);
+            });
+            addEventListener('load', () => {
+              searchBox.focus();
             });
           })();
         JS
