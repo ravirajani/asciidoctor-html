@@ -4,9 +4,6 @@ $listing-blue: #002451;
 
 :root {
     --unit-100vh: 100vh;
-    @supports (height: 100dvh) {
-        --unit-100vh: 100dvh;
-    }
     --parsep: #{$spacer};
     --paritemsep: 0px;
     --blocksep: #{$spacer};
@@ -15,6 +12,9 @@ $listing-blue: #002451;
     --header-bg-rgb: 32, 33, 36;
     --header-bg: rgb(var(--header-bg-rgb));
     --strong-text-color: var(--bs-emphasis-color);
+    @supports (height: 100dvh) {
+        --unit-100vh: 100dvh;
+    }
 }
 
 .full-width-bg {

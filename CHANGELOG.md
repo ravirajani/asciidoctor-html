@@ -90,3 +90,8 @@
 ## [0.1.16] - 2025-08-12
 
 - Improved search functionality.
+
+## [0.1.17] - 2025-08-13
+
+- Search will now include all text content of page, not just text
+  within preamble and sections with IDs.

@@ -4,9 +4,6 @@
     @extend .block;
     @extend .full-width-bg;
     --strong-text-color: #{$cyan-900};
-    @include color-mode(dark) {
-        --strong-text-color: #{$cyan-200};
-    }
     background-color: var(--admonition-bg, var(--bs-info-bg-subtle));
     color: var(--admonition-text, var(--bs-info-text-emphasis));
     padding-top: calc(var(--parsep) + #{0.25*$icon-size});
@@ -21,6 +18,9 @@
         border-radius: 0.5*$icon-size;
         text-align: center;
         line-height: $icon-size;
+    }
+    @include color-mode(dark) {
+        --strong-text-color: #{$cyan-200};
     }
 }
 
