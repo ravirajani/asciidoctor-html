@@ -72,7 +72,7 @@ You can change the type of marker used at any list level with the `markers` attr
 This attribute accepts a format string of the form `{dollar}left-delimiter{dollar}numeral{dollar}right-delimiter`
 where `{dollar}numeral` must be a single character from the string `1iIaA`. These characters represent arabic numerals,
 lower or uppercase roman numerals, and lower or uppercase letters. The left and right delimiters may be arbitrary
-characters and do not have to be present.
+characters (and may be left blank).
 
 For example, setting `[markers=#1]` on the first level, `[markers=(I)]`
 on the second level, and `[markers=i)]` on the third, gives <<ex-markers>>.
