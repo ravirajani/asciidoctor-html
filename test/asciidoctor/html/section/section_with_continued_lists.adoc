@@ -48,9 +48,9 @@ This is a paragraph.
 
 === Continue shifted list
 
-[#lst-shifted,shift=1]
+[#lst-shifted,markers=(a)]
 . First item
 . Second item
 
-[continue=lst-shifted,shift=1]
+[continue=lst-shifted,markers=(a)]
 . Continued item

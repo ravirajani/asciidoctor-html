@@ -1,25 +1,3 @@
-.mark-dot {
-    > .li-mark, figure > figcaption > .li-mark {
-        &::after {
-            content: '.'; 
-        }
-    }
-}
-
-.mark-round-brackets {
-    > .li-mark, figure > figcaption > .li-mark {
-        &::before { content: '('; }
-        &::after { content: ')'; }
-    }
-}
-
-.mark-square-brackets {
-    > .li-mark, figure > figcaption > .li-mark {
-        &::before { content: '['; }
-        &::after { content: ']'; }
-    }
-}
-
 .list {
     @extend .list-unstyled;
     li {

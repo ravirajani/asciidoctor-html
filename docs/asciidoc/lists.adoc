@@ -16,7 +16,7 @@ The default ordered list looks like <<ex-basic-list>>.
 [#ex-basic-list]
 .Basic list with 4 levels
 ====
-. Level 1 list item, marked with an arabic numeral followed by a dot.
+. A level 1 list item, marked with an arabic numeral followed by a dot.
 . Another level 1 list item.
 .. [[li-level2]]A level 2 list item, marked with a bracketed lowercase letter.
 ... A level 3 list item, marked with a lowercase roman numeral followed by a dot.
@@ -45,7 +45,7 @@ ID of the other list.
 .Continuing a list
 ====
 [#lst-first]
-. Level 1 list item of list with ID `lst-first`.
+. A level 1 list item of a list with ID `lst-first`.
 . Another level 1 list item.
 .. A level 2 list item.
 ... A level 3 list item.
@@ -65,21 +65,29 @@ start the list at any desired number. There is almost *never* a good reason to d
 this. In most cases you will want to use the `continue` attribute instead. It is always
 best to leave the numbering to the system rather than trying to maintain it yourself.
 
-[#sec-shift]
-== Shift Attribute
+[#sec-markers]
+== Markers Attribute
 
-You can change the type of marker used at any list level with the `shift` attribute.
-For example, setting `[shift=3]` on the first level and `[shift=-1]`
-on the second level gives <<ex-shift>>.
+You can change the type of marker used at any list level with the `markers` attribute.
+This attribute accepts a format string of the form `{dollar}left-delimiter{dollar}numeral{dollar}right-delimiter`
+where `{dollar}numeral` must be a single character from the string `1iIaA`. These characters represent arabic numerals,
+lower or uppercase roman numerals, and lower or uppercase letters. The left and right delimiters may be arbitrary
+characters and do not have to be present.
 
-[#ex-shift]
-.List with shift attribute
+For example, setting `[markers=#1]` on the first level, `[markers=(I)]`
+on the second level, and `[markers=i)]` on the third, gives <<ex-markers>>.
+
+[#ex-markers]
+.List with custom markers
 ====
-[shift=3]
-. Level 1 list item, marked with a bracketed uppercase letter.
+[markers=#1]
+. A level 1 list item, marked with a number preceded by a hash.
 . Another level 1 list item.
-[shift=-1]
-.. A level 2 list item, marked with an arabic numeral followed by a dot.
+[markers=(I)]
+.. A level 2 list item, marked with an uppercase roman numeral enclosed in brackets.
+[markers=i)]
+... A level 3 list item, marked with a lowercase roman numeral followed by a bracket.
+... Another level 3 list item.
 .. [[li-lvl2-alt]]Another level 2 list item.
 ====
 
@@ -95,7 +103,7 @@ the `pseudocode` style on the top level. The markers will all be aligned as in <
 .Pseudocode list
 ====
 [pseudocode#lst-pseudocode]
-. Level 1 item of a pseudocode list.
+. A level 1 item of a pseudocode list.
 . Another level 1 list item.
 .. A level 2 item will be indented.
 ... And a level 3 item will be indented more.

@@ -19,9 +19,9 @@ part <<prop-part-minor>>.
 ====
 This is a proposition with multiple parts.
 
-[shift=1]
+[markers=(a)]
 . First part of proposition.
-[shift=1]
+[markers=i.]
 .. First subpart.
 .. [[prop-part-minor]]Second subpart.
 . [[prop-part-last]]Second part of proposition.

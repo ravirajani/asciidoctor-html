@@ -74,13 +74,38 @@ module Asciidoctor
         end
       end
 
-      def li_mark(depth, idx)
-        case depth
-        when 1 then ("a".."z").to_a[idx]
-        when 2 then RomanNumerals.to_roman(idx + 1).downcase
-        when 3 then ("a".."z").to_a[idx].upcase
+      def convert_mark(numeral, idx)
+        case numeral
+        when "a" then ("a".."z").to_a[idx]
+        when "A" then ("a".."z").to_a[idx].upcase
+        when "I" then RomanNumerals.to_roman(idx + 1)
+        when "i" then RomanNumerals.to_roman(idx + 1).downcase
         else idx + 1
         end
+      end
+
+      def li_default_format(depth, style)
+        return "[1]" if style == "bibliography"
+        return "(a)" if style == "figlist"
+
+        case depth
+        when 1 then "(a)"
+        when 2 then "i."
+        when 3 then "(A)"
+        else "1."
+        end
+      end
+
+      def li_ref_mark(mark)
+        return mark[0..-2] if mark.end_with?(".")
+
+        mark
+      end
+
+      def li_mark(idx, depth, format_str)
+        rgx = /(?<left>.?)(?<numeral>[1iIaA])(?<right>.?)/
+        match = rgx.match(format_str) || rgx.match(li_default_format(depth))
+        "#{match[:left]}#{convert_mark match[:numeral], idx}#{match[:right]}"
       end
 
       def bullet(depth)
@@ -89,26 +114,6 @@ module Asciidoctor
         when 2 then "&#11089;"
         when 3 then "&#9702;"
         else "&#8226;"
-        end
-      end
-
-      def ref_li_mark(mark, depth, style = nil)
-        return mark.to_s unless style
-
-        case li_style depth, style
-        when "mark-square-brackets" then "[#{mark}]"
-        when "mark-round-brackets" then "(#{mark})"
-        else mark.to_s
-        end
-      end
-
-      def li_style(depth, list_style)
-        return "mark-square-brackets" if list_style == "bibliography"
-        return "mark-round-brackets" if list_style == "figlist"
-
-        case depth
-        when 1, 3 then "mark-round-brackets"
-        else "mark-dot"
         end
       end
 
@@ -121,10 +126,6 @@ module Asciidoctor
         return node.attr("nflatitems") || node.items.size if node&.context == :olist
 
         0
-      end
-
-      def shift(list)
-        list.attr?("shift") ? list.attr("shift").to_i : 0
       end
 
       # Finds an anchor at the start of item.text and updates
@@ -148,15 +149,12 @@ module Asciidoctor
           block.set_attr("flat-style", true)
         else
           offset = offset block
-          shift = shift block
           style = block.style
-          d = (style == "figlist" ? 1 : depth) + shift
-          role = li_style d, style
+          marker_format = block.attr("markers") || li_default_format(depth, style)
           block.items.each_with_index do |item, idx|
-            mark = li_mark(d, idx + offset)
+            mark = li_mark(idx + offset, depth, marker_format)
             item.set_attr "mark", mark
-            item.role = role
-            item_reftext = "#{parent_reftext}#{ref_li_mark mark, d, style}"
+            item_reftext = "#{parent_reftext}#{li_ref_mark mark}"
             register_reftext! item, item_reftext
           end
         end
@@ -185,9 +183,9 @@ module Asciidoctor
       end
 
       def process_flat_item!(item, idx)
-        mark = li_mark(0, idx)
+        mark = (idx + 1).to_s
         item.set_attr "mark", mark
-        register_reftext! item, ref_li_mark(mark, 0)
+        register_reftext! item, mark
       end
 
       def process_source_code!(document, lang)

@@ -1,4 +1,4 @@
-[shift=2,start=3]
+[markers="#I/",start=3]
 . First item, level 1
 . Second item, level 1
 .. First item, level 2
