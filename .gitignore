@@ -10,3 +10,4 @@ _site
 /docs/asciidoc/tests.adoc
 .jekyll-cache
 node_modules
+Gemfile.lock
