@@ -12,7 +12,7 @@ module Asciidoctor
       name_positional_attributes "text"
 
       def process(parent, target, attrs)
-        text = attrs["text"]
+        text = parent.sub_macros attrs["text"]
         content = case target
                   when "del"
                     %(<del>#{text}</del>)

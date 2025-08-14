@@ -1,15 +1,15 @@
-You can use the mark tag to #highlight# text.{parskip}
-text:del[This line of text is meant to be treated as deleted text.]{parskip}
-text:strike[This line of text is meant to be treated as no longer accurate.]{parskip}
+You can use the mark tag to #<highlight># text.{parskip}
+text:del[This line of text is meant to be treated as <deleted> text.]{parskip}
+text:strike[This line of text is meant to be treated as *no longer accurate*.]{parskip}
 text:ins[This line of text is meant to be treated as an addition to the document.]{parskip}
 text:underline[This line of text will render as underlined.]{parskip}
 text:small[This line of text is meant to be treated as fine print.]{parskip}
-*This line rendered as bold text.*{parskip}
-_This line rendered as italicized text._{parskip}
+*This line rendered as <bold> text.*{parskip}
+_This line rendered as <italicized> text._{parskip}
 text:sc[This line is rendered in SmallCaps.]{parskip}
-text:muted[This line is fainter than the others.]{parskip}
-text:danger[This line is a warning.]{parskip}
+text:muted[This line is _fainter_ than the others.]{parskip}
+text:danger[This line is a text:underline[warning\].]{parskip}
 This line contains abbreviations like text:abbr[attr,title=attribute]
-and text:abbr[HTML,title=HyperText Markup Language,role=initialism]{parskip}
+and text:abbr[HTML,title=HyperText <Markup> Language,role=initialism]{parskip}
 To switch directories, type text:kbd[cd] followed by the name of the directory. +
 To edit settings, press text:kbd["Ctrl + ,"].
