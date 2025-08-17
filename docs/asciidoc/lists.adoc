@@ -75,7 +75,7 @@ lower or uppercase roman numerals, and lower or uppercase letters. The left and 
 characters (and may be left blank).
 
 For example, setting `[markers=#1]` on the first level, `[markers=(I)]`
-on the second level, and `[markers=i)]` on the third, gives <<ex-markers>>.
+on the second level, and `[markers=a)]` on the third, gives <<ex-markers>>.
 
 [#ex-markers]
 .List with custom markers
@@ -85,7 +85,7 @@ on the second level, and `[markers=i)]` on the third, gives <<ex-markers>>.
 . Another level 1 list item.
 [markers=(I)]
 .. A level 2 list item, marked with an uppercase roman numeral enclosed in brackets.
-[markers=i)]
+[markers=a)]
 ... A level 3 list item, marked with a lowercase roman numeral followed by a bracket.
 ... Another level 3 list item.
 .. [[li-lvl2-alt]]Another level 2 list item.
