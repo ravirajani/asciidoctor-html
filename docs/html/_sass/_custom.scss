@@ -74,9 +74,6 @@ abbr[data-bs-original-title] {
     font-weight: normal;
     &::before { content: '('; }
     &::after { content: ')'; }
-    &::before, &::after {
-        font-weight: 500;
-    }
 }
 
 .attribution + cite::before {
