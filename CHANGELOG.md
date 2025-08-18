@@ -100,6 +100,12 @@
 
 - Replace list shift attribute with markers attribute.
 
-## [0.1.19] - 2025=08-13
+## [0.1.19] - 2025-08-13
 
 - Ensure delimiter is properly escaped in marker format string.
+
+## [1.0.0] - 2025-08-18
+
+- Lock down versions of dependencies.
+- Support nested text macros.
+- Improved copy-to-clipboard functionality.
