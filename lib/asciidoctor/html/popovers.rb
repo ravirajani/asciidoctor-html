@@ -33,14 +33,8 @@ module Asciidoctor
             }
           })
           MathJax.startup.promise.then(initPopovers);
-          addEventListener('load', function() {
-            // Enable tooltips on images
-            document.querySelectorAll('img[data-bs-toggle="tooltip"]').forEach(el => {
-              bootstrap.Tooltip.getOrCreateInstance(el);
-            });
-          });
-          // Enable tooltips on abbreviations
-          document.querySelectorAll('abbr[data-bs-toggle="tooltip"]').forEach(el => {
+          // Enable tooltips
+          document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => {
             bootstrap.Tooltip.getOrCreateInstance(el);
           });
         })();

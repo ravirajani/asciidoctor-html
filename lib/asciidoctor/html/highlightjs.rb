@@ -47,10 +47,9 @@ module Asciidoctor
 
       PLUGIN = <<~JS
         (function() {
-          function canHover() {
-            return matchMedia('(hover: hover)').matches &&
-                   matchMedia('(pointer: fine)').matches;
-          }
+          const tooltipText = 'Copy to clipboard';
+          const canHover = matchMedia('(hover: hover)').matches &&
+                           matchMedia('(pointer: fine)').matches;
           function toggleCopyIcon(copyIcon) {
             copyIcon.classList.toggle('bi-clipboard');
             copyIcon.classList.toggle('bi-clipboard-check');
@@ -68,10 +67,10 @@ module Asciidoctor
               const copyButton = document.createElement('button');
               copyButton.classList.add('btn');
               copyButton.setAttribute('type', 'button');
-              copyButton.setAttribute('data-bs-toggle', 'tooltip');
-              copyButton.setAttribute('data-bs-title', 'Copy to clipboard');
-              if(canHover()) bootstrap.Tooltip.getOrCreateInstance(copyButton);
-
+              const tooltip = new bootstrap.Tooltip(copyButton, {
+                title: tooltipText,
+                trigger: (canHover ? 'hover focus' : 'manual')
+              });
               const copyIcon = document.createElement('i');
               copyIcon.classList.add('bi', 'bi-clipboard');
 
@@ -80,9 +79,15 @@ module Asciidoctor
 
               copyButton.addEventListener('click', function() {
                 navigator.clipboard.writeText(cbText);
+                tooltip.setContent({ '.tooltip-inner': 'Copied!' });
+                if(!canHover) tooltip.show();
                 if(!copyIcon.classList.contains('bi-clipboard-check')) {
                   toggleCopyIcon(copyIcon);
-                  setTimeout(() => { toggleCopyIcon(copyIcon); }, 1500);
+                  setTimeout(() => {
+                    toggleCopyIcon(copyIcon);
+                    tooltip.setContent({ '.tooltip-inner': tooltipText });
+                    tooltip.hide();
+                  }, 1500);
                 }
               });
 
@@ -90,7 +95,7 @@ module Asciidoctor
               wrapper.appendChild(overlay);
 
               // Find and replace inline callouts
-              const rgx = /[\u2460-\u2468]/gu;
+              const rgx = /\s*[\u2460-\u2468]/gu;
               if(text.match(rgx)) {
                 cbText = text.replaceAll(rgx, '');
                 el.innerHTML = el.innerHTML.replaceAll(rgx, (match) => {
