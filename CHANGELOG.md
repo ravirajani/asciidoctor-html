@@ -109,3 +109,7 @@
 - Lock down versions of dependencies.
 - Support nested text macros.
 - Improved copy-to-clipboard functionality.
+
+## [1.0.1] - 2025-08-20
+
+- Fixes bug where callouts were not being displayed.
