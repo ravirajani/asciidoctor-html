@@ -95,9 +95,10 @@ module Asciidoctor
               wrapper.appendChild(overlay);
 
               // Find and replace inline callouts
-              const rgx = /\s*[\u2460-\u2468]/gu;
+              const rgx = /[\u2460-\u2468]/gu;
+              const cbRgx = /\s*[\u2460-\u2468]/gu;
               if(text.match(rgx)) {
-                cbText = text.replaceAll(rgx, '');
+                cbText = text.replaceAll(cbRgx, '');
                 el.innerHTML = el.innerHTML.replaceAll(rgx, (match) => {
                   return '<i class="hljs-comment bi bi-' + (match.charCodeAt() - 9311) + '-circle"></i>';
                 });
