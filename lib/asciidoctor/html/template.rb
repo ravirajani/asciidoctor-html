@@ -148,12 +148,15 @@ module Asciidoctor
       # - chapheading: String
       # - chapsubheading: String
       # - langs: Array[String]
+      # - at_head_end: String
+      # - at_body_end: String
       def self.html(content, nav_items, opts = {})
         nav = (nav_items.size > 1)
         <<~HTML
           <!DOCTYPE html>
           <html lang="en">
           #{head opts[:title], opts[:description], opts[:authors], opts[:langs]}
+          #{opts[:at_head_end]}
           <body>
           #{sidebar(nav_items) if nav}
           <div id="page" class="page">
@@ -161,14 +164,14 @@ module Asciidoctor
           #{header opts[:title], opts[:short_title]}
           #{main content:, **opts}
           </div> <!-- .page -->
+          <script>document.getElementById("cr-year").textContent = (new Date()).getFullYear();</script>
           <script type="module">
-          document.getElementById("cr-year").textContent = (new Date()).getFullYear();
           #{Highlightjs::PLUGIN}
-          hljs.highlightAll();
           #{Popovers::POPOVERS}
           #{Sidebar::TOGGLE if nav}
           #{Scroll::SCROLL}
           </script>
+          #{opts[:at_body_end]}
           </body>
           </html>
         HTML

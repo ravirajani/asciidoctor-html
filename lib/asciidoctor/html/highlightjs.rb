@@ -105,6 +105,7 @@ module Asciidoctor
               }
             }
           });
+          hljs.highlightAll();
         })();
       JS
     end

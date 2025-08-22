@@ -11,7 +11,12 @@ module Asciidoctor
       def search_page
         content = <<~HTML
           <div class="search-form-container">
-            <form id="search-form" class="search-form">
+            <div id="search-form-spinner" class="d-flex justify-content-center">
+              <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
+            <form id="search-form" class="search-form hidden">
               <input type="text" id="search-text" name="search-text" class="form-control search-box" placeholder="Search">
               <button type="submit" class="btn btn-primary search-btn">Go</button>
             </form>
@@ -20,8 +25,6 @@ module Asciidoctor
           <h5 class="search-matches-title">Found <span id="search-nmatches">0 matches</span></h5>
           <ul id="search-results" class="search-results list-group list-group-flush"></ul>
           </div>
-          <script src="https://unpkg.com/lunr/lunr.js"></script>
-          <script>#{lunr_script}</script>
         HTML
         Template.html(
           content,
@@ -31,7 +34,9 @@ module Asciidoctor
           authors: display_authors,
           date: @date,
           chapsubheading: "Search",
-          langs: []
+          langs: [],
+          at_head_end: %(<script defer src="https://unpkg.com/lunr/lunr.js"></script>),
+          at_body_end: %(<script type="module">#{lunr_script}</script>)
         )
       end
 
@@ -161,14 +166,14 @@ module Asciidoctor
               nmatches.textContent = n == 1 ? (n + ' match') : (n + ' matches');
               resultsContainer.classList.remove('hidden');
             }
+            document.getElementById('search-form-spinner').classList.add('hidden');
+            searchForm.classList.remove('hidden');
             searchForm.addEventListener('submit', e => {
               e.preventDefault();
               const searchText = searchBox.value;
               processSearchText(searchText);
             });
-            addEventListener('load', () => {
-              searchBox.focus();
-            });
+            searchBox.focus();
           })();
         JS
       end
