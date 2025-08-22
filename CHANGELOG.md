@@ -113,3 +113,7 @@
 ## [1.0.1] - 2025-08-20
 
 - Fixes bug where callouts were not being displayed.
+
+## [1.0.2] - 2025-08-22
+
+- Better loading behaviour of search page.
