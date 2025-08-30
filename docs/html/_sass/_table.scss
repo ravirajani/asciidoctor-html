@@ -10,6 +10,9 @@
     }
     &.table-bordered {
         max-width: calc(100% - 2 * var(--fw-padding));
+        .table-title {
+            border-bottom: none;
+        }
     }
     $halign: left, right, center;
     @each $prop in $halign {
