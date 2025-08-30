@@ -6,6 +6,7 @@
     }
     .table-title {
         padding: 0;
+        border-bottom: var(--bs-border-width) solid var(--bs-table-border-color);
     }
     &.table-bordered {
         max-width: calc(100% - 2 * var(--fw-padding));
