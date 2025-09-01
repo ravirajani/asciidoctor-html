@@ -119,7 +119,7 @@ ol, ul, dl {
     p, .stem { 
         margin-bottom: var(--paritemsep);
     }
-    p:has(+ .stem), .stem:has(+ p) {
+    p:has(+ .stem), .stem:has(+ p), p:has(+ .list), p:has(+ .list-wrapper) {
         margin-bottom: calc(0.5 * var(--paritemsep));
     }
 }
