@@ -141,3 +141,7 @@
         @extend .figure-caption;
     }
 }
+
+p:has(+ .list), p:has(+ .list-wrapper) {
+    margin-bottom: calc(0.5*var(--parsep));
+}
