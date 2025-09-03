@@ -1,3 +1,5 @@
+$roomyitemsep: 0.375rem;
+
 .list {
     @extend .list-unstyled;
     li {
@@ -76,7 +78,6 @@
 }
 
 .list-roomy {
-    $roomyitemsep: 0.375rem;
     --paritemsep: #{$roomyitemsep};
     > li {
         --paritemsep: #{$roomyitemsep};
@@ -143,5 +144,5 @@
 }
 
 p:has(+ .list), p:has(+ .list-wrapper) {
-    margin-bottom: calc(0.5*var(--parsep));
+    margin-bottom: $roomyitemsep;
 }
