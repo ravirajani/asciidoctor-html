@@ -5,6 +5,10 @@
     --strong-text-color: var(--bs-emphasis-color);
     @extend .block;
     @extend .full-width-bg;
+    margin-top: calc(1.5*var(--blocksep));
+    &:has(+ :not(.open)) {
+        margin-bottom: calc(1.5*var(--blocksep));
+    }
     padding-top: var(--parsep);
     color: var(--example-text, #{$default-text-color});
     border-top: 2px solid var(--example-border-color, #{$default-border-color});

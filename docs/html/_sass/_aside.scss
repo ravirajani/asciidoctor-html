@@ -6,6 +6,8 @@
     border-top: 2px solid var(--bs-secondary-border-subtle);
     border-bottom: 2px solid var(--bs-secondary-border-subtle);
     background-color: var(--bs-secondary-bg-subtle);
+    margin-top: calc(1.5*var(--blocksep));
+    margin-bottom: calc(1.5*var(--blocksep));
     --strong-text-color: #{shade-color($secondary, 80%)};
     @include color-mode(dark) {
         --strong-text-color: #{tint-color($secondary, 60%)};

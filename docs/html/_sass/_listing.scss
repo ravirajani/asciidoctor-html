@@ -4,6 +4,10 @@
     color: $body-color-dark;
     --strong-text-color: #{$body-color-dark};
     @extend .full-width-bg;
+    &:has(> .block-title) {
+        margin-top: calc(1.5*var(--blocksep));
+        margin-bottom: calc(1.5*var(--blocksep));
+    }
     background-color: var(--listing-bg);
     .block-title {
         margin-bottom: 0;
