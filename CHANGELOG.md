@@ -117,3 +117,7 @@
 ## [1.0.2] - 2025-08-22
 
 - Better loading behaviour of search page.
+
+## [1.0.3] - 2025-09-21
+
+- Minor stylesheet update: margins.
