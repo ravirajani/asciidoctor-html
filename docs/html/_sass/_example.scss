@@ -6,8 +6,11 @@
     @extend .block;
     @extend .full-width-bg;
     margin-top: calc(1.5*var(--blocksep));
-    &:has(+ :not(.open)) {
+    &:has(+ :not(.open):not(.list-colist)) {
         margin-bottom: calc(1.5*var(--blocksep));
+    }
+    &:has(+ .list-colist) {
+        margin-bottom: 0.5rem;
     }
     padding-top: var(--parsep);
     color: var(--example-text, #{$default-text-color});

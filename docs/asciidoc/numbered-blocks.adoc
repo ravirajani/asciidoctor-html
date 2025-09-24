@@ -101,10 +101,11 @@ put the listing title on the example as we have done in <<ex-hello-world>>.
 [source,python]
 ----
 def say_hi():
-  """Says hello to the world"""
+  """Says hello to the world""" # <1>
   print("Hello World!")
 ----
 ====
+<1> Always include a docstring.
 
 === Unnumbered Example Blocks
 
