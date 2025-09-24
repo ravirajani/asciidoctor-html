@@ -3,12 +3,18 @@
     --listing-padding: 0.5rem;
     color: $body-color-dark;
     --strong-text-color: #{$body-color-dark};
+    background-color: var(--listing-bg);
     @extend .full-width-bg;
+    margin-bottom: 0.5rem;
+    &:not(:has(+ .list-colist)) {
+        margin-bottom: var(--blocksep);
+    }
     &:has(> .block-title) {
         margin-top: calc(1.5*var(--blocksep));
-        margin-bottom: calc(1.5*var(--blocksep));
+        &:not(:has(+ .list-colist)) {
+            margin-bottom: calc(1.5*var(--blocksep));
+        }
     }
-    background-color: var(--listing-bg);
     .block-title {
         margin-bottom: 0;
         padding-top: var(--listing-padding);
@@ -44,5 +50,4 @@
             }
         }
     }
-    margin-bottom: var(--blocksep);
 }

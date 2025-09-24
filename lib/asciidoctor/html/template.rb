@@ -120,7 +120,7 @@ module Asciidoctor
             <link rel="apple-touch-icon" sizes="180x180" href="#{FAVICON_PATH}/apple-touch-icon.png">
             <link rel="icon" type="image/png" sizes="32x32" href="#{FAVICON_PATH}/favicon-32x32.png">
             <link rel="icon" type="image/png" sizes="16x16" href="#{FAVICON_PATH}/favicon-16x16.png">
-            <link rel="manifest" href="#{FAVICON_PATH}/site.webmanifest">
+            <link rel="manifest" href="#{FAVICON_PATH}/site.webmanifest" crossorigin="anonymous">
             <link rel="stylesheet" href="#{CSS_PATH}/styles.css">
             <link rel="stylesheet" href="#{Highlightjs::CDN_PATH}/styles/tomorrow-night-blue.min.css">
             <script defer src="#{Highlightjs::CDN_PATH}/highlight.min.js"></script>
