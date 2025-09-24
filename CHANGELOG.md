@@ -121,3 +121,8 @@
 ## [1.0.3] - 2025-09-21
 
 - Minor stylesheet update: margins.
+
+## [1.0.4] - 2025-09-24
+
+- Better margins for callout lists.
+- crossorigin attribute on webmanifest.
