@@ -35,7 +35,7 @@ module Asciidoctor
           date: @date,
           chapsubheading: "Search",
           langs: [],
-          at_head_end: %(<script defer src="https://unpkg.com/lunr/lunr.js"></script>),
+          at_head_end: %(<script defer src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script>),
           at_body_end: %(<script type="module">#{lunr_script}</script>)
         )
       end
