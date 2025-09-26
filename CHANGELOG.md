@@ -130,3 +130,7 @@
 ## [1.0.5] - 2025-09-26
 
 - Use jsdelivr for lunr.js to fix slow loading of search page.
+
+## [1.0.6] - 2025-09-26
+
+- Correct placement of additional scripts inside head tag.
