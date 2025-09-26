@@ -111,32 +111,30 @@ module Asciidoctor
 
       def self.head(title, description, authors, langs)
         <<~HTML
-          <head>
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            #{%(<meta name="description" content="#{description}">) if description}
-            #{%(<meta name="author" content="#{authors}">) if authors}
-            <title>#{title}</title>
-            <link rel="apple-touch-icon" sizes="180x180" href="#{FAVICON_PATH}/apple-touch-icon.png">
-            <link rel="icon" type="image/png" sizes="32x32" href="#{FAVICON_PATH}/favicon-32x32.png">
-            <link rel="icon" type="image/png" sizes="16x16" href="#{FAVICON_PATH}/favicon-16x16.png">
-            <link rel="manifest" href="#{FAVICON_PATH}/site.webmanifest" crossorigin="anonymous">
-            <link rel="stylesheet" href="#{CSS_PATH}/styles.css">
-            <link rel="stylesheet" href="#{Highlightjs::CDN_PATH}/styles/tomorrow-night-blue.min.css">
-            <script defer src="#{Highlightjs::CDN_PATH}/highlight.min.js"></script>
-            #{highlightjs langs}
-            <script>
-              MathJax = {
-                tex: {
-                  inlineMath: {'[+]': [['$', '$']]}
-                }
-              };
-            </script>
-            <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"></script>
-            <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
-                  integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
-                  crossorigin="anonymous"></script>
-          </head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          #{%(<meta name="description" content="#{description}">) if description}
+          #{%(<meta name="author" content="#{authors}">) if authors}
+          <title>#{title}</title>
+          <link rel="apple-touch-icon" sizes="180x180" href="#{FAVICON_PATH}/apple-touch-icon.png">
+          <link rel="icon" type="image/png" sizes="32x32" href="#{FAVICON_PATH}/favicon-32x32.png">
+          <link rel="icon" type="image/png" sizes="16x16" href="#{FAVICON_PATH}/favicon-16x16.png">
+          <link rel="manifest" href="#{FAVICON_PATH}/site.webmanifest" crossorigin="anonymous">
+          <link rel="stylesheet" href="#{CSS_PATH}/styles.css">
+          <link rel="stylesheet" href="#{Highlightjs::CDN_PATH}/styles/tomorrow-night-blue.min.css">
+          <script defer src="#{Highlightjs::CDN_PATH}/highlight.min.js"></script>
+          #{highlightjs langs}
+          <script>
+            MathJax = {
+              tex: {
+                inlineMath: {'[+]': [['$', '$']]}
+              }
+            };
+          </script>
+          <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"></script>
+          <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+                crossorigin="anonymous"></script>
         HTML
       end
 
@@ -155,8 +153,10 @@ module Asciidoctor
         <<~HTML
           <!DOCTYPE html>
           <html lang="en">
+          <head>
           #{head opts[:title], opts[:description], opts[:authors], opts[:langs]}
           #{opts[:at_head_end]}
+          </head>
           <body>
           #{sidebar(nav_items) if nav}
           <div id="page" class="page">
