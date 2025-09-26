@@ -126,3 +126,7 @@
 
 - Better margins for callout lists.
 - crossorigin attribute on webmanifest.
+
+## [1.0.5] - 2025-09-26
+
+- Use jsdelivr for lunr.js to fix slow loading of search page.
