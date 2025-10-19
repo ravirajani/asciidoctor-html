@@ -47,6 +47,9 @@ html {
     --bs-btn-box-shadow: 0 0 10px 2px rgba(var(--header-bg-rgb), 0.3);
     --bs-btn-focus-box-shadow: var(--bs-btn-box-shadow);
     box-shadow: var(--bs-btn-box-shadow);
+    @media print {
+        display: none;
+    }
 }
 
 .page {
@@ -77,14 +80,27 @@ html {
         font-weight: 300;
         background-color: var(--header-bg);
         box-shadow: 0px 2px 12px 2px rgba(var(--header-bg-rgb), 0.3);
-        a.home {
-            color: var(--bs-gray-200);
-            text-decoration: none;
-            text-wrap: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            &:hover, &:active {
-                color: var(--bs-white);
+        @media screen{
+            a.home {
+                color: var(--bs-gray-200);
+                text-decoration: none;
+                text-wrap: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                &:hover, &:active {
+                    color: var(--bs-white);
+                }
+            }
+        }
+        @media print {
+            height: 2rem;
+            font-size: 90%;
+            font-weight: var(--bs-body-font-weight);
+            background: none;
+            box-shadow: none;
+            justify-content: center;
+            a.home {
+                width: $content-width;
             }
         }
     }
@@ -98,6 +114,9 @@ html {
         }
         padding: 0 $content-padding-x;
     }
+    @media print {
+        overflow-y: visible;
+    }
 }
 
 
@@ -108,38 +127,40 @@ html {
     }
 }
 
-@include media-breakpoint-up(sm) {
-    html body > .sidebar {
-        width: auto;
-        min-width: 30%;
-        border-left: 1px solid $gray-700;
+@media screen {
+    @include media-breakpoint-up(sm) {
+        html body > .sidebar {
+            width: auto;
+            min-width: 30%;
+            border-left: 1px solid $gray-700;
+        }
     }
-}
 
-@include media-breakpoint-up(lg) {
-    .btn.menu {
-        display: none;
-    }
-    html body > .sidebar {
-        display: block;
-        box-shadow: none;
-        z-index: 1;
-        min-width: 0;
-        .dismiss {
+    @include media-breakpoint-up(lg) {
+        .btn.menu {
             display: none;
         }
-        width: calc(100% - $main-width);
-        + .page {
-            width: $main-width;
+        html body > .sidebar {
+            display: block;
+            box-shadow: none;
+            z-index: 1;
+            min-width: 0;
+            .dismiss {
+                display: none;
+            }
+            width: calc(100% - $main-width);
+            + .page {
+                width: $main-width;
+            }
         }
     }
-}
 
-@include media-breakpoint-up(xl) {
-    html body > .sidebar {
-        width: 30%;
-        + .page {
-            width: 70%;
+    @include media-breakpoint-up(xl) {
+        html body > .sidebar {
+            width: 30%;
+            + .page {
+                width: 70%;
+            }
         }
     }
 }
@@ -163,4 +184,10 @@ html {
     flex-flow: row nowrap;
     justify-content: space-between;
     gap: 1rem;
+}
+
+@media print {
+    html body > .sidebar {
+        display: none;
+    }
 }

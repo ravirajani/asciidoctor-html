@@ -29,5 +29,8 @@
                 border-left: $pagination-border-width solid $pagination-border-color;
             }
         }
+        @media print {
+            display: none;
+        }
     }
 }

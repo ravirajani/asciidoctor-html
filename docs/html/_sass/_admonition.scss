@@ -23,6 +23,11 @@
     @include color-mode(dark) {
         --strong-text-color: #{$cyan-200};
     }
+    @media print {
+        a {
+            color: var(--admonition-text, var(--bs-info-text-emphasis));
+        }
+    }
 }
 
 .admonition-tip .icon {

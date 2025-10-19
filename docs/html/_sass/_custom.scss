@@ -15,6 +15,12 @@ $listing-blue: #002451;
     @supports (height: 100dvh) {
         --unit-100vh: 100dvh;
     }
+    @media print {
+        --bs-link-color-rgb: var(--bs-body-color-rgb);
+        a {
+            text-decoration: none;
+        }
+    }
 }
 
 .full-width-bg {

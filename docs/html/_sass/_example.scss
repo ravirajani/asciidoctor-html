@@ -20,6 +20,11 @@
     @include color-mode(dark) {
         --example-bg-color: #{shade-color($default-bg-color, 80%)};
     }
+    @media print {
+        a {
+            color: var(--example-text, #{$default-text-color});
+        }
+    }
 }
 
 $thm-types: theorem, proposition, lemma, corollary;
