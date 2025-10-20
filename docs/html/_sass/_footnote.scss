@@ -1,0 +1,38 @@
+.fnref {
+    text-decoration: none;
+    font-size: 110%;
+}
+
+.footnote {
+    --parsep: 0.5rem;
+}
+
+.footnote-separator {
+    width: 50%;
+    background-color: var(--bs-body-color);
+    height: 1px;
+}
+
+.footnotes {
+    .fn-row {
+        font-size: 90%;
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: flex-start;
+        gap: 0.125rem;
+        margin-bottom: 0.25rem;
+        .fn-mark {
+            flex: 0 0 1rem;
+            text-align: right;
+            font-size: 90%;
+        }
+        .footnote {
+            flex: 1;
+            &::before {
+                content: '\00a0';
+                display: block;
+                line-height: 0.25;
+            }
+        }
+    }
+}

@@ -52,10 +52,6 @@ abbr[data-bs-original-title] {
     @extend abbr, [title];
 }
 
-.footnote {
-    --parsep: 0.5rem;
-}
-
 .parskip {
     vertical-align: text-top;
     display: inline-block;

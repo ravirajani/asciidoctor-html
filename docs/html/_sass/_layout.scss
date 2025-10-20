@@ -163,28 +163,6 @@ html {
     }
 }
 
-.fnref {
-    text-decoration: none;
-    font-size: 110%;
-    &::after { content: '\00a0'; }
-}
-
-.footnote-separator {
-    width: 50%;
-    background-color: var(--bs-body-color);
-    height: 1px;
-}
-
-.footnotes {
-    font-size: 90%;
-    padding-left: 1.25rem;
-    .footnote {
-        display: list-item;
-        list-style: decimal;
-        padding: 0.25rem;
-    }
-}
-
 .footer {
     font-size: 90%;
     padding: $spacer 0;

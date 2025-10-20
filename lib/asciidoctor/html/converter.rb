@@ -19,7 +19,8 @@ module Asciidoctor
         if node.footnotes?
           result << %(<div class="footnote-separator"></div><div class="footnotes">)
           node.footnotes.each do |fn|
-            result << %(<div class="footnote" id="_footnotedef_#{fn.index}">#{fn.text}</div>)
+            result << %(<div class="fn-row"><div class="fn-mark">#{fn.index}</div>)
+            result << %(<div class="footnote" id="_footnotedef_#{fn.index}">#{fn.text}</div></div>)
           end
           result << %(</div>)
         end
