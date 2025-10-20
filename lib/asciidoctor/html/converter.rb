@@ -17,7 +17,7 @@ module Asciidoctor
       def convert_embedded(node)
         result = [node.content]
         if node.footnotes?
-          result << %(<div class="footnotes">)
+          result << %(<div class="footnote-separator"></div><div class="footnotes">)
           node.footnotes.each do |fn|
             result << %(<div class="footnote" id="_footnotedef_#{fn.index}">#{fn.text}</div>)
           end

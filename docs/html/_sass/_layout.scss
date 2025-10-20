@@ -163,10 +163,26 @@ html {
     }
 }
 
+.fnref {
+    text-decoration: none;
+    font-size: 110%;
+    &::after { content: '\00a0'; }
+}
+
+.footnote-separator {
+    width: 50%;
+    background-color: var(--bs-body-color);
+    height: 1px;
+}
+
 .footnotes {
-    @extend .full-width-bg;
-    border-top: 1px solid var(--bs-body-color);
-    display: none;
+    font-size: 90%;
+    padding-left: 1.25rem;
+    .footnote {
+        display: list-item;
+        list-style: decimal;
+        padding: 0.25rem;
+    }
 }
 
 .footer {
@@ -188,15 +204,5 @@ html {
     .page .main {
         padding-top: 1rem;
         padding-bottom: 1rem;
-    }
-    .footnotes {
-        display: block;
-        font-size: 90%;
-        padding-left: calc(1rem + var(--fw-padding));
-        .footnote {
-            display: list-item;
-            list-style: decimal outside;
-            padding: 0.25rem;
-        }
     }
 }
