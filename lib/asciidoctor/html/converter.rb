@@ -108,8 +108,7 @@ module Asciidoctor
 
       def convert_inline_footnote(node)
         if (index = node.attr "index")
-          icon = %(<i class="bi bi-question-circle-fill"></i>)
-          %(<sup>#{Utils.popover_button icon, "_footnotedef_#{index}", "fnref"}</sup>)
+          %(<sup>#{Utils.popover_button index, "_footnotedef_#{index}", "fnref"}</sup>)
         else
           %(<sup class="text-danger">[??]</sup>)
         end

@@ -80,28 +80,18 @@ html {
         font-weight: 300;
         background-color: var(--header-bg);
         box-shadow: 0px 2px 12px 2px rgba(var(--header-bg-rgb), 0.3);
-        @media screen{
-            a.home {
-                color: var(--bs-gray-200);
-                text-decoration: none;
-                text-wrap: nowrap;
-                text-overflow: ellipsis;
-                overflow: hidden;
-                &:hover, &:active {
-                    color: var(--bs-white);
-                }
+        a.home {
+            color: var(--bs-gray-200);
+            text-decoration: none;
+            text-wrap: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            &:hover, &:active {
+                color: var(--bs-white);
             }
         }
         @media print {
-            height: 2rem;
-            font-size: 90%;
-            font-weight: var(--bs-body-font-weight);
-            background: none;
-            box-shadow: none;
-            justify-content: center;
-            a.home {
-                width: $content-width;
-            }
+            display: none;
         }
     }
     .main {
@@ -174,6 +164,8 @@ html {
 }
 
 .footnotes {
+    @extend .full-width-bg;
+    border-top: 1px solid var(--bs-body-color);
     display: none;
 }
 
@@ -189,5 +181,22 @@ html {
 @media print {
     html body > .sidebar {
         display: none;
+    }
+    .footer {
+        display: none;
+    }
+    .page .main {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+    .footnotes {
+        display: block;
+        font-size: 90%;
+        padding-left: calc(1rem + var(--fw-padding));
+        .footnote {
+            display: list-item;
+            list-style: decimal outside;
+            padding: 0.25rem;
+        }
     }
 }

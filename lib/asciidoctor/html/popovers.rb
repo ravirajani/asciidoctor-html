@@ -14,9 +14,11 @@ module Asciidoctor
               if(content) {
                 if(content.tagName == 'A') {
                   // This is an anchor of a bibitem
-                  const bibItem = content.parentElement.cloneNode(true)
-                  bibItem.removeChild(bibItem.firstChild) // remove the anchor
-                  content = bibItem.innerHTML
+                  const bibItem = content.parentElement.cloneNode(true);
+                  bibItem.removeChild(bibItem.firstChild); // remove the anchor
+                  content = bibItem.innerHTML;
+                } else {
+                  content = content.cloneNode(true);
                 }
                 popovers.push(new bootstrap.Popover(el, {
                   content: content,
