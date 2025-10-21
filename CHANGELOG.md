@@ -134,3 +134,10 @@
 ## [1.0.6] - 2025-09-26
 
 - Correct placement of additional scripts inside head tag.
+
+## [1.0.7] - 2025-10-21
+
+- Add styles for print media.
+- Include footnotes at bottom of page for consistency with print output and
+  to make search results less confusing.
+- Update Asciidoctor to version 2.0.25.
