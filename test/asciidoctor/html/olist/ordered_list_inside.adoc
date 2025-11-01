@@ -1,0 +1,15 @@
+[#exercises%inside%roomy]
+. First Exercise +
+Next line is flush left
+. Second Exercise
+.. First item, level 2
+... First item, level 3
+... Second item, level 3
+[%inside]
+.... First item, level 4 +
+This is inside
+.... Second item, level 4 +
+Also inside
+... Third item, level 3
+.. Second item, level 2
+. Third Exercise

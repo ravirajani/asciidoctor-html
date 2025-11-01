@@ -135,6 +135,22 @@ next to the generated number as in <<bib-roughgarden,p.10>>.
 TIP: Since citations appear in popovers, you may wish not to show the bibliography on the page.
 You can hide any block by giving it the `hidden` role.
 
+[#sec-inside]
+== Inside Option
+
+You can display the markers inside the first paragraph of a list item
+with the `inside` option.
+
+[#ex-inside]
+.Inside option
+====
+[bibliography%inside%roomy]
+. Cormen, Thomas H., Charles Eric Leiserson, Ronald L. Rivest, and Clifford Stein. 2022. _Introduction to Algorithms._ Fourth edition. Cambridge, Massachusetts: The MIT Press.
+. Roughgarden, Tim. 2022. _Algorithms Illuminated : Omnibus Edition._ New-York ( N.Y): Soundlikeyourself Publishing.
+====
+
+TIP: Use the `roomy` option if you want some extra space between list items.
+
 [#sec-real-example]
 == Real Example
 
@@ -184,8 +200,6 @@ Your proof should use the structure of the loop-invariant proof presented in <<b
 . What is the worst-case running time of text:sc[BubbleSort]? How does it compare
 with the running time of text:sc[InsertionSort]?
 ====
-
-TIP: Use the `roomy` option if you want some extra space between list items.
 
 [#sec-figlist]
 == List of Figures
