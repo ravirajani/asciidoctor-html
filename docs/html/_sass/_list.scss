@@ -79,6 +79,9 @@ $mark-width: 1.5rem;
 
 .list-roomy {
     --paritemsep: #{$roomyitemsep};
+    &.list-inside > li {
+        margin-bottom: var(--parsep);
+    }
     > li {
         --paritemsep: #{$roomyitemsep};
     }
