@@ -19,6 +19,7 @@ module Asciidoctor
         classes << "list-unmarked" if node.option?("unmarked")
         classes << "list-roomy" if node.option?("roomy")
         classes << "list-inside" if inside
+        classes << "list-relative" if node.option?("relative")
         result = [%(<#{tag_name}#{Utils.dyn_id_class_attr_str node, classes.join(" ")}>)]
         node.items.each do |item|
           result << display_list_item(item, inside:)

@@ -107,7 +107,8 @@ module Asciidoctor
         match = rgx.match(format_str) || rgx.match(li_default_format(depth))
         delim_left = node.sub_specialchars match[:left]
         delim_right = node.sub_specialchars match[:right]
-        "#{delim_left}#{convert_mark match[:numeral], idx}#{delim_right}"
+        mark = convert_mark match[:numeral], idx
+        ->(prefix) { "#{delim_left}#{prefix}#{mark}#{delim_right}" }
       end
 
       def bullet(depth)
@@ -140,11 +141,14 @@ module Asciidoctor
       end
 
       def process_olist!(block, depth, flat_style: false)
+        relative = block.option? "relative"
+        parent_mark = "#{block.document.attr "chapnum"}." if relative
         parent_reftext = ""
         if depth.positive?
           parent = block.parent
           parent = parent.parent until parent.context == :list_item
-          parent_reftext = parent.reftext? ? parent.reftext : ""
+          parent_reftext = parent.reftext if parent.reftext?
+          parent_mark = parent.attr "mark" if relative
         end
         block.set_attr "list-depth", depth
         if flat_style
@@ -155,9 +159,9 @@ module Asciidoctor
           marker_format = block.attr("markers") || li_default_format(depth, style)
           block.items.each_with_index do |item, idx|
             mark = li_mark(block, idx + offset, depth, marker_format)
-            item.set_attr "mark", mark
-            item_reftext = "#{parent_reftext}#{li_ref_mark mark}"
-            register_reftext! item, item_reftext
+            item.set_attr "mark", mark.call(parent_mark)
+            ref_mark_prefix = parent_mark if depth.zero?
+            register_reftext! item, "#{parent_reftext}#{li_ref_mark mark.call(ref_mark_prefix)}"
           end
         end
       end
