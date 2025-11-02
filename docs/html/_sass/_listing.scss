@@ -5,7 +5,7 @@
     --strong-text-color: #{$body-color-dark};
     background-color: var(--listing-bg);
     @extend .full-width-bg;
-    margin-bottom: 0.5rem;
+    margin-bottom: $listing-colist-gap;
     &:not(:has(+ .list-colist)) {
         margin-bottom: var(--blocksep);
     }

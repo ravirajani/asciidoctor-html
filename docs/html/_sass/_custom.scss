@@ -1,6 +1,7 @@
 $content-padding-x: 12px;
 $content-width: map-get($container-max-widths, md) - 2*$content-padding-x;
 $listing-blue: #002451;
+$listing-colist-gap: 0.375rem;
 
 :root {
     --unit-100vh: 100vh;

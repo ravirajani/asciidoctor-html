@@ -128,8 +128,8 @@ next to the generated number as in <<bib-roughgarden,p.10>>.
 .Bibliography list
 ====
 [bibliography]
-. [[bib-cormen]]Cormen, T.H. et al. (2022) Introduction to Algorithms. Cambridge, MA: The Mit Press.
-. [[bib-roughgarden]]Roughgarden, T. (2022) Algorithms Illuminated: Omnibus Edition. Cambridge: CUP.
+. [[bib-cormen]]Cormen, Thomas H., Charles Eric Leiserson, Ronald L. Rivest, and Clifford Stein. 2022. _Introduction to Algorithms._ Fourth edition. Cambridge, Massachusetts: The MIT Press.
+. [[bib-roughgarden]]Roughgarden, Tim. 2022. _Algorithms Illuminated : Omnibus Edition._ New-York ( N.Y): Soundlikeyourself Publishing.
 ====
 
 TIP: Since citations appear in popovers, you may wish not to show the bibliography on the page.
@@ -138,10 +138,11 @@ You can hide any block by giving it the `hidden` role.
 [#sec-inside]
 == Inside Option
 
-You can display the markers inline with the `inside` option.
+You can display the markers inline with the `inside` option. In <<ex-inside>>, this option is applied
+to a <<sec-bibliography,bibliography list>>.
 
 [#ex-inside]
-.Inside option
+.Bibliography list with inline markers
 ====
 [bibliography%inside%roomy]
 . Cormen, Thomas H., Charles Eric Leiserson, Ronald L. Rivest, and Clifford Stein. 2022. _Introduction to Algorithms._ Fourth edition. Cambridge, Massachusetts: The MIT Press.
@@ -156,20 +157,21 @@ TIP: Use the `roomy` option if you want some extra space between list items.
 A list with the `relative` option displays its markers relative to the parent list item or relative to the chapter number if it is a top-level list.
 
 [#ex-relative]
-.Relative option
+.List with relative numbering
 ====
 [%relative]
 . A Level 1 list item of a list with option `relative`. The numbering is relative to the
 chapter number.
 . [[relative-li]]Another level 1 item.
-.. [[relative-li2]]A normal level 2 list item.
+[markers=A.]
+.. [[relative-li2]]A level 2 item of a sublist with `markers=A.`.
 [%relative]
 ... A list item of a level 3 relative list.
 ... [[relative-li3]]Another level 3 list item.
 
 Reference text such as <<relative-li>>, <<relative-li2>> and <<relative-li3>> gets resolved appropriately.
 
-The `relative` option is compatible with <<sec-markers,custom markers>> where reference text such as <<relative-custom>> also gets resolved properly.
+The `relative` option can be combined with the <<sec-markers,markers attribute>> with appropriate resolution of reference text (e.g., <<relative-custom>>).
 
 [%relative,markers=(1)]
 . A level 1 list item of a relative list with `markers=(1)`.
