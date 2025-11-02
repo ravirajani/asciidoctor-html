@@ -118,7 +118,7 @@ achieved with the `continue` attribute.
 ====
 
 [#sec-bibliography]
-== Bibiliography Style
+== Bibliography Style
 Setting a list's style to `bibliography` will render the markers as arabic numerals in square brackets.
 When clicking on a generated reference link to a bibliography item, such as <<bib-roughgarden>>,
 the citation will appear in a popover. If you specify reference text in a bibliography citation, it will appear
