@@ -141,3 +141,9 @@
 - Include footnotes at bottom of page for consistency with print output and
   to make search results less confusing.
 - Update Asciidoctor to version 2.0.25.
+
+## [1.0.8] - 2025-11-02
+
+- More robust anchor scrolling on page load.
+- Inside list option.
+- Relative list option.
