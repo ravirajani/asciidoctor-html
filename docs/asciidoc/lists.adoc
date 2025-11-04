@@ -160,7 +160,7 @@ A list with the `relative` option displays its markers relative to the parent li
 .List with relative numbering
 ====
 [%relative]
-. A Level 1 list item of a list with option `relative`. The numbering is relative to the
+. A level 1 list item of a list with option `relative`. The numbering is relative to the
 chapter number.
 . [[relative-li]]Another level 1 item.
 [markers=A.]
