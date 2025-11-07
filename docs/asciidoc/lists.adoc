@@ -181,7 +181,7 @@ The `relative` option can be combined with the <<sec-markers,markers attribute>>
 [#sec-real-example]
 == Real Example
 
-In this section, we reproduce an exercise from <<bib-cormen,p.46>>. It demonstrates all the list
+In this section, we reproduce an exercise from <<bib-cormen,p.46>>. It demonstrates many of the list
 features introduced thus far in the context of a "`real`" example.
 
 [algorithm#alg-bubblesort]
