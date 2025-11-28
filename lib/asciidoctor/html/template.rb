@@ -27,7 +27,7 @@ module Asciidoctor
       def self.nav_text(chapprefix, chaptitle)
         return chaptitle if chapprefix.empty?
 
-        %(<span class="title-mark">#{chapprefix}</span>#{chaptitle})
+        %(<span class="nav-mark">#{chapprefix}</span><span>#{chaptitle}</span>)
       end
 
       def self.appendix_title(chapname, numeral, doctitle, num_appendices)

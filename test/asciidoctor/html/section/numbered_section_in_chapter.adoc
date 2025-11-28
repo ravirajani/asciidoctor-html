@@ -1,0 +1,12 @@
+:chapnum: 2
+:sectnums:
+:sectnumlevels: 2
+
+== Section Title
+
+This is a numbered section within a chapter.
+
+=== Subsection
+
+Subsections don't get relative numbers since we don't allow nested numbers beyond one
+below a chapter.

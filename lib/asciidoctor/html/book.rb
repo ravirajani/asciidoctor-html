@@ -204,7 +204,10 @@ module Asciidoctor
         doc.sections.each do |section|
           next unless section.id && section.level == 1
 
-          items << Template.nav_item("##{section.id}", section.title)
+          if doc.attr?("chapnum") && section.numbered
+            prefix = %(<span class="title-mark">#{doc.attr("chapnum")}.#{section.sectnum(".", false)}</span>)
+          end
+          items << Template.nav_item("##{section.id}", "#{prefix}#{section.title}")
         end
         items.size > 1 ? "<ul>#{items.join "\n"}</ul>" : ""
       end

@@ -37,8 +37,12 @@ module Asciidoctor
         show_sectnum = node.numbered && level <= (document.attr("sectnumlevels") || 1).to_i
         tag_level = [level == 1 ? level + 1 : level + 2, 6].min
         tag_name = %(h#{tag_level})
-        sectnum = show_sectnum ? %(<span class="title-mark">#{node.sectnum ""}</span>) : ""
-        content = %(<#{tag_name}>#{sectnum}#{node.title}</#{tag_name}>\n#{node.content})
+        if show_sectnum
+          sectnum = level > 1 ? node.numeral : node.sectnum(".", false)
+          sectnum = "#{document.attr("chapnum")}.#{sectnum}" if document.attr?("chapnum") && level == 1
+          display_sectnum = %(<span class="title-mark">#{sectnum}</span>)
+        end
+        content = %(<#{tag_name}>#{display_sectnum}#{node.title}</#{tag_name}>\n#{node.content})
         Utils.wrap_node content, node, :section
       end
 
@@ -165,7 +169,7 @@ module Asciidoctor
         mark = node.parent.attr "mark"
         title_attr = node.attr? "title"
         if mark # The image is part of a figlist
-          title = title_attr ? node.attr("title") : ""
+          title = node.attr("title") if title_attr
           %(    #{display_image node, target}
           <figcaption><span class="li-mark">#{mark}</span>#{title}</figcaption>).gsub(/^      /, "")
         else

@@ -34,6 +34,13 @@
     }
     nav {
         display: flex;
+        > ul > li > a {
+            display: flex;
+            gap: 1.1ex;
+            .nav-mark {
+                flex: 0 0 1.1ex;
+            }
+        }
         ul {
             @extend .nav;
             @extend .flex-column;
