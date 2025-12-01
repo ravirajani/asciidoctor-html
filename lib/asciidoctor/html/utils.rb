@@ -76,6 +76,15 @@ module Asciidoctor
         attrs = %( tabindex="0" role="button" class="btn-po#{extra_classes}" data-contentid="#{content_id}")
         %(<a#{attrs}>#{content}</a>)
       end
+
+      def self.display_sectnum(node, level = 1)
+        document = node.document
+        sectnum = level > 1 ? node.numeral : node.sectnum(".", false)
+        if document.attr?("chapnum") && (chapnum = document.attr("chapnum")).to_i.positive? && level == 1
+          sectnum = "#{chapnum}.#{sectnum}"
+        end
+        %(<span class="title-mark">#{sectnum}</span>)
+      end
     end
   end
 end

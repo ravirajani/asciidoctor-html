@@ -12,6 +12,7 @@ require_relative "text_inline_macro"
 require_relative "template"
 require_relative "pagination"
 require_relative "search"
+require_relative "utils"
 
 module Asciidoctor
   module Html
@@ -204,9 +205,7 @@ module Asciidoctor
         doc.sections.each do |section|
           next unless section.id && section.level == 1
 
-          if doc.attr?("chapnum") && section.numbered
-            prefix = %(<span class="title-mark">#{doc.attr("chapnum")}.#{section.sectnum(".", false)}</span>)
-          end
+          prefix = Utils.display_sectnum(section) if section.numbered
           items << Template.nav_item("##{section.id}", "#{prefix}#{section.title}")
         end
         items.size > 1 ? "<ul>#{items.join "\n"}</ul>" : ""

@@ -37,11 +37,7 @@ module Asciidoctor
         show_sectnum = node.numbered && level <= (document.attr("sectnumlevels") || 1).to_i
         tag_level = [level == 1 ? level + 1 : level + 2, 6].min
         tag_name = %(h#{tag_level})
-        if show_sectnum
-          sectnum = level > 1 ? node.numeral : node.sectnum(".", false)
-          sectnum = "#{document.attr("chapnum")}.#{sectnum}" if document.attr?("chapnum") && level == 1
-          display_sectnum = %(<span class="title-mark">#{sectnum}</span>)
-        end
+        display_sectnum = Utils.display_sectnum(node, level) if show_sectnum
         content = %(<#{tag_name}>#{display_sectnum}#{node.title}</#{tag_name}>\n#{node.content})
         Utils.wrap_node content, node, :section
       end
