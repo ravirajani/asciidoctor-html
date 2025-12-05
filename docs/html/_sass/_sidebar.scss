@@ -33,7 +33,6 @@
         padding-top: calc($padding - 0.125rem);
     }
     nav {
-        display: flex;
         > ul > li > a {
             display: flex;
             gap: 1.1ex;
