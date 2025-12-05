@@ -54,7 +54,7 @@
                     @extend .nav-link;
                 }
                 ul {
-                    margin-bottom: 0.25rem;
+                    margin-bottom: 0.5rem;
                     margin-left: calc(#{$nav-item-padding-x} + 0.5ex - 0.5*#{$active-line-width});
                     border-left: $active-line-width solid shade-color($active-nav-emphasis-color, 25%);
                     li {
