@@ -33,13 +33,6 @@
         padding-top: calc($padding - 0.125rem);
     }
     nav {
-        > ul > li > a {
-            display: flex;
-            gap: 1.1ex;
-            .nav-mark {
-                flex: 0 0 1.1ex;
-            }
-        }
         ul {
             @extend .nav;
             @extend .flex-column;
@@ -51,6 +44,11 @@
                     --bs-nav-link-color: #{$inactive-nav-color};
                     --bs-nav-link-hover-color: #{$inactive-nav-color};
                     @extend .nav-link;
+                    .nav-mark {
+                        display: inline-block;
+                        min-width: 1.1ex;
+                        margin-right: 1.1ex;
+                    }
                 }
                 ul {
                     margin-bottom: 0.5rem;
