@@ -147,3 +147,8 @@
 - More robust anchor scrolling on page load.
 - Inside list option.
 - Relative list option.
+
+## [1.0.9] - 2025-12-10
+
+- Relative section numbering.
+- Update Asciidoctor to v2.0.26
