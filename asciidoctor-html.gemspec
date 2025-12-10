@@ -28,7 +28,7 @@ Gem::Specification.new do |spec|
   spec.bindir = "exe"
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
-  spec.add_dependency "asciidoctor", "2.0.25"
+  spec.add_dependency "asciidoctor", "2.0.26"
   spec.add_dependency "filewatcher", "2.1.0"
   spec.add_dependency "nokogiri", "1.18.9"
   spec.add_dependency "psych", "5.2.6"
