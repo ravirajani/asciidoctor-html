@@ -5,6 +5,7 @@ require_relative "highlightjs"
 require_relative "popovers"
 require_relative "sidebar"
 require_relative "scroll"
+require_relative "flip"
 
 module Asciidoctor
   module Html
@@ -56,8 +57,10 @@ module Asciidoctor
         <<~HTML
           <main id="main" class="main">
           <div id="content-container" class="content-container">
+          <div class="chaphead">
           #{%(<h1 class="chapheading">#{opts[:chapheading]}</h1>) if opts[:chapheading]}
           <h1 class="chaptitle">#{opts[:chapsubheading]}</h1>
+          </div>
           #{opts[:content]}
           #{footer opts[:authors]}
           </div>
@@ -141,6 +144,14 @@ module Asciidoctor
         HTML
       end
 
+      def self.hidesects
+        <<~HTML
+          <style>
+            section.section:not(.d-block) { display: none; }
+          </style>
+        HTML
+      end
+
       # opts:
       # - title: String
       # - short_title: String
@@ -151,6 +162,7 @@ module Asciidoctor
       # - langs: Array[String]
       # - at_head_end: String
       # - at_body_end: String
+      # - multipage: Boolean|Null
       def self.html(content, nav_items, opts = {})
         nav = (nav_items.size > 1)
         <<~HTML
@@ -158,6 +170,7 @@ module Asciidoctor
           <html lang="en">
           <head>
           #{head opts[:title], opts[:description], opts[:authors], opts[:langs]}
+          #{hidesects if opts[:multipage]}
           #{opts[:at_head_end]}
           </head>
           <body>
@@ -172,7 +185,7 @@ module Asciidoctor
           #{Highlightjs::PLUGIN}
           #{Popovers::POPOVERS}
           #{Sidebar::TOGGLE if nav}
-          #{Scroll::SCROLL}
+          #{opts[:multipage] ? Flip::FLIP : Scroll::SCROLL}
           </script>
           #{opts[:at_body_end]}
           </body>

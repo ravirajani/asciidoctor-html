@@ -4,6 +4,8 @@ automatic generation of reference text and support for pseudocode, bibliographie
 lists of figures. These features are demonstrated by means of \
 an example of typesetting an exercise from a textbook in theoretical computer science.
 
+:pagestyle: multi
+
 include::includes/variables.adoc[]
 
 {asciidoctor-html} provides some additional features for https://docs.asciidoctor.org/asciidoc/latest/lists/ordered/[ordered lists], including automatic generation of reference text.

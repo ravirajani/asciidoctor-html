@@ -253,7 +253,8 @@ module Asciidoctor
           description: doc.attr("description"),
           chapheading: tdata.chapheading,
           chapsubheading: tdata.chapsubheading,
-          langs: langs(doc)
+          langs: langs(doc),
+          multipage: doc.attr("pagestyle") == "multi"
         )
       end
     end
