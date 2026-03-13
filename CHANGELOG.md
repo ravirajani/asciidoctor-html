@@ -152,3 +152,7 @@
 
 - Relative section numbering.
 - Update Asciidoctor to v2.0.26
+
+## [1.0.10] - 2026-03-13
+
+- Set MathJax property displayOverflow = linebreak.

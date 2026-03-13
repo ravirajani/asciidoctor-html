@@ -128,6 +128,9 @@ module Asciidoctor
             MathJax = {
               tex: {
                 inlineMath: {'[+]': [['$', '$']]}
+              },
+              output: {
+                displayOverflow: 'linebreak'
               }
             };
           </script>
