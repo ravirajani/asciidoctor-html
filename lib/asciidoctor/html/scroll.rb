@@ -7,9 +7,8 @@ module Asciidoctor
     module Scroll
       SCROLL = <<~JS
         (function() {
-          const page = document.getElementById('page');
           let scrolledOnce = false;
-          function scrollToElement(e) {
+          ADHT.scrollToElement = function(e) {
             e && e.preventDefault();
             scrolledOnce = true;
             const href = location.hash;
@@ -18,15 +17,15 @@ module Asciidoctor
             if(!target) return;
 
             const rect = target.getBoundingClientRect()
+            const page = document.getElementById('page');
             page.scrollTo({
               top: rect.top + page.scrollTop,
               left: 0,
               behavior: 'smooth'
             });
           }
-          addEventListener('hashchange', scrollToElement);
           addEventListener('load', function() {
-            !scrolledOnce && scrollToElement();
+            !scrolledOnce && ADHT.scrollToElement();
           });
         })();
       JS

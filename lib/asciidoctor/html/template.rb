@@ -149,8 +149,22 @@ module Asciidoctor
         <<~HTML
           <style>
             section.section:not(.d-block) { display: none; }
+            .paginator:not(.visible) { visibility: hidden; }
           </style>
         HTML
+      end
+
+      def self.scroll_flip(multipage)
+        html = []
+        if multipage
+          html << Flip::FLIP
+        else
+          html << Scroll::SCROLL
+          html << <<~JS
+            addEventListener('hashchange', ADHT.scrollToElement);
+          JS
+        end
+        html.join("\n")
       end
 
       # opts:
@@ -186,7 +200,7 @@ module Asciidoctor
           #{Highlightjs::PLUGIN}
           #{Popovers::POPOVERS}
           #{Sidebar::TOGGLE if nav}
-          #{opts[:multipage] ? Flip::FLIP : Scroll::SCROLL}
+          #{scroll_flip(opts[:multipage])}
           </script>
           #{opts[:at_body_end]}
           </body>
