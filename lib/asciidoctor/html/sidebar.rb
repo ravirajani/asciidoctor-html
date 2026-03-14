@@ -5,6 +5,20 @@ module Asciidoctor
     # Toggle behaviour of sidebar
     module Sidebar
       TOGGLE = <<~JS
+        ADHT.nudgeMenuBtn = function() {
+          const menuBtn = document.getElementById('menu-btn');
+          if(!menuBtn) return;
+          // Nudge menuBtn in case there is a scrollbar
+          const main = document.getElementById('main');
+          const scrollbarWidth = page.offsetWidth - main.offsetWidth;
+          menuBtn.animate(
+            { transform: 'translateX(' + (-scrollbarWidth) + 'px)' },
+            { fill: 'forwards', duration: 150 }
+          );
+          // Cache scrollbar width
+          ADHT.scrollbarWidth = scrollbarWidth
+          return menuBtn;
+        };
         (function() {
           const page = document.getElementById('page');
           const sidebar = document.getElementById('sidebar');
@@ -21,18 +35,12 @@ module Asciidoctor
           addEventListener('resize', hideSidebar);
           dismissBtn && dismissBtn.addEventListener('click', hideSidebar);
 
-          const menuBtn = document.getElementById('menu-btn');
+          const menuBtn = ADHT.nudgeMenuBtn()
           if(!menuBtn) return;
-
-          // Nudge menuBtn in case there is a scrollbar
-          const main = document.getElementById('main');
-          const scrollbarWidth = page.offsetWidth - main.offsetWidth;
-          menuBtn.style.right = (scrollbarWidth + 12) + 'px';
-
           // Add click listener to toggle sidebar
           menuBtn.addEventListener('click', function() {
             sidebar && sidebar.classList.toggle('shown');
-            if(scrollbarWidth > 0) page.classList.toggle('noscroll');
+            if(ADHT.scrollbarWidth > 0) page.classList.toggle('noscroll');
           });
         })();
       JS

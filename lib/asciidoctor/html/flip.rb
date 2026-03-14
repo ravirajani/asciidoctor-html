@@ -13,14 +13,20 @@ module Asciidoctor
             const id = href.substring(1);
             const target = document.getElementById(id);
 
-            //TODO: any in section link should show the section.
-            document.querySelectorAll('.chaphead, .preamble').forEach(el => {
+            document.querySelectorAll('.content-container > .chaphead, .content-container > .preamble').forEach(el => {
               el.classList.toggle('hidden', target);
             });
 
-            document.querySelectorAll('.section').forEach(el => {
-              el.classList.toggle('d-block', el == target);
+            if(!target) return;
+
+            const sect_selector = '.content-container > .section';
+            const section = target.closest(sect_selector);
+
+            document.querySelectorAll(sect_selector).forEach(el => {
+              el.classList.toggle('d-block', el == section);
             });
+
+            ADHT.nudgeMenuBtn();
           }
           flip();
           addEventListener('hashchange', flip);

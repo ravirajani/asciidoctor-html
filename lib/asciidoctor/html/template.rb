@@ -136,6 +136,7 @@ module Asciidoctor
                 displayOverflow: 'linebreak'
               }
             };
+            ADHT = {}; // Custom namespace.
           </script>
           <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"></script>
           <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
