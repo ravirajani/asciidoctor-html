@@ -15,6 +15,7 @@ module Asciidoctor
 
           function updatePaginator(el) {
             const paginator = document.querySelector('.paginator');
+            if(!paginator) return;
             const nextPage = paginator.lastElementChild;
             const prevPage = paginator.firstElementChild;
             const next = el.nextElementSibling;

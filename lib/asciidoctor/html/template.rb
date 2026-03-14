@@ -149,7 +149,14 @@ module Asciidoctor
         <<~HTML
           <style>
             section.section:not(.d-block) { display: none; }
-            .paginator:not(.visible) { visibility: hidden; }
+            .paginator {
+              visibility: hidden;
+              opacity: 0;
+              transition: opacity 150ms ease-in;
+            }
+            .paginator.visible {
+              opacity: 1;
+            }
           </style>
         HTML
       end

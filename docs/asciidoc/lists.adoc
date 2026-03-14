@@ -5,10 +5,17 @@ lists of figures. These features are demonstrated by means of \
 an example of typesetting an exercise from a textbook in theoretical computer science.
 
 :pagestyle: multi
+:sectnums:
 
 include::includes/variables.adoc[]
 
-{asciidoctor-html} provides some additional features for https://docs.asciidoctor.org/asciidoc/latest/lists/ordered/[ordered lists], including automatic generation of reference text.
+This part describes some powerful new features for https://docs.asciidoctor.org/asciidoc/latest/lists/ordered/[ordered lists],
+including automatic generation of reference text. It additionally demonstrates two useful
+https://docs.asciidoctor.org/asciidoc/latest/attributes/document-attributes/[document attributes] `pagestyle=multi` and
+`sectnums=true`.
+
+NOTE: When using the `multi` pagestyle, all top-level sections need to have an ID.
+
 
 [#sec-basic-list]
 == Basic List
