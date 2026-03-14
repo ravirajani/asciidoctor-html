@@ -6,6 +6,40 @@ module Asciidoctor
     module Flip
       FLIP = <<~JS
         (function() {
+          const sectSelector = '.content-container > .section[id]';
+          // Holds replaced pagination links to prev/next chapter
+          const chapPagination = {
+            prevChap: null,
+            nextChap: null
+          };
+
+          function updatePaginator(el) {
+            const paginator = document.querySelector('.paginator');
+            const nextPage = paginator.lastElementChild;
+            const prevPage = paginator.firstElementChild;
+            const next = el.nextElementSibling;
+            const prev = el.previousElementSibling;
+            if(next && next.matches(sectSelector)) {
+              const nextLink = document.createElement('a');
+              nextLink.href = '#' + next.id;
+              nextLink.innerHTML = 'Next &rsaquo;';
+              chapPagination.nextChap ||= nextPage;
+              nextPage.replaceWith(nextLink);
+            } else if(chapPagination.nextChap) {
+              nextPage.replaceWith(chapPagination.nextChap);
+            }
+            if(el.matches(sectSelector)) {
+              const prevLink = document.createElement('a');
+              prevLink.href = prev.id ? '#' + prev.id : '';
+              prevLink.innerHTML = '&lsaquo; Prev';
+              chapPagination.prevChap ||= prevPage;
+              prevPage.replaceWith(prevLink);
+            } else if(chapPagination.prevChap) {
+              prevPage.replaceWith(chapPagination.prevChap)
+            }
+            paginator.classList.add('visible');
+          }
+
           function flip(e) {
             e && e.preventDefault();
 
@@ -16,26 +50,12 @@ module Asciidoctor
             document.querySelectorAll('.content-container > .chaphead, .content-container > .preamble').forEach(el => {
               el.classList.toggle('hidden', target);
             });
-            const sect_selector = '.content-container > .section[id]';
-            const section = target && target.closest(sect_selector);
-            const paginator = document.querySelector('.paginator');
-            section && document.querySelectorAll(sect_selector).forEach(el => {
+            const section = target && target.closest(sectSelector);
+            section || updatePaginator(document.querySelector(sectSelector).previousElementSibling);
+            section && document.querySelectorAll(sectSelector).forEach(el => {
               const hit = (el == section);
               el.classList.toggle('d-block', hit);
-              if(hit) {
-                const next = el.nextElementSibling;
-                const prev = el.previousElementSibling;
-                if(next && next.matches(sect_selector)) {
-                  const nextLink = document.createElement('a');
-                  nextLink.href = '#' + next.id;
-                  nextLink.innerHTML = 'Next: &rsaquo;';
-                  paginator.lastElementChild.replaceWith(nextLink);
-                }
-                if(prev && prev.matches(sect_selector)) {
-                  console.log(prev.id);
-                }
-                paginator.classList.add('visible');
-              }
+              hit && updatePaginator(el);
             });
 
             ADHT.nudgeMenuBtn();
