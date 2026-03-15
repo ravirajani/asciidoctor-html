@@ -56,7 +56,7 @@ module Asciidoctor
             if(prev) {
               const prevLink = document.createElement('a');
               prevLink.href = '#' + (prev.id ? prev.id : 'page');
-              prevLink.innerHTML = '&lsaquo; Prev';
+              prevLink.innerHTML = '&lsaquo; Previous';
               chapPagination.prevChap ||= prevPage;
               prevPage.replaceWith(prevLink);
             } else if(chapPagination.prevChap) {

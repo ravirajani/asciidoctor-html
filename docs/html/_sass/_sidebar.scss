@@ -31,6 +31,7 @@
         --bs-btn-padding-x: #{$padding};
         padding-bottom: 0;
         padding-top: calc($padding - 0.125rem);
+        padding-left: 5rem;
     }
     nav {
         ul {

@@ -13,7 +13,7 @@ include::includes/variables.adoc[]
 including automatic generation of reference text.
 
 NOTE: This part has two https://docs.asciidoctor.org/asciidoc/latest/attributes/document-attributes/[document attributes] set, viz. the
-standard boolean attribute `sectnums` and the custom attribute `:pagestyle: multi` which splits the sections into separate pages
+standard boolean attribute `:sectnums:` and the custom attribute `:pagestyle: multi` which splits the sections into separate pages
 by default.
 
 [#sec-basic-list]
