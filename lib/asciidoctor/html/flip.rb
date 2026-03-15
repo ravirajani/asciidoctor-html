@@ -18,6 +18,8 @@ module Asciidoctor
 
           const page = document.getElementById('page');
 
+          const nav = document.querySelectorAll('#sidebar nav > ul > li.active > ul > li');
+
           let currentId = "page";
           document.querySelectorAll('.content-container > .chaphead, .content-container > .preamble').forEach(el => {
             sectsById[currentId].push(el);
@@ -91,6 +93,12 @@ module Asciidoctor
                 sectsById[key].forEach(el => el.classList.remove('d-block'));
               }
             }
+
+            nav.forEach(el => {
+              const a = el.querySelector('a');
+              const href = a && a.getAttribute('href');
+              el.classList.toggle('active', id == href.substring(1));
+            });
 
             ADHT.nudgeMenuBtn();
 
