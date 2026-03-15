@@ -160,3 +160,7 @@
 ## [1.1.0] - 2026-03-15
 
 - Allow splitting of sections into multiple pages.
+
+## [1.1.1] - 2026-03-15
+
+- Bugfix: paginator now updates after switching to single page from multi.
