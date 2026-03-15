@@ -64,6 +64,22 @@ html {
         scrollbar-gutter: stable;
         overflow-y: scroll;
     }
+    &.multi {
+        .content-container > {
+            .section:not(.d-block),
+            .chaphead:not(.d-block),
+            .preamble:not(.d-block) { display: none; }
+        }
+        .paginator {
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 150ms ease-in;
+        }
+        .paginator.visible {
+            opacity: 1;
+        }
+        .fn-wrapper { display: none; }
+    }
     padding: 0;
     scroll-behavior: smooth;
     scrollbar-color: $gray-600 $gray-800;
@@ -95,6 +111,10 @@ html {
         }
     }
     .main {
+        .chapheading-wrapper {
+            display: flex;
+            justify-content: space-between;
+        }
         .content-container {
             max-width: $content-width;
             margin: 0 auto;

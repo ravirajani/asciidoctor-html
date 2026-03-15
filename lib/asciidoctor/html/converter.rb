@@ -16,14 +16,14 @@ module Asciidoctor
 
       def convert_embedded(node)
         result = [node.content]
-        multi = node.document.attr("pagestyle") == "multi"
-        if node.footnotes? && !multi
+        if node.footnotes?
+          result << %(<div class="fn-wrapper">)
           result << %(<div class="footnote-separator"></div><div class="footnotes">)
           node.footnotes.each do |fn|
             result << %(<div class="fn-row"><div class="fn-mark">#{fn.index}</div>)
             result << %(<div class="footnote" id="_footnotedef_#{fn.index}">#{fn.text}</div></div>)
           end
-          result << %(</div>)
+          result << %(</div></div>)
         end
         result.join("\n")
       end

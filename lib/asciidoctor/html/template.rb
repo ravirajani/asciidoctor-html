@@ -47,18 +47,31 @@ module Asciidoctor
         HTML
       end
 
+      def self.chapheading(text, multipage)
+        toggle_text = multipage ? "Single-Page Layout" : "Multipage Layout"
+        <<~HTML
+          <div class="chapheading-wrapper">
+            <h1 class="chapheading">#{text}</h1>
+            <div class="layout-button-wrapper">
+              <button id="btn-layout" type="button" class="btn btn-secondary btn-sm">#{toggle_text}</button>
+            </div>
+          </div>
+        HTML
+      end
+
       # opts:
       # - chapheading: String
       # - chapsubheading: String
       # - content: String
       # - authors: String
       # - date: Date
+      # - multipage: Boolean|Null
       def self.main(opts)
         <<~HTML
           <main id="main" class="main">
           <div id="content-container" class="content-container">
           <div class="chaphead">
-          #{%(<h1 class="chapheading">#{opts[:chapheading]}</h1>) if opts[:chapheading]}
+          #{chapheading(opts[:chapheading], opts[:multipage]) if opts[:chapheading]}
           <h1 class="chaptitle">#{opts[:chapsubheading]}</h1>
           </div>
           #{opts[:content]}
@@ -145,35 +158,6 @@ module Asciidoctor
         HTML
       end
 
-      def self.hidesects
-        <<~HTML
-          <style>
-            section.section:not(.d-block) { display: none; }
-            .paginator {
-              visibility: hidden;
-              opacity: 0;
-              transition: opacity 150ms ease-in;
-            }
-            .paginator.visible {
-              opacity: 1;
-            }
-          </style>
-        HTML
-      end
-
-      def self.scroll_flip(multipage)
-        html = []
-        if multipage
-          html << Flip::FLIP
-        else
-          html << Scroll::SCROLL
-          html << <<~JS
-            addEventListener('hashchange', ADHT.scrollToElement);
-          JS
-        end
-        html.join("\n")
-      end
-
       # opts:
       # - title: String
       # - short_title: String
@@ -192,12 +176,11 @@ module Asciidoctor
           <html lang="en">
           <head>
           #{head opts[:title], opts[:description], opts[:authors], opts[:langs]}
-          #{hidesects if opts[:multipage]}
           #{opts[:at_head_end]}
           </head>
           <body>
           #{sidebar(nav_items) if nav}
-          <div id="page" class="page">
+          <div id="page" class="page#{" multi" if opts[:multipage]}">
           #{MENU_BTN if nav}
           #{header opts[:title], opts[:short_title]}
           #{main content:, **opts}
@@ -207,7 +190,8 @@ module Asciidoctor
           #{Highlightjs::PLUGIN}
           #{Popovers::POPOVERS}
           #{Sidebar::TOGGLE if nav}
-          #{scroll_flip(opts[:multipage])}
+          #{Scroll::SCROLL}
+          #{Flip::FLIP}
           </script>
           #{opts[:at_body_end]}
           </body>

@@ -6,21 +6,43 @@ module Asciidoctor
     module Flip
       FLIP = <<~JS
         (function() {
-          const sectSelector = '.content-container > .section[id]';
+          const sectSelector = '.content-container > .section';
           // Holds replaced pagination links to prev/next chapter
           const chapPagination = {
             prevChap: null,
             nextChap: null
           };
 
-          function updatePaginator(el) {
+          // Dictionary sect ID => [all sects until next sect with ID]
+          const sectsById = { "page": []};
+
+          const page = document.getElementById('page');
+
+          let currentId = "page";
+          document.querySelectorAll('.content-container > .chaphead, .content-container > .preamble').forEach(el => {
+            sectsById[currentId].push(el);
+            el.dataset.withSect = currentId;
+          });
+          document.querySelectorAll(sectSelector).forEach(el => {
+            if(el.id) {
+              el.dataset.prevPage = currentId;
+              currentId = el.id;
+              sectsById[currentId] ||= [];
+            }
+            const prevId = el.dataset.prevPage;
+            if(prevId) {
+              sectsById[prevId][0].dataset.nextPage = currentId;
+            }
+            sectsById[currentId].push(el);
+            el.dataset.withSect = currentId;
+          });
+
+          function updatePaginator(prev, next) {
             const paginator = document.querySelector('.paginator');
             if(!paginator) return;
             const nextPage = paginator.lastElementChild;
             const prevPage = paginator.firstElementChild;
-            const next = el.nextElementSibling;
-            const prev = el.previousElementSibling;
-            if(next && next.matches(sectSelector)) {
+            if(next) {
               const nextLink = document.createElement('a');
               nextLink.href = '#' + next.id;
               nextLink.innerHTML = 'Next &rsaquo;';
@@ -29,9 +51,9 @@ module Asciidoctor
             } else if(chapPagination.nextChap) {
               nextPage.replaceWith(chapPagination.nextChap);
             }
-            if(el.matches(sectSelector)) {
+            if(prev) {
               const prevLink = document.createElement('a');
-              prevLink.href = prev.id ? '#' + prev.id : '';
+              prevLink.href = '#' + (prev.id ? prev.id : 'page');
               prevLink.innerHTML = '&lsaquo; Prev';
               chapPagination.prevChap ||= prevPage;
               prevPage.replaceWith(prevLink);
@@ -42,28 +64,36 @@ module Asciidoctor
           }
 
           function flip(e) {
+            if(!page.classList.contains('multi')) return;
+
             e && e.preventDefault();
 
             const href = location.hash;
-            const id = href.substring(1);
+            let id = href.substring(1);
             const target = document.getElementById(id);
 
-            document.querySelectorAll('.content-container > .chaphead, .content-container > .preamble').forEach(el => {
-              el.classList.toggle('hidden', target);
-            });
-            const section = target && target.closest(sectSelector);
-            section || updatePaginator(document.querySelector(sectSelector).previousElementSibling);
-            section && document.querySelectorAll(sectSelector).forEach(el => {
-              const hit = (el == section);
-              el.classList.toggle('d-block', hit);
-              hit && updatePaginator(el);
-            });
+            if(!target) id = "page";
+
+            let section = target && target.closest(sectSelector);
+            if(section) {
+              id = section.dataset.withSect;
+              section = sectsById[id][0];
+            }
+
+            for(const key in sectsById) {
+              if(key == id) {
+                const firstSect = sectsById[key][0];
+                const prev = firstSect.dataset.prevPage && sectsById[firstSect.dataset.prevPage][0];
+                const next = firstSect.dataset.nextPage && sectsById[firstSect.dataset.nextPage][0];
+                updatePaginator(prev, next);
+                sectsById[key].forEach(el => el.classList.add('d-block'));
+              } else {
+                sectsById[key].forEach(el => el.classList.remove('d-block'));
+              }
+            }
 
             ADHT.nudgeMenuBtn();
 
-            if(!target) return;
-
-            const page = document.getElementById('page');
             if(target == section) {
               page.scrollTo({
                 top: 0,
