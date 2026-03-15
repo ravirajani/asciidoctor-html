@@ -156,3 +156,7 @@
 ## [1.0.10] - 2026-03-13
 
 - Set MathJax property displayOverflow = linebreak.
+
+## [1.1.0] - 2026-03-15
+
+- Allow splitting of sections into multiple pages.
