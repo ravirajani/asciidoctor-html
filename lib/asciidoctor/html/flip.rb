@@ -126,6 +126,7 @@ module Asciidoctor
             if(multi) {
               // We have switched to Single Page
               ADHT.nudgeMenuBtn();
+              updatePaginator();
             } else {
               flip();
             }
