@@ -109,6 +109,19 @@ module Asciidoctor
           }
           flip();
           addEventListener('hashchange', flip);
+
+          const layoutButton = document.getElementById('btn-layout');
+          layoutButton && layoutButton.addEventListener('click', function(){
+            const multi = page.classList.contains('multi');
+            layoutButton.textContent = (multi ? 'multiple pages' : 'single page');
+            page.classList.toggle('multi');
+            if(multi) {
+              // We have switched to Single Page
+              ADHT.nudgeMenuBtn();
+            } else {
+              flip();
+            }
+          });
         })();
       JS
     end

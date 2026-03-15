@@ -48,14 +48,12 @@ module Asciidoctor
       end
 
       def self.chapheading(text, multipage)
-        toggle_text = multipage ? "Single-Page Layout" : "Multipage Layout"
+        toggle_text = multipage ? "single page" : "multiple pages"
         <<~HTML
-          <div class="chapheading-wrapper">
-            <h1 class="chapheading">#{text}</h1>
-            <div class="layout-button-wrapper">
-              <button id="btn-layout" type="button" class="btn btn-secondary btn-sm">#{toggle_text}</button>
-            </div>
+          <div class="layout-toggle">
+           <label for="btn-layout">View as</label> <button id="btn-layout" type="button" class="btn btn-link">#{toggle_text}</button>
           </div>
+          <h1 class="chapheading">#{text}</h1>
         HTML
       end
 
@@ -99,9 +97,9 @@ module Asciidoctor
         XML
       end
 
-      def self.header(title, short_title)
+      def self.header(title, short_title, chapheading)
         <<~HTML
-          <header class="header">
+          <header class="header#{" with-margin" unless chapheading}">
             <a class="home d-none d-sm-block" href="./">#{title}</a>
             <a class="home d-block d-sm-none" href="./">#{short_title}</a>
           </header>
@@ -182,7 +180,7 @@ module Asciidoctor
           #{sidebar(nav_items) if nav}
           <div id="page" class="page#{" multi" if opts[:multipage]}">
           #{MENU_BTN if nav}
-          #{header opts[:title], opts[:short_title]}
+          #{header opts[:title], opts[:short_title], opts[:chapheading]}
           #{main content:, **opts}
           </div> <!-- .page -->
           <script>document.getElementById("cr-year").textContent = (new Date()).getFullYear();</script>

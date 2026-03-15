@@ -4,8 +4,6 @@ cross referencing of content on other pages with full resolution of reference te
 footnotes that are rendered in popovers; easy insertion of icons; and rendering of \
 semantic inline text elements.
 
-:pagestyle: multi
-
 include::includes/variables.adoc[]
 
 {asciidoctor-html} includes some convenient inline macros

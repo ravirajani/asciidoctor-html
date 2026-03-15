@@ -69,6 +69,9 @@ html {
             .section:not(.d-block),
             .chaphead:not(.d-block),
             .preamble:not(.d-block) { display: none; }
+            .section {
+                margin-top: 1.5*$spacer;
+            }
         }
         .paginator {
             visibility: hidden;
@@ -87,7 +90,7 @@ html {
         height: $header-height;
         display: flex;
         padding: 0 $content-padding-x;
-        margin-bottom: 1.5*$spacer;
+        &.with-margin { margin-bottom: 1.5*$spacer; }
         justify-content: space-between;
         align-items: center;
         flex-flow: row nowrap;
@@ -111,9 +114,17 @@ html {
         }
     }
     .main {
-        .chapheading-wrapper {
-            display: flex;
-            justify-content: space-between;
+        .layout-toggle {
+            margin-bottom: 1rem;
+            padding-bottom: .375rem;
+            padding-top: .5rem;
+            @extend .full-width-bg;
+            border-bottom: 1px solid var(--bs-dark-border-subtle);
+            .btn-link {
+                vertical-align: baseline;
+                --bs-btn-padding-x: 0;
+                text-decoration: none;
+            }
         }
         .content-container {
             max-width: $content-width;
