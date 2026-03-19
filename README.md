@@ -42,7 +42,7 @@ Run `jekyll serve --livereload` inside the `docs/html` directory to preview your
 To install this gem onto your local machine, run `bundle exec rake install`.
 To release a new version,
 
-- update the version number in `asciidoctor-html.gemspec`,
+- update the version number in `lib/asciidoctor/html/version.rb`,
 - update the `CHANGELOG.md`,
 
 and then run

@@ -208,7 +208,10 @@ module Asciidoctor
           prefix = Utils.display_sectnum(section) if section.numbered
           items << Template.nav_item("##{section.id}", "#{prefix}#{section.title}")
         end
-        items.size > 1 ? "<ul>#{items.join "\n"}</ul>" : ""
+        return "" unless items.size > 1
+
+        doc.set_attr("has-subnav", true)
+        "<ul>#{items.join "\n"}</ul>"
       end
 
       def html(docs)
@@ -246,6 +249,7 @@ module Asciidoctor
         Template.html(
           content,
           nav_items,
+          has_subnav: doc.attr?("has-subnav"),
           title: @title,
           short_title: @short_title,
           authors: display_authors(doc),

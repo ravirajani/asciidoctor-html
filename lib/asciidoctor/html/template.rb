@@ -47,20 +47,24 @@ module Asciidoctor
         HTML
       end
 
-      def self.chapheading(text, multipage)
+      def self.toggle_button(multipage)
         toggle_text = multipage ? "single page" : "multiple pages"
         <<~HTML
           <div class="layout-toggle">
-           <label for="btn-layout">View as</label> <button id="btn-layout" type="button" class="btn btn-link">#{toggle_text}</button>
+            <label for="btn-layout">View as</label> <button id="btn-layout" type="button" class="btn btn-link">#{toggle_text}</button>
           </div>
-          <h1 class="chapheading">#{text}</h1>
         HTML
+      end
+
+      def self.chapheading(text)
+        %(<h1 class="chapheading">#{text}</h1>) if text
       end
 
       # opts:
       # - chapheading: String
       # - chapsubheading: String
       # - content: String
+      # - has_subnav: Boolean
       # - authors: String
       # - date: Date
       # - multipage: Boolean|Null
@@ -69,8 +73,9 @@ module Asciidoctor
           <main id="main" class="main">
           <div id="content-container" class="content-container">
           <div class="chaphead">
-          #{chapheading(opts[:chapheading], opts[:multipage]) if opts[:chapheading]}
-          <h1 class="chaptitle">#{opts[:chapsubheading]}</h1>
+            #{toggle_button opts[:multipage] if opts[:has_subnav]}
+            #{chapheading opts[:chapheading]}
+            <h1 class="chaptitle">#{opts[:chapsubheading]}</h1>
           </div>
           #{opts[:content]}
           #{footer opts[:authors]}
@@ -97,9 +102,9 @@ module Asciidoctor
         XML
       end
 
-      def self.header(title, short_title, chapheading)
+      def self.header(title, short_title, has_subnav)
         <<~HTML
-          <header class="header#{" with-margin" unless chapheading}">
+          <header class="header#{" with-margin" unless has_subnav}">
             <a class="home d-none d-sm-block" href="./">#{title}</a>
             <a class="home d-block d-sm-none" href="./">#{short_title}</a>
           </header>
@@ -157,6 +162,7 @@ module Asciidoctor
       end
 
       # opts:
+      # - has_subnav: Boolean
       # - title: String
       # - short_title: String
       # - authors: String
@@ -180,7 +186,7 @@ module Asciidoctor
           #{sidebar(nav_items) if nav}
           <div id="page" class="page#{" multi" if opts[:multipage]}">
           #{MENU_BTN if nav}
-          #{header opts[:title], opts[:short_title], opts[:chapheading]}
+          #{header opts[:title], opts[:short_title], opts[:has_subnav]}
           #{main content:, **opts}
           </div> <!-- .page -->
           <script>document.getElementById("cr-year").textContent = (new Date()).getFullYear();</script>
