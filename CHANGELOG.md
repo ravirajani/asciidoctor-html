@@ -168,3 +168,4 @@
 ## [1.1.2] - 2026-03-19
 
 - Print version from adoctohtml script.
+- Show/hide multipage toggle based on existence of subnav.
