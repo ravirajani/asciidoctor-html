@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
+require_relative "lib/asciidoctor/html/version"
+
 Gem::Specification.new do |spec|
   spec.name = "asciidoctor-html"
-  spec.version = "1.1.1"
+  spec.version = Asciidoctor::Html::VERSION
   spec.authors = ["Ravi Rajani"]
   spec.email = ["ravi.inajar@gmail.com"]
 

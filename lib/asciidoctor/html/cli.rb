@@ -7,6 +7,7 @@ require "pathname"
 require "psych"
 require_relative "book"
 require_relative "webmanifest"
+require_relative "version"
 
 module Asciidoctor
   module Html
@@ -29,6 +30,7 @@ module Asciidoctor
                     "Watch for file changes in SRCDIR. Default: unset")
           parser.on("-c", "--config-file CONFIG",
                     "Location of config file. Default: #{options[:"config-file"]}")
+          parser.on("-v", "--version", "Print version and exit.")
         end.parse!(into: options)
         options
       end
@@ -95,6 +97,10 @@ module Asciidoctor
 
       def self.run(opts = nil)
         opts ||= parse_opts
+        if opts[:version]
+          puts VERSION
+          return
+        end
         config = read_config opts[:"config-file"]
         outdir = config["outdir"]
         srcdir = config["srcdir"]

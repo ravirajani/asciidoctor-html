@@ -164,3 +164,7 @@
 ## [1.1.1] - 2026-03-15
 
 - Bugfix: paginator now updates after switching to single page from multi.
+
+## [1.1.2] - 2026-03-19
+
+- Print version from adoctohtml script.
