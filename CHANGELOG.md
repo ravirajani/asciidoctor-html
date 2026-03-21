@@ -169,3 +169,7 @@
 
 - Print version from adoctohtml script.
 - Show/hide multipage toggle based on existence of subnav.
+
+## [1.1.3] - 2026-03-21
+
+- CSS tweak of margin below chapter title.
