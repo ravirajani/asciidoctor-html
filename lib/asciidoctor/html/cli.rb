@@ -50,7 +50,7 @@ module Asciidoctor
         %w[chapters appendices].each do |prop|
           config[prop] ||= []
           config[prop] = config[prop].map do |f|
-            File.expand_path(f, config_dir)
+            "#{config["srcdir"]}/#{f}"
           end
         end
         config

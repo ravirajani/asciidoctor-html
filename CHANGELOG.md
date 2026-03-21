@@ -173,3 +173,7 @@
 ## [1.1.3] - 2026-03-21
 
 - CSS tweak of margin below chapter title.
+
+## [1.1.4] - 2026-03-21
+
+- Prepend srcdir to filenames so script works outside srcdir as it should.
