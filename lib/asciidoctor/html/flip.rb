@@ -74,7 +74,9 @@ module Asciidoctor
             let id = href.substring(1);
             const target = document.getElementById(id);
 
-            if(!target) id = "page";
+            if(!target) id = 'page';
+
+            document.querySelector('.breadcrumb').classList.toggle('d-block', id != 'page');
 
             let section = target && target.closest(sectSelector);
             if(section) {

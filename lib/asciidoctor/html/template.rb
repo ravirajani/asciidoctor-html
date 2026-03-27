@@ -56,6 +56,14 @@ module Asciidoctor
         HTML
       end
 
+      def self.chapheader(chapheading, chapsubheading)
+        <<~HTML
+          <div class="breadcrumb">
+            <a href="#page" class="link-dark link-offset-2 link-underline-opacity-50 link-underline-opacity-100-hover">#{chapheading}: #{chapsubheading}</a>
+          </div>
+        HTML
+      end
+
       def self.chapheading(text)
         %(<h1 class="chapheading">#{text}</h1>) if text
       end
@@ -72,7 +80,8 @@ module Asciidoctor
         <<~HTML
           <main id="main" class="main">
           <div id="content-container" class="content-container">
-          <div class="chaphead">
+          #{chapheader opts[:chapheading], opts[:chapsubheading]}
+          <div class="chaphead d-block">
             #{toggle_button opts[:multipage] if opts[:has_subnav]}
             #{chapheading opts[:chapheading]}
             <h1 class="chaptitle">#{opts[:chapsubheading]}</h1>

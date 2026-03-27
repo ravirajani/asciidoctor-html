@@ -70,7 +70,7 @@ html {
             .chaphead:not(.d-block),
             .preamble:not(.d-block) { display: none; }
             .section {
-                margin-top: 1.5*$spacer;
+                margin-top: 0.625*$spacer;
             }
         }
         .paginator {
@@ -114,6 +114,12 @@ html {
         }
     }
     .main {
+        .breadcrumb {
+          padding-top: .75rem;
+          &:not(.d-block) {
+            display: none;
+          }
+        }
         .layout-toggle {
             margin-bottom: 1rem;
             padding-bottom: .375rem;
