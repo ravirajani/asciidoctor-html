@@ -177,3 +177,7 @@
 ## [1.1.4] - 2026-03-21
 
 - Prepend srcdir to filenames so script works outside srcdir as it should.
+
+## [1.1.5] - 2026-03-28
+
+- Add breadcrumb to multipage sections.
