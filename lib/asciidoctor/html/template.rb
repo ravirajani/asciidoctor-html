@@ -57,9 +57,12 @@ module Asciidoctor
       end
 
       def self.chapheader(chapheading, chapsubheading)
+        chapheading_suffix = ": " if chapheading
         <<~HTML
           <div class="breadcrumb">
-            <a href="#page" class="link-dark link-offset-2 link-underline-opacity-50 link-underline-opacity-100-hover">#{chapheading}: #{chapsubheading}</a>
+            <a href="#page" class="link-dark link-offset-2 link-underline-opacity-50 link-underline-opacity-100-hover">
+              #{chapheading}#{chapheading_suffix}#{chapsubheading}
+            </a>
           </div>
         HTML
       end
@@ -183,7 +186,7 @@ module Asciidoctor
       # - at_body_end: String
       # - multipage: Boolean|Null
       def self.html(content, nav_items, opts = {})
-        nav = (nav_items.size > 1)
+        nav = !nav_items.empty? && (nav_items.size > 1 || opts[:has_subnav])
         <<~HTML
           <!DOCTYPE html>
           <html lang="en">

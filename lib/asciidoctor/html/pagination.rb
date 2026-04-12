@@ -8,15 +8,14 @@ module Asciidoctor
       PagItem = Struct.new "PagItem", :url, :title
 
       def display_paginator(prv, nxt)
-        return "" unless prv || nxt
-
+        blank = %(<span class="blank">&nbsp;</span>)
+        visible_class = " visible" if prv || nxt
         <<~HTML
           <div class="paginator-wrapper">
           <div class="d-inline-block">
-          <div class="paginator">
-            #{%(<a href="#{prv.url}">&laquo; #{prv.title}</a>) if prv}
-            #{%(<span class="blank">&nbsp;</span>) unless prv && nxt}
-            #{%(<a href="#{nxt.url}">#{nxt.title} &raquo;</a>) if nxt}
+          <div class="paginator#{visible_class}">
+            #{prv ? %(<a href="#{prv.url}">&laquo; #{prv.title}</a>) : blank}
+            #{nxt ? %(<a href="#{nxt.url}">#{nxt.title} &raquo;</a>) : blank}
           </div>
           </div>
           </div>

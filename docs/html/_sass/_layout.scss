@@ -73,15 +73,15 @@ html {
                 margin-top: $spacer;
             }
         }
-        .paginator {
-            visibility: hidden;
-            opacity: 0;
-            transition: opacity 150ms ease-in;
-        }
-        .paginator.visible {
-            opacity: 1;
-        }
         .fn-wrapper { display: none; }
+    }
+    .paginator {
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 150ms ease-in;
+    }
+    .paginator.visible {
+        opacity: 1;
     }
     padding: 0;
     scroll-behavior: smooth;

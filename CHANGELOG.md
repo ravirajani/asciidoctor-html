@@ -181,3 +181,7 @@
 ## [1.1.5] - 2026-03-28
 
 - Add breadcrumb to multipage sections.
+
+## [1.1.6] - 2026-04-12
+
+- Better handling of multi-section functionality in a single chapter site.
