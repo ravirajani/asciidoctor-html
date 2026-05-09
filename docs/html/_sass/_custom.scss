@@ -10,7 +10,7 @@ $listing-colist-gap: 0.375rem;
     --blocksep: #{$spacer};
     --fw-padding: #{$content-padding-x};
     --fw-margin: -#{$content-padding-x};
-    --header-bg-rgb: 32, 33, 36;
+    --header-bg-rgb: 19, 18, 38;
     --header-bg: rgb(var(--header-bg-rgb));
     --strong-text-color: var(--bs-emphasis-color);
     @supports (height: 100dvh) {
