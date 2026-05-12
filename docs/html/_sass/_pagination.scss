@@ -1,32 +1,24 @@
 .paginator-wrapper {
     margin: 2*$spacer 0 $spacer 0;
-    text-align: center;
     .paginator {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+        display: flex;
+        justify-content: space-between;
+        gap: 2rem;
         a {
-            @extend .btn;
-            @extend .btn-outline-primary;
-            @extend .btn-sm;
-            --bs-btn-border-radius: 0;
-            --bs-btn-bg: #{$pagination-bg};
-            --bs-btn-border-width: #{$pagination-border-width};
-            --bs-btn-border-color: #{$pagination-border-color};
-            --bs-btn-hover-border-color: #{$pagination-border-color};
-            --bs-btn-color: var(--bs-link-color);
+            display: flex;
+            text-align: left;
+            text-decoration: none;
+            align-items: center;
+            .bi {
+                font-size: 3rem;
+                margin-left: -0.875rem;
+            }
             + a {
-                border-left: none;
-            }
-            + .blank {
-                border-right: $pagination-border-width solid $pagination-border-color;
-            }
-        }
-        .blank {
-            background-color: $pagination-bg;
-            border-top: $pagination-border-width solid $pagination-border-color;
-            border-bottom: $pagination-border-width solid $pagination-border-color;
-            &:first-child {
-                border-left: $pagination-border-width solid $pagination-border-color;
+                text-align: right;
+                .bi {
+                    margin-left: 0;
+                    margin-right: -0.875rem;
+                }
             }
         }
     }
