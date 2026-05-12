@@ -3,22 +3,25 @@
     .paginator {
         display: flex;
         justify-content: space-between;
-        gap: 2rem;
         a {
             display: flex;
-            text-align: left;
             text-decoration: none;
             align-items: center;
-            .bi {
+            max-width: calc(50% - 1rem);
+            .bi-chevron-compact-left, .bi-chevron-compact-right {
                 font-size: 3rem;
+            }
+            .bi-chevron-compact-left {
                 margin-left: -0.875rem;
             }
-            + a {
+            .bi-chevron-compact-right {
+                margin-right: -0.875rem;
+            }
+            &:first-child {
+                text-align: left;
+            }
+            &:last-child {
                 text-align: right;
-                .bi {
-                    margin-left: 0;
-                    margin-right: -0.875rem;
-                }
             }
         }
     }

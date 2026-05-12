@@ -47,16 +47,12 @@ module Asciidoctor
             const nextPage = paginator.lastElementChild;
             const prevPage = paginator.firstElementChild;
             if(next) {
-              const nextH = next.querySelector('h2');
-              const nextSectitle = nextH && nextH.cloneNode(true);
-              const nextSectnum = nextSectitle && nextSectitle.querySelector('.title-mark');
-              if(nextSectnum) nextSectitle.removeChild(nextSectnum);
+              const nextH = next.querySelector(':scope > h2');
               const nextLink = document.createElement('a');
-              const nextSectText = nextSectnum && `Section ${nextSectnum.textContent}` ||
-                nextSectitle && 'Next section'
+              const nextSectText = nextH && nextH.innerHTML;
               nextLink.href = '#' + next.id;
               nextLink.innerHTML = `
-                <div>${nextSectText}<br>${nextSectitle.textContent}</div>
+                <div>${nextSectText || ''}</div>
                 <div><i class="bi bi-chevron-compact-right"></i></div>
               `;
               chapPagination.nextChap ||= nextPage;
@@ -65,18 +61,15 @@ module Asciidoctor
               nextPage.replaceWith(chapPagination.nextChap);
             }
             if(prev) {
-              const prevH = prev.querySelector('h2');
-              const prevSectitle = prevH && prevH.cloneNode(true);
-              const prevSectnum = prevSectitle && prevSectitle.querySelector('.title-mark');
-              if(prevSectnum) prevSectitle.removeChild(prevSectnum);
+              const prevH = prev.querySelector(':scope > h2');
+              const prevSectitle = prevH && (prevH.innerHTML + ' ');
               const prevLink = document.createElement('a');
-              const prevSectText = prevSectnum && `Section ${prevSectnum.textContent}` ||
-                prevSectitle && 'Previous section' ||
-                chapheading && chapheading.textContent;
+              let prevSectText = (prevSectitle || chapheading && chapheading.textContent + '<br>');
+              if(!prevH) prevSectText += chaptitle.textContent;
               prevLink.href = '#' + (prev.id ? prev.id : 'page');
               prevLink.innerHTML = `
                 <div><i class="bi bi-chevron-compact-left"></i></div>
-                <div>${prevSectText}<br>${prevSectitle && prevSectitle.textContent || chaptitle.textContent}</div>
+                <div>${prevSectText || ''}</div>
               `;
               chapPagination.prevChap ||= prevPage;
               prevPage.replaceWith(prevLink);
