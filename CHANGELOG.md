@@ -185,3 +185,7 @@
 ## [1.1.6] - 2026-04-12
 
 - Better handling of multi-section functionality in a single chapter site.
+
+## [1.1.7] - 2026-05-13
+
+- More informative pagination.
