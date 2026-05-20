@@ -196,7 +196,6 @@ html {
 @include color-mode(dark) {
     body {
         .page .header {
-            --header-bg: rgb(32, 33, 36);
             border-bottom: 1px solid $gray-700;
         }
     }
