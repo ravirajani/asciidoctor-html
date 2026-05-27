@@ -189,3 +189,7 @@
 ## [1.1.7] - 2026-05-13
 
 - More informative pagination.
+
+## [1.1.8] - 2026-05-27
+
+- Remove auto-bracketing of title suffix in example blocks.
