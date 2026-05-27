@@ -118,6 +118,9 @@ html {
           &:not(.d-block) {
             display: none;
           }
+          a {
+            @extend .link-dark;
+          }
         }
         .layout-toggle {
             margin-bottom: 1rem;
@@ -195,8 +198,17 @@ html {
 
 @include color-mode(dark) {
     body {
-        .page .header {
-            border-bottom: 1px solid $gray-700;
+        .page {
+            .header {
+                border-bottom: 1px solid $gray-700;
+            }
+            .main .breadcrumb a {
+                --bs-dark-rgb: 248, 249, 250;
+                &:hover, &:focus {
+                    color: RGBA(249, 250, 251, var(--bs-link-opacity, 1)) !important;
+                    text-decoration-color: RGBA(249, 250, 251, var(--bs-link-underline-opacity, 1)) !important;
+                }
+            }
         }
     }
 }

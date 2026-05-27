@@ -60,7 +60,7 @@ module Asciidoctor
         chapheading_suffix = ": " if chapheading
         <<~HTML
           <div class="breadcrumb">
-            <a href="#page" class="link-dark link-offset-2 link-underline-opacity-50 link-underline-opacity-100-hover">
+            <a href="#page" class="link-offset-2 link-underline-opacity-50 link-underline-opacity-100-hover">
               #{chapheading}#{chapheading_suffix}#{chapsubheading}
             </a>
           </div>
