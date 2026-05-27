@@ -63,7 +63,7 @@ test if and only if $\beta_{T_\ast}(P)\geq\beta_T(P)$ for all $P\in\mathcal{P}_1
 and $T$ of level $\alpha$.
 ====
 
-TIP: You can add a bracketed title suffix by setting the `title-suffix` attribute. This is perfect
+TIP: You can add a title suffix with normal font weight by setting the `title-suffix` attribute. This is perfect
 for including citations.
 
 The styles `theorem`, `proposition`, `lemma`, and `corollary` on example blocks

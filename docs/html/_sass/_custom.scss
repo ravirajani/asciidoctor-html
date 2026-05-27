@@ -82,8 +82,6 @@ abbr[data-bs-original-title] {
 .title-suffix {
     margin-left: 0.85ex;
     font-weight: normal;
-    &::before { content: '('; }
-    &::after { content: ')'; }
 }
 
 .attribution + cite::before {
