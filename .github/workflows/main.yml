@@ -43,7 +43,7 @@ jobs:
       - name: Build the Jekyll docs site
         run: bundle exec rake autoprefix
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: docs/html/_site/
 
