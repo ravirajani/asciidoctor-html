@@ -193,3 +193,7 @@
 ## [1.1.8] - 2026-05-27
 
 - Remove auto-bracketing of title suffix in example blocks.
+
+## [1.1.9] - 2026-05-29
+
+- Fix bug where breadcrumb was not visible in dark mode.
