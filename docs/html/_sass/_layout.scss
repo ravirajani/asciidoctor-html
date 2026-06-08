@@ -23,6 +23,10 @@ html {
     }
 }
 
+.dynamic-width {
+    width: 100%;
+}
+
 .btn.menu {
     $icon-size: 1.625rem;
     position: fixed;
@@ -136,13 +140,6 @@ html {
                 text-decoration: none;
             }
         }
-        .content-container {
-            max-width: $content-width;
-            margin: 0 auto;
-            .gsc-control-cse {
-                padding: 0;
-            }
-        }
         padding: 0 $content-padding-x;
     }
     @media print {
@@ -167,9 +164,19 @@ html {
         }
     }
 
+    @include media-breakpoint-up(md) {
+        .dynamic-width {
+            width: $content-width;
+            margin: 0 auto;
+        }
+    }
+
     @include media-breakpoint-up(lg) {
         .btn.menu {
             display: none;
+        }
+        .dynamic-width {
+            width: 100%;
         }
         html body > .sidebar {
             display: block;
@@ -187,6 +194,10 @@ html {
     }
 
     @include media-breakpoint-up(xl) {
+        .dynamic-width {
+            width: $content-width;
+            margin: 0 auto;
+        }
         html body > .sidebar {
             width: 30%;
             + .page {

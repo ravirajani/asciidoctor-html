@@ -12,10 +12,10 @@
                 font-size: 3rem;
             }
             .bi-chevron-compact-left {
-                margin-left: -0.875rem;
+                margin-left: -$content-padding-x;
             }
             .bi-chevron-compact-right {
-                margin-right: -0.875rem;
+                margin-right: -$content-padding-x;
             }
             &:first-child {
                 text-align: left;

@@ -82,7 +82,7 @@ module Asciidoctor
       def self.main(opts)
         <<~HTML
           <main id="main" class="main">
-          <div id="content-container" class="content-container">
+          <div id="content-container" class="content-container dynamic-width">
           #{chapheader opts[:chapheading], opts[:chapsubheading]}
           <div class="chaphead d-block">
             #{toggle_button opts[:multipage] if opts[:has_subnav]}
@@ -117,8 +117,10 @@ module Asciidoctor
       def self.header(title, short_title, has_subnav)
         <<~HTML
           <header class="header#{" with-margin" unless has_subnav}">
-            <a class="home d-none d-sm-block" href="./">#{title}</a>
-            <a class="home d-block d-sm-none" href="./">#{short_title}</a>
+            <div class="dynamic-width">
+              <a class="home d-none d-sm-block" href="./">#{title}</a>
+              <a class="home d-block d-sm-none" href="./">#{short_title}</a>
+            </div>
           </header>
         HTML
       end
