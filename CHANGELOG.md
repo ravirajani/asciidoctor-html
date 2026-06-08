@@ -197,3 +197,7 @@
 ## [1.1.9] - 2026-05-29
 
 - Fix bug where breadcrumb was not visible in dark mode.
+
+## [1.1.10] - 2026-06-08
+
+- Change layout so header text is aligned with content.
