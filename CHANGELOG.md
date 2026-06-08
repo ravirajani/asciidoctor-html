@@ -201,3 +201,7 @@
 ## [1.1.10] - 2026-06-08
 
 - Change layout so header text is aligned with content.
+
+## [1.1.11] - 2026-06-08
+
+- Thicker header font.
