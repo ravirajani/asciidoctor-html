@@ -11,7 +11,7 @@ NOTE: Most users will prefer the <<sec-advanced-usage>> over the <<sec-quick-sta
 [#sec-quick-start]
 == Quick Start
 
-. Create a new repository from the public template {template-repo}.
+. Create a new repository from the public {template-repo}.
 . Modify the `index.adoc` file to include your custom content for the landing page.
 . Create AsciiDoc files for additional pages or for includes to be shared among pages.
 . Modify the `config.yml` file. List additional pages under `chapters` or `appendices` as appropriate.
@@ -30,7 +30,7 @@ You have https://www.ruby-lang.org/en/documentation/installation/[Ruby] installe
 
 === Create a repo
 
-You may start with a clean repo or clone the https://github.com/ravirajani/ravirajani.github.io[template repo].
+You may start with a clean repo or clone the {template-repo}.
 
 === Install gems
 
@@ -50,7 +50,7 @@ bundle add logger jekyll asciidoctor-html <3>
 ----
 <1> Skip this if you already have https://bundler.io/[Bundler] installed.
 <2> Creates a default https://bundler.io/guides/gemfile.html[Gemfile]. Skip this if you are using the
-https://github.com/ravirajani/ravirajani.github.io[template repo]. 
+{template-repo}.
 <3> Adds the required dependencies to the Gemfile and installs them.
 
 === Run the live preview
