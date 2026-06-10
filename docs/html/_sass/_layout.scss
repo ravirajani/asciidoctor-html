@@ -105,7 +105,6 @@ html {
                 $blur-x: 24px;
                 $inset-x: -$spread-x - $blur-x;
                 height: $header-height;
-                @extend .full-width-bg;
                 position: relative;
                 a.home {
                     position: absolute;
