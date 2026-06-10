@@ -96,19 +96,17 @@ html {
         &.with-margin { margin-bottom: 1.5*$spacer; }
         font-size: 1.1rem;
         background-color: $gray-900;
-        background: repeating-linear-gradient(45deg, $gray-700 0px, $gray-700 2px, transparent 2px, transparent 20px), repeating-linear-gradient(135deg, $gray-700 0px, $gray-700 2px, transparent 2px, transparent 20px), $gray-900;
+        background: repeating-linear-gradient(45deg, $gray-800 0px, $gray-800 2px, transparent 2px, transparent 20px), repeating-linear-gradient(135deg, $gray-800 0px, $gray-800 2px, transparent 2px, transparent 20px), $gray-900;
         box-sizing: content-box;
         .dynamic-width {
             height: $header-height;
             .home-container {
-                $spread-x: 12px;
+                $spread-x: 6px;
                 $blur-x: 24px;
                 $inset-x: -$spread-x - $blur-x;
                 height: $header-height;
                 @extend .full-width-bg;
-                background-color: var(--header-bg);
-                box-shadow: 0 0 $blur-x $spread-x var(--header-bg);
-                clip-path: inset(0  $inset-x 0 $inset-x);
+                background-color: rgba(var(--header-bg-rgb), 0.7);
                 position: relative;
                 a.home {
                     position: absolute;
@@ -225,7 +223,7 @@ html {
     body {
         .page {
             .header {
-                border-bottom: 1px solid $gray-700;
+                border-bottom: 1px solid $gray-800;
             }
             .main .breadcrumb a {
                 --bs-dark-rgb: 248, 249, 250;
