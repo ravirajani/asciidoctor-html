@@ -205,3 +205,7 @@
 ## [1.1.11] - 2026-06-08
 
 - Thicker header font.
+
+## [1.1.12] - 2026-06-10
+
+- Grid header background.
