@@ -9,10 +9,9 @@ module Asciidoctor
 
       def display_paginator(prv, nxt)
         blank = %(<span class="blank">&nbsp;</span>)
-        visible_class = " visible" if prv || nxt
         html = [<<~HTML
           <div class="paginator-wrapper">
-          <div class="paginator#{visible_class}">
+          <div class="paginator">
         HTML
         ]
         html << if prv

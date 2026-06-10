@@ -77,12 +77,14 @@ html {
                 margin-top: $spacer;
             }
         }
+        .paginator {
+            visibility: hidden;
+            opacity: 0;
+        }
         .fn-wrapper { display: none; }
     }
     .paginator {
-        visibility: hidden;
-        opacity: 0;
-        transition: opacity 150ms ease-in;
+        transition: opacity 50ms ease-in;
     }
     .paginator.visible {
         opacity: 1;
