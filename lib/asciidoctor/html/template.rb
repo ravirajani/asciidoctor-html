@@ -118,8 +118,10 @@ module Asciidoctor
         <<~HTML
           <header class="header#{" with-margin" unless has_subnav}">
             <div class="dynamic-width">
-              <a class="home d-none d-sm-block" href="./">#{title}</a>
-              <a class="home d-block d-sm-none" href="./">#{short_title}</a>
+              <div class="home-container">
+                <a class="home d-none d-sm-block" href="./">#{title}</a>
+                <a class="home d-block d-sm-none" href="./">#{short_title}</a>
+              </div>
             </div>
           </header>
         HTML

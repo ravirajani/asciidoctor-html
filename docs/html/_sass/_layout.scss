@@ -92,23 +92,37 @@ html {
     scrollbar-color: $gray-600 $gray-800;
     .header {
         height: $header-height;
-        display: flex;
         padding: 0 $content-padding-x;
         &.with-margin { margin-bottom: 1.5*$spacer; }
-        justify-content: space-between;
-        align-items: center;
-        flex-flow: row nowrap;
-        gap: 0.5rem;
         font-size: 1.1rem;
-        background-color: var(--header-bg);
-        a.home {
-            color: var(--bs-gray-200);
-            text-decoration: none;
-            text-wrap: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            &:hover, &:active {
-                color: var(--bs-white);
+        background-color: $gray-900;
+        background: repeating-linear-gradient(45deg, $gray-700 0px, $gray-700 2px, transparent 2px, transparent 20px), repeating-linear-gradient(135deg, $gray-700 0px, $gray-700 2px, transparent 2px, transparent 20px), $gray-900;
+        box-sizing: content-box;
+        .dynamic-width {
+            height: $header-height;
+            .home-container {
+                $spread-x: 12px;
+                $blur-x: 24px;
+                $inset-x: -$spread-x - $blur-x;
+                height: $header-height;
+                @extend .full-width-bg;
+                background-color: var(--header-bg);
+                box-shadow: 0 0 $blur-x $spread-x var(--header-bg);
+                clip-path: inset(0  $inset-x 0 $inset-x);
+                position: relative;
+                a.home {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    color: var(--bs-gray-200);
+                    text-decoration: none;
+                    text-wrap: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    &:hover, &:active {
+                        color: var(--bs-white);
+                    }
+                }
             }
         }
         @media print {
@@ -176,6 +190,7 @@ html {
         }
         .dynamic-width {
             width: 100%;
+            max-width: $content-width;
         }
         html body > .sidebar {
             display: block;
