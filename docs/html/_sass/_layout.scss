@@ -97,8 +97,7 @@ html {
         padding: 0 $content-padding-x;
         &.with-margin { margin-bottom: 1.5*$spacer; }
         font-size: 1.1rem;
-        background-color: $gray-900;
-        background: repeating-linear-gradient(45deg, $gray-800 0px, $gray-800 2px, transparent 2px, transparent 20px), repeating-linear-gradient(135deg, $gray-800 0px, $gray-800 2px, transparent 2px, transparent 20px), $gray-900;
+        background-color: var(--header-bg);
         box-sizing: content-box;
         .dynamic-width {
             height: $header-height;
