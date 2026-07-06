@@ -209,3 +209,8 @@
 ## [1.1.12] - 2026-06-10
 
 - Grid header background.
+
+## [1.1.13] - 2026-07-06
+
+- Fix multipage paginator loading glitch.
+- Flat header background.
