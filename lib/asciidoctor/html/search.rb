@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "nokogiri"
+require_relative "book_template"
 
 module Asciidoctor
   module Html
@@ -26,7 +27,7 @@ module Asciidoctor
           <ul id="search-results" class="search-results list-group list-group-flush"></ul>
           </div>
         HTML
-        Template.html(
+        BookTemplate.html(
           content,
           nav_items,
           title: @title,

@@ -9,7 +9,7 @@ require_relative "ref_tree_processor"
 require_relative "cref_inline_macro"
 require_relative "bi_inline_macro"
 require_relative "text_inline_macro"
-require_relative "template"
+require_relative "book_template"
 require_relative "pagination"
 require_relative "search"
 require_relative "utils"
@@ -96,10 +96,10 @@ module Asciidoctor
           filename = "#{name}.html"
           File.write("#{outdir}/#{filename}", html)
           build_index(name, html) unless omit_search?
-          entries << Template.sitemap_entry("#{@base_url}#{filename}") if needs_sitemap
+          entries << BookTemplate.sitemap_entry("#{@base_url}#{filename}") if needs_sitemap
         end
         File.write "#{outdir}/#{SEARCH_PAGE}", search_page unless omit_search?
-        File.write("#{outdir}/sitemap.xml", Template.sitemap(entries)) if needs_sitemap
+        File.write("#{outdir}/sitemap.xml", BookTemplate.sitemap(entries)) if needs_sitemap
       end
 
       private
@@ -147,7 +147,7 @@ module Asciidoctor
         chapref = num_appendices == 1 ? chapname : chapref_default(chapname, chapnum)
         tdata = TData.new(
           chapprefix: "",
-          chaptitle: Template.appendix_title(chapname, chapnum, chapsubheading, num_appendices),
+          chaptitle: BookTemplate.appendix_title(chapname, chapnum, chapsubheading, num_appendices),
           chapheading: chapref,
           chapsubheading:,
           index:
@@ -206,7 +206,7 @@ module Asciidoctor
           next unless section.id && section.level == 1
 
           prefix = Utils.display_sectnum(section) if section.numbered
-          items << Template.nav_item("##{section.id}", "#{prefix}#{section.title}")
+          items << BookTemplate.nav_item("##{section.id}", "#{prefix}#{section.title}")
         end
         return "" unless items.size > 1
 
@@ -230,12 +230,12 @@ module Asciidoctor
         items = @templates.map do |k, td|
           active = (k == active_key)
           subnav = active && doc ? outline(doc) : ""
-          navtext = Template.nav_text td.chapprefix, td.chaptitle
-          Template.nav_item "#{k}.html", navtext, subnav, active:
+          navtext = BookTemplate.nav_text td.chapprefix, td.chaptitle
+          BookTemplate.nav_item "#{k}.html", navtext, subnav, active:
         end
         return items if omit_search?
 
-        items.unshift(Template.nav_item(
+        items.unshift(BookTemplate.nav_item(
                         SEARCH_PAGE,
                         %(<i class="bi bi-search"></i> Search),
                         active: (active_key == -1)
@@ -246,7 +246,7 @@ module Asciidoctor
         tdata = @templates[key]
         nav_items = nav_items key, doc
         content = "#{ERB.new(doc.convert).result(binding)}\n#{pagination key}"
-        Template.html(
+        BookTemplate.html(
           content,
           nav_items,
           has_subnav: doc.attr?("has-subnav"),
