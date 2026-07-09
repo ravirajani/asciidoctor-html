@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require "date"
 require_relative "highlightjs"
 require_relative "popovers"
 require_relative "sidebar"

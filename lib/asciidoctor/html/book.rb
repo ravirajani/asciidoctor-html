@@ -2,7 +2,6 @@
 
 require "pathname"
 require "erb"
-require "date"
 require "asciidoctor"
 require_relative "converter"
 require_relative "ref_tree_processor"
