@@ -46,11 +46,29 @@ module Asciidoctor
         HTML
       end
 
-      def self.toggle_button(multipage)
-        toggle_text = multipage ? "single page" : "multiple pages"
+      def self.toggle_button(pagestyle)
+        states = {
+          single: "single page view",
+          multi: "multipage view",
+          presentation: "presentation view (ESC to exit)"
+        }
+        alternate_states = states.map do |key, value|
+          <<~HTML
+            <li>
+            <a class="dropdown-item#{" active" if pagestyle == key}" href="#page" data-viewmode="#{key}">#{value}</a>
+            </li>
+          HTML
+        end
         <<~HTML
           <div class="layout-toggle">
-            <label for="btn-layout">View as</label> <button id="btn-layout" type="button" class="btn btn-link">#{toggle_text}</button>
+            <div class="dropdown">
+              <button class="btn btn-link dropdown-toggle" id="btn-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                #{states[pagestyle]}
+              </button>
+              <ul id="viewmode-actions" class="dropdown-menu">
+                #{alternate_states.join "\n"}
+              </ul>
+            </div>
           </div>
         HTML
       end
@@ -77,14 +95,14 @@ module Asciidoctor
       # - has_subnav: Boolean
       # - authors: String
       # - date: Date
-      # - multipage: Boolean|Null
+      # - pagestyle: Symbol
       def self.main(opts)
         <<~HTML
           <main id="main" class="main">
           <div id="content-container" class="content-container dynamic-width">
           #{chapheader opts[:chapheading], opts[:chapsubheading]}
           <div class="chaphead d-block">
-            #{toggle_button opts[:multipage] if opts[:has_subnav]}
+            #{toggle_button opts[:pagestyle] if opts[:has_subnav]}
             #{chapheading opts[:chapheading]}
             <h1 class="chaptitle">#{opts[:chapsubheading]}</h1>
           </div>
@@ -187,9 +205,13 @@ module Asciidoctor
       # - langs: Array[String]
       # - at_head_end: String
       # - at_body_end: String
-      # - multipage: Boolean|Null
+      # - pagestyle: Symbol(single|multi|presentation)
       def self.html(content, nav_items, opts = {})
         nav = !nav_items.empty? && (nav_items.size > 1 || opts[:has_subnav])
+        page_classes = ["page"]
+        page_classes << "multi" unless opts[:pagestyle] == :single
+        page_classes << "presentation" if opts[:pagestyle] == :presentation
+        page_classname = page_classes.join " "
         <<~HTML
           <!DOCTYPE html>
           <html lang="en">
@@ -199,7 +221,7 @@ module Asciidoctor
           </head>
           <body>
           #{sidebar(nav_items) if nav}
-          <div id="page" class="page#{" multi" if opts[:multipage]}">
+          <div id="page" class="#{page_classname}">
           #{MENU_BTN if nav}
           #{header opts[:title], opts[:short_title], opts[:has_subnav]}
           #{main content:, **opts}

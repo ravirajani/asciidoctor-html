@@ -23,6 +23,9 @@ Metrics/ClassLength:
 Metrics/ModuleLength:
   Max: 300
 
+Layout/LineLength:
+  Max: 125
+
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 

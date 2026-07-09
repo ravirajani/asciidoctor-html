@@ -60,6 +60,7 @@ html {
     height: 100%;
     width: 100%;
     overflow-y: auto;
+    position: relative;
     &.noscroll {
         overflow-y: hidden;
         scrollbar-gutter: stable;
@@ -82,6 +83,41 @@ html {
             opacity: 0;
         }
         .fn-wrapper { display: none; }
+        &.presentation {
+            $presentation-header-height: 32px;
+            zoom: 1.25;
+            .header {
+                height: $presentation-header-height;
+                font-size: 14px;
+                .dynamic-width {
+                    height: $presentation-header-height;
+                    .home-container {
+                        height: $presentation-header-height;
+                    }
+                }
+            }
+            .menu {
+                position: absolute;
+                right: $content-padding-x;
+                $presentation-menu-icon-size: 20px;
+                border: none;
+                --bs-btn-font-size: #{$presentation-menu-icon-size};
+                top: 0.5*($presentation-header-height - $presentation-menu-icon-size);
+            }
+            .layout-toggle, .footer {
+                display: none;
+            }
+            .main {
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: $presentation-header-height;
+                bottom: 0;
+                .chapheading {
+                    margin-top: 1rem;
+                }
+            }
+        }
     }
     .paginator {
         transition: opacity 50ms ease-in;
@@ -102,9 +138,6 @@ html {
         .dynamic-width {
             height: $header-height;
             .home-container {
-                $spread-x: 6px;
-                $blur-x: 24px;
-                $inset-x: -$spread-x - $blur-x;
                 height: $header-height;
                 position: relative;
                 a.home {
@@ -149,6 +182,9 @@ html {
                 --bs-btn-font-size: inherit;
                 text-decoration: none;
             }
+            .dropdown-item.active {
+                display: none;
+            }
         }
         padding: 0 $content-padding-x;
     }
@@ -175,44 +211,50 @@ html {
     }
 
     @include media-breakpoint-up(md) {
-        .dynamic-width {
-            width: $content-width;
-            margin: 0 auto;
+        .main, .page:not(.presentation) {
+            .dynamic-width {
+                width: $content-width;
+                margin: 0 auto;
+            }
         }
     }
 
     @include media-breakpoint-up(lg) {
-        .btn.menu {
-            display: none;
-        }
-        .dynamic-width {
-            width: 100%;
-            max-width: $content-width;
-        }
-        html body > .sidebar {
-            display: block;
-            box-shadow: none;
-            z-index: 1;
-            min-width: 0;
-            .dismiss {
+        html:not(:has(.page.presentation)) {
+            .btn.menu {
                 display: none;
             }
-            width: calc(100% - $main-width);
-            + .page {
-                width: $main-width;
+            .dynamic-width {
+                width: 100%;
+                max-width: $content-width;
+            }
+            body > .sidebar {
+                display: block;
+                box-shadow: none;
+                z-index: 1;
+                min-width: 0;
+                .dismiss {
+                    display: none;
+                }
+                width: calc(100% - $main-width);
+                + .page {
+                    width: $main-width;
+                }
             }
         }
     }
 
     @include media-breakpoint-up(xl) {
-        .dynamic-width {
-            width: $content-width;
-            margin: 0 auto;
-        }
-        html body > .sidebar {
-            width: 30%;
-            + .page {
-                width: 70%;
+        html:not(:has(.page.presentation)) {
+            .dynamic-width {
+                width: $content-width;
+                margin: 0 auto;
+            }
+            body > .sidebar {
+                width: 30%;
+                + .page {
+                    width: 70%;
+                }
             }
         }
     }

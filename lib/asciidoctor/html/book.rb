@@ -257,7 +257,7 @@ module Asciidoctor
           chapheading: tdata.chapheading,
           chapsubheading: tdata.chapsubheading,
           langs: langs(doc),
-          multipage: doc.attr("pagestyle") == "multi"
+          pagestyle: doc.attr("pagestyle", :single)
         )
       end
     end

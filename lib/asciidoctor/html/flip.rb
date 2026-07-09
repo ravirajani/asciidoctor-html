@@ -2,7 +2,7 @@
 
 module Asciidoctor
   module Html
-    # Flip when pagestyle=multipage
+    # Flip when pagestyle is multi or presentation
     module Flip
       FLIP = <<~JS
         (function() {
@@ -134,19 +134,22 @@ module Asciidoctor
           flip();
           addEventListener('hashchange', flip);
 
-          const layoutButton = document.getElementById('btn-layout');
-          layoutButton && layoutButton.addEventListener('click', function(){
-            const multi = page.classList.contains('multi');
-            layoutButton.textContent = (multi ? 'multiple pages' : 'single page');
-            page.classList.toggle('multi');
-            if(multi) {
-              // We have switched to Single Page
+          const dropdownItems = document.querySelectorAll('#viewmode-actions .dropdown-item');
+          const dropdownToggle = document.getElementById('btn-toggle');
+          dropdownItems && dropdownItems.forEach(link => link.addEventListener('click', function(e){
+            e.preventDefault();
+            const viewmode = link.dataset.viewmode;
+            page.classList.toggle('multi', viewmode == 'multi' || viewmode == 'presentation');
+            page.classList.toggle('presentation', viewmode == 'presentation');
+            if(viewmode == 'single') {
               ADHT.nudgeMenuBtn();
               updatePaginator();
             } else {
               flip();
             }
-          });
+            dropdownItems.forEach(el => el.classList.toggle('active', el.dataset.viewmode == viewmode));
+            dropdownToggle.textContent = link.textContent;
+          }));
         })();
       JS
     end
