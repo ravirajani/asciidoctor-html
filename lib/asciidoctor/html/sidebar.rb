@@ -8,6 +8,11 @@ module Asciidoctor
         ADHT.nudgeMenuBtn = function() {
           const menuBtn = document.getElementById('menu-btn');
           if(!menuBtn) return;
+
+          if(page.classList.contains('presentation')) {
+            menuBtn.getAnimations().forEach(anim => anim.cancel());
+            return;
+          }
           // Nudge menuBtn in case there is a scrollbar
           const main = document.getElementById('main');
           const scrollbarWidth = page.offsetWidth - main.offsetWidth;

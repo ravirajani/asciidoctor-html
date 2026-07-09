@@ -85,7 +85,7 @@ html {
         .fn-wrapper { display: none; }
         &.presentation {
             $presentation-header-height: 32px;
-            zoom: 1.25;
+            zoom: 1.2;
             .header {
                 height: $presentation-header-height;
                 font-size: 14px;
@@ -102,7 +102,7 @@ html {
                 $presentation-menu-icon-size: 20px;
                 border: none;
                 --bs-btn-font-size: #{$presentation-menu-icon-size};
-                top: 0.5*($presentation-header-height - $presentation-menu-icon-size);
+                top: 0.5*($presentation-header-height - $presentation-menu-icon-size - 3px);
             }
             .layout-toggle, .footer {
                 display: none;

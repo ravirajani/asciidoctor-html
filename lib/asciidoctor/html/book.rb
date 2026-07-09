@@ -257,7 +257,7 @@ module Asciidoctor
           chapheading: tdata.chapheading,
           chapsubheading: tdata.chapsubheading,
           langs: langs(doc),
-          pagestyle: doc.attr("pagestyle", :single)
+          pagestyle: doc.attr?("pagestyle") ? doc.attr("pagestyle").to_sym : :single
         )
       end
     end
