@@ -2,12 +2,12 @@
     margin: 2*$spacer 0 $spacer 0;
     .paginator {
         display: flex;
+        gap: 1rem;
         justify-content: space-between;
         a {
             display: flex;
             text-decoration: none;
             align-items: center;
-            max-width: calc(50% - 1rem);
             .bi-chevron-compact-left, .bi-chevron-compact-right {
                 font-size: 3rem;
             }
@@ -27,5 +27,34 @@
     }
     @media print {
         display: none;
+    }
+}
+
+.page:not(.presentation) .paginator-wrapper {
+    .title-prefix {
+        margin-right: 0;
+        &::after {
+            display: none;
+        }
+    }
+}
+
+.page.presentation .paginator-wrapper {
+    margin: 0;
+    background: var(--header-bg);
+    .paginator {
+        font-size: var(--presentation-headfoot-font-size);
+        .bi-chevron-compact-left, .bi-chevron-compact-right {
+            font-size: inherit;
+        }
+        a {
+            color: var(--bs-gray-200);
+            &:hover, &:focus {
+                color: var(--bs-white);
+            }
+            br { 
+                display: none;
+            }
+        }
     }
 }

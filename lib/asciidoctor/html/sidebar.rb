@@ -9,19 +9,31 @@ module Asciidoctor
           const menuBtn = document.getElementById('menu-btn');
           if(!menuBtn) return;
 
-          if(page.classList.contains('presentation')) {
+          const isPresentation = page.classList.contains('presentation')
+          if(isPresentation) {
             menuBtn.getAnimations().forEach(anim => anim.cancel());
-            return;
           }
-          // Nudge menuBtn in case there is a scrollbar
+
           const main = document.getElementById('main');
-          const scrollbarWidth = page.offsetWidth - main.offsetWidth;
-          menuBtn.animate(
-            { transform: 'translateX(' + (-scrollbarWidth) + 'px)' },
-            { fill: 'forwards', duration: 150 }
-          );
+          const scrollbarWidth = page.offsetWidth - page.clientWidth;
+          if(isPresentation) {
+            const pwrapper = document.querySelector('.paginator-wrapper');
+            if(!pwrapper) return;
+
+            // Nudge paginator wrapper if in presentation mode
+            pwrapper.animate(
+              { right: scrollbarWidth + 'px' },
+              { fill: 'forwards', duration: 100 }
+            );
+          } else {
+            // Nudge menuBtn in case there is a scrollbar
+            menuBtn.animate(
+              { transform: 'translateX(' + (-scrollbarWidth) + 'px)' },
+              { fill: 'forwards', duration: 150 }
+            );
+          }
           // Cache scrollbar width
-          ADHT.scrollbarWidth = scrollbarWidth
+          ADHT.scrollbarWidth = scrollbarWidth;
           return menuBtn;
         };
         (function() {
@@ -40,7 +52,7 @@ module Asciidoctor
           addEventListener('resize', hideSidebar);
           dismissBtn && dismissBtn.addEventListener('click', hideSidebar);
 
-          const menuBtn = ADHT.nudgeMenuBtn()
+          const menuBtn = ADHT.nudgeMenuBtn();
           if(!menuBtn) return;
           // Add click listener to toggle sidebar
           menuBtn.addEventListener('click', function() {

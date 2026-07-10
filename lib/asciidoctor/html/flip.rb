@@ -64,7 +64,8 @@ module Asciidoctor
               const prevH = prev.querySelector(':scope > h2');
               const prevSectitle = prevH && (prevH.innerHTML + ' ');
               const prevLink = document.createElement('a');
-              let prevSectText = (prevSectitle || chapheading && chapheading.textContent + '<br>');
+              let prevSectText = prevSectitle || chapheading &&
+                ('<span class="title-prefix">' + chapheading.textContent + '</span><br>');
               if(!prevH) prevSectText += chaptitle.textContent;
               prevLink.href = '#' + (prev.id ? prev.id : 'page');
               prevLink.innerHTML = `
@@ -90,7 +91,7 @@ module Asciidoctor
 
             if(!target) id = 'page';
 
-            document.querySelector('.breadcrumb').classList.toggle('d-block', id != 'page');
+            document.querySelector('.breadcrumb').classList.toggle('d-block', id != 'page' && !page.classList.contains('presentation'));
 
             let section = target && target.closest(sectSelector);
             if(section) {

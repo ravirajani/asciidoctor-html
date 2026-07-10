@@ -85,10 +85,9 @@ html {
         .fn-wrapper { display: none; }
         &.presentation {
             $presentation-header-height: 32px;
-            zoom: 1.2;
             .header {
                 height: $presentation-header-height;
-                font-size: 14px;
+                font-size: var(--presentation-headfoot-font-size);
                 .dynamic-width {
                     height: $presentation-header-height;
                     .home-container {
@@ -108,13 +107,28 @@ html {
                 display: none;
             }
             .main {
+                zoom: 1.25;
                 position: absolute;
                 left: 0;
                 right: 0;
                 top: $presentation-header-height;
                 bottom: 0;
                 .chapheading {
-                    margin-top: 1rem;
+                    margin-top: $spacer;
+                }
+                .paginator-wrapper {
+                    zoom: 0.8;
+                    position: fixed;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    display: flex;
+                    align-items: center;
+                    padding: 0 1.25*$content-padding-x;
+                    height: $presentation-header-height;
+                    .paginator {
+                        flex-grow: 1;
+                    }
                 }
             }
         }
@@ -170,16 +184,17 @@ html {
           }
         }
         .layout-toggle {
-            margin-bottom: 1rem;
-            padding-bottom: .25rem;
-            padding-top: .25rem;
+            margin-bottom: .25rem;
+            margin-top: .25rem;
             @extend .full-width-bg;
-            border-bottom: 1px solid var(--bs-dark-border-subtle);
             font-size: 90%;
             .btn-link {
                 vertical-align: baseline;
                 --bs-btn-padding-x: 0;
                 --bs-btn-font-size: inherit;
+                --bs-btn-color: var(--bs-dark);
+                --bs-btn-active-color: var(--bs-dark);
+                --bs-btn-hover-color: var(--bs-black);
                 text-decoration: none;
             }
             .dropdown-item.active {
@@ -266,11 +281,18 @@ html {
             .header {
                 border-bottom: 1px solid $gray-800;
             }
-            .main .breadcrumb a {
-                --bs-dark-rgb: 248, 249, 250;
-                &:hover, &:focus {
-                    color: RGBA(249, 250, 251, var(--bs-link-opacity, 1)) !important;
-                    text-decoration-color: RGBA(249, 250, 251, var(--bs-link-underline-opacity, 1)) !important;
+            .main {
+                .layout-toggle .btn-link {
+                    --bs-btn-color: rgb(--light-link-rgb);
+                    --bs-btn-active-color: rgb(--light-link-rgb);
+                    --bs-btn-hover-color: var(--bs-white);
+                }
+                .breadcrumb a {
+                    --bs-dark-rgb: var(--light-link-rgb);
+                    &:hover, &:focus {
+                        color: RGBA(var(--light-link-rgb), var(--bs-link-opacity, 1)) !important;
+                        text-decoration-color: RGBA(var(--light-link-rgb), var(--bs-link-underline-opacity, 1)) !important;
+                    }
                 }
             }
         }

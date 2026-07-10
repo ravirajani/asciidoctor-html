@@ -12,6 +12,8 @@ $listing-colist-gap: 0.375rem;
     --fw-margin: -#{$content-padding-x};
     --header-bg-rgb: 31, 32, 32;
     --header-bg: rgb(var(--header-bg-rgb));
+    --light-link-rgb: 248, 249, 250;
+    --presentation-headfoot-font-size: 14px;
     --strong-text-color: var(--bs-emphasis-color);
     @supports (height: 100dvh) {
         --unit-100vh: 100dvh;

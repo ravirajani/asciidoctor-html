@@ -18,7 +18,7 @@ module Asciidoctor
                   <<~HTML
                     <a href="#{prv.url}">
                       <div><i class="bi bi-chevron-compact-left"></i></div>
-                      <div>#{"#{prv.title}<br>" if prv.title}#{prv.text}</div>
+                      <div>#{%(<span class="title-prefix">#{prv.title}</span><br>) if prv.title}#{prv.text}</div>
                     </a>
                   HTML
                 else
@@ -27,7 +27,7 @@ module Asciidoctor
         html << if nxt
                   <<~HTML
                     <a href="#{nxt.url}">
-                      <div>#{"#{nxt.title}<br>" if nxt.title}#{nxt.text}</div>
+                      <div>#{%(<span class="title-prefix">#{nxt.title}</span><br>) if nxt.title}#{nxt.text}</div>
                       <div><i class="bi bi-chevron-compact-right"></i></div>
                     </a>
                   HTML
