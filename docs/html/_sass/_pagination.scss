@@ -47,6 +47,12 @@
         .bi-chevron-compact-left, .bi-chevron-compact-right {
             font-size: inherit;
         }
+        .bi-chevron-compact-left {
+            margin-left: 0;
+        }
+        .bi-chevron-compact-right {
+            margin-right: 0;
+        }
         a {
             color: var(--bs-gray-200);
             &:hover, &:focus {

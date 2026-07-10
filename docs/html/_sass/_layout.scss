@@ -133,15 +133,20 @@ html {
                     right: 0;
                     bottom: 0;
                     height: $presentation-header-height;
-                    .paginator a {
-                        position: absolute;
-                        top: 50%;
-                        transform: translateY(-50%);
-                        &:first-child {
-                            left: 1.25*$content-padding-x;
-                        }
-                        &:last-child {
-                            right: 1.25*$content-padding-x;
+                    padding: 0 0.5*$content-padding-x;
+                    .paginator {
+                        height: $presentation-header-height;
+                        display: flex;
+                        align-items: center;
+                        a {
+                            min-width: 0;
+                            vertical-align: baseline;
+                            div {
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                white-space: nowrap;
+                                vertical-align: baseline;
+                            }
                         }
                     }
                 }
