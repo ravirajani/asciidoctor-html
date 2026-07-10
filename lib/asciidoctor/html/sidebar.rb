@@ -12,26 +12,17 @@ module Asciidoctor
           const isPresentation = page.classList.contains('presentation')
           if(isPresentation) {
             menuBtn.getAnimations().forEach(anim => anim.cancel());
+            return;
           }
 
-          const main = document.getElementById('main');
           const scrollbarWidth = page.offsetWidth - page.clientWidth;
-          if(isPresentation) {
-            const pwrapper = document.querySelector('.paginator-wrapper');
-            if(!pwrapper) return;
 
-            // Nudge paginator wrapper if in presentation mode
-            pwrapper.animate(
-              { right: scrollbarWidth + 'px' },
-              { fill: 'forwards', duration: 100 }
-            );
-          } else {
-            // Nudge menuBtn in case there is a scrollbar
-            menuBtn.animate(
-              { transform: 'translateX(' + (-scrollbarWidth) + 'px)' },
-              { fill: 'forwards', duration: 150 }
-            );
-          }
+          // Nudge menuBtn in case there is a scrollbar
+          menuBtn.animate(
+            { transform: 'translateX(' + (-scrollbarWidth) + 'px)' },
+            { fill: 'forwards', duration: 150 }
+          );
+
           // Cache scrollbar width
           ADHT.scrollbarWidth = scrollbarWidth;
           return menuBtn;

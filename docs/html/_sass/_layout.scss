@@ -113,16 +113,18 @@ html {
             }
             .main {
                 position: fixed;
+                zoom: 1.25;
                 top: $presentation-header-height;
                 left: 0;
                 right: 0;
                 bottom: $presentation-header-height;
                 overflow-y: auto;
-                .content-container {
-                    zoom: 1.25;
-                }
                 .chapheading {
                     margin-top: $spacer;
+                }
+                .dynamic-width {
+                    max-width: 80ch;
+                    margin: 0 auto;
                 }
                 .paginator-wrapper {
                     zoom: 0.8;
@@ -130,12 +132,17 @@ html {
                     left: 0;
                     right: 0;
                     bottom: 0;
-                    display: flex;
-                    align-items: center;
-                    padding: 0 1.25*$content-padding-x;
                     height: $presentation-header-height;
-                    .paginator {
-                        flex-grow: 1;
+                    .paginator a {
+                        position: absolute;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        &:first-child {
+                            left: 1.25*$content-padding-x;
+                        }
+                        &:last-child {
+                            right: 1.25*$content-padding-x;
+                        }
                     }
                 }
             }
@@ -234,7 +241,7 @@ html {
     }
 
     @include media-breakpoint-up(md) {
-        .main, .page:not(.presentation) {
+        .page:not(.presentation) {
             .dynamic-width {
                 width: $content-width;
                 margin: 0 auto;
