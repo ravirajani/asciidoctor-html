@@ -85,7 +85,12 @@ html {
         .fn-wrapper { display: none; }
         &.presentation {
             $presentation-header-height: 32px;
+            scrollbar-color: unset;
             .header {
+                position: fixed;
+                left: 0;
+                right: 0;
+                top: 0;
                 height: $presentation-header-height;
                 font-size: var(--presentation-headfoot-font-size);
                 .dynamic-width {
@@ -107,12 +112,15 @@ html {
                 display: none;
             }
             .main {
-                zoom: 1.25;
-                position: absolute;
+                position: fixed;
+                top: $presentation-header-height;
                 left: 0;
                 right: 0;
-                top: $presentation-header-height;
-                bottom: 0;
+                bottom: $presentation-header-height;
+                overflow-y: auto;
+                .content-container {
+                    zoom: 1.25;
+                }
                 .chapheading {
                     margin-top: $spacer;
                 }
@@ -278,6 +286,9 @@ html {
 @include color-mode(dark) {
     body {
         .page {
+            &.presentation .paginator-wrapper {
+                border-top: 1px solid $gray-800;
+            }
             .header {
                 border-bottom: 1px solid $gray-800;
             }
