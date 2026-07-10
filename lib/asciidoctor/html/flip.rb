@@ -133,13 +133,10 @@ module Asciidoctor
             }
           }
           flip();
-          addEventListener('hashchange', flip);
 
           const dropdownItems = document.querySelectorAll('#viewmode-actions .dropdown-item');
           const dropdownToggle = document.getElementById('btn-toggle');
-          dropdownItems && dropdownItems.forEach(link => link.addEventListener('click', function(e){
-            e.preventDefault();
-            const viewmode = link.dataset.viewmode;
+          function changeViewmode(viewmode) {
             page.classList.toggle('multi', viewmode == 'multi' || viewmode == 'presentation');
             page.classList.toggle('presentation', viewmode == 'presentation');
             if(viewmode == 'single') {
@@ -148,8 +145,21 @@ module Asciidoctor
             } else {
               flip();
             }
-            dropdownItems.forEach(el => el.classList.toggle('active', el.dataset.viewmode == viewmode));
-            dropdownToggle.textContent = link.textContent;
+            dropdownItems.forEach(el => {
+              const isActive = (el.dataset.viewmode == viewmode);
+              el.classList.toggle('active', isActive);
+              if(isActive) dropdownToggle.textContent = el.textContent;
+            });
+          }
+          addEventListener('hashchange', flip);
+          addEventListener('keyup', function(e) {
+            if(e.key == 'Escape' && page.classList.contains('presentation')) changeViewmode('multi');
+          });
+
+          dropdownItems && dropdownItems.forEach(link => link.addEventListener('click', function(e){
+            e.preventDefault();
+            const viewmode = link.dataset.viewmode;
+            changeViewmode(viewmode);
           }));
         })();
       JS

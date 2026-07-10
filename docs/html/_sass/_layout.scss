@@ -145,12 +145,10 @@ html {
                         align-items: center;
                         a {
                             min-width: 0;
-                            vertical-align: baseline;
                             div {
                                 overflow: hidden;
                                 text-overflow: ellipsis;
                                 white-space: nowrap;
-                                vertical-align: baseline;
                             }
                         }
                     }
