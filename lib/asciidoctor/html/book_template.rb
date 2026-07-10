@@ -131,13 +131,17 @@ module Asciidoctor
         XML
       end
 
-      def self.header(title, short_title, has_subnav)
+      def self.header(title, short_title, chapheading, has_subnav)
+        sublink = <<~HTML
+          <span id="header-chapheading" class="home-sublink"><a class="home" href="#page">#{chapheading}</a></span>
+        HTML
         <<~HTML
           <header class="header#{" with-margin" unless has_subnav}">
             <div class="dynamic-width">
               <div class="home-container">
                 <a class="home d-none d-sm-block" href="./">#{title}</a>
                 <a class="home d-block d-sm-none" href="./">#{short_title}</a>
+                #{sublink if chapheading}
               </div>
             </div>
           </header>
@@ -223,7 +227,7 @@ module Asciidoctor
           #{sidebar(nav_items) if nav}
           <div id="page" class="#{page_classname}">
           #{MENU_BTN if nav}
-          #{header opts[:title], opts[:short_title], opts[:has_subnav]}
+          #{header opts[:title], opts[:short_title], opts[:chapheading], opts[:has_subnav]}
           #{main content:, **opts}
           </div> <!-- .page -->
           <script>document.getElementById("cr-year").textContent = (new Date()).getFullYear();</script>

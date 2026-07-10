@@ -86,6 +86,11 @@ html {
         &.presentation {
             $presentation-header-height: 32px;
             scrollbar-color: unset;
+            &:not(:has(> .main > .content-container > .chaphead.d-block)) {
+                .home-sublink {
+                    display: inline;
+                }
+            }
             .header {
                 position: fixed;
                 left: 0;
@@ -173,11 +178,11 @@ html {
             height: $header-height;
             .home-container {
                 height: $header-height;
-                position: relative;
+                display: flex;
+                gap: 0.5rem;
+                align-items: center;
                 a.home {
-                    position: absolute;
-                    top: 50%;
-                    transform: translateY(-50%);
+                    min-width: 0;
                     color: var(--bs-gray-200);
                     text-decoration: none;
                     text-wrap: nowrap;
@@ -185,6 +190,14 @@ html {
                     overflow: hidden;
                     &:hover, &:active {
                         color: var(--bs-white);
+                    }
+                }
+                .home-sublink {
+                    display: none;
+                    &::before {
+                        content: '\203A';
+                        padding-right: 0.5rem;
+                        color: var(--bs-gray-300);
                     }
                 }
             }
