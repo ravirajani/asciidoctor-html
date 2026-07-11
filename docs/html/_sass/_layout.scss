@@ -141,10 +141,10 @@ html {
                     padding: 0 0.5*$content-padding-x;
                     .paginator {
                         height: $presentation-header-height;
-                        display: flex;
-                        align-items: center;
                         a {
                             min-width: 0;
+                            height: $presentation-header-height;
+                            line-height: $presentation-header-height;
                             div {
                                 overflow: hidden;
                                 text-overflow: ellipsis;
@@ -215,13 +215,14 @@ html {
           }
         }
         .layout-toggle {
-            margin-bottom: .25rem;
             margin-top: .25rem;
+            text-align: right;
             @extend .full-width-bg;
             font-size: 90%;
             .btn-link {
                 vertical-align: baseline;
                 --bs-btn-padding-x: 0;
+                --bs-btn-padding-y: 0;
                 --bs-btn-font-size: inherit;
                 --bs-btn-color: var(--bs-dark);
                 --bs-btn-active-color: var(--bs-dark);

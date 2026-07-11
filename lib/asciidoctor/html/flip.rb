@@ -151,9 +151,34 @@ module Asciidoctor
               if(isActive) dropdownToggle.textContent = el.textContent;
             });
           }
+          function move(direction) {
+              const activeTopLevelLi = document.querySelector('#sidebar nav > ul > li.active');
+              if(!activeTopLevelLi) return;
+
+              const activeSubLi = activeTopLevelLi.querySelector('ul > li.active');
+              let href = '#page';
+              if(direction == 'left') {
+                const prevLi = activeSubLi && activeSubLi.previousElementSibling ||
+                  !activeSubLi && activeTopLevelLi.previousElementSibling;
+                if(prevLi) href = prevLi.firstElementChild.href;
+              } else if(direction == 'right') {
+                const nextLi = !activeSubLi &&
+                  (page.classList.contains('multi') && activeTopLevelLi.querySelector('ul > li') ||
+                    activeTopLevelLi.nextElementSibling) ||
+                  activeSubLi &&
+                  (activeSubLi.nextElementSibling || activeTopLevelLi.nextElementSibling) ||
+                  activeSubLi || activeTopLevelLi;
+                href = nextLi.firstElementChild.href;
+              }
+              navigation.navigate(href);
+          }
           addEventListener('hashchange', flip);
           addEventListener('keyup', function(e) {
-            if(e.key == 'Escape' && page.classList.contains('presentation')) changeViewmode('multi');
+            switch(e.key) {
+              case 'ArrowLeft': move('left'); break;
+              case 'ArrowRight': move('right'); break;
+              case 'Escape': page.classList.contains('presentation') && changeViewmode('multi');
+            }
           });
 
           dropdownItems && dropdownItems.forEach(link => link.addEventListener('click', function(e){
