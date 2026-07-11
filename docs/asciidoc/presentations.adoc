@@ -20,14 +20,14 @@ To render a chapter in presentation mode by default, use the document property
 == Multi-Column Layout
 
 * A section with an ID attribute starts a new slide.
-* A subsequent section without an ID is displayed in new column to the right if the screen is large enough.
+* A subsequent section without an ID is displayed in a new column to the right if the screen is large enough.
 
 == {nbsp}
 
 [TIP.mt-0]
 ====
 Use the `{nbsp\}` variable in the section heading if you do not want to display a separate title
-for the second column.
+for a column.
 
 Furthermore, you can apply Bootstrap's `mt-0` role to the block directly following the blank section heading
 to remove its top margin.
