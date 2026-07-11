@@ -91,7 +91,9 @@ module Asciidoctor
 
             if(!target) id = 'page';
 
-            document.querySelector('.breadcrumb').classList.toggle('d-block', id != 'page' && !page.classList.contains('presentation'));
+            const isPresentation = page.classList.contains('presentation');
+            document.querySelector('.breadcrumb').classList.toggle('d-block', id != 'page' && !isPresentation);
+            document.querySelector('.chapauthors').classList.toggle('d-block', isPresentation);
 
             let section = target && target.closest(sectSelector);
             if(section) {

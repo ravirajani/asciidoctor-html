@@ -105,6 +105,7 @@ module Asciidoctor
             #{toggle_button opts[:pagestyle] if opts[:has_subnav]}
             #{chapheading opts[:chapheading]}
             <h1 class="chaptitle">#{opts[:chapsubheading]}</h1>
+            <p class="lead chapauthors#{%( d-block) if opts[:pagestyle] == :presentation}">#{opts[:authors]}</p>
           </div>
           #{opts[:content]}
           #{footer opts[:authors]}

@@ -69,6 +69,9 @@ html {
         scrollbar-gutter: stable;
         overflow-y: scroll;
     }
+    .chaphead .chapauthors:not(.d-block) {
+        display: none;
+    }
     &.multi {
         .content-container > {
             .section:not(.d-block),
@@ -124,12 +127,21 @@ html {
                 right: 0;
                 bottom: $presentation-header-height;
                 overflow-y: auto;
-                .chapheading {
-                    margin-top: $spacer;
-                }
+                display: flex;
+                align-items: center;
                 .dynamic-width {
-                    max-width: 80ch;
-                    margin: 0 auto;
+                    width: 100%;
+                    margin: auto 0;
+                    display: flex;
+                    justify-content: space-evenly;
+                    flex-wrap: wrap;
+                    gap: 2*$content-padding-x;
+                    [data-with-sect] {
+                        flex: 0 1 70ch;
+                        &.chaphead {
+                            flex-basis: fit-content;
+                        }
+                    }
                 }
                 .paginator-wrapper {
                     zoom: 0.8;
@@ -288,6 +300,9 @@ html {
                     width: $main-width;
                 }
             }
+        }
+        .page.multi.presentation .main .dynamic-width [data-with-sect] {
+            flex-shrink: 0;
         }
     }
 
