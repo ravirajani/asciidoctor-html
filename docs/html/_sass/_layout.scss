@@ -1,5 +1,6 @@
 $header-height: 3rem;
 $main-width: $content-width + 2*$content-padding-x;
+$presentation-content-width: 70ch;
 
 html {
     height: var(--unit-100vh);
@@ -125,21 +126,21 @@ html {
                 top: $presentation-header-height;
                 left: 0;
                 right: 0;
+                padding: 0 3*$content-padding-x;
                 bottom: $presentation-header-height;
                 overflow-y: auto;
                 display: flex;
+                justify-content: center;
                 align-items: center;
                 .dynamic-width {
-                    width: 100%;
-                    margin: auto 0;
-                    display: flex;
-                    justify-content: space-evenly;
-                    flex-wrap: wrap;
-                    gap: 2*$content-padding-x;
-                    [data-with-sect] {
-                        flex: 0 1 70ch;
-                        &.chaphead {
-                            flex-basis: fit-content;
+                    max-height: 100%;
+                    max-width: $presentation-content-width;
+                    .section[data-with-sect] {
+                        margin-bottom: 0;
+                        &::after {
+                            content: '';
+                            display: block;
+                            height: 0.25rem;
                         }
                     }
                 }
@@ -301,9 +302,6 @@ html {
                 }
             }
         }
-        .page.multi.presentation .main .dynamic-width [data-with-sect] {
-            flex-shrink: 0;
-        }
     }
 
     @include media-breakpoint-up(xl) {
@@ -316,6 +314,23 @@ html {
                 width: 30%;
                 + .page {
                     width: 70%;
+                }
+            }
+        }
+        .page.multi.presentation .main .dynamic-width {
+            display: flex;
+            justify-content: space-evenly;
+            gap: 3*$content-padding-x;
+            width: 100%;
+            max-width: 100%;
+            .preamble, .chaphead {
+                align-self: center;
+            }
+            [data-with-sect] {
+                flex: 0 1 $presentation-content-width;
+                height: calc(100% - $spacer);
+                &.chaphead {
+                    flex-basis: fit-content;
                 }
             }
         }

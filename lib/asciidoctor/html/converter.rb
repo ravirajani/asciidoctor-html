@@ -72,7 +72,8 @@ module Asciidoctor
         icon = %(<div class="icon"><i class="bi bi-#{icon_class}"></i></div>)
         content = node.blocks? ? node.content : "<p>#{node.content}</p>"
         content = %(#{icon}\n#{Utils.display_title node}#{content})
-        Utils.wrap_id_classes content, node.id, "admonition admonition-#{name}"
+        classes = %(admonition admonition-#{name}#{" #{node.role}" if node.role})
+        Utils.wrap_id_classes content, node.id, classes
       end
 
       def convert_sidebar(node)

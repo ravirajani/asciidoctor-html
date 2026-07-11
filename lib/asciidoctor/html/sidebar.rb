@@ -12,7 +12,7 @@ module Asciidoctor
           const isPresentation = page.classList.contains('presentation')
           if(isPresentation) {
             menuBtn.getAnimations().forEach(anim => anim.cancel());
-            return;
+            return menuBtn;
           }
 
           const scrollbarWidth = page.offsetWidth - page.clientWidth;
