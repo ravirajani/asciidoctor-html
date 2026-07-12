@@ -144,6 +144,14 @@ html {
                             height: 1px;
                         }
                     }
+                    .preamble:after {
+                        content: '';
+                        display: block;
+                        height: 1px;
+                    }
+                    .chaphead {
+                        margin-top: $spacer;
+                    }
                 }
                 .paginator-wrapper {
                     position: fixed;
