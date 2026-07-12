@@ -34,7 +34,8 @@ module Asciidoctor
         "source-highlighter" => "highlight.js",
         "imagesdir" => IMG_PATH,
         "dollar" => "&#36;",
-        "parskip" => %(<span class="parskip"></span><br>)
+        "parskip" => %(<span class="parskip"></span><br>),
+        "notitle" => %(<span class="notitle">&nbsp;</span>)
       }.freeze
 
       DEFAULT_OPTS = {
@@ -244,7 +245,7 @@ module Asciidoctor
       def build_template(key, doc)
         tdata = @templates[key]
         nav_items = nav_items key, doc
-        content = "#{ERB.new(doc.convert).result(binding)}\n#{pagination key}"
+        content = ERB.new(doc.convert).result(binding)
         BookTemplate.html(
           content,
           nav_items,
@@ -257,6 +258,7 @@ module Asciidoctor
           chapheading: tdata.chapheading,
           chapsubheading: tdata.chapsubheading,
           langs: langs(doc),
+          paginator: pagination(key),
           pagestyle: doc.attr?("pagestyle") ? doc.attr("pagestyle").to_sym : :single
         )
       end

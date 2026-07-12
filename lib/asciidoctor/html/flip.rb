@@ -41,6 +41,10 @@ module Asciidoctor
             el.dataset.withSect = currentId;
           });
 
+          for(const sects of Object.values(sectsById)) {
+            sects[sects.length - 1].classList.add('last-section-multipage');
+          }
+
           function updatePaginator(prev, next) {
             const paginator = document.querySelector('.paginator');
             if(!paginator) return;

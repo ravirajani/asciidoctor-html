@@ -122,30 +122,30 @@ html {
             }
             .main {
                 position: fixed;
-                zoom: 1.25;
                 top: $presentation-header-height;
                 left: 0;
                 right: 0;
-                padding: 0 3*$content-padding-x;
+                padding: 0 4*$content-padding-x;
                 bottom: $presentation-header-height;
                 overflow-y: auto;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                .dynamic-width {
+                .content-container {
+                    zoom: 1.25;
                     max-height: 100%;
                     max-width: $presentation-content-width;
                     .section[data-with-sect] {
                         margin-bottom: 0;
-                        &::after {
+                        > h2:has(.notitle) { display: none; }
+                        &.last-section-multipage::after {
                             content: '';
                             display: block;
-                            height: 0.25rem;
+                            height: 1px;
                         }
                     }
                 }
                 .paginator-wrapper {
-                    zoom: 0.8;
                     position: fixed;
                     left: 0;
                     right: 0;
@@ -317,7 +317,7 @@ html {
                 }
             }
         }
-        .page.multi.presentation .main .dynamic-width {
+        .page.multi.presentation .main .content-container {
             display: flex;
             justify-content: space-evenly;
             gap: 3*$content-padding-x;
@@ -329,6 +329,14 @@ html {
             [data-with-sect] {
                 flex: 0 1 $presentation-content-width;
                 height: calc(100% - $spacer);
+                &.section {
+                    > h2:has(.notitle) { display: block; }
+                    &:has(> h2 .notitle) {
+                        *:nth-child(2) {
+                            margin-top: 0;
+                        }
+                    }
+                }
                 &.chaphead {
                     flex-basis: fit-content;
                 }

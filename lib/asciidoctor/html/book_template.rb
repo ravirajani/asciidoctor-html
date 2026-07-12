@@ -108,8 +108,9 @@ module Asciidoctor
             <p class="lead chapauthors#{%( d-block) if opts[:pagestyle] == :presentation}">#{opts[:authors]}</p>
           </div>
           #{opts[:content]}
-          #{footer opts[:authors]}
           </div>
+          #{opts[:paginator]}
+          #{footer opts[:authors]}
           </main>
         HTML
       end
@@ -151,7 +152,7 @@ module Asciidoctor
 
       def self.footer(authors)
         <<~HTML
-          <footer class="footer">
+          <footer class="footer dynamic-width">
             <div class="footer-left">&#169; <span id="cr-year"></span> #{authors}</div>
             <div class="footer-right">Built with
               <a href="https://github.com/ravirajani/asciidoctor-html">asciidoctor-html</a>
@@ -210,6 +211,7 @@ module Asciidoctor
       # - langs: Array[String]
       # - at_head_end: String
       # - at_body_end: String
+      # - paginator: String
       # - pagestyle: Symbol(single|multi|presentation)
       def self.html(content, nav_items, opts = {})
         nav = !nav_items.empty? && (nav_items.size > 1 || opts[:has_subnav])

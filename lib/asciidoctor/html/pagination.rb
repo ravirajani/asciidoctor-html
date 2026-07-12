@@ -10,7 +10,7 @@ module Asciidoctor
       def display_paginator(prv, nxt)
         blank = %(<span class="blank">&nbsp;</span>)
         html = [<<~HTML
-          <div class="paginator-wrapper">
+          <div class="paginator-wrapper dynamic-width">
           <div class="paginator">
         HTML
         ]
