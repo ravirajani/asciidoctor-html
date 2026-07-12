@@ -10,6 +10,11 @@ include::includes/variables.adoc[]
 To render a chapter in presentation mode by default, use the document property
 `:pagestyle: presentation`.
 
+[#sec-outline]
+== Outline
+
+subnav::[]
+
 [#sec-keyboard-navigation]
 == Keyboard Navigation
 

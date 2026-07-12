@@ -8,6 +8,7 @@ require_relative "ref_tree_processor"
 require_relative "cref_inline_macro"
 require_relative "bi_inline_macro"
 require_relative "text_inline_macro"
+require_relative "subnav_block_macro"
 require_relative "book_template"
 require_relative "pagination"
 require_relative "search"
@@ -25,6 +26,7 @@ module Asciidoctor
         inline_macro CrefInlineMacro
         inline_macro TextInlineMacro
         inline_macro BiInlineMacro
+        block_macro SubnavBlockMacro
       end
 
       DOCATTRS = {
@@ -201,6 +203,8 @@ module Asciidoctor
       end
 
       def outline(doc)
+        return doc.attr("outline") if doc.attr?("outline")
+
         items = []
         doc.sections.each do |section|
           next unless section.id && section.level == 1
@@ -211,7 +215,9 @@ module Asciidoctor
         return "" unless items.size > 1
 
         doc.set_attr("has-subnav", true)
-        "<ul>#{items.join "\n"}</ul>"
+        outline = "<ul>#{items.join "\n"}</ul>"
+        doc.set_attr("outline", outline)
+        outline
       end
 
       def html(docs)
@@ -245,11 +251,13 @@ module Asciidoctor
       def build_template(key, doc)
         tdata = @templates[key]
         nav_items = nav_items key, doc
+        has_subnav = doc.attr?("has-subnav")
+        subnav = has_subnav ? outline(doc) : ""
         content = ERB.new(doc.convert).result(binding)
         BookTemplate.html(
           content,
           nav_items,
-          has_subnav: doc.attr?("has-subnav"),
+          has_subnav:,
           title: @title,
           short_title: @short_title,
           authors: display_authors(doc),
