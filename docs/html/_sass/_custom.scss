@@ -92,7 +92,7 @@ abbr[data-bs-original-title] {
 
 .block {
     --parsep: 0.5rem;
-    .block {
+    .block, .listing {
         --blocksep: var(--parsep);
     }
     margin-bottom: var(--blocksep);

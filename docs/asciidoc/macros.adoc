@@ -6,8 +6,41 @@ semantic inline text elements.
 
 include::includes/variables.adoc[]
 
-{asciidoctor-html} includes some convenient inline macros
+{asciidoctor-html} includes some convenient macros
 in addition to those made available by {asciidoctor-org}.
+
+[#sec-subnav]
+== subnav
+
+The `subnav` block macro displays a chapter-level navigation menu.
+
+****
+[title-prefix=Usage]
+.pass:q,a[`subnav::[{dollar}title,{dollar}attrs&hellip;\]`]
+title:: (Optional) Block heading.
+attrs:: Set `border={dollar}width` to add top and bottom borders of `{dollar}width` pixels
+to the navigation menu. +
+Set `role={dollar}role` or `roles={dollar}roles` to provide a
+comma-separated list of class names.
+****
+
+=== Example uses of the subnav macro
+
+[source,asciidoc]
+----
+subnav::[role=mb-4] <1>
+----
+<1> `mb-4` is provided by Boostrap to control https://getbootstrap.com/docs/5.3/utilities/spacing/[spacing]. 
+
+subnav::[role=mb-4]
+
+[source,asciidoc]
+----
+subnav::[Contents,border=1]
+----
+
+subnav::[Contents,border=1]
+
 
 [#sec-cref]
 == cref

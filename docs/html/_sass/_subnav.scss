@@ -1,0 +1,29 @@
+.content-container .subnav {
+    @extend .full-width-bg;
+    @extend .block;
+    &.bordered {
+        border-top: 1px solid var(--bs-border-color);
+        border-bottom: 1px solid var(--bs-border-color);
+        padding-top: var(--parsep);
+        padding-bottom: var(--parsep);
+    }
+    ul {
+        @extend .list-unstyled;
+        margin-bottom: 0;
+        li a {
+            display: block;
+            padding: 0.125rem 0;
+            text-decoration: none;
+            @extend .link-secondary;
+        }
+    }
+}
+
+@include color-mode(dark) {
+    .main .content-container .subnav ul li a {
+        color: $gray-500 !important;
+        &:hover, &:focus {
+            color: $gray-300 !important;
+        }
+    }
+}

@@ -149,7 +149,7 @@ html {
                         display: block;
                         height: 1px;
                     }
-                    .chaphead {
+                    .chaphead, .preamble {
                         margin-top: $spacer;
                     }
                 }
@@ -331,9 +331,6 @@ html {
             gap: 3*$content-padding-x;
             width: 100%;
             max-width: 100%;
-            .preamble, .chaphead {
-                align-self: center;
-            }
             [data-with-sect] {
                 flex: 0 1 $presentation-content-width;
                 height: calc(100% - $spacer);

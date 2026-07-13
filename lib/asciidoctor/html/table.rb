@@ -11,6 +11,8 @@ module Asciidoctor
                            cell.text
                          elsif cell.style == :literal
                            "<pre>#{cell.text}</pre>"
+                         elsif cell.style == :asciidoc
+                           cell.content
                          else
                            cell.content.join "\n"
                          end

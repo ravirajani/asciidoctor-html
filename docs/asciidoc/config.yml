@@ -16,8 +16,8 @@ chapters:
   - getting-started.adoc
   - lists.adoc
   - numbered-blocks.adoc
-  - presentations.adoc
   - macros.adoc
+  - presentations.adoc
   
 appendices:
   - tests.adoc
