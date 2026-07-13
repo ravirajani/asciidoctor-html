@@ -214,3 +214,8 @@
 
 - Fix multipage paginator loading glitch.
 - Flat header background.
+
+## [2.0.0] - 2026-07-13
+
+- Presentation view mode.
+- Subnav block macro.
