@@ -219,3 +219,7 @@
 
 - Presentation view mode.
 - Subnav block macro.
+
+## [2.0.1] - 2026-07-13
+
+- Scroll with up/down arrows as soon as (multi)page loads.
