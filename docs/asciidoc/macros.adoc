@@ -30,7 +30,7 @@ comma-separated list of class names.
 ----
 subnav::[role=mb-4] <1>
 ----
-<1> `mb-4` is provided by Boostrap to control https://getbootstrap.com/docs/5.3/utilities/spacing/[spacing]. 
+<1> `mb-4` is provided by Bootstrap to control https://getbootstrap.com/docs/5.3/utilities/spacing/[spacing]. 
 
 subnav::[role=mb-4]
 
