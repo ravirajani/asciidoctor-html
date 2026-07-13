@@ -17,6 +17,8 @@ module Asciidoctor
           const sectsById = { "page": []};
 
           const page = document.getElementById('page');
+          const focusEl = document.getElementById('content-container');
+          const searchForm = document.getElementById('search-form');
           const chapheading = page.querySelector('.chapheading');
           const chaptitle = page.querySelector('.chaptitle');
 
@@ -43,6 +45,12 @@ module Asciidoctor
 
           for(const sects of Object.values(sectsById)) {
             sects[sects.length - 1].classList.add('last-section-multipage');
+          }
+
+          function focusOnLoad() {
+            if(searchForm) return;
+
+            focusEl.focus({preventScroll: true});
           }
 
           function updatePaginator(prev, next) {
@@ -85,7 +93,10 @@ module Asciidoctor
           }
 
           function flip(e) {
-            if(!page.classList.contains('multi')) return;
+            if(!page.classList.contains('multi')) {
+              focusOnLoad();
+              return;
+            }
 
             e && e.preventDefault();
 
@@ -137,6 +148,8 @@ module Asciidoctor
                 left: 0
               });
             }
+
+            focusOnLoad();
           }
           flip();
 

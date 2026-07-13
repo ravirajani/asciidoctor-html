@@ -99,7 +99,7 @@ module Asciidoctor
       def self.main(opts)
         <<~HTML
           <main id="main" class="main">
-          <div id="content-container" class="content-container dynamic-width">
+          <div id="content-container" class="content-container dynamic-width"  tabindex="0">
           #{chapheader opts[:chapheading], opts[:chapsubheading]}
           <div class="chaphead d-block">
             #{toggle_button opts[:pagestyle] if opts[:has_subnav]}

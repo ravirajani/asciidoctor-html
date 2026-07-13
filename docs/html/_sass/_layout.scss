@@ -235,6 +235,9 @@ html {
             @extend .link-dark;
           }
         }
+        .content-container {
+            &:focus, &:focus-visible { outline: 0; }
+        }
         .layout-toggle {
             margin-top: .25rem;
             text-align: right;
