@@ -14,14 +14,14 @@ To render a chapter in presentation mode by default, use the document property
 == Outline
 
 [.subnav]
-* <<sec-keyboard-navigation>>
-* <<sec-multicolumn>>
+. <<sec-keyboard-navigation>>
+. <<sec-multicolumn>>
 
 == {notitle}
 
 [TIP]
 --
-Use the `subnav` role on an unordered list to style the links like a cref:macros#sec-subnav[].
+Use the `subnav` role on a list to style the links like a cref:macros#sec-subnav[].
 --
 
 [#sec-keyboard-navigation]
