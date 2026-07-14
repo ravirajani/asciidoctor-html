@@ -130,8 +130,7 @@ module Asciidoctor
 
             nav.forEach(el => {
               const a = el.querySelector('a');
-              const href = a && a.getAttribute('href');
-              el.classList.toggle('active', id == href.substring(1));
+              a && a.hash && el.classList.toggle('active', id == a.hash.substring(1));
             });
 
             ADHT.nudgeMenuBtn();
