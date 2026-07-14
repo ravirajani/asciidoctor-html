@@ -206,6 +206,8 @@ module Asciidoctor
             const viewmode = link.dataset.viewmode;
             changeViewmode(viewmode);
           }));
+
+          page.classList.add('loaded');
         })();
       JS
     end

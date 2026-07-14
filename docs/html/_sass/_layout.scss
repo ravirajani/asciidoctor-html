@@ -74,6 +74,13 @@ html {
         display: none;
     }
     &.multi {
+        .main {
+            opacity: 0;
+            transition: opacity 150ms ease-in;
+        }
+        &.loaded .main {
+            opacity: 1;
+        }
         .content-container > {
             .section:not(.d-block),
             .chaphead:not(.d-block),
@@ -81,10 +88,6 @@ html {
             .section {
                 margin-top: $spacer;
             }
-        }
-        .paginator {
-            visibility: hidden;
-            opacity: 0;
         }
         .fn-wrapper { display: none; }
         &.presentation {
@@ -135,7 +138,7 @@ html {
                     zoom: 1.25;
                     max-height: 100%;
                     max-width: $presentation-content-width;
-                    .section[data-with-sect] {
+                    > .section {
                         margin-bottom: 0;
                         > h2:has(.notitle) { display: none; }
                         &.last-section-multipage::after {
@@ -144,12 +147,12 @@ html {
                             height: 1px;
                         }
                     }
-                    .preamble:after {
+                    > .preamble:after {
                         content: '';
                         display: block;
                         height: 1px;
                     }
-                    .chaphead, .preamble {
+                    > .chaphead, > .preamble {
                         margin-top: $spacer;
                     }
                 }
@@ -176,12 +179,6 @@ html {
                 }
             }
         }
-    }
-    .paginator {
-        transition: opacity 50ms ease-in;
-    }
-    .paginator.visible {
-        opacity: 1;
     }
     padding: 0;
     scroll-behavior: smooth;
@@ -334,20 +331,26 @@ html {
             gap: 3*$content-padding-x;
             width: 100%;
             max-width: 100%;
-            [data-with-sect] {
+            > .section, > .chaphead, > .preamble {
                 flex: 0 1 $presentation-content-width;
-                height: calc(100% - $spacer);
-                &.section {
-                    &.fit-content { flex-basis: fit-content; }
-                    > h2:has(.notitle) { display: block; }
-                    &:has(> h2 .notitle) {
-                        *:nth-child(2) {
-                            margin-top: 0;
-                        }
+            }
+            > .section {
+                &.fit-content { flex-basis: fit-content; }
+                > h2:has(.notitle) { display: block; }
+                &:has(> h2 .notitle) {
+                    *:nth-child(2) {
+                        margin-top: 0;
                     }
                 }
-                &.chaphead {
-                    flex-basis: fit-content;
+            }
+            > .chaphead {
+                flex-basis: fit-content;
+            }
+            > .section, > .chaphead {
+                &::after {
+                    content: '';
+                    display: block;
+                    height: 1px;
                 }
             }
         }
