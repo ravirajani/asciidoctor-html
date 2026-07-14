@@ -10,6 +10,20 @@ include::includes/variables.adoc[]
 To render a chapter in presentation mode by default, use the document property
 `:pagestyle: presentation`.
 
+[#sec-outline.fit-content]
+== Outline
+
+[.subnav]
+* <<sec-keyboard-navigation>>
+* <<sec-multicolumn>>
+
+== {notitle}
+
+[TIP]
+--
+Use the `subnav` role on an unordered list to style the links like a cref:macros#sec-subnav[].
+--
+
 [#sec-keyboard-navigation]
 == Keyboard Navigation
 
@@ -28,6 +42,9 @@ To render a chapter in presentation mode by default, use the document property
 ====
 Use the `{notitle\}` variable in the section heading if you do not want to display a separate title
 for a column.
+
+Use the `fit-content` role on a section to make its column fit the content instead of its width being
+equal to the others. We did this on the first column of the <<sec-outline>> slide.
 ====
 
 == {notitle}

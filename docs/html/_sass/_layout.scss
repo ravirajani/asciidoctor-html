@@ -338,6 +338,7 @@ html {
                 flex: 0 1 $presentation-content-width;
                 height: calc(100% - $spacer);
                 &.section {
+                    &.fit-content { flex-basis: fit-content; }
                     > h2:has(.notitle) { display: block; }
                     &:has(> h2 .notitle) {
                         *:nth-child(2) {
