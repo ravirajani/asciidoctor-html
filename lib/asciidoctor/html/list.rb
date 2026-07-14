@@ -13,7 +13,7 @@ module Asciidoctor
           "list",
           "list-#{node.context}",
           ("level-#{level} pseudocode" if flat),
-          node.role
+          node.title? ? nil : node.role
         ].compact
         classes << "list-checklist" if node.option?("checklist")
         classes << "list-unmarked" if node.option?("unmarked")
@@ -25,7 +25,8 @@ module Asciidoctor
           result << display_list_item(item, inside:)
         end
         result << %(</#{tag_name}> <!-- .level-#{level} -->\n)
-        Utils.wrap_id_classes_with_title result.join("\n"), node, node.id, "list-wrapper"
+        wrap_classes = %(list-wrapper#{" #{node.role}" if node.title? && node.role})
+        Utils.wrap_id_classes_with_title result.join("\n"), node, node.id, wrap_classes
       end
 
       def self.display_list_item(item, inside: false)

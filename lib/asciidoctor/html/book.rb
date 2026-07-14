@@ -51,7 +51,8 @@ module Asciidoctor
                          :chaptitle,
                          :chapheading,
                          :chapsubheading,
-                         :index)
+                         :index,
+                         :outline)
 
       # opts:
       # - title
@@ -134,7 +135,8 @@ module Asciidoctor
           chaptitle: chapsubheading,
           chapheading: (chapref unless index.zero?),
           chapsubheading:,
-          index:
+          index:,
+          outline: outline(key, doc)
         )
         process_doc key, doc, tdata, chapref
       end
@@ -152,7 +154,8 @@ module Asciidoctor
           chaptitle: BookTemplate.appendix_title(chapname, chapnum, chapsubheading, num_appendices),
           chapheading: chapref,
           chapsubheading:,
-          index:
+          index:,
+          outline: outline(key, doc)
         )
         process_doc key, doc, tdata, chapref
       end
@@ -202,22 +205,17 @@ module Asciidoctor
         ].reject(&:empty?).join(" and ")
       end
 
-      def outline(doc)
-        return doc.attr("outline") if doc.attr?("outline")
-
+      def outline(key, doc)
         items = []
         doc.sections.each do |section|
           next unless section.id && section.level == 1
 
           prefix = Utils.display_sectnum(section) if section.numbered
-          items << BookTemplate.nav_item("##{section.id}", "#{prefix}#{section.title}")
+          items << BookTemplate.nav_item("#{key}.html##{section.id}", "#{prefix}#{section.title}")
         end
         return "" unless items.size > 1
 
-        doc.set_attr("has-subnav", true)
-        outline = "<ul>#{items.join "\n"}</ul>"
-        doc.set_attr("outline", outline)
-        outline
+        "<ul>#{items.join "\n"}</ul>"
       end
 
       def html(docs)
@@ -235,7 +233,7 @@ module Asciidoctor
       def nav_items(active_key = -1, doc = nil)
         items = @templates.map do |k, td|
           active = (k == active_key)
-          subnav = active && doc ? outline(doc) : ""
+          subnav = active && doc ? td.outline : ""
           navtext = BookTemplate.nav_text td.chapprefix, td.chaptitle
           BookTemplate.nav_item "#{k}.html", navtext, subnav, active:
         end
@@ -251,13 +249,11 @@ module Asciidoctor
       def build_template(key, doc)
         tdata = @templates[key]
         nav_items = nav_items key, doc
-        has_subnav = doc.attr?("has-subnav")
-        subnav = has_subnav ? outline(doc) : ""
         content = ERB.new(doc.convert).result(binding)
         BookTemplate.html(
           content,
           nav_items,
-          has_subnav:,
+          has_subnav: !tdata.outline.empty?,
           title: @title,
           short_title: @short_title,
           authors: display_authors(doc),

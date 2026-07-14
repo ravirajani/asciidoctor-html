@@ -10,12 +10,12 @@
     ul {
         @extend .list-unstyled;
         margin-bottom: 0;
-        li a {
-            display: block;
-            padding: 0.125rem 0;
-            text-decoration: none;
-            @extend .link-secondary;
-        }
+    }
+    li a {
+        display: block;
+        padding: 0.125rem 0;
+        text-decoration: none;
+        @extend .link-secondary;
     }
 }
 
