@@ -234,7 +234,7 @@ module Asciidoctor
       def nav_items(active_key = -1, doc = nil)
         items = @templates.map do |k, td|
           active = (k == active_key)
-          subnav = active && doc ? outline(k, doc, absolute: false) : td.outline
+          subnav = active && doc ? outline(k, doc, absolute: false) : ""
           navtext = BookTemplate.nav_text td.chapprefix, td.chaptitle
           BookTemplate.nav_item "#{k}.html", navtext, subnav, active:
         end

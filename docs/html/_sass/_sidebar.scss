@@ -79,9 +79,6 @@
                         --bs-nav-link-hover-color: #{$active-nav-emphasis-color};
                     }
                 }
-                &:not(.active) ul {
-                    display: none;
-                }
             }
         }
     }
