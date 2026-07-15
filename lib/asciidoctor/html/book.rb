@@ -205,13 +205,14 @@ module Asciidoctor
         ].reject(&:empty?).join(" and ")
       end
 
-      def outline(key, doc)
+      def outline(key, doc, absolute: true)
         items = []
         doc.sections.each do |section|
           next unless section.id && section.level == 1
 
           prefix = Utils.display_sectnum(section) if section.numbered
-          items << BookTemplate.nav_item("#{key}.html##{section.id}", "#{prefix}#{section.title}")
+          url = "#{"#{key}.html" if absolute}##{section.id}"
+          items << BookTemplate.nav_item(url, "#{prefix}#{section.title}")
         end
         return "" unless items.size > 1
 
@@ -233,7 +234,7 @@ module Asciidoctor
       def nav_items(active_key = -1, doc = nil)
         items = @templates.map do |k, td|
           active = (k == active_key)
-          subnav = active && doc ? td.outline : ""
+          subnav = active && doc ? outline(k, doc, absolute: false) : td.outline
           navtext = BookTemplate.nav_text td.chapprefix, td.chaptitle
           BookTemplate.nav_item "#{k}.html", navtext, subnav, active:
         end
@@ -249,11 +250,12 @@ module Asciidoctor
       def build_template(key, doc)
         tdata = @templates[key]
         nav_items = nav_items key, doc
+        outline = outline key, doc, absolute: false
         content = ERB.new(doc.convert).result(binding)
         BookTemplate.html(
           content,
           nav_items,
-          has_subnav: !tdata.outline.empty?,
+          has_subnav: !outline.empty?,
           title: @title,
           short_title: @short_title,
           authors: display_authors(doc),

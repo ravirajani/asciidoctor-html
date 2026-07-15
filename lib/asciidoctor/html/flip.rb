@@ -174,21 +174,25 @@ module Asciidoctor
               if(!activeTopLevelLi) return;
 
               const activeSubLi = activeTopLevelLi.querySelector('ul > li.active');
-              let href = '#page';
+              let nextLi = activeTopLevelLi;
+              let url;
               if(direction == 'left') {
-                const prevLi = activeSubLi && activeSubLi.previousElementSibling ||
-                  !activeSubLi && activeTopLevelLi.previousElementSibling;
-                if(prevLi) href = prevLi.firstElementChild.href;
+                if(activeSubLi){
+                  if(nextLi = activeSubLi.previousElementSibling) {
+                  } else { url = '#page'; }
+                } else if(nextLi = activeTopLevelLi.previousElementSibling) {
+                  const lastChildLi = nextLi.querySelector('ul > li:last-child');
+                  if(lastChildLi) nextLi = lastChildLi;
+                }
               } else if(direction == 'right') {
-                const nextLi = !activeSubLi &&
-                  (page.classList.contains('multi') && activeTopLevelLi.querySelector('ul > li') ||
-                    activeTopLevelLi.nextElementSibling) ||
-                  activeSubLi &&
-                  (activeSubLi.nextElementSibling || activeTopLevelLi.nextElementSibling) ||
-                  activeSubLi || activeTopLevelLi;
-                href = nextLi.firstElementChild.href;
+                if(activeSubLi) {
+                  nextLi = activeSubLi.nextElementSibling || activeTopLevelLi.nextElementSibling || activeSubLi;
+                } else {
+                  nextLi = page.classList.contains('multi') && activeTopLevelLi.querySelector('ul > li')
+                    || activeTopLevelLi.nextElementSibling || activeSubLi || activeTopLevelLi;
+                }
               }
-              navigation.navigate(href);
+              navigation.navigate(url || nextLi.firstElementChild.href);
           }
           addEventListener('hashchange', flip);
           addEventListener('keyup', function(e) {

@@ -47,15 +47,8 @@ Use the `fit-content` role on a section to make its column fit the content inste
 equal to the others. We did this on the first column of the <<sec-outline>> slide.
 ====
 
-== {notitle}
-
-[.text-end]
-image:cat2.jpg[Cute cat, 90%]
-
-
-
 [#sec-thank-you]
-== Thank you
+== The End
 
 [.lead]
-Until next time!
+Thank you bi:emoji-sunglasses[]

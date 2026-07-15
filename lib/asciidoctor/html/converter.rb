@@ -29,7 +29,7 @@ module Asciidoctor
       end
 
       def convert_preamble(node)
-        %(<div class="preamble">\n#{node.content}</div> <!-- .preamble -->\n)
+        %(<div class="preamble d-block">\n#{node.content}</div> <!-- .preamble -->\n)
       end
 
       def convert_section(node)

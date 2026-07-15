@@ -1,6 +1,6 @@
 = Welcome
 :description: Static site generator asciidoctor-html is built on top of Asciidoctor and \
-dramatically simplifies the writing and publishing of lecture notes or technical monographs \
+dramatically simplifies the writing and publishing of lecture slides, notes or technical monographs \
 in STEM subjects on the web. Uses Bootstrap CSS framework, Bootstrap Icons, Highlight.js, and MathJax.
 
 include::includes/variables.adoc[]
@@ -8,7 +8,7 @@ include::includes/variables.adoc[]
 {asciidoctor-html} is a simple static site generator
 that converts a set of https://asciidoc.org/[AsciiDoc] files into an HTML website. It extends the default
 HTML converter provided by {asciidoctor-org} to make it easy for lecturers to write
-and publish notes or short technical monographs online.
+and publish slides, notes, or short technical monographs online.
 
 The best way to learn how to use {asciidoctor-html} is by reading these docs and looking at the
 https://github.com/ravirajani/asciidoctor-html/tree/main/docs/asciidoc[source files] from which they were generated.

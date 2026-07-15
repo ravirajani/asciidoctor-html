@@ -23,7 +23,7 @@ module Asciidoctor
           <div class="subnav#{bordered_class}#{roles}"#{style}>
             #{title}
             <nav>
-            <%= templates.dig("#{doc_key}", "outline") || tdata.outline %>
+            <%= templates.dig("#{doc_key}", "outline") || outline %>
             </nav>
           </div>
         HTML

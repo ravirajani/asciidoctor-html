@@ -74,12 +74,14 @@ html {
         display: none;
     }
     &.multi {
-        .main {
+        > .main {
             opacity: 0;
-            transition: opacity 150ms ease-in;
+            transition: opacity 200ms ease-in 50ms;
         }
-        &.loaded .main {
-            opacity: 1;
+        &.loaded {
+            > .main {
+                opacity: 1;
+            }
         }
         .content-container > {
             .section:not(.d-block),
@@ -326,9 +328,11 @@ html {
             }
         }
         .page.multi.presentation .main .content-container {
+            --fw-margin: 0;
+            $colgap: 3*$content-padding-x;
             display: flex;
             justify-content: space-evenly;
-            gap: 3*$content-padding-x;
+            gap: $colgap;
             width: 100%;
             max-width: 100%;
             > .section, > .chaphead, > .preamble {
@@ -337,9 +341,9 @@ html {
             > .section {
                 &.fit-content { flex-basis: fit-content; }
                 > h2:has(.notitle) { display: block; }
-                &:has(> h2 .notitle) {
-                    *:nth-child(2) {
-                        margin-top: 0;
+                &:has(+ .section > h2 .notitle) {
+                    > h2:first-child {
+                        width: calc(200% + $colgap);
                     }
                 }
             }
