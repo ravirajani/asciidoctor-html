@@ -223,3 +223,7 @@
 ## [2.0.1] - 2026-07-13
 
 - Scroll with up/down arrows as soon as (multi)page loads.
+
+## [2.0.2] - 2026-07-15
+
+- Added target parameter to subnav macro.
