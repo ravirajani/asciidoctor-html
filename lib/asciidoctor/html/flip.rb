@@ -50,7 +50,7 @@ module Asciidoctor
           function focusOnLoad() {
             if(searchForm) return;
 
-            focusEl.focus({preventScroll: true});
+            focusEl.focus({preventScroll: !page.classList.contains('presentation')});
           }
 
           function updatePaginator(prev, next) {
