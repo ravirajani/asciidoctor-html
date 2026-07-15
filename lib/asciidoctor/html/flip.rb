@@ -61,6 +61,7 @@ module Asciidoctor
             if(next) {
               const nextH = next.querySelector(':scope > h2');
               const nextLink = document.createElement('a');
+              nextLink.id = "flip-forward"
               const nextSectText = nextH && nextH.innerHTML;
               nextLink.href = '#' + next.id;
               nextLink.innerHTML = `
@@ -76,6 +77,7 @@ module Asciidoctor
               const prevH = prev.querySelector(':scope > h2');
               const prevSectitle = prevH && (prevH.innerHTML + ' ');
               const prevLink = document.createElement('a');
+              prevLink.id = "flip-back"
               let prevSectText = prevSectitle || chapheading &&
                 ('<span class="title-prefix">' + chapheading.textContent + '</span><br>');
               if(!prevH) prevSectText += chaptitle.textContent;
@@ -170,33 +172,11 @@ module Asciidoctor
             });
           }
           function move(direction) {
-              const activeTopLevelLi = document.querySelector('#sidebar nav > ul > li.active');
-              if(!activeTopLevelLi) return;
-
-              const activeSubLi = activeTopLevelLi.querySelector('ul > li.active');
-              let nextLi = activeTopLevelLi;
-              let url;
-              if(direction == 'left') {
-                if(activeSubLi){
-                  if(nextLi = activeSubLi.previousElementSibling) {
-                  } else {
-                    url = '#page';
-                  }
-                } else if(nextLi = activeTopLevelLi.previousElementSibling) {
-                  const lastChildLi = nextLi.querySelector('ul > li:last-child');
-                  if(lastChildLi) nextLi = lastChildLi;
-                } else {
-                  url = '#page';
-                }
-              } else if(direction == 'right') {
-                if(activeSubLi) {
-                  nextLi = activeSubLi.nextElementSibling || activeTopLevelLi.nextElementSibling || activeSubLi;
-                } else {
-                  nextLi = page.classList.contains('multi') && activeTopLevelLi.querySelector('ul > li')
-                    || activeTopLevelLi.nextElementSibling || activeSubLi || activeTopLevelLi;
-                }
-              }
-              navigation.navigate(url || nextLi.firstElementChild.href);
+            let link;
+            if(direction == 'right' && (link = document.getElementById('flip-forward')))
+              navigation.navigate(link.href);
+            else if (direction == 'left' && (link = document.getElementById('flip-back')))
+              navigation.navigate(link.href);
           }
           addEventListener('hashchange', flip);
           addEventListener('keyup', function(e) {

@@ -16,7 +16,7 @@ module Asciidoctor
         ]
         html << if prv
                   <<~HTML
-                    <a href="#{prv.url}">
+                    <a id="flip-back" href="#{prv.url}">
                       <div><i class="bi bi-chevron-compact-left"></i></div>
                       <div>#{%(<span class="title-prefix">#{prv.title}</span><br>) if prv.title}#{prv.text}</div>
                     </a>
@@ -26,7 +26,7 @@ module Asciidoctor
                 end
         html << if nxt
                   <<~HTML
-                    <a href="#{nxt.url}">
+                    <a id="flip-forward" href="#{nxt.url}">
                       <div>#{%(<span class="title-prefix">#{nxt.title}</span><br>) if nxt.title}#{nxt.text}</div>
                       <div><i class="bi bi-chevron-compact-right"></i></div>
                     </a>
