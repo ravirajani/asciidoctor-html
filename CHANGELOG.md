@@ -227,3 +227,7 @@
 ## [2.0.2] - 2026-07-15
 
 - Added target parameter to subnav macro.
+
+## [2.0.3] - 2026-07-15
+
+- Always scroll to top of slide on flip.
