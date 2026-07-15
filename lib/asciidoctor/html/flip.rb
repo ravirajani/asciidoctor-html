@@ -179,10 +179,14 @@ module Asciidoctor
               if(direction == 'left') {
                 if(activeSubLi){
                   if(nextLi = activeSubLi.previousElementSibling) {
-                  } else { url = '#page'; }
+                  } else {
+                    url = '#page';
+                  }
                 } else if(nextLi = activeTopLevelLi.previousElementSibling) {
                   const lastChildLi = nextLi.querySelector('ul > li:last-child');
                   if(lastChildLi) nextLi = lastChildLi;
+                } else {
+                  url = '#page';
                 }
               } else if(direction == 'right') {
                 if(activeSubLi) {
