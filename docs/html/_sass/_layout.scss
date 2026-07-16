@@ -142,7 +142,6 @@ html {
                     max-width: $presentation-content-width;
                     > .section {
                         margin-bottom: 0;
-                        > h2:has(.notitle) { display: none; }
                         &.last-section-multipage::after {
                             content: '';
                             display: block;
@@ -236,6 +235,7 @@ html {
         }
         .content-container {
             &:focus, &:focus-visible { outline: 0; }
+            .section > h2:has(.notitle) { display: none; }
         }
         .layout-toggle {
             margin-top: .25rem;
