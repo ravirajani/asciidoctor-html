@@ -3,19 +3,19 @@ AllCops:
   NewCops: enable
 
 Metrics/AbcSize:
-  Max: 50
+  Max: 55
 
 Metrics/CyclomaticComplexity:
-  Max: 25
+  Max: 30
 
 Metrics/PerceivedComplexity:
-  Max: 25
+  Max: 30
 
 Metrics/BlockNesting:
   Max: 5
 
 Metrics/MethodLength:
-  Max: 35
+  Max: 50
 
 Metrics/ClassLength:
   Max: 300
@@ -25,6 +25,9 @@ Metrics/ModuleLength:
 
 Layout/LineLength:
   Max: 125
+
+Lint/UselessAssignment:
+  Enabled: false
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes

@@ -152,7 +152,7 @@ module Asciidoctor
         end
         block.set_attr "list-depth", depth
         if flat_style
-          block.set_attr("flat-style", true)
+          block.set_attr "flat-style", true
         else
           offset = offset block
           style = block.style
@@ -226,29 +226,37 @@ module Asciidoctor
       end
 
       def process(document)
-        listdepth = 0
-        bulletdepth = 0
-        flat_style = false
-        flat_idx = 0 # flat index for (pseudocode) list
+        listdepth = bulletdepth = flat_idx = 0
+        flat_style = live = false
+        line_number = 1
         tw = TreeWalker.new document
         while (block = tw.next_block)
           unless block.attr? "refprocessed"
             process_numbered_block!(block, document) if process_numbered_block?(block)
             if colist? block
               process_colist! block
-            elsif olist? block
-              if listdepth.zero?
+            elsif (is_olist = olist? block) || (is_ulist = ulist? block)
+              if is_olist && listdepth.zero?
                 flat_style = (block.style == "pseudocode")
                 flat_idx = offset block
               end
-              process_olist! block, listdepth, flat_style:
-            elsif olist_item?(block) && flat_style
-              process_flat_item! block, flat_idx
-              flat_idx += 1
+              process_olist!(block, listdepth, flat_style:) if is_olist
+              process_ulist!(block, bulletdepth) if is_ulist
+              if (listdepth + bulletdepth).zero?
+                live = block.option?("live")
+                line_number = offset(block) + 1
+              end
+            elsif (is_olist_item = olist_item? block) || ulist_item?(block)
+              if is_olist_item && flat_style
+                process_flat_item! block, flat_idx
+                flat_idx += 1
+              end
+              if live
+                block.set_attr "line-number", line_number
+                line_number += 1
+              end
             elsif source_code? block
               process_source_code!(document, block.attr("language"), linenums: block.option?("linenums"))
-            elsif ulist? block
-              process_ulist! block, bulletdepth
             end
             block.set_attr "refprocessed", true
           end

@@ -8,6 +8,7 @@ module Asciidoctor
         depth = node.attr "list-depth"
         flat = node.attr? "flat-style"
         inside = node.option? "inside"
+        live = node.option? "live"
         level = depth + 1
         classes = [
           "list",
@@ -15,6 +16,7 @@ module Asciidoctor
           ("level-#{level} pseudocode" if flat),
           node.title? ? nil : node.role
         ].compact
+        classes << "live" if live
         classes << "list-checklist" if node.option?("checklist")
         classes << "list-unmarked" if node.option?("unmarked")
         classes << "list-roomy" if node.option?("roomy")
@@ -31,8 +33,9 @@ module Asciidoctor
 
       def self.display_list_item(item, inside: false)
         result = []
+        lineno_attr = %( data-line-number="#{item.attr "line-number"}") if item.attr?("line-number")
         inside_mark = %(<span class="li-mark-inside">#{item.attr "mark"} </span>) if inside
-        result << %(<li#{Utils.id_class_attr_str item.id, item.role}>)
+        result << %(<li#{Utils.id_class_attr_str item.id, item.role}#{lineno_attr}>)
         result << %(<div class="li-mark">#{item.attr "mark"}</div><div class="li-content">) unless inside
         result << %(<p>#{inside_mark}#{item.text}</p>) unless item.text.empty?
         result << "\n#{item.content}" if item.blocks?

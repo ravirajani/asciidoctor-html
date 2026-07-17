@@ -98,7 +98,7 @@ put the listing title on the example as we have done in <<ex-hello-world>>.
 [listing#ex-hello-world]
 .Hello World program
 ====
-[source,python]
+[%linenums,python]
 ----
 def say_hi():
   """Says hello to the world""" # <1>
