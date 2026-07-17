@@ -116,7 +116,7 @@ module Asciidoctor
       end
 
       def langs(doc)
-        doc.attr?("source-langs") ? doc.attr("source-langs").keys : []
+        doc.attr("source-langs").keys if doc.attr?("source-langs")
       end
 
       def doctitle(doc)

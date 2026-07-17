@@ -162,9 +162,18 @@ module Asciidoctor
       end
 
       def self.highlightjs(langs)
-        langs.map do |lang|
-          %(<script defer src="#{Highlightjs::CDN_PATH}/languages/#{lang}.min.js"></script>)
-        end.join("\n  ")
+        return "" unless langs
+
+        html = [
+          <<~HTML
+            <link rel="stylesheet" href="#{Highlightjs::CDN_PATH}/styles/tomorrow-night-blue.min.css">
+            <script defer src="#{Highlightjs::CDN_PATH}/highlight.min.js"></script>
+          HTML
+        ]
+        langs.each do |lang|
+          html <<  %(<script defer src="#{Highlightjs::CDN_PATH}/languages/#{lang}.min.js"></script>)
+        end
+        html.join "\n"
       end
 
       def self.head(title, description, authors, langs)
@@ -179,8 +188,6 @@ module Asciidoctor
           <link rel="icon" type="image/png" sizes="16x16" href="#{FAVICON_PATH}/favicon-16x16.png">
           <link rel="manifest" href="#{FAVICON_PATH}/site.webmanifest" crossorigin="anonymous">
           <link rel="stylesheet" href="#{CSS_PATH}/styles.css">
-          <link rel="stylesheet" href="#{Highlightjs::CDN_PATH}/styles/tomorrow-night-blue.min.css">
-          <script defer src="#{Highlightjs::CDN_PATH}/highlight.min.js"></script>
           #{highlightjs langs}
           <script>
             MathJax = {
@@ -235,7 +242,7 @@ module Asciidoctor
           </div> <!-- .page -->
           <script>document.getElementById("cr-year").textContent = (new Date()).getFullYear();</script>
           <script type="module">
-          #{Highlightjs::PLUGIN}
+          #{Highlightjs::PLUGIN if opts[:langs]}
           #{Popovers::POPOVERS}
           #{Sidebar::TOGGLE if nav}
           #{Scroll::SCROLL}
