@@ -194,8 +194,9 @@ module Asciidoctor
         register_reftext! item, mark
       end
 
-      def process_source_code!(document, lang)
+      def process_source_code!(document, lang, linenums: false)
         document.set_attr("source-langs", {}) unless document.attr?("source-langs")
+        document.set_attr("linenumbering", true) if !document.attr?("linenumbering") && linenums
         langs = document.attr "source-langs"
         langs[lang] = true unless Highlightjs::INCLUDED_LANGS.include?(lang)
       end
@@ -245,7 +246,7 @@ module Asciidoctor
               process_flat_item! block, flat_idx
               flat_idx += 1
             elsif source_code? block
-              process_source_code! document, block.attr("language")
+              process_source_code!(document, block.attr("language"), linenums: block.option?("linenums"))
             elsif ulist? block
               process_ulist! block, bulletdepth
             end

@@ -6,6 +6,8 @@ module Asciidoctor
     module Highlightjs
       CDN_PATH = "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build"
 
+      LN_PLUGIN_PATH = "https://cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.9.0/dist/highlightjs-line-numbers.min.js"
+
       INCLUDED_LANGS = {
         "bash" => true,
         "c" => true,
@@ -106,6 +108,8 @@ module Asciidoctor
             }
           });
           hljs.highlightAll();
+
+          document.querySelectorAll('code.hljs-ln-code').forEach(block => hljs.lineNumbersBlock(block));
         })();
       JS
     end

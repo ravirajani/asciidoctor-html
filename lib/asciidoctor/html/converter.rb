@@ -120,8 +120,10 @@ module Asciidoctor
       def convert_listing(node)
         nowrap = (node.option? "nowrap") || !(node.document.attr? "prewrap")
         if node.style == "source"
-          lang = node.attr "language"
-          code_open = %(<code#{%( class="language-#{lang}") if lang}>)
+          classes = []
+          classes << "language-#{node.attr "language"}" if node.attr?("language")
+          classes << "hljs-ln-code" if node.option?("linenums")
+          code_open = %(<code#{%( class="#{classes.join " "}") unless classes.empty?}>)
           pre_open = %(<pre#{%( class="nowrap") if nowrap}>#{code_open})
           pre_close = "</code></pre>"
         else

@@ -48,6 +48,13 @@
             .bi.hljs-comment {
                 font-size: 1rem;
             }
+            .hljs-ln-numbers {
+                user-select: none;
+                text-align: right;
+                color: $gray-500;
+                padding-right: 0.5rem;
+                
+            }
         }
     }
 }

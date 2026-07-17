@@ -161,8 +161,8 @@ module Asciidoctor
         HTML
       end
 
-      def self.highlightjs(langs)
-        return "" unless langs
+      def self.highlightjs(opts)
+        return "" unless opts[:langs]
 
         html = [
           <<~HTML
@@ -170,25 +170,26 @@ module Asciidoctor
             <script defer src="#{Highlightjs::CDN_PATH}/highlight.min.js"></script>
           HTML
         ]
-        langs.each do |lang|
-          html <<  %(<script defer src="#{Highlightjs::CDN_PATH}/languages/#{lang}.min.js"></script>)
+        opts[:langs].each do |lang|
+          html << %(<script defer src="#{Highlightjs::CDN_PATH}/languages/#{lang}.min.js"></script>)
         end
+        html << %(<script defer src="#{Highlightjs::LN_PLUGIN_PATH}"></script>) if opts[:linenumbering]
         html.join "\n"
       end
 
-      def self.head(title, description, authors, langs)
+      def self.head(opts)
         <<~HTML
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1">
-          #{%(<meta name="description" content="#{description}">) if description}
-          #{%(<meta name="author" content="#{authors}">) if authors}
-          <title>#{title}</title>
+          #{%(<meta name="description" content="#{opts[:description]}">) if opts[:description]}
+          #{%(<meta name="author" content="#{opts[:authors]}">) if opts[:authors]}
+          <title>#{opts[:title]}</title>
           <link rel="apple-touch-icon" sizes="180x180" href="#{FAVICON_PATH}/apple-touch-icon.png">
           <link rel="icon" type="image/png" sizes="32x32" href="#{FAVICON_PATH}/favicon-32x32.png">
           <link rel="icon" type="image/png" sizes="16x16" href="#{FAVICON_PATH}/favicon-16x16.png">
           <link rel="manifest" href="#{FAVICON_PATH}/site.webmanifest" crossorigin="anonymous">
           <link rel="stylesheet" href="#{CSS_PATH}/styles.css">
-          #{highlightjs langs}
+          #{highlightjs(opts)}
           <script>
             MathJax = {
               tex: {
@@ -230,7 +231,7 @@ module Asciidoctor
           <!DOCTYPE html>
           <html lang="en">
           <head>
-          #{head opts[:title], opts[:description], opts[:authors], opts[:langs]}
+          #{head(opts)}
           #{opts[:at_head_end]}
           </head>
           <body>

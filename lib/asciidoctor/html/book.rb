@@ -264,6 +264,7 @@ module Asciidoctor
           chapheading: tdata.chapheading,
           chapsubheading: tdata.chapsubheading,
           langs: langs(doc),
+          linenumbering: doc.attr?("linenumbering"),
           paginator: pagination(key),
           pagestyle: doc.attr?("pagestyle") ? doc.attr("pagestyle").to_sym : :single
         )
