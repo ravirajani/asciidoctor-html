@@ -1,0 +1,8 @@
+[%live,markers=I.,start=3]
+. First item, level 1
+* First bullet, level 2
+* Second bullet, level 2
+. Second item, level 1
+.. First item, level 2
+.. Second item, level 2
+. Third item, level 1
