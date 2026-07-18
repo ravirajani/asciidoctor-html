@@ -312,21 +312,6 @@ html {
                 }
             }
         }
-    }
-
-    @include media-breakpoint-up(xl) {
-        html:not(:has(.page.presentation)) {
-            .dynamic-width {
-                width: $content-width;
-                margin: 0 auto;
-            }
-            body > .sidebar {
-                width: 30%;
-                + .page {
-                    width: 70%;
-                }
-            }
-        }
         .page.multi.presentation .main .content-container {
             --fw-margin: 0;
             $colgap: 3*$content-padding-x;
@@ -355,6 +340,21 @@ html {
                     content: '';
                     display: block;
                     height: 1px;
+                }
+            }
+        }
+    }
+
+    @include media-breakpoint-up(xl) {
+        html:not(:has(.page.presentation)) {
+            .dynamic-width {
+                width: $content-width;
+                margin: 0 auto;
+            }
+            body > .sidebar {
+                width: 30%;
+                + .page {
+                    width: 70%;
                 }
             }
         }
