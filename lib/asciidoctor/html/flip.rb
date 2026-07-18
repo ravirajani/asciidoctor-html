@@ -6,7 +6,6 @@ module Asciidoctor
     module Flip
       FLIP = <<~JS
         (function() {
-          const sectSelector = '.content-container > .section';
           // Holds replaced pagination links to prev/next chapter
           const chapPagination = {
             prevChap: null,
@@ -25,11 +24,7 @@ module Asciidoctor
           const nav = document.querySelectorAll('#sidebar nav > ul > li.active > ul > li');
 
           let currentId = "page";
-          document.querySelectorAll('.content-container > .chaphead, .content-container > .preamble').forEach(el => {
-            sectsById[currentId].push(el);
-            el.dataset.withSect = currentId;
-          });
-          document.querySelectorAll(sectSelector).forEach(el => {
+          focusEl.querySelectorAll(':scope > .flip').forEach(el => {
             if(el.id) {
               el.dataset.prevPage = currentId;
               currentId = el.id;
@@ -112,7 +107,7 @@ module Asciidoctor
             document.querySelector('.breadcrumb').classList.toggle('d-block', id != 'page' && !isPresentation);
             document.querySelector('.chapauthors').classList.toggle('d-block', isPresentation);
 
-            let section = target && target.closest(sectSelector);
+            let section = target && target.closest('.content-container > .section');
             if(section) {
               id = section.dataset.withSect;
               section = sectsById[id][0];
@@ -151,6 +146,7 @@ module Asciidoctor
             }
 
             focusOnLoad();
+            if(isPresentation) focusEl.dataset.flip = id;
           }
           flip();
 

@@ -29,7 +29,7 @@ module Asciidoctor
       end
 
       def convert_preamble(node)
-        %(<div class="preamble d-block">\n#{node.content}</div> <!-- .preamble -->\n)
+        %(<div class="preamble flip d-block">\n#{node.content}</div> <!-- .preamble.flip -->\n)
       end
 
       def convert_section(node)
@@ -38,9 +38,10 @@ module Asciidoctor
         show_sectnum = node.numbered && level <= (document.attr("sectnumlevels") || 1).to_i
         tag_level = [level == 1 ? level + 1 : level + 2, 6].min
         tag_name = %(h#{tag_level})
+        classes = "section#{" flip" if level == 1}#{" #{node.role}" if node.role}"
         display_sectnum = Utils.display_sectnum(node, level) if show_sectnum
         content = %(<#{tag_name}>#{display_sectnum}#{node.title}</#{tag_name}>\n#{node.content})
-        Utils.wrap_node content, node, :section
+        Utils.wrap_id_classes content, node.id, classes, :section
       end
 
       def convert_paragraph(node)

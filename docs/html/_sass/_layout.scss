@@ -84,9 +84,7 @@ html {
             }
         }
         .content-container > {
-            .section:not(.d-block),
-            .chaphead:not(.d-block),
-            .preamble:not(.d-block) { display: none; }
+            .flip:not(.d-block) { display: none; }
             .section {
                 margin-top: $spacer;
             }
