@@ -1,0 +1,6 @@
+[%live,ruby]
+----
+def fun
+  "Hello World!"
+end
+----

@@ -210,6 +210,7 @@ module Asciidoctor
 
       # opts:
       # - has_subnav: Boolean
+      # - has_live: Boolean
       # - title: String
       # - short_title: String
       # - authors: String

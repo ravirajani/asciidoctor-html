@@ -52,8 +52,13 @@
                 user-select: none;
                 text-align: right;
                 color: $gray-500;
-                padding-right: 0.5rem;
-                
+                .hljs-ln-n { display: none; }
+            }
+            &.linenums {
+                .hljs-ln-numbers {
+                    padding-right: 0.5rem;
+                    .hljs-ln-n { display: block; }
+                }
             }
         }
     }

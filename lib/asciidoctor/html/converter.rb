@@ -122,8 +122,9 @@ module Asciidoctor
         if node.style == "source"
           classes = []
           classes << "language-#{node.attr "language"}" if node.attr?("language")
-          classes << "hljs-ln-code" if node.option?("linenums")
-          code_open = %(<code#{%( class="#{classes.join " "}") unless classes.empty?}>)
+          classes.push "linenums", "hljs-ln-code" if node.option?("linenums")
+          classes.push "live", "hljs-ln-code" if node.option?("live")
+          code_open = %(<code#{%( class="#{classes.uniq.join " "}") unless classes.empty?}>)
           pre_open = %(<pre#{%( class="nowrap") if nowrap}>#{code_open})
           pre_close = "</code></pre>"
         else

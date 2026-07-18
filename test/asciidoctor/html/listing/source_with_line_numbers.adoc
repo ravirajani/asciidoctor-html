@@ -1,0 +1,6 @@
+[%linenums,ruby]
+----
+def fun
+  "Hello World!"
+end
+----
