@@ -8,7 +8,6 @@ module Asciidoctor
         depth = node.attr "list-depth"
         flat = node.attr? "flat-style"
         inside = node.option? "inside"
-        live = node.option? "live"
         level = depth + 1
         classes = [
           "list",
@@ -16,7 +15,7 @@ module Asciidoctor
           ("level-#{level} pseudocode" if flat),
           node.title? ? nil : node.role
         ].compact
-        classes << "live" if live
+        classes << "live live-#{node.attr "live"}" if node.attr?("live")
         classes << "list-checklist" if node.option?("checklist")
         classes << "list-unmarked" if node.option?("unmarked")
         classes << "list-roomy" if node.option?("roomy")

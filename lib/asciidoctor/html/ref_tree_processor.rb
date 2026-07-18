@@ -243,7 +243,8 @@ module Asciidoctor
               process_olist!(block, listdepth, flat_style:) if is_olist
               process_ulist!(block, bulletdepth) if is_ulist
               if (listdepth + bulletdepth).zero?
-                live = block.option?("live")
+                live = block.attr?("live")
+                document.set_attr "live", true if live && !document.attr?("live")
                 line_number = offset(block) + 1
               end
             elsif (is_olist_item = olist_item? block) || ulist_item?(block)

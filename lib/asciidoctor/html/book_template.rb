@@ -5,6 +5,7 @@ require_relative "popovers"
 require_relative "sidebar"
 require_relative "scroll"
 require_relative "flip"
+require_relative "live"
 
 module Asciidoctor
   module Html
@@ -249,6 +250,7 @@ module Asciidoctor
           #{Sidebar::TOGGLE if nav}
           #{Scroll::SCROLL}
           #{Flip::FLIP}
+          #{Live::LIVE if opts[:has_live]}
           </script>
           #{opts[:at_body_end]}
           </body>

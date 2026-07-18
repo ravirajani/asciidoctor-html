@@ -1,0 +1,22 @@
+.page.presentation .live {
+    $live-opacities: ("faded": 0.4, "covered": 0);
+
+    @mixin set-opacity($opacity) {
+        > p,
+        > .li-mark,
+        > .li-content > p,
+        > .hljs-ln-n,
+        &.hljs-ln-code { opacity: $opacity; }
+    }
+
+    @each $style, $opacity in $live-opacities {
+        &.live-#{$style} {
+            [data-line-number] {
+                @include set-opacity($opacity);
+                &.emph {
+                    @include set-opacity(1);
+                }
+            }
+        }
+    }
+}

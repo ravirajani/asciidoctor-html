@@ -1,4 +1,4 @@
-[%live,ruby]
+[live=faded,ruby]
 ----
 def fun
   "Hello World!"

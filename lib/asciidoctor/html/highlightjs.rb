@@ -109,7 +109,7 @@ module Asciidoctor
           });
           hljs.highlightAll();
 
-          document.querySelectorAll('code.hljs-ln-code').forEach(block => hljs.lineNumbersBlock(block));
+          document.querySelectorAll('code.ln-plugin').forEach(block => hljs.lineNumbersBlock(block));
         })();
       JS
     end

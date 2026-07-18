@@ -256,6 +256,7 @@ module Asciidoctor
           content,
           nav_items,
           has_subnav: !outline.empty?,
+          has_live: doc.attr?("live"),
           title: @title,
           short_title: @short_title,
           authors: display_authors(doc),

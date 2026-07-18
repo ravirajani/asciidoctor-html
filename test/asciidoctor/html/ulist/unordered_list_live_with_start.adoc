@@ -1,4 +1,4 @@
-[%live,start=3]
+[live=faded,start=3]
 * First item, level 1
 * Second item, level 1
 ** First item, level 2

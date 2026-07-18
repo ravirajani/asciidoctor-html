@@ -1,4 +1,4 @@
-[%live]
+[live=faded]
 . First item, level 1
 . Second item, level 1
 .. First item, level 2
