@@ -22,7 +22,6 @@ module Asciidoctor
             if(reset) {
               const token = block.dataset.resetDefault;
               token && block.classList.add(token);
-              delete block.dataset.resetDefault;
             } else {
               block.classList.forEach(token => {
                 if(token.startsWith('live-default-')) {
