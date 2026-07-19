@@ -18,11 +18,30 @@ module Asciidoctor
             liveBlockIdx = 0;
           });
 
+          function toggleDefault(block, reset = false) {
+            if(reset) {
+              const token = block.dataset.resetDefault;
+              token && block.classList.add(token);
+              delete block.dataset.resetDefault;
+            } else {
+              block.classList.forEach(token => {
+                if(token.startsWith('live-default-')) {
+                  block.dataset.resetDefault = token;
+                  block.classList.remove(token);
+                }
+              });
+            }
+          }
+
           observer.observe(container, { attributes: true, attributeFilter: ['data-flip'] });
           addEventListener('keyup', function(e) {
-            if(!page.classList.contains('presentation')) return;
+            if(!page.classList.contains('presentation') || liveBlocks.length == 0) return;
 
-            // Find all displayed live blocks
+            const currentBlock = liveBlocks[liveBlockIdx];
+            if(/^\\d$/.test(e.key)) {
+              toggleDefault(currentBlock);
+              currentBlock.querySelectorAll(`[data-line-number="${e.key}"]`).forEach(el => el.classList.toggle('emph'));
+            }
           });
         })();
       JS

@@ -1,5 +1,6 @@
 .page.presentation .live {
     $live-opacities: ("faded": 0.4, "covered": 0);
+    $default-opacities: ("normal": 1, "faded": 0.4, "covered": 0);
 
     @mixin set-opacity($opacity) {
         > p,
@@ -13,6 +14,13 @@
         &.live-#{$style} {
             [data-line-number] {
                 @include set-opacity($opacity);
+            }
+        }
+        @each $defaultStyle, $defaultOpacity in $default-opacities {
+            &.live-default-#{$defaultStyle}.live-#{$style} {
+                [data-line-number] {
+                    @include set-opacity($defaultOpacity);
+                }
             }
         }
     }
