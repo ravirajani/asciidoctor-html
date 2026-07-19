@@ -85,6 +85,13 @@ module Asciidoctor
         end
         %(<span class="title-mark">#{sectnum}</span>)
       end
+
+      def self.live_classes(node)
+        return [] unless node.attr?("live")
+
+        /\A(?<default>normal|faded|covered)-(?<live>faded|covered)\Z/ =~ node.attr("live")
+        ["live", "live-default-#{default || "normal"}", "live-#{live || "faded"}"]
+      end
     end
   end
 end

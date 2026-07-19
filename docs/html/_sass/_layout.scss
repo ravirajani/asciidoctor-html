@@ -318,7 +318,7 @@ html {
             gap: $colgap;
             width: 100%;
             max-width: 100%;
-            > .section, > .chaphead, > .preamble {
+            > .flip {
                 flex: 0 1 $presentation-content-width;
             }
             > .section {

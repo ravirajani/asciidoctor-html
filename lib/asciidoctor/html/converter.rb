@@ -122,10 +122,11 @@ module Asciidoctor
         nowrap = (node.option? "nowrap") || !(node.document.attr? "prewrap")
         if node.style == "source"
           classes = []
+          live_classes = Utils.live_classes node
           classes << "language-#{node.attr "language"}" if node.attr?("language")
           classes << "linenums" if (has_linenums = node.option? "linenums")
-          classes << "live live-#{node.attr "live"}" if (is_live = node.attr? "live")
-          classes << "ln-plugin" if has_linenums || is_live
+          classes.concat live_classes
+          classes << "ln-plugin" if has_linenums || !live_classes.empty?
           code_open = %(<code#{%( class="#{classes.join " "}") unless classes.empty?}>)
           pre_open = %(<pre#{%( class="nowrap") if nowrap}>#{code_open})
           pre_close = "</code></pre>"
