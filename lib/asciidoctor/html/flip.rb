@@ -192,6 +192,7 @@ module Asciidoctor
           }));
 
           page.classList.add('loaded');
+          ADHT.move = move;
         })();
       JS
     end

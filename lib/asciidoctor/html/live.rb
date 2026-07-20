@@ -39,8 +39,7 @@ module Asciidoctor
               }
               liveBlockIdx++;
             }
-            const paginatorNext = document.getElementById('flip-forward');
-            paginatorNext && navigation.navigate(paginatorNext.href);
+            ADHT.move('right');
             return [];
           }
 
@@ -55,8 +54,7 @@ module Asciidoctor
               }
               liveBlockIdx--;
             }
-            const paginatorPrev = document.getElementById('flip-back');
-            paginatorPrev && navigation.navigate(paginatorPrev.href).finished;
+            ADHT.move('left');
             return [];
           }
 
