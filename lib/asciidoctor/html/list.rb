@@ -7,6 +7,7 @@ module Asciidoctor
       def self.convert(node, tag_name = :ol)
         depth = node.attr "list-depth"
         flat = node.attr? "flat-style"
+        live = node.attr? "live"
         inside = node.option? "inside"
         level = depth + 1
         classes = [
@@ -15,13 +16,15 @@ module Asciidoctor
           ("level-#{level} pseudocode" if flat),
           node.title? ? nil : node.role
         ].compact
-        classes.concat Utils.live_classes(node)
+        live_classes = Utils.live_classes(node)
+        data_reset = %( data-reset="#{live_classes[:default]}") if live
+        classes.concat live_classes.values if live
         classes << "list-checklist" if node.option?("checklist")
         classes << "list-unmarked" if node.option?("unmarked")
         classes << "list-roomy" if node.option?("roomy")
         classes << "list-inside" if inside
         classes << "list-relative" if node.option?("relative")
-        result = [%(<#{tag_name}#{Utils.dyn_id_class_attr_str node, classes.join(" ")}>)]
+        result = [%(<#{tag_name}#{Utils.dyn_id_class_attr_str node, classes.join(" ")}#{data_reset}>)]
         node.items.each do |item|
           result << display_list_item(item, inside:)
         end

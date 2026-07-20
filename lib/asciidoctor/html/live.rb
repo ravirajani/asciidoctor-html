@@ -13,22 +13,60 @@ module Asciidoctor
           let liveBlocks = container.querySelectorAll(liveBlocksSelector);
           let liveBlockIdx = 0;
 
-          const observer = new MutationObserver(function() {
+          function initLiveBlocks() {
             liveBlocks = container.querySelectorAll(liveBlocksSelector);
             liveBlockIdx = 0;
-          });
+          }
+
+          const observer = new MutationObserver(initLiveBlocks);
+
+          function getLines(block, lineNumber = -1, selected) {
+            let selector = '[data-line-number]';
+            if(lineNumber > -1) selector = `[data-line-number="${lineNumber}"]`;
+            if(selected == false) selector += ':not(.emph)';
+            if(selected == true) selector += '.emph';
+            return block.querySelectorAll(selector);
+          }
+
+          function getNextLines() {
+            while(liveBlocks.length > 0 && liveBlockIdx < liveBlocks.length) {
+              const currentBlock = liveBlocks[liveBlockIdx];
+              toggleDefault(currentBlock);
+              const lines = getLines(currentBlock, -1, false);
+              if(lines.length > 0) {
+                const line = lines[0];
+                return getLines(currentBlock, line.dataset.lineNumber);
+              }
+              liveBlockIdx++;
+            }
+            const paginatorNext = document.getElementById('flip-forward');
+            paginatorNext && navigation.navigate(paginatorNext.href);
+            return [];
+          }
+
+          function getPrevLines() {
+            while(liveBlocks.length > 0 && liveBlockIdx > -1) {
+              const currentBlock = liveBlocks[liveBlockIdx];
+              toggleDefault(currentBlock);
+              const lines = getLines(currentBlock, -1, true);
+              if(lines.length > 0) {
+                const line = lines[lines.length - 1];
+                return getLines(currentBlock, line.dataset.lineNumber);
+              }
+              liveBlockIdx--;
+            }
+            const paginatorPrev = document.getElementById('flip-back');
+            paginatorPrev && navigation.navigate(paginatorPrev.href).finished;
+            return [];
+          }
 
           function toggleDefault(block, reset = false) {
+            const token = block.dataset.reset;
             if(reset) {
-              const token = block.dataset.resetDefault;
-              token && block.classList.add(token);
+              block.classList.add(token);
+              getLines(block).forEach(el => el.classList.remove('emph'));
             } else {
-              block.classList.forEach(token => {
-                if(token.startsWith('live-default-')) {
-                  block.dataset.resetDefault = token;
-                  block.classList.remove(token);
-                }
-              });
+              block.classList.remove(token);
             }
           }
 
@@ -39,7 +77,22 @@ module Asciidoctor
             const currentBlock = liveBlocks[liveBlockIdx];
             if(/^\\d$/.test(e.key)) {
               toggleDefault(currentBlock);
-              currentBlock.querySelectorAll(`[data-line-number="${e.key}"]`).forEach(el => el.classList.toggle('emph'));
+              getLines(currentBlock, e.key).forEach(el => el.classList.toggle('emph'));
+            } else {
+              switch(e.key) {
+                case 'r':
+                  toggleDefault(currentBlock, true);
+                  break;
+                case 'R':
+                  liveBlocks.forEach(block => toggleDefault(block, true));
+                  break;
+                case 'n':
+                  getNextLines().forEach(el => el.classList.add('emph'));
+                  break;
+                case 'b':
+                  getPrevLines().forEach(el => el.classList.remove('emph'));
+                  break;
+              }
             }
           });
         })();
