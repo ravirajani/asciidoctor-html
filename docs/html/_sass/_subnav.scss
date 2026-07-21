@@ -11,19 +11,40 @@
         @extend .list-unstyled;
         margin-bottom: 0;
     }
-    li a {
-        display: block;
-        padding: 0.125rem 0;
-        text-decoration: none;
-        @extend .link-secondary;
+    li {
+        a {
+            display: block;
+            padding: 0.125rem 0;
+            text-decoration: none;
+            @extend .link-secondary;
+        }
+        .li-mark {
+            color: var(--bs-secondary);
+        }
+    }
+}
+
+.presentation .content-container .subnav {
+    li {
+        a {
+            @extend .link-dark;
+        }
+        .li-mark {
+            color: var(--bs-dark);
+        }
     }
 }
 
 @include color-mode(dark) {
-    .main .content-container .subnav li a {
-        color: $gray-400 !important;
-        &:hover, &:focus {
-            color: $gray-300 !important;
+    .main .content-container .subnav li {
+        a {
+            color: $gray-400 !important;
+            &:hover, &:focus {
+                color: $gray-300 !important;
+            }
+        }
+        .li-mark {
+            color: $gray-400 !important;
         }
     }
 }

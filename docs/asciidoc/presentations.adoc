@@ -13,7 +13,7 @@ To render a chapter in presentation mode by default, use the document property
 [#sec-outline.fit-content]
 == Outline
 
-[.subnav]
+[.subnav%roomy]
 . <<sec-keyboard-navigation>>
 . <<sec-multicolumn>>
 
@@ -27,12 +27,15 @@ Use the `subnav` role on a list to style the links like a cref:macros#sec-subnav
 [#sec-keyboard-navigation]
 == Keyboard Navigation
 
+[%roomy]
 * Use the left/right arrow keys to navigate to the previous/next slide.
+* Use the up/down arrow keys to scroll the content if it overflows vertically.
 * Use the text:kbd[esc] or text:kbd[e] key to exit presentation mode and enter multipage mode.
 
 [#sec-multicolumn]
 == Multi-Column Layout
 
+[%roomy]
 * A section with an ID attribute starts a new slide.
 * A subsequent section without an ID is displayed in a new column to the right if the screen is large enough.
 
