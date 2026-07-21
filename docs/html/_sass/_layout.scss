@@ -76,7 +76,7 @@ html {
     &.multi {
         > .main {
             opacity: 0;
-            transition: opacity 200ms ease-in 50ms;
+            transition: opacity 600ms ease-in-out;
         }
         &.loaded {
             > .main {

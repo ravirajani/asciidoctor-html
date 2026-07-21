@@ -23,8 +23,8 @@ module Asciidoctor
           function getLines(block, lineNumber = -1, selected) {
             let selector = '[data-line-number]';
             if(lineNumber > -1) selector = `[data-line-number="${lineNumber}"]`;
-            if(selected == false) selector += ':not(.emph)';
-            if(selected == true) selector += '.emph';
+            if(selected === false) selector += ':not(.emph)';
+            if(selected === true) selector += '.emph';
             return block.querySelectorAll(selector);
           }
 
