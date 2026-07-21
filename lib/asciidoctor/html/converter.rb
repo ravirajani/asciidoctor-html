@@ -138,7 +138,7 @@ module Asciidoctor
         end
         title = Utils.display_title(node)
         content = title + pre_open + node.content + pre_close
-        Utils.wrap_node content, node
+        Utils.wrap_live Utils.wrap_node(content, node), live:
       end
 
       def convert_literal(node)

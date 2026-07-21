@@ -6,6 +6,7 @@ for presenting lecture slides using the same tool used for writing the lecture n
 
 include::includes/variables.adoc[]
 
+[.vcenter]
 {asciidoctor-html} has a presentation mode in which a chapter is displayed as a slide deck.
 To render a chapter in presentation mode by default, use the document property
 `:pagestyle: presentation`.
@@ -19,7 +20,7 @@ To render a chapter in presentation mode by default, use the document property
 
 == {notitle}
 
-[TIP]
+[TIP.mt-0]
 --
 Use the `subnav` role on a list to style the links like a cref:macros#sec-subnav[].
 --
@@ -41,7 +42,7 @@ Use the `subnav` role on a list to style the links like a cref:macros#sec-subnav
 
 == {notitle}
 
-[TIP]
+[TIP.mt-0]
 ====
 Use the `{notitle\}` variable in the section heading if you do not want to display a separate title
 for a column.

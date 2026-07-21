@@ -30,7 +30,7 @@ module Asciidoctor
         end
         result << %(</#{tag_name}> <!-- .level-#{level} -->\n)
         wrap_classes = %(list-wrapper#{" #{node.role}" if node.title? && node.role})
-        Utils.wrap_id_classes_with_title result.join("\n"), node, node.id, wrap_classes
+        Utils.wrap_live Utils.wrap_id_classes_with_title(result.join("\n"), node, node.id, wrap_classes), live:
       end
 
       def self.display_list_item(item, inside: false)

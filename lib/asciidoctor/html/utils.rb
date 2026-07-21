@@ -93,6 +93,12 @@ module Asciidoctor
           live: "live live-#{live || "faded"}"
         }
       end
+
+      def self.wrap_live(content, live: false)
+        return content unless live
+
+        %(<div class="live-wrapper"><i class="bi bi-asterisk live-select"></i>\n#{content}</div> <!-- .live-wrapper -->\n)
+      end
     end
   end
 end

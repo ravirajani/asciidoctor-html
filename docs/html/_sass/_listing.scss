@@ -1,4 +1,5 @@
 .listing {
+    position: relative;
     --listing-bg: #{$listing-blue};
     --listing-padding: 0.5rem;
     color: $body-color-dark;

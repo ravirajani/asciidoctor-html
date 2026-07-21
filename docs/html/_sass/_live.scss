@@ -3,9 +3,9 @@
     $default-opacities: ("normal": 1, "faded": 0.4, "covered": 0);
 
     @mixin set-opacity($opacity) {
-        > p,
+        > *:not(.list):not(.li-mark):not(.li-content),
         > .li-mark,
-        > .li-content > p,
+        > .li-content > *:not(.list),
         > .hljs-ln-n,
         &.hljs-ln-code { opacity: $opacity; }
     }
@@ -27,5 +27,18 @@
 
     .emph[data-line-number] {
         @include set-opacity(1);
+    }
+}
+
+.page.presentation .live-wrapper {
+    position: relative;
+    .live-select {
+        display: none;
+        position: absolute;
+        left: -2*$content-padding-x;
+        font-size: $content-padding-x;
+        &.selected {
+            display: block;
+        }
     }
 }

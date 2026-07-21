@@ -76,7 +76,7 @@ html {
     &.multi {
         > .main {
             opacity: 0;
-            transition: opacity 600ms ease-in;
+            transition: opacity 500ms ease-in;
         }
         &.loaded {
             > .main {
@@ -332,6 +332,10 @@ html {
             }
             > .chaphead {
                 flex-basis: fit-content;
+            }
+            > .preamble:has(> .vcenter) {
+                align-self: center;
+                &::after { display: none; }
             }
             > .section, > .chaphead {
                 &::after {
