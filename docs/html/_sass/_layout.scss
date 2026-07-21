@@ -312,7 +312,7 @@ html {
         }
         .page.multi.presentation .main .content-container {
             --fw-margin: 0;
-            $colgap: 3*$content-padding-x;
+            $colgap: 4*$content-padding-x;
             display: flex;
             justify-content: space-evenly;
             gap: $colgap;
@@ -359,6 +359,9 @@ html {
                     width: 70%;
                 }
             }
+        }
+        .page.multi.presentation .main .content-container {
+            zoom: 1.5;
         }
     }
 }

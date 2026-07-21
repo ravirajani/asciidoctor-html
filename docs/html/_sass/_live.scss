@@ -1,6 +1,6 @@
 .page.presentation .live {
-    $live-opacities: ("faded": 0.4, "covered": 0);
-    $default-opacities: ("normal": 1, "faded": 0.4, "covered": 0);
+    $live-opacities: ("faded": 0.2, "covered": 0);
+    $default-opacities: ("normal": 1, "faded": 0.2, "covered": 0);
 
     @mixin set-opacity($opacity) {
         > *:not(.list):not(.li-mark):not(.li-content),
@@ -33,16 +33,20 @@
     }
 }
 
-.page.presentation .live-wrapper {
+.live-wrapper {
     position: relative;
     .live-select {
         display: none;
         position: absolute;
-        left: -2.5*$content-padding-x;
-        &.selected {
-            display: block;
-        }
+        color: var(--bs-secondary);
+        width: 1.5*$content-padding-x;
+        left: -3*$content-padding-x;
+        text-align: right;
     }
+}
+
+.page.presentation .live-wrapper .live-select.selected {
+    display: block;
 }
 
 @include media-breakpoint-up(lg) {

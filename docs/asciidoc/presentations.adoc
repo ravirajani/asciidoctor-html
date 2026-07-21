@@ -27,7 +27,7 @@ Use the `subnav` role on a list to style the links like a cref:macros#sec-subnav
 --
 
 [#sec-multicolumn]
-== Multi-Column Layout
+== [.text-nowrap]#Multi-Column Layout#
 
 [%roomy]
 * A section with an ID attribute starts a new slide.
@@ -79,7 +79,7 @@ The following cref:lists#sec-pseudocode[pseudocode] list has `live=normal-faded`
 ... $x[n - i + 1]\gets \textit{tmp}$
 
 [#sec-keyboard-navigation]
-== Keyboard Navigation
+== [.text-nowrap]#Keyboard Navigation#
 
 [%roomy]
 * Use the left/right arrow keys to navigate to the previous/next slide.
