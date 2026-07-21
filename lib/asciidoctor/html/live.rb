@@ -40,10 +40,14 @@ module Asciidoctor
               const currentBlock = liveBlocks[liveBlockIdx];
               if(currentBlock) {
                 toggleDefault(currentBlock);
-                const lines = getLines(currentBlock, -1, false);
+                let lines = getLines(currentBlock, -1, true);
                 if(lines.length > 0) {
-                  const line = lines[0];
-                  return getLines(currentBlock, line.dataset.lineNumber);
+                  const lineNumber = parseInt(lines[lines.length - 1].dataset.lineNumber) + 1;
+                  lines = getLines(currentBlock, lineNumber);
+                  if(lines.length > 0) return lines;
+                } else {
+                  lines = getLines(currentBlock, -1, false);
+                  if(lines.length > 0) return getLines(currentBlock, lines[0].dataset.lineNumber);
                 }
               }
               liveBlockIdx++;
@@ -100,11 +104,12 @@ module Asciidoctor
 
           observer.observe(container, { attributes: true, attributeFilter: ['data-flip'] });
           addEventListener('keyup', function(e) {
-            if(!page.classList.contains('presentation') || liveBlocks.length == 0) return;
+            if(!page.classList.contains('presentation')) return;
 
             const currentBlock = liveBlocks[liveBlockIdx];
             if(/^\\d$/.test(e.key)) {
               toggleDefault(currentBlock);
+              const key = e.key === "0" ? "10" : e.key;
               getLines(currentBlock, e.key).forEach(el => el.classList.toggle('emph'));
             } else {
               switch(e.key) {

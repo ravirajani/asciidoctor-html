@@ -97,7 +97,10 @@ module Asciidoctor
       def self.wrap_live(content, live: false)
         return content unless live
 
-        %(<div class="live-wrapper"><i class="bi bi-asterisk live-select"></i>\n#{content}</div> <!-- .live-wrapper -->\n)
+        <<~HTML
+          <div class="live-wrapper"><div class="live-select"><i class="bi bi-eyeglasses"></i></div>
+          #{content}</div> <!-- .live-wrapper -->
+        HTML
       end
     end
   end

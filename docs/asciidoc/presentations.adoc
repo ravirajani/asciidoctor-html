@@ -15,8 +15,9 @@ To render a chapter in presentation mode by default, use the document property
 == Outline
 
 [.subnav%roomy]
-. <<sec-keyboard-navigation>>
 . <<sec-multicolumn>>
+. <<sec-live-attribute>>
+. <<sec-keyboard-navigation>>
 
 == {notitle}
 
@@ -24,14 +25,6 @@ To render a chapter in presentation mode by default, use the document property
 --
 Use the `subnav` role on a list to style the links like a cref:macros#sec-subnav[].
 --
-
-[#sec-keyboard-navigation]
-== Keyboard Navigation
-
-[%roomy]
-* Use the left/right arrow keys to navigate to the previous/next slide.
-* Use the up/down arrow keys to scroll the content if it overflows vertically.
-* Use the text:kbd[esc] or text:kbd[e] key to exit presentation mode and enter multipage mode.
 
 [#sec-multicolumn]
 == Multi-Column Layout
@@ -50,6 +43,48 @@ for a column.
 Use the `fit-content` role on a section to make its column fit the content instead of its width being
 equal to the others. We did this on the first column of the <<sec-outline>> slide.
 ====
+
+[#sec-live-attribute]
+== Live Attribute
+
+Any source code or (un)ordered list block supports a `live` attribute which allows the presenter to step through
+the "`lines`". The attribute value is of the form `{dollar}initial-{dollar}live` where `{dollar}initial` is one of
+`normal`, `faded` or `covered`, and `{dollar}live` is one of `faded` or `covered`.
+
+For example, the list in the right column has `live=covered-covered`. Repeatedly press the text:kbd[n] button to
+uncover each line one at a time.
+
+== Covered List Demo
+
+[live=covered-covered]
+* You just uncovered me with the text:kbd[n] (for __**n**__ext) key!
+* Now try uncovering the next line by pressing text:kbd[3].
+* You can toggle any line by pressing the numeric key corresponding to its line number.
+E.g., try pressing text:kbd[2], and then press text:kbd[n] again.
+** Uncovering works as expected with nested lists. Press text:kbd[b] a couple of times
+to move __**b**__ack. Then move beyond this line with the text:kbd[n] key.
+* Once you've reached the end of the list, pressing text:kbd[n] again uncovers the first line
+of the next live block on the current slide, or if there is no such line, flips to the next slide.
+
+[#sec-live-demos]
+== Live Code demos
+
+The following cref:lists#sec-pseudocode[pseudocode] list has `live=normal-faded`.
+
+[pseudocode,live=normal-faded]
+. text:sc[reverse]$(x[1:n])$:
+.. *for* $i \gets 1$ *to* $\lfloor n/2\rfloor$:
+... $\textit{tmp}\gets x[i]$
+... $x[i]\gets x[n-i+1]$
+... $x[n - i + 1]\gets \textit{tmp}$
+
+[#sec-keyboard-navigation]
+== Keyboard Navigation
+
+[%roomy]
+* Use the left/right arrow keys to navigate to the previous/next slide.
+* Use the up/down arrow keys to scroll the content if it overflows vertically.
+* Use the text:kbd[esc] or text:kbd[e] key to exit presentation mode and enter multipage mode.
 
 [#sec-thank-you]
 == The End

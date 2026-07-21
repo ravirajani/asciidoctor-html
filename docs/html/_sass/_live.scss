@@ -7,7 +7,10 @@
         > .li-mark,
         > .li-content > *:not(.list),
         > .hljs-ln-n,
-        &.hljs-ln-code { opacity: $opacity; }
+        &.hljs-ln-code {
+            opacity: $opacity;
+            transition: opacity 300ms ease-in-out;
+        }
     }
 
     @each $style, $opacity in $live-opacities {
@@ -35,10 +38,17 @@
     .live-select {
         display: none;
         position: absolute;
-        left: -2*$content-padding-x;
-        font-size: $content-padding-x;
+        left: -2.5*$content-padding-x;
         &.selected {
             display: block;
+        }
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .page.presentation .live-wrapper {
+        .live-select {
+            left: -2*$content-padding-x;
         }
     }
 }
