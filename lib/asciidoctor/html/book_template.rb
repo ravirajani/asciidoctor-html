@@ -18,11 +18,12 @@ module Asciidoctor
         </button>
       HTML
 
-      def self.nav_item(target, text, content = "", active: false)
+      def self.nav_item(target, text, content = "", active: false, line_number: 0)
         active_class = active ? %( class="active") : ""
         link = %(<a href="#{target}">#{text}</a>)
         subnav = content.empty? ? content : "\n#{content}\n"
-        %(<li#{active_class}>#{link}#{subnav}</li>\n)
+        live_attr = %( data-line-number="#{line_number}") if line_number.positive?
+        %(<li#{active_class}#{live_attr}>#{link}#{subnav}</li>\n)
       end
 
       def self.nav_text(chapprefix, chaptitle)

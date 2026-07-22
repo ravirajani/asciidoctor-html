@@ -207,13 +207,15 @@ module Asciidoctor
 
       def outline(key, doc, absolute: true)
         items = []
+        line_number = 0
         doc.sections.each do |section|
           next if section.option? "skipnav"
           next unless section.id && section.level == 1
 
           prefix = Utils.display_sectnum(section) if section.numbered
           url = "#{"#{key}.html" if absolute}##{section.id}"
-          items << BookTemplate.nav_item(url, "#{prefix}#{section.title}")
+          line_number += 1
+          items << BookTemplate.nav_item(url, "#{prefix}#{section.title}", line_number:)
         end
         return "" unless items.size > 1
 
