@@ -7,7 +7,6 @@ module Asciidoctor
       def self.convert(node, tag_name = :ol)
         depth = node.attr "list-depth"
         flat = node.attr? "flat-style"
-        live = node.attr? "live"
         inside = node.option? "inside"
         level = depth + 1
         classes = [
@@ -16,21 +15,18 @@ module Asciidoctor
           ("level-#{level} pseudocode" if flat),
           node.title? ? nil : node.role
         ].compact
-        live_classes = Utils.live_classes(node)
-        data_reset = %( data-reset="#{live_classes[:default]}") if live
-        classes.concat live_classes.values if live
         classes << "list-checklist" if node.option?("checklist")
         classes << "list-unmarked" if node.option?("unmarked")
         classes << "list-roomy" if node.option?("roomy")
         classes << "list-inside" if inside
         classes << "list-relative" if node.option?("relative")
-        result = [%(<#{tag_name}#{Utils.dyn_id_class_attr_str node, classes.join(" ")}#{data_reset}>)]
+        result = [%(<#{tag_name}#{Utils.dyn_id_class_attr_str node, classes.join(" ")}>)]
         node.items.each do |item|
           result << display_list_item(item, inside:)
         end
         result << %(</#{tag_name}> <!-- .level-#{level} -->\n)
         wrap_classes = %(list-wrapper#{" #{node.role}" if node.title? && node.role})
-        Utils.wrap_live Utils.wrap_id_classes_with_title(result.join("\n"), node, node.id, wrap_classes), live:
+        Utils.wrap_live Utils.wrap_id_classes_with_title(result.join("\n"), node, node.id, wrap_classes), node
       end
 
       def self.display_list_item(item, inside: false)

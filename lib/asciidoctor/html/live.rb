@@ -22,7 +22,7 @@ module Asciidoctor
 
           function selectBlock() {
             liveBlocks.forEach((block, idx) => {
-              block.closest('.live-wrapper').firstElementChild.classList.toggle('selected', idx === liveBlockIdx);
+              block.firstElementChild.classList.toggle('selected', idx === liveBlockIdx);
             });
           }
 

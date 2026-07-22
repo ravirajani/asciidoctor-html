@@ -3,10 +3,8 @@
     $default-opacities: ("normal": 1, "faded": 0.2, "covered": 0);
 
     @mixin set-opacity($opacity) {
-        > *:not(.list):not(.li-mark):not(.li-content),
-        > .li-mark,
+        > *:not(.list):not(.li-content),
         > .li-content > *:not(.list),
-        > .hljs-ln-n,
         &.hljs-ln-code {
             opacity: $opacity;
             transition: opacity 300ms ease-in-out;
@@ -33,7 +31,7 @@
     }
 }
 
-.live-wrapper {
+.live {
     position: relative;
     .live-select {
         display: none;
@@ -45,6 +43,6 @@
     }
 }
 
-.page.presentation .live-wrapper .live-select.selected {
+.page.presentation .live .live-select.selected {
     display: block;
 }

@@ -86,20 +86,17 @@ module Asciidoctor
         %(<span class="title-mark">#{sectnum}</span>)
       end
 
-      def self.live_classes(node)
+      def self.wrap_live(content, node)
+        return content unless node.attr?("live")
+
         /\A(?<default>normal|faded|covered)-(?<live>faded|covered)\Z/ =~ node.attr("live")
-        {
-          default: "live-default-#{default || "normal"}",
-          live: "live live-#{live || "faded"}"
-        }
-      end
 
-      def self.wrap_live(content, live: false)
-        return content unless live
-
+        live_class = %(live-#{live || "faded"})
+        default_class = %(live-default-#{default || "normal"})
         <<~HTML
-          <div class="live-wrapper"><div class="live-select"><i class="bi bi-eye"></i></div>
-          #{content}</div> <!-- .live-wrapper -->
+          <div class="live #{default_class} #{live_class}" data-reset="#{default_class}">
+          <div class="live-select"><i class="bi bi-eye"></i></div>
+          #{content}</div> <!-- .live -->
         HTML
       end
     end
