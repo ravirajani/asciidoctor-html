@@ -98,7 +98,7 @@ module Asciidoctor
         return content unless live
 
         <<~HTML
-          <div class="live-wrapper"><div class="live-select"><i class="bi bi-eyeglasses"></i></div>
+          <div class="live-wrapper"><div class="live-select"><i class="bi bi-eye"></i></div>
           #{content}</div> <!-- .live-wrapper -->
         HTML
       end

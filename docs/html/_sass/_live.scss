@@ -39,20 +39,12 @@
         display: none;
         position: absolute;
         color: var(--bs-secondary);
-        width: 1.5*$content-padding-x;
-        left: -3*$content-padding-x;
+        width: 2*$content-padding-x;
+        left: -2.5*$content-padding-x;
         text-align: right;
     }
 }
 
 .page.presentation .live-wrapper .live-select.selected {
     display: block;
-}
-
-@include media-breakpoint-up(lg) {
-    .page.presentation .live-wrapper {
-        .live-select {
-            left: -2*$content-padding-x;
-        }
-    }
 }

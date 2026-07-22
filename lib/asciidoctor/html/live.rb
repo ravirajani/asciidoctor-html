@@ -79,7 +79,6 @@ module Asciidoctor
               selectBlock();
               const currentBlock = liveBlocks[liveBlockIdx];
               if(currentBlock) {
-                toggleDefault(currentBlock);
                 const lines = getLines(currentBlock, -1, true);
                 if(lines.length > 0) {
                   const line = lines[lines.length - 1];

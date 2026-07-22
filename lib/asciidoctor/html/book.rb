@@ -208,6 +208,7 @@ module Asciidoctor
       def outline(key, doc, absolute: true)
         items = []
         doc.sections.each do |section|
+          next if section.option? "skipnav"
           next unless section.id && section.level == 1
 
           prefix = Utils.display_sectnum(section) if section.numbered

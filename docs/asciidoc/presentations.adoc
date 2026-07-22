@@ -11,20 +11,10 @@ include::includes/variables.adoc[]
 To render a chapter in presentation mode by default, use the document property
 `:pagestyle: presentation`.
 
-[#sec-outline.fit-content]
+[#sec-outline.fit-content%skipnav]
 == Outline
 
-[.subnav%roomy]
-. <<sec-multicolumn>>
-. <<sec-live-attribute>>
-. <<sec-keyboard-navigation>>
-
-== {notitle}
-
-[TIP.mt-0]
---
-Use the `subnav` role on a list to style the links like a cref:macros#sec-subnav[].
---
+subnav::[]
 
 [#sec-multicolumn]
 == [.text-nowrap]#Multi-Column Layout#
@@ -67,7 +57,7 @@ to move __**b**__ack. Then move beyond this line with the text:kbd[n] key.
 of the next live block on the current slide, or if there is no such line, flips to the next slide.
 
 [#sec-live-demos]
-== Live Code demos
+== Live Code Demos
 
 The following cref:lists#sec-pseudocode[pseudocode] list has `live=normal-faded`.
 
@@ -86,7 +76,7 @@ The following cref:lists#sec-pseudocode[pseudocode] list has `live=normal-faded`
 * Use the up/down arrow keys to scroll the content if it overflows vertically.
 * Use the text:kbd[esc] or text:kbd[e] key to exit presentation mode and enter multipage mode.
 
-[#sec-thank-you]
+[#sec-thank-you%skipnav]
 == The End
 
 [.lead]

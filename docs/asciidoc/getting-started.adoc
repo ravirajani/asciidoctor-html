@@ -121,6 +121,9 @@ contains multiple pages. Furthermore, a navigation submenu will be displayed bel
 active navigation item provided the active page contains multiple level 1 (`==`) sections
 *with an ID attribute*.
 
+TIP: You can prevent a section with an ID appearing in a navigation submenu with the `skipnav`
+option on a section.
+
 [#sec-assets]
 == Assets
 

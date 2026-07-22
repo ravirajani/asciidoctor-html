@@ -135,7 +135,8 @@ html {
                 justify-content: center;
                 align-items: center;
                 .content-container {
-                    zoom: 1.25;
+                    --fw-margin: 0;
+                    zoom: 1.2;
                     max-height: 100%;
                     max-width: $presentation-content-width;
                     > .section {
@@ -276,6 +277,9 @@ html {
             min-width: 30%;
             border-left: 1px solid $gray-700;
         }
+        .page.multi.presentation .main .content-container {
+            zoom: 1.25;
+        }
     }
 
     @include media-breakpoint-up(md) {
@@ -284,6 +288,9 @@ html {
                 width: $content-width;
                 margin: 0 auto;
             }
+        }
+        .page.multi.presentation .main .content-container {
+            zoom: 1.3;
         }
     }
 
@@ -311,7 +318,7 @@ html {
             }
         }
         .page.multi.presentation .main .content-container {
-            --fw-margin: 0;
+            zoom: 1.4;
             $colgap: 4*$content-padding-x;
             display: flex;
             justify-content: space-evenly;

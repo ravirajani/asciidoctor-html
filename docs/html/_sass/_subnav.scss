@@ -25,8 +25,11 @@
 }
 
 .presentation .content-container .subnav {
+    padding-right: 0;
     li {
+        list-style-type: '•';
         a {
+            padding-left: 0.5rem;
             @extend .link-dark;
         }
         .li-mark {
