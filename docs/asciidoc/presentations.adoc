@@ -56,7 +56,7 @@ of the next live block on the current slide, or if there is no such line, flips 
 [#sec-keyboard-navigation]
 == [.text-nowrap]#Keyboard Navigation#
 
-[%nocaption.mt-2.mb-0,cols="1,6",live=normal-faded]
+[%nocaption.mt-2,cols="1,4",live=normal-faded]
 |===
 |text:kbd[bi:arrow-left[\]] text:kbd[bi:arrow-right[\]]
 |Move to the previous/next slide.
@@ -70,6 +70,9 @@ of the next live block on the current slide, or if there is no such line, flips 
 |text:kbd[b] text:kbd[n]
 |Reveal the previous/next line of the active live block
 or move to the previous/next live block or slide.
+
+|text:kbd[1] to text:kbd[9] text:kbd[0]
+|Toggle line numbers 1 to 10 (text:kbd[0] for 10).
 
 |text:kbd[r]
 |Reset the active live block to its initial state.
