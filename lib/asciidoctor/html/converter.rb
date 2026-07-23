@@ -242,7 +242,7 @@ module Asciidoctor
       end
 
       def convert_table(node)
-        classes = ["table", node.role].compact
+        classes = ["table"]
         classes << "table-striped" if node.option? "striped"
         classes << "table-bordered" if node.option? "bordered"
         classes << "table-sm" if node.option? "compact"
@@ -270,7 +270,8 @@ module Asciidoctor
           result << "</colgroup>"
         end
         result << "#{Table.display_rows(node)}</table>"
-        Utils.wrap_live Utils.wrap_id_classes(result.join("\n"), nil, "table-responsive"), node.attr("live")
+        wrap_classes = "table-responsive#{" #{node.role}" if node.role}"
+        Utils.wrap_live Utils.wrap_id_classes(result.join("\n"), nil, wrap_classes), node.attr("live")
       end
     end
   end

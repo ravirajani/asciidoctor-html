@@ -56,13 +56,29 @@ of the next live block on the current slide, or if there is no such line, flips 
 [#sec-keyboard-navigation]
 == [.text-nowrap]#Keyboard Navigation#
 
-[%nocaption,cols="1,2"]
+[%nocaption.mt-2.mb-0,cols="1,6"]
 |===
 |text:kbd[bi:arrow-left[\]] text:kbd[bi:arrow-right[\]]
-|Move to the previous/next slide
+|Move to the previous/next slide.
+
+|text:kbd[bi:arrow-down[\]] text:kbd[bi:arrow-up[\]]
+|Scroll the active slide down/up.
 
 |text:kbd[B] text:kbd[N]
-|Move to the previous/next live block
+|Move to the previous/next live block or the previous/next slide.
+
+|text:kbd[b] text:kbd[n]
+|Reveal the previous/next line of the active live block
+or move to the previous/next live block or slide.
+
+|text:kbd[r]
+|Reset the active live block to its initial state.
+
+|text:kbd[R]
+|Reset all live blocks on the active slide to their initial state.
+
+|text:kbd[esc] text:kbd[q]
+|Exit presentation mode and enter the multipage reading view.
 |===
 
 [#sec-live-demos]
@@ -76,6 +92,20 @@ The following cref:lists#sec-pseudocode[pseudocode] list has `live=normal-faded`
 ... $\textit{tmp}\gets x[i]$
 ... $x[i]\gets x[n-i+1]$
 ... $x[n - i + 1]\gets \textit{tmp}$
+
+== {notitle}
+
+The Python listing below has the `linenums` option enabled and `live=faded-faded`.
+[%linenums,python,live=faded-faded]
+----
+def reverse(x):
+    """Reverses list x in place"""
+    n = len(x)
+    for i in range(n // 2):
+        tmp = x[i]
+        x[i] = x[n - i - 1]
+        x[n - i - 1] = tmp
+----
 
 [#sec-thank-you%skipnav]
 == The End

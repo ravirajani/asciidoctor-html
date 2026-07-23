@@ -326,19 +326,16 @@ html {
             width: 100%;
             max-width: 100%;
             > .flip {
-                flex: 0 1 $presentation-content-width;
+                flex: 0 1 fit-content;
+                max-width: $presentation-content-width;
             }
             > .section {
-                &.fit-content { flex-basis: fit-content; }
                 > h2:has(.notitle) { display: block; }
                 &:has(+ .section > h2 .notitle) {
                     > h2:first-child {
                         width: calc(200% + $colgap);
                     }
                 }
-            }
-            > .chaphead {
-                flex-basis: fit-content;
             }
             > .preamble:has(> .vcenter) {
                 align-self: center;

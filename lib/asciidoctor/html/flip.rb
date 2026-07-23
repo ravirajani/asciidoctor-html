@@ -179,7 +179,7 @@ module Asciidoctor
             switch(e.key) {
               case 'ArrowLeft': move('left'); break;
               case 'ArrowRight': move('right'); break;
-              case 'e':
+              case 'q':
               case 'Escape':
                 page.classList.contains('presentation') && changeViewmode('multi');
             }

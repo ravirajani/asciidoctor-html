@@ -259,7 +259,8 @@ module Asciidoctor
                 line_number += 1
               end
             elsif source_code? block
-              process_source_code!(document, block.attr("language"), linenums: block.option?("linenums"))
+              linenums = block.option?("linenums") || block.attr?("live")
+              process_source_code! document, block.attr("language"), linenums:
             end
             block.set_attr "refprocessed", true
           end

@@ -3,7 +3,7 @@
     $default-opacities: ("normal": 1, "faded": 0.2, "covered": 0);
 
     @mixin set-opacity($opacity) {
-        > *:not(.list):not(.li-content),
+        &:not(.hljs-ln-code) > *:not(.list):not(.li-content),
         > .li-content > *:not(.list),
         &.hljs-ln-code, &.dterm {
             opacity: $opacity;
