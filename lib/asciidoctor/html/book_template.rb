@@ -22,7 +22,7 @@ module Asciidoctor
         active_class = active ? %( class="active") : ""
         link = %(<a href="#{target}">#{text}</a>)
         subnav = content.empty? ? content : "\n#{content}\n"
-        live_attr = %( data-line-number="#{line_number}") if line_number.positive?
+        live_attr = Utils.line_number_attr(line_number, live: line_number.positive?)
         %(<li#{active_class}#{live_attr}>#{link}#{subnav}</li>\n)
       end
 

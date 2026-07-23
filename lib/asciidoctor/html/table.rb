@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
+require_relative "utils"
+
 module Asciidoctor
   module Html
     # Helpers for the table conversion
     module Table
-      def self.display_row(tsec, row)
-        result = ["<tr>"]
+      def self.display_row(tsec, row, line_number, live: false)
+        result = ["<tr#{Utils.line_number_attr line_number, live:}>"]
         row.each do |cell|
           cell_content = if tsec == :head
                            cell.text
@@ -31,10 +33,17 @@ module Asciidoctor
       end
 
       def self.display_rows(node)
+        line_number = 0
+        live = node.attr? "live"
         node.rows.to_h.map do |tsec, rows|
           next if rows.empty?
 
-          "<t#{tsec}>\n#{rows.map { |row| display_row(tsec, row) }.join("\n")}\n</t#{tsec}>"
+          result = rows.map do |row|
+            show_lineno = live && tsec != :head
+            line_number += 1 if show_lineno
+            display_row(tsec, row, line_number, live: show_lineno)
+          end
+          "<t#{tsec}>\n#{result.join "\n"}\n</t#{tsec}>"
         end.join("\n")
       end
     end

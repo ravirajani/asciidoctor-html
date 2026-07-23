@@ -134,7 +134,7 @@ module Asciidoctor
         end
         title = Utils.display_title(node)
         content = title + pre_open + node.content + pre_close
-        Utils.wrap_live Utils.wrap_node(content, node), node
+        Utils.wrap_live Utils.wrap_node(content, node), node.attr("live")
       end
 
       def convert_literal(node)
@@ -196,19 +196,24 @@ module Asciidoctor
       def convert_dlist(node)
         classes = ["dlist", node.style, node.role].compact.join(" ")
         result = [%(<dl#{Utils.dyn_id_class_attr_str node, classes}>)]
+        live = node.attr? "live"
+        line_number = 1
         node.items.each do |terms, dd|
           terms.each do |dt|
-            result << %(<dt>#{dt.text}</dt>)
+            result << %(<dt#{Utils.line_number_attr line_number, live:}>#{dt.text}</dt>)
+            line_number += 1
           end
           next unless dd
 
-          result << "<dd>"
+          result << "<dd#{Utils.line_number_attr line_number, live:}>"
+          line_number += 1
           result << %(<p>#{dd.text}</p>) if dd.text?
           result << dd.content if dd.blocks?
           result << "</dd>"
         end
         result << "</dl>\n"
-        Utils.wrap_id_classes_with_title result.join("\n"), node, node.id, "dlist-wrapper"
+        Utils.wrap_live(Utils.wrap_id_classes_with_title(result.join("\n"), node, node.id, "dlist-wrapper"),
+                        node.attr("live"))
       end
 
       def convert_inline_anchor(node)
@@ -263,7 +268,7 @@ module Asciidoctor
           result << "</colgroup>"
         end
         result << "#{Table.display_rows(node)}</table>"
-        Utils.wrap_id_classes result.join("\n"), nil, "table-responsive"
+        Utils.wrap_live Utils.wrap_id_classes(result.join("\n"), nil, "table-responsive"), node.attr("live")
       end
     end
   end

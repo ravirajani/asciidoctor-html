@@ -26,12 +26,12 @@ module Asciidoctor
         end
         result << %(</#{tag_name}> <!-- .level-#{level} -->\n)
         wrap_classes = %(list-wrapper#{" #{node.role}" if node.title? && node.role})
-        Utils.wrap_live Utils.wrap_id_classes_with_title(result.join("\n"), node, node.id, wrap_classes), node
+        Utils.wrap_live Utils.wrap_id_classes_with_title(result.join("\n"), node, node.id, wrap_classes), node.attr("live")
       end
 
       def self.display_list_item(item, inside: false)
         result = []
-        lineno_attr = %( data-line-number="#{item.attr "line-number"}") if item.attr?("line-number")
+        lineno_attr = Utils.line_number_attr item.attr("line-number"), live: item.attr?("line-number")
         inside_mark = %(<span class="li-mark-inside">#{item.attr "mark"} </span>) if inside
         result << %(<li#{Utils.id_class_attr_str item.id, item.role}#{lineno_attr}>)
         result << %(<div class="li-mark">#{item.attr "mark"}</div><div class="li-content">) unless inside

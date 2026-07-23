@@ -86,10 +86,10 @@ module Asciidoctor
         %(<span class="title-mark">#{sectnum}</span>)
       end
 
-      def self.wrap_live(content, node)
-        return content unless node.attr?("live")
+      def self.wrap_live(content, live_attr)
+        return content unless live_attr
 
-        /\A(?<default>normal|faded|covered)-(?<live>faded|covered)\Z/ =~ node.attr("live")
+        /\A(?<default>normal|faded|covered)-(?<live>faded|covered)\Z/ =~ live_attr
 
         live_class = %(live-#{live || "faded"})
         default_class = %(live-default-#{default || "normal"})
@@ -98,6 +98,10 @@ module Asciidoctor
           <div class="live-select"><i class="bi bi-eye"></i></div>
           #{content}</div> <!-- .live -->
         HTML
+      end
+
+      def self.line_number_attr(line_number, live: false)
+        live ? %( data-line-number="#{line_number}") : ""
       end
     end
   end
