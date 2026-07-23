@@ -69,6 +69,8 @@ module Asciidoctor
           block.style == "figlist"
         when :stem, :listing
           block.option? "numbered"
+        when :table
+          !block.option? "nocaption"
         else
           NUMBERED_CONTEXTS.include? context
         end

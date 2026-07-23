@@ -11,10 +11,10 @@ include::includes/variables.adoc[]
 To render a chapter in presentation mode by default, use the document property
 `:pagestyle: presentation`.
 
-[#sec-outline.fit-content%skipnav]
+[#sec-outline%skipnav]
 == Outline
 
-subnav::[]
+subnav::[live=normal-faded]
 
 [#sec-multicolumn]
 == [.text-nowrap]#Multi-Column Layout#
@@ -29,15 +29,12 @@ subnav::[]
 ====
 Use the `{notitle\}` variable in the section heading if you do not want to display a separate title
 for a column.
-
-Use the `fit-content` role on a section to make its column fit the content instead of its width being
-equal to the others. We did this on the first column of the <<sec-outline>> slide.
 ====
 
 [#sec-live-attribute]
 == Live Attribute
 
-Any source code or (un)ordered list block supports a `live` attribute which allows the presenter to step through
+Any source code, (un)ordered list, table, description list, or cref:macros#sec-subnav[] block supports a `live` attribute which allows the presenter to step through
 the "`lines`". The attribute value is of the form `{dollar}initial-{dollar}live` where `{dollar}initial` is one of
 `normal`, `faded` or `covered`, and `{dollar}live` is one of `faded` or `covered`.
 
@@ -56,6 +53,18 @@ to move __**b**__ack. Then move beyond this line with the text:kbd[n] key.
 * Once you've reached the end of the list, pressing text:kbd[n] again uncovers the first line
 of the next live block on the current slide, or if there is no such line, flips to the next slide.
 
+[#sec-keyboard-navigation]
+== [.text-nowrap]#Keyboard Navigation#
+
+[%nocaption,cols="1,2"]
+|===
+|text:kbd[bi:arrow-left[\]] text:kbd[bi:arrow-right[\]]
+|Move to the previous/next slide
+
+|text:kbd[B] text:kbd[N]
+|Move to the previous/next live block
+|===
+
 [#sec-live-demos]
 == Live Code Demos
 
@@ -67,14 +76,6 @@ The following cref:lists#sec-pseudocode[pseudocode] list has `live=normal-faded`
 ... $\textit{tmp}\gets x[i]$
 ... $x[i]\gets x[n-i+1]$
 ... $x[n - i + 1]\gets \textit{tmp}$
-
-[#sec-keyboard-navigation]
-== [.text-nowrap]#Keyboard Navigation#
-
-[%roomy]
-* Use the left/right arrow keys to navigate to the previous/next slide.
-* Use the up/down arrow keys to scroll the content if it overflows vertically.
-* Use the text:kbd[esc] or text:kbd[e] key to exit presentation mode and enter multipage mode.
 
 [#sec-thank-you%skipnav]
 == The End

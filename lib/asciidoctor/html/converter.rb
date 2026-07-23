@@ -255,7 +255,9 @@ module Asciidoctor
           width_attribute = %( width="#{tablewidth}%")
         end
         result = [%(<table#{Utils.id_class_attr_str node.id, classes.join(" ")}#{width_attribute}>)]
-        result << %(<caption class="table-title">#{Utils.display_title_prefix node}#{node.title}</caption>)
+        unless node.option? "nocaption"
+          result << %(<caption class="table-title">#{Utils.display_title_prefix node}#{node.title}</caption>)
+        end
         if node.attr("rowcount").positive? && node.attr?("cols")
           result << "<colgroup>"
           if autowidth

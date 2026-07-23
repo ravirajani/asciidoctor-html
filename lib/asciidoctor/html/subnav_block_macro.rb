@@ -27,6 +27,7 @@ module Asciidoctor
             </nav>
           </div>
         HTML
+        content = Utils.wrap_live content, attrs["live"]
         create_pass_block parent, content, attrs, subs: nil
       end
     end

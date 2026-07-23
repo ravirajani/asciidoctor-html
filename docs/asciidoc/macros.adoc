@@ -48,7 +48,8 @@ The `subnav` block macro displays a chapter-level navigation menu.
 docname:: (Optional) The name of the AsciiDoc file. The `.adoc` extension may be omitted.
 Defaults to the current file.
 attrs:: Set `border={dollar}width` to add top and bottom borders of `{dollar}width` pixels
-to the navigation menu.
+to the navigation menu. +
+The cref:presentations#sec-live-attribute[live attribute] is supported.
 ****
 
 === Example uses of the subnav macro

@@ -1,6 +1,16 @@
 .table {
     margin: 0 auto;
-    @extend .caption-top;
+    &:has(> .table-title) {
+        @extend .caption-top;
+    }
+    &:not(:has(> .table-title)):not(.table-bordered) {
+        tbody {
+            border-top: var(--bs-border-width) solid var(--bs-table-border-color);
+        }
+        thead + tbody {
+            @extend .table-group-divider;
+        }
+    }
     &.table-fit {
         width: auto;
     }
