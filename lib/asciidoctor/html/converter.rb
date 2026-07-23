@@ -200,7 +200,7 @@ module Asciidoctor
         line_number = 1
         node.items.each do |terms, dd|
           terms.each do |dt|
-            result << %(<dt#{Utils.line_number_attr line_number, live:}>#{dt.text}</dt>)
+            result << %(<dt class="dterm"#{Utils.line_number_attr line_number, live:}>#{dt.text}</dt>)
             line_number += 1
           end
           next unless dd

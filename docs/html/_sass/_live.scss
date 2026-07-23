@@ -5,7 +5,7 @@
     @mixin set-opacity($opacity) {
         > *:not(.list):not(.li-content),
         > .li-content > *:not(.list),
-        &.hljs-ln-code {
+        &.hljs-ln-code, &.dterm {
             opacity: $opacity;
             transition: opacity 300ms ease-in-out;
         }
