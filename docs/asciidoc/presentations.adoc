@@ -17,7 +17,7 @@ To render a chapter in presentation mode by default, use the document property
 subnav::[live=normal-faded]
 
 [#sec-multicolumn]
-== [.text-nowrap]#Multi-Column Layout#
+== Multi-Column Layout
 
 [%roomy]
 * A section with an ID attribute starts a new slide.
@@ -26,10 +26,8 @@ subnav::[live=normal-faded]
 == {notitle}
 
 [TIP.mt-0]
-====
 Use the `{notitle\}` variable in the section heading if you do not want to display a separate title
 for a column.
-====
 
 [#sec-live-attribute]
 == Live Attribute
@@ -54,7 +52,7 @@ to move __**b**__ack. Then move beyond this line with the text:kbd[n] key.
 of the next live block on the current slide, or if there is no such line, flips to the next slide.
 
 [#sec-keyboard-navigation]
-== [.text-nowrap]#Keyboard Navigation#
+== Keyboard Navigation
 
 [%nocaption.mt-2,cols="1,4",live=normal-faded]
 |===
