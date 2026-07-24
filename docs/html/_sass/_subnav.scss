@@ -25,16 +25,18 @@
 }
 
 .presentation .content-container .subnav {
-    padding: 0;
-    margin-left: 0.75rem;
-    li {
-        list-style-type: '•';
-        a {
-            padding-left: 0.5rem;
-            @extend .link-dark;
-        }
-        .li-mark {
-            color: var(--bs-dark);
+    --fw-padding: 0;
+    ul {
+        margin-left: 0.75rem;
+        li {
+            list-style-type: '•';
+            a {
+                padding-left: 0.5rem;
+                @extend .link-dark;
+            }
+            .li-mark {
+                color: var(--bs-dark);
+            }
         }
     }
 }

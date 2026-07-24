@@ -72,7 +72,7 @@ of the next live block on the current slide, or if there is no such line, flips 
 or move to the previous/next live block or slide.
 
 |text:kbd[1] to text:kbd[9] text:kbd[0]
-|Toggle line numbers 1 to 10 (text:kbd[0] for 10).
+|Toggle line numbers 1 to 10 (text:kbd[0] for 10) of the active live block.
 
 |text:kbd[r]
 |Reset the active live block to its initial state.
