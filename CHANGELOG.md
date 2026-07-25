@@ -231,3 +231,7 @@
 ## [2.0.3] - 2026-07-15
 
 - Always scroll to top of slide on flip.
+
+## [2.1.0] - 2026-07-25
+
+- Add live attribute for dynamic presentations.
