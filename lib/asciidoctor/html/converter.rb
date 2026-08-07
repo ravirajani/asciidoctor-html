@@ -5,6 +5,7 @@ require_relative "list"
 require_relative "utils"
 require_relative "figure"
 require_relative "table"
+require_relative "jupyterlite"
 
 module Asciidoctor
   module Html
@@ -119,6 +120,22 @@ module Asciidoctor
       end
 
       def convert_listing(node)
+        doc = node.document
+        if node.option? "jupyter"
+          if doc.attr? "jupyterlite-url"
+            return Utils.wrap_id_classes(
+              "#{Utils.display_title node}#{Jupyterlite.html node}",
+              node.id,
+              "jupyter-cell"
+            )
+          end
+
+          return <<~HTML
+            <div class="bg-danger-subtle full-width-bg" role="alert">
+              You must provide a <code>jupyterlite_url</code> in your <code>config.yml</code>.
+            </div>
+          HTML
+        end
         nowrap = (node.option? "nowrap") || !(node.document.attr? "prewrap")
         if node.style == "source"
           classes = []
@@ -132,7 +149,7 @@ module Asciidoctor
           pre_open = %(<pre#{%( class="nowrap") if nowrap}>)
           pre_close = "</pre>"
         end
-        title = Utils.display_title(node)
+        title = Utils.display_title node
         content = title + pre_open + node.content + pre_close
         Utils.wrap_live Utils.wrap_node(content, node), node.attr("live")
       end

@@ -44,7 +44,7 @@ $thm-types: theorem, proposition, lemma, corollary;
 
 .example-listing {
     --example-border-color: transparent;
-    --example-bg-color: #{$listing-blue};
+    --example-bg-color: #{$listing-bg};
     --example-text: #{$body-color-dark};
     --strong-text-color: #{$body-color-dark};
     > .block-title:first-child {

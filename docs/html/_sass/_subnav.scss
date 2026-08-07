@@ -42,7 +42,7 @@
 }
 
 @include color-mode(dark) {
-    .main .content-container .subnav li {
+    .main .content-container .subnav ul li {
         a {
             color: $gray-400 !important;
             &:hover, &:focus {

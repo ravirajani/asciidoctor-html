@@ -168,7 +168,7 @@ module Asciidoctor
 
         html = [
           <<~HTML
-            <link rel="stylesheet" href="#{Highlightjs::CDN_PATH}/styles/tomorrow-night-blue.min.css">
+            <link rel="stylesheet" href="#{Highlightjs::CDN_PATH}/styles/vs2015.min.css">
             <script defer src="#{Highlightjs::CDN_PATH}/highlight.min.js"></script>
           HTML
         ]

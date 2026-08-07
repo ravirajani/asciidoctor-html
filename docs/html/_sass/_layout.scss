@@ -139,6 +139,9 @@ html {
                     zoom: 1.2;
                     max-height: 100%;
                     max-width: $presentation-content-width;
+                    p {
+                        max-width: $presentation-content-width;
+                    }
                     > .section {
                         margin-bottom: 0;
                         &.last-section-multipage::after {
@@ -328,6 +331,10 @@ html {
             > .flip {
                 flex: 0 1 fit-content;
                 max-width: $presentation-content-width;
+                &.hfill {
+                    flex: 1 1 auto;
+                    max-width: 100%;
+                }
             }
             > .section {
                 > h2:has(.notitle) { display: block; }
