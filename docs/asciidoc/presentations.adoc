@@ -111,7 +111,6 @@ def reverse(x):
 [#sec-jupyter-cells.hfill]
 == Jupyter Cells
 
-[.presentation-text-width]
 Enable the `jupyter` option on a listing to generate a Jupyter code cell
 that runs in the browser with https://pyodide.com/[Pyodide].
 The listing's `height` attribute will control the cell height and the `prompt-position`
@@ -134,5 +133,3 @@ TIP: Set the `hfill` role on the section to make it occupy the maximal amount of
 
 [.lead]
 Thank you bi:emoji-sunglasses[]
-
-base16-chalk

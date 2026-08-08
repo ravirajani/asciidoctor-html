@@ -41,6 +41,7 @@ module Asciidoctor
             src="#{node.document.attr("jupyterlite-url")}#{path_with_options node}"
             width="100%"
             height=#{node.attr("height", "100%")}
+            loading="lazy"
           ></iframe>
         HTML
       end
