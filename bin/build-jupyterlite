@@ -8,4 +8,4 @@ DIR=$(cd "$(dirname "$0")" && pwd)
 cd $DIR/../jupyterlite
 
 python -m pip install -r requirements.txt
-jupyter lite build --contents content --output-dir $DIR/../docs/html/_site/jupyterlite
+jupyter lite build --contents content --output-dir $DIR/../docs/html/jupyterlite
