@@ -29,7 +29,13 @@ jobs:
           - '3.4.4'
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
+        with:
+          submodules: true
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
       - name: Set up Node
         uses: actions/setup-node@v6
         with:
@@ -42,6 +48,8 @@ jobs:
         run: bin/setup
       - name: Build the Jekyll docs site
         run: bundle exec rake autoprefix
+      - name: Build the Jupyterlite site
+        run: bin/build-jupyterlite
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
         with:
