@@ -1,0 +1,3 @@
+[submodule "jupyterlite"]
+	path = jupyterlite
+	url = ../jupyterlite
