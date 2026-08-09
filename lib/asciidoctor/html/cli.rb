@@ -102,7 +102,7 @@ module Asciidoctor
         jupyterlite_outdir = "#{outdir}/#{Jupyterlite::PATH}"
         return if File.directory?(jupyterlite_outdir)
 
-        fork { exec %(#{rootdir}/bin/build-jupyterlite -o "#{jupyterlite_outdir}" "#{rootdir}/#{Jupyterlite::PATH}") }
+        exec %(#{rootdir}/bin/build-jupyterlite -o "#{jupyterlite_outdir}" "#{rootdir}/#{Jupyterlite::PATH}")
       end
 
       def self.run(opts = nil)
