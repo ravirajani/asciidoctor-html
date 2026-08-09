@@ -147,7 +147,7 @@ You can hide any block by giving it the `hidden` role.
 == Inside Option
 
 You can display the markers inline with the `inside` option. In <<ex-inside>>, this option is applied
-to a <<sec-bibliography>> <<sec-bibliography,bibliography list>>.
+to a <<sec-bibliography,bibliography list>>.
 
 [#ex-inside]
 .Bibliography list with inline markers
