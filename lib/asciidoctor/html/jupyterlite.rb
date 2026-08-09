@@ -4,6 +4,7 @@ module Asciidoctor
   module Html
     # Constants for the jupyterlite library
     module Jupyterlite
+      PATH = "jupyterlite"
       REPL_PATH = "repl/index.html"
 
       CONFIG = {
@@ -18,7 +19,7 @@ module Asciidoctor
         theme: "JupyterLab Dark"
       }.freeze
 
-      def self.path_with_options(node)
+      def self.repl_path_with_options(node)
         query_string = ["code=#{URI.encode_uri_component node.content}"]
         query_string << CONFIG.merge(
           { promptCellPosition: node.attr("prompt-position", "left") }
@@ -38,7 +39,7 @@ module Asciidoctor
       def self.html(node)
         <<~HTML
           <iframe
-            src="#{node.document.attr("jupyterlite-url")}#{path_with_options node}"
+            src="#{PATH}/#{repl_path_with_options node}"
             width="100%"
             height=#{node.attr("height", "100%")}
             loading="lazy"

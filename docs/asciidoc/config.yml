@@ -33,6 +33,5 @@ outdir: ../html   # default: www
 # a sitemap
 base_url: https://ravirajani.github.io/asciidoctor-html/
 
-# provide a jupyterlite_url if you want to use
-# embedded pyodide code cells
-jupyterlite_url: jupyterlite/
+# specify if you want to use embedded jupyterlite cells
+jupyterlite: true # default: false

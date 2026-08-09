@@ -8,6 +8,7 @@ require "psych"
 require_relative "book"
 require_relative "webmanifest"
 require_relative "version"
+require_relative "jupyterlite"
 
 module Asciidoctor
   module Html
@@ -53,10 +54,11 @@ module Asciidoctor
             "#{config["srcdir"]}/#{f}"
           end
         end
+        config["jupyterlite"] = config["jupyterlite"] || false
         config
       end
 
-      def self.setup_outdir(srcdir, outdir)
+      def self.setup_outdir(srcdir, outdir, jupyterlite: false)
         assets_out = "#{outdir}/#{ASSETS_PATH}"
         FileUtils.mkdir_p assets_out unless File.directory?(assets_out)
         %W[#{IMG_PATH} #{CSS_PATH} #{FAVICON_PATH}].each do |p|
@@ -76,6 +78,7 @@ module Asciidoctor
           puts
           FileUtils.cp_r "#{rootdir}/#{p}", assets_out
         end
+        build_jupyterlite(rootdir, outdir) if jupyterlite
       end
 
       def self.generate_webmanifest(outdir, name, short_name)
@@ -87,12 +90,19 @@ module Asciidoctor
 
       def self.generate_bookopts(config)
         book_opts = {}
-        %i[title short_title authors base_url chapname jupyterlite_url].each do |opt|
+        %i[title short_title authors base_url chapname].each do |opt|
           key = opt.to_s
           book_opts[opt] = config[key] if config.include?(key)
         end
         book_opts[:short_title] ||= book_opts[:title]
         book_opts
+      end
+
+      def self.build_jupyterlite(rootdir, outdir)
+        jupyterlite_outdir = "#{outdir}/#{Jupyterlite::PATH}"
+        return if File.directory?(jupyterlite_outdir)
+
+        fork { exec %(#{rootdir}/bin/build-jupyterlite -o "#{jupyterlite_outdir}" "#{rootdir}/#{Jupyterlite::PATH}") }
       end
 
       def self.run(opts = nil)
@@ -105,7 +115,7 @@ module Asciidoctor
         outdir = config["outdir"]
         srcdir = config["srcdir"]
         book_opts = generate_bookopts config
-        setup_outdir srcdir, outdir
+        setup_outdir srcdir, outdir, jupyterlite: config["jupyterlite"]
         generate_webmanifest outdir, book_opts[:title], book_opts[:short_title]
         book = Book.new book_opts
         puts "Writing book to\n  #{outdir}"

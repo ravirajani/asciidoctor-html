@@ -120,22 +120,14 @@ module Asciidoctor
       end
 
       def convert_listing(node)
-        doc = node.document
         if node.option? "jupyter"
-          if doc.attr? "jupyterlite-url"
-            return Utils.wrap_id_classes(
-              "#{Utils.display_title node}#{Jupyterlite.html node}",
-              node.id,
-              "jupyter-cell"
-            )
-          end
-
-          return <<~HTML
-            <div class="bg-danger-subtle full-width-bg" role="alert">
-              You must provide a <code>jupyterlite_url</code> in your <code>config.yml</code>.
-            </div>
-          HTML
+          return Utils.wrap_id_classes(
+            "#{Utils.display_title node}#{Jupyterlite.html node}",
+            node.id,
+            "jupyter-cell"
+          )
         end
+
         nowrap = (node.option? "nowrap") || !(node.document.attr? "prewrap")
         if node.style == "source"
           classes = []

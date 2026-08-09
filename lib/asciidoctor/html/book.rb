@@ -60,14 +60,12 @@ module Asciidoctor
       # - authors
       # - chapname
       # - base_url
-      # - jupyterlite_url
       def initialize(opts = {})
         opts = DEFAULT_OPTS.merge opts
         @title = ERB::Escape.html_escape opts[:title]
         @short_title = ERB::Escape.html_escape opts[:short_title]
         @authors = opts[:authors]
         @base_url = opts[:base_url]
-        @jupyterlite_url = opts[:jupyterlite_url]
         @chapname = opts[:chapname]
         @search_index = {} # Hash(docname => Array[SearchData])
         @refs = {} # Hash(docname => Hash(id => reftext))
@@ -177,7 +175,6 @@ module Asciidoctor
 
       def parse_file(filename, chapname, chapnum)
         attributes = { "chapnum" => chapnum, "chapname" => chapname }.merge DOCATTRS
-        attributes["jupyterlite-url"] = @jupyterlite_url if @jupyterlite_url
         Asciidoctor.load_file filename, safe: :unsafe, attributes:
       end
 
