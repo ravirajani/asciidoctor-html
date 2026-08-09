@@ -47,7 +47,7 @@ jobs:
       - name: Install dependencies
         run: bin/setup
       - name: Build the Jupyterlite site
-        run: bin/build-jupyterlite
+        run: exe/build-jupyterlite -o docs/html/jupyterlite jupyterlite
       - name: Build the Jekyll docs site
         run: bundle exec rake autoprefix
       - name: Upload artifact

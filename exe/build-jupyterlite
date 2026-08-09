@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+CSS_FILE="static/custom.css"
+CSS_LINK="<link rel=\"stylesheet\" href=\"$CSS_FILE\">"
+USAGE="Usage: $(basename "$0") [-h] [-o outdir] srcdir"
+
+outdir=www/jupyterlite
+
+while getopts "o:h" opt; do
+    case $opt in
+        o)
+        outdir="$(realpath "$OPTARG")"
+        ;;
+        h)
+        echo "$USAGE"
+        exit 0
+        ;;
+        ?)
+        echo -e "Invalid option.\n$USAGE"
+        exit 1
+        ;;
+    esac
+done
+shift "$((OPTIND-1))"
+if [[ "$#" -lt 1 ]]; then
+    echo -e "Missing positional argument.\n$USAGE"
+    exit 1
+fi
+echo "JupyterLite directory: $1"
+echo "Output directory: $outdir"
+cd "$1"
+python -m pip install -r requirements.txt
+jupyter lite build --contents content --output-dir $outdir
+mkdir -p "$outdir/repl/static"
+cp "repl/$CSS_FILE" "$outdir/repl/static/"
+sed -i "s|</head>|$CSS_LINK\n</head>|g" "$outdir/repl/index.html"
