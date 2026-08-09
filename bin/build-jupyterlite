@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 IFS=$'\n\t'
-CSS_FILE="static/custom.css"
-CSS_LINK="<link rel=\"stylesheet\" href=\"$CSS_FILE\">"
+CSS_FILE="assets/css/jupyterlite.css"
+CSS_LINK="<link rel=\"stylesheet\" href=\"../../$CSS_FILE\">"
 USAGE="Usage: $(basename "$0") [-h] [-o outdir] srcdir"
 
 outdir=www/jupyterlite
@@ -32,6 +32,4 @@ echo "Output directory: $outdir"
 cd "$1"
 python -m pip install -r requirements.txt
 jupyter lite build --contents content --output-dir $outdir
-mkdir -p "$outdir/repl/static"
-cp "repl/$CSS_FILE" "$outdir/repl/static/"
 sed -i "s|</head>|$CSS_LINK\n</head>|g" "$outdir/repl/index.html"

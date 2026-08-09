@@ -17,8 +17,7 @@ module Asciidoctor
         hideCodeInput: true,
         clearCodeContentOnExecute: false,
         showBanner: false,
-        execute: false,
-        theme: "JupyterLab Dark"
+        execute: false
       }.freeze
 
       def self.repl_path_with_options(node)
