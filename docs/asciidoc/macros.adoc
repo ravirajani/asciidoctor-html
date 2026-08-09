@@ -31,6 +31,8 @@ reftext:: (Optional) The reference text to be used if the default resolution is 
 |pass:q[`cref:index[\]`] |cref:index[]
 |pass:q[`cref:lists[\]`] |cref:lists[]
 |pass:q[`cref:lists[Ordered Lists\]`] |cref:lists[Ordered Lists]
+|pass:q[`cref:lists#sec-pseudocode[\]`] |cref:lists#sec-pseudocode[]
+|pass:q[`cref:getting-started#sec-latex[\]`] |cref:getting-started#sec-latex[]
 |pass:q[`cref:numbered-blocks#tbl-reference[Reference Table\]`] |cref:numbered-blocks#tbl-reference[Reference Table]
 |pass:q[`cref:numbered-blocks#lem-monotone-likelihood[\]`] |cref:numbered-blocks#lem-monotone-likelihood[]
 |pass:q[`cref:tests[\]`]

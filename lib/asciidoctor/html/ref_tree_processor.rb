@@ -41,7 +41,7 @@ module Asciidoctor
         context = :image if style == "figlist"
         env = env context, style
         block.set_attr("showcaption", true) unless context == :stem
-        assign_numeral! block, document, NUMBERED_CONTEXTS[context]
+        assign_numeral! block, document, NUMBERED_CONTEXTS[context] unless context == :section
         relative_numeral = relative_numeral block, document
 
         reftext = if context == :stem
@@ -71,6 +71,8 @@ module Asciidoctor
           block.option? "numbered"
         when :table
           !block.option? "nocaption"
+        when :section
+          block.numbered && block.level == 1
         else
           NUMBERED_CONTEXTS.include? context
         end

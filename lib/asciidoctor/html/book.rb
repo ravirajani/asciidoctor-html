@@ -31,6 +31,7 @@ module Asciidoctor
 
       DOCATTRS = {
         "sectids" => false,
+        "xrefstyle" => "short",
         "stem" => "latexmath",
         "hide-uri-scheme" => true,
         "source-highlighter" => "highlight.js",

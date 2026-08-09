@@ -28,8 +28,8 @@ module Asciidoctor
         tag = path_tag.size > 1 ? path_tag[1] : "chapref"
         doc_key = Pathname(path).sub_ext ""
         text = attrs["text"] || %(<%= refs.dig("#{doc_key}", "#{tag}") || "[#{doc_key}][#{tag}]" %>)
-        hash_tag = path_tag.size > 1 ? "##{path_tag[1]}" : ""
-        href = "#{Pathname(path).sub_ext ".html"}#{hash_tag}"
+        hashtag = "##{path_tag[1]}" if path_tag.size > 1
+        href = "#{Pathname(path).sub_ext ".html"}#{hashtag}"
         create_anchor parent, text, type: :link, target: href
       end
     end
