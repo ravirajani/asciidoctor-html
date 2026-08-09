@@ -124,7 +124,7 @@ module Asciidoctor
           return Utils.wrap_id_classes(
             "#{Utils.display_title node}#{Jupyterlite.html node}",
             node.id,
-            "jupyter-cell"
+            "jupyter-cell-wrapper"
           )
         end
 
