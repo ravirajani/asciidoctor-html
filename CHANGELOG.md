@@ -235,3 +235,7 @@
 ## [2.1.0] - 2026-07-25
 
 - Add live attribute for dynamic presentations.
+
+## [2.1.1] - 2026-08-10
+
+- Add JupyterLite integration.
