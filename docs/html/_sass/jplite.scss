@@ -15,6 +15,9 @@ $color-mode-type: media-query;
 @import "../node_modules/bootstrap/scss/mixins";
 @import "../node_modules/bootstrap/scss/root";
 
+body {
+    background: var(--bs-body-bg);
+}
 .jp-CodeConsole-promptCell .jp-InputPrompt,
 .jp-CodeConsole-content .jp-Collapser,
 .jp-CodeConsole-content .jp-OutputArea-prompt,
