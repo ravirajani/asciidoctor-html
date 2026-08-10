@@ -1,8 +1,0 @@
-[%jupyter,python,prompt-position=top,height=300]
-----
-def print_hi():
-    """Prints hi"""
-    print("hi")
-
-print_hi()
-----
