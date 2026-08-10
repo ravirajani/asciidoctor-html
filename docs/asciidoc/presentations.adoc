@@ -116,7 +116,7 @@ that runs in the browser with https://pyodide.com/[Pyodide].
 The listing's `height` attribute will control the cell height and the `prompt-position`
 attribute can be one of `left` (default), `top`, `bottom`, or `right`.
 
-[%jupyter,height=200]
+[%jupyter,python,height=200]
 ----
 def say_hi(name='world'):
     """Prints "Hi `name`" to the screen."""
