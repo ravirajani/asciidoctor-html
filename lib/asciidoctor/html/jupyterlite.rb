@@ -4,7 +4,9 @@ module Asciidoctor
   module Html
     # Constants for the jupyterlite library
     module Jupyterlite
-      @id = 0
+      class << self
+        attr_accessor :cell_id
+      end
 
       PATH = "jupyterlite"
       REPL_PATH = "repl/index.html"
@@ -38,8 +40,8 @@ module Asciidoctor
       end
 
       def self.html(node)
-        @id += 1
-        cell_id = "jupyter-cell-frame-#{@id}"
+        @cell_id += 1
+        cell_id = "jupyter-cell-frame-#{@cell_id}"
         height_attr = %( style="height: #{node.attr("height")}px;") if node.attr?("height")
         <<~HTML
           <div id="#{cell_id}"#{height_attr} class="jupyter-cell"></div>

@@ -14,6 +14,7 @@ module Asciidoctor
       TestConverter.define_method(name) do
         converter = Asciidoctor::Converter.create "html5"
         attributes = Book::DOCATTRS
+        Jupyterlite.cell_id = 0
         doc = Asciidoctor.load_file(filepath, attributes:)
         node = doc.find_by(context: context.to_sym).first
         html = File.read filepath.sub_ext(".html")
