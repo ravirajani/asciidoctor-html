@@ -1,9 +1,0 @@
-.First Python function
-[%jupyter,python]
-----
-def print_hi():
-    """Prints hi"""
-    print("hi")
-
-print_hi()
-----

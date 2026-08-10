@@ -24,7 +24,7 @@ module Asciidoctor
 
     def self.generate_tests(dirpath)
       context = dirpath.basename.to_s
-      dirpath.children.each do |filepath|
+      dirpath.children.sort.each do |filepath|
         next unless filepath.extname == ".adoc"
 
         define_test_case filepath, context
