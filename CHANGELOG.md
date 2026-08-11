@@ -239,3 +239,7 @@
 ## [2.1.1] - 2026-08-10
 
 - Add JupyterLite integration.
+
+## [2.1.2] - 2026-08-11
+
+- Fix bug with location of jupyterlite build script.
