@@ -31,15 +31,19 @@
         padding-bottom: var(--listing-padding);
         position: relative;
         .copy-button {
+            $cp-btn-font-size: 0.875rem;
             position: absolute;
             top: var(--listing-padding);
             background-color: color-mix(in srgb-linear, var(--listing-bg) 70%, transparent);
             right: 0;
+            font-size: $cp-btn-font-size;
             .btn {
                 --bs-btn-color: #{$body-color-dark};
                 --bs-btn-padding-x: 0px;
+                --bs-btn-font-size: #{$cp-btn-font-size};
                 --bs-btn-border-width: 0px;
                 --bs-btn-padding-y: 0px;
+                .bi::before { vertical-align: -1px; }
             }
         }
         margin-bottom: 0;
