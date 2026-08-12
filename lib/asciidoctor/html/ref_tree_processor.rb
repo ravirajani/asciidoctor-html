@@ -22,27 +22,28 @@ module Asciidoctor
         listing: "ltg-number"
       }.freeze
 
-      def assign_numeral!(node, document, counter_name)
+      def assign_numeral!(node, counter_name)
+        document = node.document
         document.counters[counter_name] ||= 0
         node.numeral = (document.counters[counter_name] += 1)
       end
 
-      def relative_numeral(node, document)
+      def relative_numeral(node)
         return "" unless node.numeral
 
-        chapnum = document.attr "chapnum"
+        chapnum = node.document.attr "chapnum"
         has_prefix = chapnum && !chapnum.empty? && chapnum != "0"
         has_prefix ? "#{chapnum}.#{node.numeral}" : node.numeral.to_s
       end
 
-      def process_numbered_block!(block, document)
+      def process_numbered_block!(block)
         context = block.context
         style = block.style
         context = :image if style == "figlist"
         env = env context, style
         block.set_attr("showcaption", true) unless context == :stem
-        assign_numeral! block, document, NUMBERED_CONTEXTS[context] unless context == :section
-        relative_numeral = relative_numeral block, document
+        assign_numeral! block, NUMBERED_CONTEXTS[context] unless context == :section
+        relative_numeral = relative_numeral block
 
         reftext = if context == :stem
                     "(#{relative_numeral})"
@@ -51,6 +52,19 @@ module Asciidoctor
                   end
         block.set_attr "reftext", reftext unless block.reftext?
         block.set_attr "title-prefix", reftext
+      end
+
+      def process_unnumbered_block!(block)
+        reftext = block.title? ? block.title : "[#{block.id}]"
+        block.set_attr "reftext", reftext
+      end
+
+      def process_block!(block)
+        if block.option? "unnumbered"
+          process_unnumbered_block! block
+        elsif process_numbered_block? block
+          process_numbered_block! block
+        end
       end
 
       def env(context, style)
@@ -69,8 +83,6 @@ module Asciidoctor
           block.style == "figlist"
         when :stem, :listing
           block.option? "numbered"
-        when :table
-          !block.option? "nocaption"
         when :section
           block.numbered && block.level == 1
         else
@@ -236,7 +248,7 @@ module Asciidoctor
         tw = TreeWalker.new document
         while (block = tw.next_block)
           unless block.attr? "refprocessed"
-            process_numbered_block!(block, document) if process_numbered_block?(block)
+            process_block! block
             if colist? block
               process_colist! block
             elsif (is_olist = olist? block) || (is_ulist = ulist? block)

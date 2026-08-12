@@ -23,10 +23,10 @@ module Asciidoctor
 
       def display_figure(node)
         target = node.attr "target"
-        title = node.title? ? node.title : ""
+        title = node.title if node.title?
         image = display_image node, target
-        caption = %(    <figcaption>#{Utils.display_title_prefix node}#{title}</figcaption>)
-        %(<figure>\n    #{image}\n#{caption}\n</figure>)
+        caption = %(    <figcaption>#{Utils.display_title_prefix node}#{title}</figcaption>\n) if Utils.show_title?(node)
+        %(<figure>\n    #{image}\n#{caption}</figure>)
       end
 
       def convert_figlist(node)

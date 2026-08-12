@@ -8,6 +8,9 @@ figure {
         @extend .img-fluid;
         max-height: 400px;
         vertical-align: text-top;
+        &:not(:has(+ figcaption)) {
+            margin-bottom: 0;
+        }
     }
     figcaption {
         padding-left: var(--fw-padding);

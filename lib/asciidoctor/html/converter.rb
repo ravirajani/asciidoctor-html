@@ -165,7 +165,7 @@ module Asciidoctor
       end
 
       def convert_example(node)
-        Utils.wrap_node_with_title node.content, node
+        Utils.wrap_node(Utils.display_title(node) + node.content, node)
       end
 
       def convert_image(node)
@@ -264,7 +264,7 @@ module Asciidoctor
           width_attribute = %( width="#{tablewidth}%")
         end
         result = [%(<table#{Utils.id_class_attr_str node.id, classes.join(" ")}#{width_attribute}>)]
-        unless node.option? "nocaption"
+        if Utils.show_title? node
           result << %(<caption class="table-title">#{Utils.display_title_prefix node}#{node.title}</caption>)
         end
         if node.attr("rowcount").positive? && node.attr?("cols")

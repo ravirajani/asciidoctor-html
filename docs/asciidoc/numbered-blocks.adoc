@@ -26,8 +26,8 @@ They each have a unique counter.
 
 For each numbered block, automatic reference text gets generated. The details are in <<tbl-reference>>.
 
-[#tbl-reference]
 .Numbered block contexts, counters and reference text
+[#tbl-reference]
 |===
 |Context |Numbered |Counter |Reference Text
 
@@ -55,8 +55,8 @@ NOTE: Example blocks play the role of `amsthm` LaTeX environments.
 You can set a custom name and reference text on an example block by setting the
 block's style to the desired text (in lowercase). In <<def-ump>> we used `[definition]`.
 
-[definition#def-ump,title-suffix="<<bib-shao,Definition 6.1>>"]
 .UMP test
+[definition#def-ump,title-suffix="<<bib-shao,Definition 6.1>>"]
 ====
 A test $T_\ast$ of size $\alpha$ is a _uniformly most powerful_ (UMP)
 test if and only if $\beta_{T_\ast}(P)\geq\beta_T(P)$ for all $P\in\mathcal{P}_1$
@@ -80,8 +80,8 @@ then $g(\theta) = E\left[\psi(Y)\right]$ is a nondecreasing function of $\theta$
 
 You can typeset a proof using an open block with the `proof` style.
 
-[proof]
 .Proof
+[proof]
 --
 See <<bib-shao,p.398>>.
 --
@@ -95,8 +95,8 @@ You may find it useful for your listings to share the same counter as examples. 
 achieve this, nest a listing inside an example block with style `listing`, and
 put the listing title on the example as we have done in <<ex-hello-world>>.
 
-[listing#ex-hello-world]
 .Hello World program
+[listing#ex-hello-world]
 ====
 [source,python]
 ----
@@ -107,28 +107,20 @@ def say_hi():
 ====
 <1> Always include a docstring.
 
-=== Unnumbered Example Blocks
+[#sec-unnumbered-option]
+== Unnumbered Option
 
-Finally, you may wish to have a block styled like an example, but without a
-number.
+If you may wish to have a block styled like one of the numbered blocks, but without a
+number, use the `unnumbered` option.
 
-[WARNING]
---
-There is almost *never* a good reason to have an unnumbered
-example, theorem, algorithm, listing, etc. The numbering helps the
-reader understand where your block is situated on the page. For example,
-if you are at Proposition 2.1, and you see a reference to Lemma 2.5, you know
-that is further ahead of where you are, and not something you should already have
-come across.
---
+WARNING: This won't work for a cref:lists#sec-figlist[list of figures]. Put the `figlist` style
+on an *unordered list* if you want an unnumbered list of figures.
 
-To typeset a block that looks like an _unnumbered_ example, use an open block with the `example`
-role. And if you want one of the example variant styles, additionally add a role
-of the form `example-{dollar}variant`, such as `example-algorithm` as we have used below.
+Below, we have used the `unnumbered` option on an example block with the `algorithm` style.
 
-[.example.example-algorithm,title-suffix="<<bib-boyd, Algorithm 9.1>>"]
 .General descent method
---
+[algorithm%unnumbered,title-suffix="<<bib-boyd, Algorithm 9.1>>"]
+====
 [%unmarked]
 * *given* a starting point $x\in\dom f$.
 * *repeat*
@@ -136,7 +128,7 @@ of the form `example-{dollar}variant`, such as `example-algorithm` as we have us
 . _Line search._ Choose a step size $t > 0$.
 . _Update._ $x\gets x + t\Delta x$.
 * *until* stopping criterion is satisfied.
---
+====
 
 TIP: Above, we added the `unmarked` option to the top-level list. Use this
 option if you want to hide the markers in an *unordered* list.

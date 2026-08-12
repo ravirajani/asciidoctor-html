@@ -54,7 +54,7 @@ of the next live block on the current slide, or if there is no such line, flips 
 [#sec-keyboard-navigation]
 == Keyboard Navigation
 
-[%nocaption.mt-2,cols="1,4",live=normal-faded]
+[%unnumbered.mt-2,cols="1,4",live=normal-faded]
 |===
 |text:kbd[bi:arrow-left[\]] text:kbd[bi:arrow-right[\]]
 |Move to the previous/next slide.
