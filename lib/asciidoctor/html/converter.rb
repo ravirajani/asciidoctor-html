@@ -177,12 +177,15 @@ module Asciidoctor
         target = node.target
         return read_svg_contents(node, target) if node.option?("inline")
 
-        mark = node.parent.attr "mark"
+        parent = node.parent
+        mark = parent.attr "mark"
         title_attr = node.attr? "title"
         if mark # The image is part of a figlist
           title = node.attr("title") if title_attr
-          %(    #{display_image node, target}
-          <figcaption><span class="li-mark">#{mark}</span>#{title}</figcaption>).gsub(/^      /, "")
+          caption = if title_attr || parent.context == :olist
+                      %(\n    <figcaption><span class="li-mark">#{mark}</span>#{title}</figcaption>)
+                    end
+          %(    #{display_image node, target}#{caption})
         else
           display_image node, target, title_attr:
         end
@@ -199,6 +202,8 @@ module Asciidoctor
       end
 
       def convert_ulist(node)
+        return convert_figlist(node) if node.style == "figlist"
+
         List.convert node, :ul
       end
 

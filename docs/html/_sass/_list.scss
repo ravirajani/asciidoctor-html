@@ -146,11 +146,16 @@ $mark-width: 1.5rem;
                 margin-right: 1ex;
             }
             figure {
-                margin-bottom: 0.25rem;
+                &:has(figcaption) {
+                    margin-bottom: 0.25rem;
+                }
                 img {
                     min-width: 300px;
                 }
             }
+        }
+        &:not(:has(+ .figlist-title)) li figure {
+            margin-bottom: 0;
         }
     }
     .figlist-title {
@@ -159,6 +164,7 @@ $mark-width: 1.5rem;
         text-align: center;
         @extend .figure-caption;
     }
+    ul.figlist li .li-mark { display: none; }
 }
 
 p:has(+ .list), p:has(+ .list-wrapper) {
