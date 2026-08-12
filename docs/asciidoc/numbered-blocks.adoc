@@ -113,7 +113,7 @@ def say_hi():
 If you may wish to have a block styled like one of the numbered blocks, but without a
 number, use the `unnumbered` option.
 
-WARNING: This won't work for a cref:lists#sec-figlist[list of figures]. Put the `figlist` style
+CAUTION: This won't work for a cref:lists#sec-figlist[list of figures]. Put the `figlist` style
 on an *unordered list* if you want an unnumbered list of figures.
 
 Below, we have used the `unnumbered` option on an example block with the `algorithm` style.
