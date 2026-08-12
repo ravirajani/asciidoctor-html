@@ -10,14 +10,14 @@ This is an example.footnote:[Equation stem:[x^2 + y^2 = z^2]]
 
 This is a stem block with title:
 
-[stem]
 .Equation Title
+[stem]
 ++++
 x^2 + y^2 = z^2
 ++++
 
-[lemma#lem-minor-2]
 .Minor Lemma
+[lemma#lem-minor-2]
 ====
 This is a lemma.
 ====

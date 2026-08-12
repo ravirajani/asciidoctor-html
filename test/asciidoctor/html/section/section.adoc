@@ -27,8 +27,8 @@ This is a proposition with multiple parts.
 . [[prop-part-last]]Second part of proposition.
 ====
 
-[proof#prf-prop]
 .Proof
+[proof#prf-prop]
 --
 The proof is complicated.
 --
@@ -42,8 +42,8 @@ The algorithm terminates on the <<alg-easy-output-line>>.
 ====
 Here is an algorithm.
 
-[[alg-easy]]
 .Easy Algorithm
+[#alg-easy]
 . Initialise variables.
 . For every item in loop:
 .. [[alg-easy-loop-body]]Do some stuff.
@@ -55,13 +55,13 @@ Here is an algorithm.
 Take a break and look at <<fig-cats>>, paying special
 attention to <<fig-sofa-cat>>.
 
-[figlist#fig-cats]
 .Two beautiful cats.
+[figlist#fig-cats]
 . image:cat2.jpg[Cat in basket,title=A cat in a basket.]
 . [[fig-sofa-cat]]image:cat3.jpg[Cat on sofa,title=A cat on a sofa.]
 
-[theorem#thm-important]
 .An Important Theorem
+[theorem#thm-important]
 ====
 This is a theorem with title.
 ====

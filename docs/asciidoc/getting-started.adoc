@@ -22,8 +22,8 @@ NOTE: Most users will prefer the <<sec-advanced-usage>> over the <<sec-quick-sta
 [#sec-advanced-usage]
 == Advanced Usage
 
-[CAUTION]
 .Prerequisite
+[CAUTION]
 You have https://www.ruby-lang.org/en/documentation/installation/[Ruby] installed on your system.
 
 :sectnums:
@@ -85,8 +85,8 @@ you will need to restart the script to see the effect of your changes.
 The `adoctohtml` script loads its configuration from a file whose location can be specified on the command line.
 
 ****
-[title-prefix=Usage]
 .`adoctohtml [options]`
+[title-prefix=Usage]
 `-w, --watch`::
 Watch for file changes in `srcdir`.
 `-c, --config-file CONFIG`::
@@ -98,8 +98,8 @@ Print the version number and exit.
 The available configuration options are shown in the {docs-yaml}[config.yml] for this
 documentation site which we reproduce below.
 
-[source#config-yaml.monotitle,yaml]
 .config.yml
+[source#config-yaml.monotitle,yaml]
 ----
 include::config.yml[]
 ----

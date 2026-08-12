@@ -110,7 +110,7 @@ def say_hi():
 [#sec-unnumbered-option]
 == Unnumbered Option
 
-If you may wish to have a block styled like one of the numbered blocks, but without a
+If you wish to have a block styled like one of the numbered blocks, but without a
 number, use the `unnumbered` option.
 
 TIP: To create a cref:lists#sec-figlist[list of figures] that omits generated numbers

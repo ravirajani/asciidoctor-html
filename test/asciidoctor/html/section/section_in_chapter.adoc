@@ -48,8 +48,8 @@ Now for something more serious. Pay special attention
 to line <<alg-serious-line>> of <<alg-serious>> which starts
 with an <<alg-serious-init>>.
 
-[algorithm#alg-serious]
 .A Serious Algorithm
+[algorithm#alg-serious]
 ====
 [pseudocode]
 . [[alg-serious-init,initialisation line]]First item, level 1

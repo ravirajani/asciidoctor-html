@@ -1,6 +1,5 @@
 .Hello World Program
-[[src-hello-world-ruby]]
-[source,ruby]
+[source#src-hello-world-ruby,ruby]
 ----
 def fun
   "Hello World!"

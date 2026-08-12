@@ -1,5 +1,5 @@
-[.example]
 .Block Title
+[.example]
 --
 This is an open block styled as an example.
 --

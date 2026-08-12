@@ -97,6 +97,7 @@ The following cref:lists#sec-pseudocode[pseudocode] list has `live=normal-faded`
 == {notitle}
 
 The Python listing below has the `linenums` option enabled and `live=faded-faded`.
+
 [%linenums,python,live=faded-faded]
 ----
 def reverse(x):

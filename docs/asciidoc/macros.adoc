@@ -16,8 +16,8 @@ The `cref` inline macro allows you to cross reference blocks or anchors in other
 Reference text gets properly resolved if unspecified.
 
 ****
-[title-prefix=Usage]
 .pass:q,a[`cref:{dollar}docname{dollar}anchor[{dollar}reftext\]`]
+[title-prefix=Usage]
 docname:: The name of the AsciiDoc file. The `.adoc` extension may be omitted.
 anchor:: (Optional) The ID of the element referenced in `{dollar}docname` preceded by a `#`.
 reftext:: (Optional) The reference text to be used if the default resolution is not suitable. 
@@ -45,8 +45,8 @@ reftext:: (Optional) The reference text to be used if the default resolution is 
 The `subnav` block macro displays a chapter-level navigation menu.
 
 ****
-[title-prefix=Usage]
 .pass:q,a[`subnav::{dollar}docname[{dollar}attrs&hellip;\]`]
+[title-prefix=Usage]
 docname:: (Optional) The name of the AsciiDoc file. The `.adoc` extension may be omitted.
 Defaults to the current file.
 attrs:: Set `border={dollar}width` to add top and bottom borders of `{dollar}width` pixels
@@ -96,8 +96,8 @@ This variable can also be useful inside list items.
 You can insert any icon from {bs-icons} with the `bi` macro.
 
 ****
-[title-prefix=Usage]
 .pass:q,a[`bi:{dollar}name[{dollar}font-size,{dollar}color\]`]
+[title-prefix=Usage]
 name:: Any of the icon names listed https://icons.getbootstrap.com/#icons[here].
 font-size:: (Optional) A percentage value relative to the surrounding font.
 color:: (Optional) A https://developer.mozilla.org/en-US/docs/Web/CSS/color_value[color value].
@@ -120,8 +120,8 @@ Bootstrap's semantic https://getbootstrap.com/docs/5.3/content/typography/#inlin
 are supported via the `text` macro.
 
 ****
-[title-prefix=Usage]
 .pass:q,a[`text:{dollar}style[{dollar}text,{dollar}attrs&hellip;\]`]
+[title-prefix=Usage]
 style:: The type of formatting to be applied.
 text:: The text to apply the formatting to.
 attrs:: When `{dollar}style=abbr`, supply a hover `title` and optional `role=initialism` for

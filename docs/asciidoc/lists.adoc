@@ -21,8 +21,8 @@ by default.
 
 The default ordered list looks like <<ex-basic-list>>.
 
-[#ex-basic-list]
 .Basic list with 4 levels
+[#ex-basic-list]
 ====
 . A level 1 list item, marked with an arabic numeral followed by a dot.
 . Another level 1 list item.
@@ -49,8 +49,8 @@ If you want to define a list that is a continuation of a list defined elsewhere
 (usually appearing before it), you should use the `continue` attribute, set to the
 ID of the other list.
 
-[#ex-continue]
 .Continuing a list
+[#ex-continue]
 ====
 [#lst-first]
 . A level 1 list item of a list with ID `lst-first`.
@@ -85,8 +85,8 @@ characters (and may be left blank).
 For example, setting `[markers=#1]` on the first level, `[markers=(I)]`
 on the second level, and `[markers=a)]` on the third, gives <<ex-markers>>.
 
-[#ex-markers]
 .List with custom markers
+[#ex-markers]
 ====
 [markers=#1]
 . A level 1 list item, marked with a number preceded by a hash.
@@ -107,8 +107,8 @@ Again, reference text gets resolved properly. E.g., <<li-lvl2-alt>>.
 You can make all levels of a list share the same counter (and marker) by declaring
 the `pseudocode` style on the top level. The markers will all be aligned as in <<ex-pseudocode>>.
 
-[#ex-pseudocode]
 .Pseudocode list
+[#ex-pseudocode]
 ====
 [pseudocode#lst-pseudocode]
 . A level 1 item of a pseudocode list.
@@ -132,8 +132,8 @@ When clicking on a generated reference link to a bibliography item, such as <<bi
 the citation will appear in a popover. If you specify reference text in a bibliography citation, it will appear
 next to the generated number as in <<bib-roughgarden,p.10>>.
 
-[#ex-bibliography]
 .Bibliography list
+[#ex-bibliography]
 ====
 [bibliography]
 . [[bib-cormen]]Cormen, Thomas H., Charles Eric Leiserson, Ronald L. Rivest, and Clifford Stein. 2022. _Introduction to Algorithms._ Fourth edition. Cambridge, Massachusetts: The MIT Press.
@@ -149,8 +149,8 @@ You can hide any block by giving it the `hidden` role.
 You can display the markers inline with the `inside` option. In <<ex-inside>>, this option is applied
 to a <<sec-bibliography,bibliography list>>.
 
-[#ex-inside]
 .Bibliography list with inline markers
+[#ex-inside]
 ====
 [bibliography%inside%roomy]
 . Cormen, Thomas H., Charles Eric Leiserson, Ronald L. Rivest, and Clifford Stein. 2022. _Introduction to Algorithms._ Fourth edition. Cambridge, Massachusetts: The MIT Press.
@@ -164,8 +164,8 @@ TIP: Use the `roomy` option if you want some extra space between list items.
 
 A list with the `relative` option displays its markers relative to the parent list item or relative to the chapter number if it is a top-level list.
 
-[#ex-relative]
 .List with relative numbering
+[#ex-relative]
 ====
 [%relative]
 . A level 1 list item of a list with option `relative`. The numbering is relative to the
@@ -192,8 +192,8 @@ The `relative` option can be combined with the <<sec-markers,markers attribute>>
 In this section, we reproduce an exercise from <<bib-cormen,p.46>>. It demonstrates many of the list
 features introduced thus far in the context of a "`real`" example.
 
-[algorithm#alg-bubblesort]
 .text:sc[BubbleSort]$(A,n)$
+[algorithm#alg-bubblesort]
 ====
 This procedure sorts array $A[1:n]$.
 
@@ -206,8 +206,8 @@ This procedure sorts array $A[1:n]$.
 
 In the following exercise, the correctness of <<alg-bubblesort>> is proved.
 
-[exercise]
 .Correctness of <<alg-bubblesort,text:sc[BubbleSort]>>
+[exercise]
 ====
 Bubblesort is a popular, but inefficient, sorting algorithm.
 It works by repeatedly swapping adjacent elements that are out of order.
@@ -245,8 +245,8 @@ putting an inline image in each list item. The list title will get rendered as
 an overall caption, and each image's title attribute will get
 rendered as a subcaption.
 
-[figlist#fig-changepoint-mcmc]
 .Marginal posteriors of Poisson parameters in change point detection of UK coal mining disasters. Computed by Gibbs algorithm with $B = G = 1000$.
+[figlist#fig-changepoint-mcmc]
 . image:gb73b.svg[Posterior theta1,title=Posterior distribution of first Poisson parameter $\theta_1$.]
 . [[fig-posterior-theta2]]image:gb73c.svg[Posterior theta2,title=Posterior distribution of second Poisson parameter $\theta_2$ after change point.]
 
