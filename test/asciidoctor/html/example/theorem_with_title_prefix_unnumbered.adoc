@@ -1,0 +1,5 @@
+.Named Result
+[theorem%unnumbered,title-prefix=Theorem]
+====
+This is a named theorem with title.
+====
