@@ -64,7 +64,7 @@ module Asciidoctor
 
               const overlay = document.createElement('div');
               overlay.classList.add('copy-button');
-              overlay.textContent = result.language.toUpperCase() + ' ';
+              // overlay.textContent = result.language.toUpperCase() + ' ';
 
               const copyButton = document.createElement('button');
               copyButton.classList.add('btn');
