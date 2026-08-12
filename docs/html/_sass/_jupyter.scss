@@ -1,4 +1,6 @@
 .jupyter-cell-wrapper {
-    --fw-padding: 0;
-    @extend .full-width-bg;
+    .jupyter-cell {
+        @extend .full-width-bg;
+        --fw-padding: 0;
+    }
 }
