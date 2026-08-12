@@ -1,0 +1,1 @@
+image::cat1.jpg[cute cat]
