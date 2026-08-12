@@ -3,7 +3,7 @@
 }
 figure {
     text-align: center;
-    img {
+    img, svg {
         @extend .figure-img;
         @extend .img-fluid;
         max-height: 400px;

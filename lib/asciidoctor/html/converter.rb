@@ -170,7 +170,11 @@ module Asciidoctor
 
       def convert_image(node)
         content = display_figure node
-        Utils.wrap_id_classes content, node.id, ["figbox", node.role].compact.join(" ")
+        classes = ["figbox", node.role]
+        Utils.wrap_live(
+          Utils.wrap_id_classes(content, node.id, classes.compact.join(" ")),
+          node.attr("live")
+        )
       end
 
       def convert_inline_image(node)

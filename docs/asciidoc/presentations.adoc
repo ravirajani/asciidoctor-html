@@ -129,6 +129,21 @@ say_hi()
 
 TIP: Set the `hfill` role on the section to make it occupy the maximal amount of horizontal space.
 
+[#sec-live-svgs]
+== Live SVGs
+
+SVGs can be made "`live`" by:
+
+[%roomy]
+* Loading them with the image macro using the `inline` option and the `live` attribute.
+* Adding the `svg-el` class and `data-line-number={dollar}number` attributes to any svg elements that should be (un)coverable.
+
+== {notitle}
+
+.Live demo of Newton's method (`live=covered-covered`)
+[%inline%unnumbered,live=covered-covered]
+image::newton.live.svg[]
+
 [#sec-thank-you%skipnav]
 == The End
 

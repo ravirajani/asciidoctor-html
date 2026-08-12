@@ -340,7 +340,7 @@ html {
                 > h2:has(.notitle) { display: block; }
                 &:has(+ .section > h2 .notitle) {
                     > h2:first-child {
-                        width: calc(200% + $colgap);
+                        width: calc(100% + $colgap);
                     }
                 }
             }
