@@ -38,7 +38,8 @@ module Asciidoctor
         "imagesdir" => IMG_PATH,
         "dollar" => "&#36;",
         "parskip" => %(<span class="parskip"></span><br>),
-        "notitle" => %(<span class="notitle">&nbsp;</span>)
+        "notitle" => %(<span class="notitle">&nbsp;</span>),
+        "br" => "<br>"
       }.freeze
 
       DEFAULT_OPTS = {
