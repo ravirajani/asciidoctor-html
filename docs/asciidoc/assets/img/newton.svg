@@ -29,14 +29,14 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="2.1832366"
-     inkscape:cx="161.45754"
-     inkscape:cy="72.598636"
-     inkscape:window-width="1434"
-     inkscape:window-height="771"
+     inkscape:cx="161.68655"
+     inkscape:cy="72.369619"
+     inkscape:window-width="1396"
+     inkscape:window-height="678"
      inkscape:window-x="26"
      inkscape:window-y="23"
      inkscape:window-maximized="0"
-     inkscape:current-layer="layer2"
+     inkscape:current-layer="layer1"
      inkscape:pageshadow="2" />
   <defs
      id="defs2">
@@ -159,7 +159,7 @@
     <path
        d="m 44.337415,19.018419 3.574775,10.718433 3.899754,10.975666 3.899754,10.286096 3.899754,9.651242 3.899755,9.065894 3.899754,8.525409 3.899754,8.025658 4.224734,8.17339 4.224734,7.673043 4.224734,7.21139 4.224734,6.78485 4.224733,6.3902 4.549714,6.47365 4.549712,6.08253 4.54971,5.72127 4.8747,5.7598 4.87469,5.40646 4.87469,5.0805 5.19968,5.08785 5.19967,4.77252 5.19967,4.48187 5.52465,4.46851 5.52465,4.18989 5.84964,4.15704 5.84963,3.89279 6.17461,3.84577 6.49959,3.78029 6.49959,3.52866 6.82457,3.45735 7.14955,3.37328 7.47453,3.27857 7.79951,3.17523 8.12448,3.06516 8.44947,2.95007 8.77445,2.83153 9.4244,2.80378 9.74939,2.6676 10.39935,2.61142 11.0493,2.53811 11.69926,2.45097 12.34922,2.35316 12.99919,2.24755 13.97411,2.18502 14.94906,2.10511 15.924,2.01202 13.64914,1.55887 v 0"
        clip-path="url(#pc27df6a624)"
-       style="display:inline;fill:none;stroke:#1f77b4;stroke-width:2.63765;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none"
+       style="display:inline;fill:none;stroke:#1f77b4;stroke-width:1.75843339;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none"
        id="path1439"
        transform="matrix(0.20063065,0,0,0.20061034,55.462255,15.24674)" />
     <g
@@ -337,7 +337,7 @@
     <path
        d="M 44.337415,44.589654 186.52797,276.79012 v 0"
        clip-path="url(#pc27df6a624)"
-       style="display:inline;fill:none;stroke:#ff0000;stroke-width:1.39919;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none"
+       style="display:inline;fill:none;stroke:#ff0000;stroke-width:1.39918995;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none"
        id="path1445"
        transform="matrix(0.15128564,0,0,0.15127031,57.619686,17.416397)" />
     <path
