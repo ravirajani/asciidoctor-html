@@ -99,10 +99,6 @@ html {
                 }
             }
             .header {
-                position: fixed;
-                left: 0;
-                right: 0;
-                top: 0;
                 height: $presentation-header-height;
                 font-size: var(--presentation-headfoot-font-size);
                 .dynamic-width {
@@ -124,10 +120,8 @@ html {
                 display: none;
             }
             .main {
-                position: fixed;
                 top: $presentation-header-height;
-                left: 0;
-                right: 0;
+                height: calc(100% - 2*$presentation-header-height);
                 padding: 0 4*$content-padding-x;
                 bottom: $presentation-header-height;
                 overflow-y: auto;
@@ -159,24 +153,20 @@ html {
                         margin-top: $spacer;
                     }
                 }
-                .paginator-wrapper {
-                    position: fixed;
-                    left: 0;
-                    right: 0;
-                    bottom: 0;
+            }
+            .paginator-wrapper {
+                height: $presentation-header-height;
+                padding: 0 0.5*$content-padding-x;
+                .paginator {
                     height: $presentation-header-height;
-                    padding: 0 0.5*$content-padding-x;
-                    .paginator {
+                    a {
+                        min-width: 0;
                         height: $presentation-header-height;
-                        a {
-                            min-width: 0;
-                            height: $presentation-header-height;
-                            line-height: $presentation-header-height;
-                            div {
-                                overflow: hidden;
-                                text-overflow: ellipsis;
-                                white-space: nowrap;
-                            }
+                        line-height: $presentation-header-height;
+                        div {
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
                         }
                     }
                 }

@@ -111,8 +111,6 @@ module Asciidoctor
           </div>
           #{opts[:content]}
           </div>
-          #{opts[:paginator]}
-          #{footer opts[:authors]}
           </main>
         HTML
       end
@@ -243,6 +241,8 @@ module Asciidoctor
           #{MENU_BTN if nav}
           #{header opts[:title], opts[:short_title], opts[:chapheading], opts[:has_subnav]}
           #{main content:, **opts}
+          #{opts[:paginator]}
+          #{footer opts[:authors]}
           </div> <!-- .page -->
           <script>document.getElementById("cr-year").textContent = (new Date()).getFullYear();</script>
           <script type="module">
