@@ -152,9 +152,8 @@ module Asciidoctor
           // Work around chrome bug in calculating dvh in standalone mode:
           if(window.matchMedia('(display-mode: standalone)').matches) {
             setTimeout(() => {
-              page.style.height = 'var(--unit-100vh)';
               flip();
-            }, 10);
+            }, 50);
           } else {
             flip();
           }
