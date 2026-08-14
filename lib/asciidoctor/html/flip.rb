@@ -149,14 +149,7 @@ module Asciidoctor
             if(isPresentation) focusEl.dataset.flip = id;
           }
 
-          // Work around chrome bug in calculating dvh in standalone mode:
-          if(window.matchMedia('(display-mode: standalone)').matches) {
-            setTimeout(() => {
-              flip();
-            }, 50);
-          } else {
-            flip();
-          }
+          flip();
 
           const dropdownItems = document.querySelectorAll('#viewmode-actions .dropdown-item');
           const dropdownToggle = document.getElementById('btn-toggle');
@@ -200,6 +193,12 @@ module Asciidoctor
           }));
 
           page.classList.add('loaded');
+
+          // Chrome does not calculate viewport height correctly in standalone mode.
+          if(window.matchMedia('(display-mode: standalone)').matches) {
+            dispatchEvent(new Event('resize'));
+          }
+
           ADHT.move = move;
         })();
       JS
