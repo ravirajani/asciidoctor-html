@@ -11,12 +11,6 @@
             .bi-chevron-compact-left, .bi-chevron-compact-right {
                 font-size: 3rem;
             }
-            .bi-chevron-compact-left {
-                margin-left: -$content-padding-x;
-            }
-            .bi-chevron-compact-right {
-                margin-right: -$content-padding-x;
-            }
             &:first-child {
                 text-align: left;
             }
@@ -46,12 +40,6 @@
         font-size: var(--presentation-headfoot-font-size);
         .bi-chevron-compact-left, .bi-chevron-compact-right {
             font-size: inherit;
-        }
-        .bi-chevron-compact-left {
-            margin-left: 0;
-        }
-        .bi-chevron-compact-right {
-            margin-right: 0;
         }
         a {
             color: var(--bs-gray-200);

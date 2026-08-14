@@ -396,7 +396,7 @@ html {
 
 .footer {
     font-size: 90%;
-    padding: $spacer 0;
+    padding: $spacer $content-padding-x;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
