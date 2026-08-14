@@ -148,7 +148,16 @@ module Asciidoctor
             focusOnLoad();
             if(isPresentation) focusEl.dataset.flip = id;
           }
-          flip();
+
+          // Work around chrome bug in calculating dvh in standalone mode:
+          if(window.matchMedia('(display-mode: standalone)').matches) {
+            setTimeout(() => {
+              page.style.height = 'var(--unit-100vh)';
+              flip();
+            }, 10);
+          } else {
+            flip();
+          }
 
           const dropdownItems = document.querySelectorAll('#viewmode-actions .dropdown-item');
           const dropdownToggle = document.getElementById('btn-toggle');
