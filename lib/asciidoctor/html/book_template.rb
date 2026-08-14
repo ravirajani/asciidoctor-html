@@ -225,8 +225,10 @@ module Asciidoctor
       def self.html(content, nav_items, opts = {})
         nav = !nav_items.empty? && (nav_items.size > 1 || opts[:has_subnav])
         page_classes = ["page"]
-        page_classes << "multi" unless opts[:pagestyle] == :single
-        page_classes << "presentation" if opts[:pagestyle] == :presentation
+        if nav
+          page_classes << "multi" unless opts[:pagestyle] == :single
+          page_classes << "presentation" if opts[:pagestyle] == :presentation
+        end
         page_classname = page_classes.join " "
         <<~HTML
           <!DOCTYPE html>
@@ -251,7 +253,7 @@ module Asciidoctor
           #{Sidebar::TOGGLE if nav}
           #{Scroll::SCROLL}
           #{Flip::FLIP if nav}
-          #{Live::LIVE if opts[:has_live]}
+          #{Live::LIVE if nav && opts[:has_live]}
           </script>
           #{opts[:at_body_end]}
           </body>
