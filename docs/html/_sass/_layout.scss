@@ -121,7 +121,7 @@ html {
             }
             .main {
                 height: calc(100% - 2*$presentation-header-height);
-                padding: 0 4*$content-padding-x;
+                padding: $spacer 4*$content-padding-x 0 4*$content-padding-x;
                 bottom: $presentation-header-height;
                 overflow-y: auto;
                 display: flex;
@@ -136,7 +136,7 @@ html {
                         max-width: $presentation-content-width;
                     }
                     > .section {
-                        margin-bottom: 0;
+                        margin: 0;
                         &.last-section-multipage::after {
                             content: '';
                             display: block;
@@ -147,9 +147,6 @@ html {
                         content: '';
                         display: block;
                         height: 1px;
-                    }
-                    > .chaphead, > .preamble {
-                        margin-top: $spacer;
                     }
                 }
             }
