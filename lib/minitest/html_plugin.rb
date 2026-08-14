@@ -37,7 +37,7 @@ module Minitest
       title = display_result_title name, failed, color
       pre = %([live=normal-faded,asciidoc]\n------\n#{adoc}\n------\n)
       fail = failed ? display_failure(@results[key].join("\n")) : ""
-      %([##{id}]\n== #{title}\n\n#{pre}#{fail}\n\n#{adoc}\n\n)
+      %([##{id}.flex-grow-1]\n== #{title}\n\n#{pre}#{fail}\n\n#{adoc}\n\n)
     end
 
     def report_files(results, dirname)
