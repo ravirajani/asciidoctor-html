@@ -180,7 +180,7 @@ module Asciidoctor
       def self.head(opts)
         <<~HTML
           <meta charset="utf-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1, interactive-widget=resizes-content">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
           #{%(<meta name="description" content="#{opts[:description]}">) if opts[:description]}
           #{%(<meta name="author" content="#{opts[:authors]}">) if opts[:authors]}
           <title>#{opts[:title]}</title>
