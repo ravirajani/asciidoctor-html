@@ -195,8 +195,10 @@ module Asciidoctor
           page.classList.add('loaded');
 
           // Chrome does not calculate viewport height correctly in standalone mode.
-          if(window.matchMedia('(display-mode: standalone)').matches) {
-            dispatchEvent(new Event('resize'));
+          if(matchMedia('(display-mode: standalone)').matches &&
+            typeof visualViewport !== 'undefined'
+          ) {
+            page.style.height = visualViewport.height + 'px';
           }
 
           ADHT.move = move;
