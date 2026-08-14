@@ -74,12 +74,12 @@ html {
         display: none;
     }
     &.multi {
-        > .main {
+        > .main, .paginator a {
             opacity: 0;
             transition: opacity 500ms ease-in;
         }
         &.loaded {
-            > .main {
+            > .main, .paginator a {
                 opacity: 1;
             }
         }

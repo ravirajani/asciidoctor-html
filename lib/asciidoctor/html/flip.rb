@@ -86,7 +86,6 @@ module Asciidoctor
             } else if(chapPagination.prevChap) {
               prevPage.replaceWith(chapPagination.prevChap)
             }
-            paginator.classList.toggle('visible', paginator.querySelector('a'));
           }
 
           function flip(e) {
