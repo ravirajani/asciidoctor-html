@@ -243,3 +243,8 @@
 ## [2.1.2] - 2026-08-11
 
 - Fix bug with location of jupyterlite build script.
+
+## [2.1.3] - 2026-08-14
+
+- Add unnumbered option.
+- Add live svg example to docs.
