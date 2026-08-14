@@ -16,6 +16,7 @@ module Asciidoctor
           const sectsById = { "page": []};
 
           const page = document.getElementById('page');
+          const main = document.getElementById('main');
           const focusEl = document.getElementById('content-container');
           const searchForm = document.getElementById('search-form');
           const chapheading = page.querySelector('.chapheading');
@@ -45,7 +46,7 @@ module Asciidoctor
           function focusOnLoad() {
             if(searchForm) return;
 
-            focusEl.focus({preventScroll: !page.classList.contains('presentation')});
+            focusEl.focus({preventScroll: true});
           }
 
           function updatePaginator(prev, next) {
@@ -131,14 +132,15 @@ module Asciidoctor
 
             ADHT.nudgeMenuBtn();
 
+            const scrollEl = page.classList.contains('presentation') ? main : page;
             if(target == section) {
-              page.scrollTo({
+              scrollEl.scrollTo({
                 top: 0,
                 left: 0
               });
             } else {
               const rect = target.getBoundingClientRect()
-              page.scrollTo({
+              scrollEl.scrollTo({
                 top: rect.top + page.scrollTop,
                 left: 0
               });

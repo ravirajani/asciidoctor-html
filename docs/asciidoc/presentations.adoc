@@ -138,7 +138,7 @@ SVGs can be made "`live`" by:
 * loading them with the image macro using the `inline` option and the `live` attribute;
 * adding `data-line-number={dollar}number` attributes to any svg group elements that should be (un)coverable.
 
-TIP: Use https://gitlab.com/inkscape/inkscape[inkscape] to organise your SVG into layers and label the layers that
+TIP: Use https://gitlab.com/inkscape/inkscape[Inkscape] to organise your SVG into layers and label the layers that
 you want uncovered as _layer {dollar}n_ where _{dollar}n_ corresponds to the order in which you want that layer
 to appear. Then use https://github.com/SVG/svgo[SVGO] with https://gist.github.com/ravirajani/56df3d5c5f27d373741466781c4ad058[this configuration]
 to create a "`live`" SVG with `data-line-number={dollar}n` attributes inserted on the corresponding layer elements. 
