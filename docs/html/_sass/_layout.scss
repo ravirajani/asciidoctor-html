@@ -120,8 +120,7 @@ html {
                 display: none;
             }
             .main {
-                top: $presentation-header-height;
-                height: calc(var(--unit-100vh) - 2*$presentation-header-height);
+                height: calc(100% - 2*$presentation-header-height);
                 padding: 0 4*$content-padding-x;
                 bottom: $presentation-header-height;
                 overflow-y: auto;
