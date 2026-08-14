@@ -136,12 +136,13 @@ module Asciidoctor
             if(target == section) {
               scrollEl.scrollTo({
                 top: 0,
-                left: 0
+                left: 0,
+                behavior: 'instant'
               });
             } else {
-              const rect = target.getBoundingClientRect()
+              const rect = target.getBoundingClientRect();
               scrollEl.scrollTo({
-                top: rect.top + page.scrollTop,
+                top: rect.top + scrollEl.scrollTop,
                 left: 0
               });
             }
@@ -197,9 +198,11 @@ module Asciidoctor
 
           // Chrome does not calculate viewport height correctly in standalone mode.
           if(matchMedia('(display-mode: standalone)').matches &&
-            typeof visualViewport !== 'undefined'
-          ) {
+              typeof visualViewport !== 'undefined') {
             page.style.height = visualViewport.height + 'px';
+            visualViewport.addEventListener('resize', () => {
+              page.removeAttribute('style');
+            });
           }
 
           ADHT.move = move;
