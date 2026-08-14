@@ -250,7 +250,7 @@ module Asciidoctor
           #{Popovers::POPOVERS}
           #{Sidebar::TOGGLE if nav}
           #{Scroll::SCROLL}
-          #{Flip::FLIP}
+          #{Flip::FLIP if nav}
           #{Live::LIVE if opts[:has_live]}
           </script>
           #{opts[:at_body_end]}

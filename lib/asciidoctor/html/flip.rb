@@ -75,7 +75,7 @@ module Asciidoctor
               const prevLink = document.createElement('a');
               prevLink.id = "flip-back"
               let prevSectText = prevSectitle || chapheading &&
-                ('<span class="title-prefix">' + chapheading.textContent + '</span><br>');
+                ('<span class="title-prefix">' + chapheading.textContent + '</span><br>') || '';
               if(!prevH) prevSectText += chaptitle.textContent;
               prevLink.href = '#' + (prev.id ? prev.id : 'page');
               prevLink.innerHTML = `
