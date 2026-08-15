@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
+require_relative "pagination"
+
 module Asciidoctor
   module Html
     # Flip when pagestyle is multi or presentation
     module Flip
-      FLIP = <<~JS
+      FLIP = <<~JS.freeze
         (function() {
           // Holds replaced pagination links to prev/next chapter
           const chapPagination = {
@@ -49,6 +51,13 @@ module Asciidoctor
             focusEl.focus({preventScroll: true});
           }
 
+          function pagitemHTML(text, direction) {
+            if(direction == 'left') {
+              return `#{Pagination.pagitem_html "${text}", left: true}`;
+            }
+            return `#{Pagination.pagitem_html "${text}"}`;
+          }
+
           function updatePaginator(prev, next) {
             const paginator = document.querySelector('.paginator');
             if(!paginator) return;
@@ -57,13 +66,10 @@ module Asciidoctor
             if(next) {
               const nextH = next.querySelector(':scope > h2');
               const nextLink = document.createElement('a');
-              nextLink.id = "flip-forward"
+              nextLink.id = 'flip-forward';
               const nextSectText = nextH && nextH.innerHTML;
               nextLink.href = '#' + next.id;
-              nextLink.innerHTML = `
-                <div>${nextSectText || ''}</div>
-                <div><i class="bi bi-chevron-compact-right"></i></div>
-              `;
+              nextLink.innerHTML = pagitemHTML(nextSectText, 'right');
               chapPagination.nextChap ||= nextPage;
               nextPage.replaceWith(nextLink);
             } else if(chapPagination.nextChap) {
@@ -73,19 +79,16 @@ module Asciidoctor
               const prevH = prev.querySelector(':scope > h2');
               const prevSectitle = prevH && (prevH.innerHTML + ' ');
               const prevLink = document.createElement('a');
-              prevLink.id = "flip-back"
+              prevLink.id = 'flip-back';
               let prevSectText = prevSectitle || chapheading &&
                 ('<span class="title-prefix">' + chapheading.textContent + '</span><br>') || '';
               if(!prevH) prevSectText += chaptitle.textContent;
               prevLink.href = '#' + (prev.id ? prev.id : 'page');
-              prevLink.innerHTML = `
-                <div><i class="bi bi-chevron-compact-left"></i></div>
-                <div>${prevSectText || ''}</div>
-              `;
+              prevLink.innerHTML = pagitemHTML(prevSectText, 'left');
               chapPagination.prevChap ||= prevPage;
               prevPage.replaceWith(prevLink);
             } else if(chapPagination.prevChap) {
-              prevPage.replaceWith(chapPagination.prevChap)
+              prevPage.replaceWith(chapPagination.prevChap);
             }
           }
 

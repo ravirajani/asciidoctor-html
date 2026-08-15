@@ -1,5 +1,6 @@
 .paginator-wrapper {
     margin: 2*$spacer 0 $spacer 0;
+    padding: 0 $content-padding-x;
     .paginator {
         display: flex;
         gap: 1rem;
@@ -8,8 +9,8 @@
             display: flex;
             text-decoration: none;
             align-items: center;
-            .bi-chevron-compact-left, .bi-chevron-compact-right {
-                font-size: 3rem;
+            .chevron {
+                width: 1.75rem;
             }
             &:first-child {
                 text-align: left;
@@ -38,16 +39,22 @@
     background: var(--header-bg);
     .paginator {
         font-size: var(--presentation-headfoot-font-size);
-        .bi-chevron-compact-left, .bi-chevron-compact-right {
-            font-size: inherit;
-        }
         a {
+            .chevron {
+                display: none;
+            }
             color: var(--bs-gray-200);
             &:hover, &:focus {
                 color: var(--bs-white);
             }
             br { 
                 display: none;
+            }
+            .pagination-prv::before {
+                content: '❮ ';
+            }
+            .pagination-nxt::after {
+                content: ' ❯';
             }
         }
     }

@@ -152,10 +152,12 @@ module Asciidoctor
 
       def self.footer(authors)
         <<~HTML
-          <footer class="footer dynamic-width">
-            <div class="footer-left">&#169; <span id="cr-year"></span> #{authors}</div>
-            <div class="footer-right">Built with
-              <a href="https://github.com/ravirajani/asciidoctor-html">asciidoctor-html</a>
+          <footer class="footer">
+            <div class="footer-content dynamic-width">
+              <div class="footer-left">&#169; <span id="cr-year"></span> #{authors}</div>
+              <div class="footer-right">Built with
+                <a href="https://github.com/ravirajani/asciidoctor-html">asciidoctor-html</a>
+              </div>
             </div>
           </footer>
         HTML
