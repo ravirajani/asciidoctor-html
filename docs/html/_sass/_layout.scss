@@ -137,6 +137,9 @@ html {
                     }
                     > .section {
                         margin: 0;
+                        h2 {
+                            @include font-size($h3-font-size);
+                        }
                         &.last-section-multipage::after {
                             content: '';
                             display: block;
