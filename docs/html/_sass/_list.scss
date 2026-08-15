@@ -166,7 +166,3 @@ $mark-width: 1.5rem;
     }
     ul.figlist li .li-mark { display: none; }
 }
-
-p:has(+ .list), p:has(+ .list-wrapper) {
-    margin-bottom: $roomyitemsep;
-}
