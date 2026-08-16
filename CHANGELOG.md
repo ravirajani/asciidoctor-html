@@ -248,3 +248,8 @@
 
 - Add unnumbered option.
 - Add live svg example to docs.
+
+## [2.1.4] - 2026-08-16
+
+- Added tabbed description lists.
+- Better handling of pagestyle multi when there aren't enough sections.
