@@ -266,7 +266,6 @@ module Asciidoctor
           title: @title,
           short_title: @short_title,
           authors: display_authors(doc),
-          date: @date,
           description: doc.attr("description"),
           chapheading: tdata.chapheading,
           chapsubheading: tdata.chapsubheading,

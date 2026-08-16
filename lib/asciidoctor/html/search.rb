@@ -12,12 +12,12 @@ module Asciidoctor
       def search_page
         content = <<~HTML
           <div class="search-form-container">
-            <div id="search-form-spinner" class="d-flex justify-content-center">
+            <div id="search-form-spinner" class="d-flex justify-content-center position-absolute w-100">
               <div class="spinner-border" role="status">
                 <span class="visually-hidden">Loading...</span>
               </div>
             </div>
-            <form id="search-form" class="search-form hidden">
+            <form id="search-form" class="search-form invisible">
               <input type="text" id="search-text" name="search-text" class="form-control search-box" placeholder="Search">
               <button type="submit" class="btn btn-primary search-btn">Go</button>
             </form>
@@ -33,11 +33,10 @@ module Asciidoctor
           title: @title,
           short_title: @short_title,
           authors: display_authors,
-          date: @date,
           chapsubheading: "Search",
-          langs: [],
           at_head_end: %(<script defer src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script>),
-          at_body_end: %(<script type="module">#{lunr_script}</script>)
+          at_body_end: %(<script type="module">#{lunr_script}</script>),
+          pagestyle: :single
         )
       end
 
@@ -168,7 +167,7 @@ module Asciidoctor
               resultsContainer.classList.remove('hidden');
             }
             document.getElementById('search-form-spinner').classList.add('hidden');
-            searchForm.classList.remove('hidden');
+            searchForm.classList.remove('invisible');
             searchForm.addEventListener('submit', e => {
               e.preventDefault();
               const searchText = searchBox.value;
