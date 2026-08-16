@@ -22,6 +22,12 @@ module Asciidoctor
         listing: "ltg-number"
       }.freeze
 
+      def initialize(*args)
+        @jupyter_cell_id = 0
+        @tabs_id = 0
+        super
+      end
+
       def assign_numeral!(node, counter_name)
         document = node.document
         document.counters[counter_name] ||= 0
@@ -65,6 +71,14 @@ module Asciidoctor
         elsif process_numbered_block? block
           process_numbered_block! block
         end
+        if block.option? "jupyter"
+          @jupyter_cell_id += 1
+          block.set_attr "jupyter-cell-id", @jupyter_cell_id
+        end
+        return unless block.option? "tabs"
+
+        @tabs_id += 1
+        block.set_attr "tabs-id", @tabs_id
       end
 
       def env(context, style)

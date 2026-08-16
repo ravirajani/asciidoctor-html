@@ -1,0 +1,20 @@
+.tabs {
+    @extend .block;
+    .nav-tabs {
+        margin-left: var(--fw-margin);
+        margin-right: var(--fw-margin);
+        --bs-nav-tabs-border-width: 0;
+        --bs-nav-tabs-link-active-bg: #{$listing-bg};
+        --bs-nav-tabs-link-active-color: var(--bs-white);
+        --bs-nav-tabs-border-radius: 0;
+        --bs-nav-link-padding-x: #{$content-padding-x};
+        --bs-nav-link-padding-y: 0.25rem;
+    }
+}
+
+.tabs-wrapper {
+    .block-title {
+        margin-bottom: 0.5rem;
+        @include font-size($h5-font-size);
+    }
+}

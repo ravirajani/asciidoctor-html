@@ -1,0 +1,16 @@
+[%tabs]
+Unix/macOS::
++
+[source,bash]
+----
+python3 -m venv <DIR>
+source <DIR>/bin/activate
+----
+
+Windows::
++
+[source,shell]
+----
+py -m venv <DIR>
+<DIR>\Scripts\activate
+----

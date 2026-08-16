@@ -5,6 +5,7 @@ require_relative "list"
 require_relative "utils"
 require_relative "figure"
 require_relative "table"
+require_relative "tabs"
 require_relative "jupyterlite"
 
 module Asciidoctor
@@ -212,16 +213,19 @@ module Asciidoctor
       end
 
       def convert_dlist(node)
+        return Tabs.convert_tabs(node) if node.option?("tabs")
+
         classes = ["dlist", node.style, node.role].compact.join(" ")
         result = [%(<dl#{Utils.dyn_id_class_attr_str node, classes}>)]
         live = node.attr? "live"
         line_number = 1
         node.items.each do |terms, dd|
+          return %(<div class="text-danger">Definition is required.</div>) unless dd
+
           terms.each do |dt|
             result << %(<dt class="dterm"#{Utils.line_number_attr line_number, live:}>#{dt.text}</dt>)
             line_number += 1
           end
-          next unless dd
 
           result << "<dd#{Utils.line_number_attr line_number, live:}>"
           line_number += 1

@@ -1,0 +1,17 @@
+.Using `venv`
+[%tabs]
+Unix/macOS::
++
+[.mt-1]
+....
+python3 -m venv <DIR>
+source <DIR>/bin/activate
+....
+
+Windows::
++
+[.mt-1]
+....
+py -m venv <DIR>
+<DIR>\Scripts\activate
+....
