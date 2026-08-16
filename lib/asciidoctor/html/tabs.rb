@@ -12,7 +12,7 @@ module Asciidoctor
         panes = [%(<div class="tab-content">)]
         pane_number = 1
         node.items.each do |terms, dd|
-          return %(<div class="text-danger">Definition is required.</div>) unless dd
+          return %(<p class="text-danger">Definition is required.</p>) unless dd
 
           active = pane_number == 1
           tab_id = "tab-#{tabs_id}-#{pane_number}"

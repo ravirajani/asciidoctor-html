@@ -220,7 +220,7 @@ module Asciidoctor
         live = node.attr? "live"
         line_number = 1
         node.items.each do |terms, dd|
-          return %(<div class="text-danger">Definition is required.</div>) unless dd
+          return %(<p class="text-danger">Definition is required.</p>) unless dd
 
           terms.each do |dt|
             result << %(<dt class="dterm"#{Utils.line_number_attr line_number, live:}>#{dt.text}</dt>)

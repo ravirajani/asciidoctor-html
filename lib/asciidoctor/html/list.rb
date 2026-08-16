@@ -5,7 +5,7 @@ module Asciidoctor
     # Helper functions for the list conversion
     module List
       def self.convert(node, tag_name = :ol)
-        depth = node.attr "list-depth"
+        depth = node.attr "list-depth", 0
         flat = node.attr? "flat-style"
         inside = node.option? "inside"
         level = depth + 1

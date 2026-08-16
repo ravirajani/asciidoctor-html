@@ -20,7 +20,7 @@ Reference text gets properly resolved if unspecified.
 [title-prefix=Usage]
 docname:: The name of the AsciiDoc file. The `.adoc` extension may be omitted.
 anchor:: (Optional) The ID of the element referenced in `{dollar}docname` preceded by a `#`.
-reftext:: (Optional) The reference text to be used if the default resolution is not suitable. 
+reftext:: (Optional) The reference text to be used if the default resolution is not suitable.
 ****
 
 .Example uses of the cref macro
