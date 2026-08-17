@@ -145,3 +145,15 @@ strong, th {
 strong {
     color: var(--strong-text-color);
 }
+
+.content-container {
+    h3, .h3 {
+        @include font-size($h4-font-size);
+    }
+    h4, .h4 {
+        @include font-size($h5-font-size);
+    }
+    h5, .h5 {
+        @include font-size($h6-font-size);
+    }
+}

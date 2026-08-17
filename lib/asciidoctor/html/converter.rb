@@ -38,12 +38,15 @@ module Asciidoctor
         document = node.document
         level = node.level
         show_sectnum = node.numbered && level <= (document.attr("sectnumlevels") || 1).to_i
-        tag_level = [level == 1 ? level + 1 : level + 2, 6].min
-        tag_name = %(h#{tag_level})
         classes = "section#{" flip" if level == 1}#{" #{node.role}" if node.role}"
         display_sectnum = Utils.display_sectnum(node, level) if show_sectnum
-        content = %(<#{tag_name}>#{display_sectnum}#{node.title}</#{tag_name}>\n#{node.content})
+        title = "#{display_sectnum}#{node.title}"
+        content = "#{Utils.heading node, title}#{node.content}"
         Utils.wrap_id_classes content, node.id, classes, :section
+      end
+
+      def convert_floating_title(node)
+        Utils.heading node, node.title, discrete: true
       end
 
       def convert_paragraph(node)

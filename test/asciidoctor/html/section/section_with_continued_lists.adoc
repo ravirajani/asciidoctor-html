@@ -1,5 +1,6 @@
 == Section With Continued Lists
 
+[.mt-1]
 === Normal list
 
 [#lst-normal]

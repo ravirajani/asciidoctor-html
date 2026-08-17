@@ -103,6 +103,14 @@ module Asciidoctor
       def self.line_number_attr(line_number, live: false)
         live ? %( data-line-number="#{line_number}") : ""
       end
+
+      def self.heading(node, title, discrete: false)
+        level = node.level
+        tag_level = [level + 1, 6].min
+        tag_name = %(h#{tag_level})
+        classes = %( class="#{node.role}") if discrete && node.role
+        %(<#{tag_name}#{classes}>#{title}</#{tag_name}>\n)
+      end
     end
   end
 end
