@@ -10,8 +10,7 @@
         color: var(--example-border-color, #{$default-border-color});
         border-top: var(--example-border-width) solid;
         opacity: 1;
-        margin-left: calc(-1*var(--fw-padding));
-        margin-right: calc(-1*var(--fw-padding));
+        margin: var(--parsep) calc(-1*var(--fw-padding));
     }
     margin-top: calc(1.5*var(--blocksep));
     &:has(+ :not(.open):not(.list-colist)) {
