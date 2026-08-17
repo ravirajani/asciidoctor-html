@@ -186,10 +186,12 @@ module Asciidoctor
           #{%(<meta name="description" content="#{opts[:description]}">) if opts[:description]}
           #{%(<meta name="author" content="#{opts[:authors]}">) if opts[:authors]}
           <title>#{opts[:title]}</title>
-          <link rel="apple-touch-icon" sizes="180x180" href="#{FAVICON_PATH}/apple-touch-icon.png">
-          <link rel="icon" type="image/png" sizes="32x32" href="#{FAVICON_PATH}/favicon-32x32.png">
-          <link rel="icon" type="image/png" sizes="16x16" href="#{FAVICON_PATH}/favicon-16x16.png">
-          <link rel="manifest" href="#{FAVICON_PATH}/site.webmanifest" crossorigin="anonymous">
+          <link rel="icon" type="image/png" href="#{FAVICON_PATH}/favicon-96x96.png" sizes="96x96" />
+          <link rel="icon" type="image/svg+xml" href="#{FAVICON_PATH}/favicon.svg" />
+          <link rel="shortcut icon" href="#{FAVICON_PATH}/favicon.ico" />
+          <link rel="apple-touch-icon" sizes="180x180" href="#{FAVICON_PATH}/apple-touch-icon.png" />
+          <meta name="apple-mobile-web-app-title" content="#{opts[:short_title]}" />
+          <link rel="manifest" href="#{FAVICON_PATH}/site.webmanifest" />
           <link rel="stylesheet" href="#{CSS_PATH}/styles.css">
           #{highlightjs(opts)}
           <script>
