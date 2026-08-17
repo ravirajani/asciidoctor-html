@@ -417,5 +417,8 @@ html {
     .page .main {
         padding-top: 1rem;
         padding-bottom: 1rem;
+        .content-container {
+            --fw-margin: 0;
+        }
     }
 }
