@@ -279,6 +279,7 @@ html {
             .dynamic-width {
                 width: $content-width;
                 margin: 0 auto;
+                --fw-margin: 0;
             }
         }
         .page.multi.presentation .main .content-container {
@@ -294,6 +295,7 @@ html {
             .dynamic-width {
                 width: 100%;
                 max-width: $content-width;
+                --fw-margin: -#{$content-padding-x};
             }
             body > .sidebar {
                 display: block;
@@ -352,6 +354,7 @@ html {
             .dynamic-width {
                 width: $content-width;
                 margin: 0 auto;
+                --fw-margin: 0;
             }
             body > .sidebar {
                 width: 30%;
