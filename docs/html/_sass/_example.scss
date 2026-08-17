@@ -54,6 +54,8 @@ $thm-types: theorem, proposition, lemma, corollary;
         font-weight: normal;
     }
     > .listing {
+        --fw-margin: 0;
+        --fw-padding: 0;
         &:last-child {
             margin-bottom: 0;
         }
