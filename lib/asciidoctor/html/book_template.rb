@@ -191,7 +191,7 @@ module Asciidoctor
           <link rel="shortcut icon" href="#{FAVICON_PATH}/favicon.ico" />
           <link rel="apple-touch-icon" sizes="180x180" href="#{FAVICON_PATH}/apple-touch-icon.png" />
           <meta name="apple-mobile-web-app-title" content="#{opts[:short_title]}" />
-          <link rel="manifest" href="#{FAVICON_PATH}/site.webmanifest" />
+          <link rel="manifest" href="site.webmanifest" />
           <link rel="stylesheet" href="#{CSS_PATH}/styles.css">
           #{highlightjs(opts)}
           <script>

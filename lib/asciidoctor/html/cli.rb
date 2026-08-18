@@ -82,7 +82,7 @@ module Asciidoctor
       end
 
       def self.generate_webmanifest(outdir, name, short_name)
-        filename = "#{outdir}/#{FAVICON_PATH}/site.webmanifest"
+        filename = "#{outdir}/site.webmanifest"
         puts "Generating\n  #{filename}"
         puts
         File.write filename, Webmanifest.generate(name, short_name)
