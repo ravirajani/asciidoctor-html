@@ -13,6 +13,9 @@
         margin: var(--parsep) calc(-1*var(--fw-padding));
     }
     margin-top: calc(1.5*var(--blocksep));
+    &.mt-join {
+        margin-top: calc(-1*var(--example-border-width));
+    }
     &:has(+ :not(.open):not(.list-colist)) {
         margin-bottom: calc(1.5*var(--blocksep));
     }
