@@ -64,7 +64,7 @@ Open a terminal window and, in the AsciiDoc sources directory, run
 ----
 adoctohtml --watch <1>
 ----
-<1> Builds an HTML site in the `html/` directory, automatically
+<1> Builds an HTML site in the `html` directory, automatically
 regenerating the output when an AsciiDoc source is modified. The output directory
 can be changed in the <<config-yaml,configuration file>>.
 
@@ -75,7 +75,7 @@ In another terminal, run
 ----
 npm run start <1>
 ----
-<1> This packages the site in the `dist/` directory and starts a live preview server on `localhost:1234`.
+<1> This packages the site in the `dist` directory and starts a live preview server on `localhost:1234`.
 
 WARNING: The `adoctohtml` script only listens to changes to the source files listed under `chapters` and `appendices`
 in <<config-yaml>>. If you change the configuration file itself, or any includes or <<sec-assets,assets>>,
