@@ -170,9 +170,12 @@ module Asciidoctor
 
       def convert_example(node)
         content = Utils.display_title(node) + node.content
-        return Utils.wrap_id_classes(content, node.id, "block") if node.option?("unstyled")
+        if node.option?("unstyled")
+          classes = %(block#{" #{node.role}" if node.role})
+          return Utils.wrap_id_classes(content, node.id, classes)
+        end
 
-        Utils.wrap_node(content, node)
+        Utils.wrap_node content, node
       end
 
       def convert_image(node)
