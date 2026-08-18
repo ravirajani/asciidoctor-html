@@ -253,3 +253,9 @@
 
 - Added tabbed description lists.
 - Better handling of pagestyle multi when there aren't enough sections.
+
+## [2.1.5] - 2026-08-18
+
+- Add unstyled option for example blocks.
+- Move site.webmanifest to webroot.
+- Update docs to use Parcel for live previews.
