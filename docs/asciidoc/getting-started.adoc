@@ -24,54 +24,58 @@ NOTE: Most users will prefer the <<sec-advanced-usage>> over the <<sec-quick-sta
 
 .Prerequisite
 [CAUTION]
-You have https://www.ruby-lang.org/en/documentation/installation/[Ruby] installed on your system.
+You have https://www.ruby-lang.org/en/documentation/installation/[Ruby]
+and https://nodejs.org/[node.js] installed on your system.
 
 :sectnums:
 
 === Create a repo
 
-You may start with a clean repo or clone the {template-repo}.
+The best way to create a repo is to clone the {template-repo}.
+If you prefer to start from a clean repo, then you
+will have to modify and supplement the steps below accordingly.
 
 === Install gems
 
-* https://jekyllrb.com/[Jekyll] is a https://rubygems.org/gems/jekyll[Ruby gem] that includes a
-lightweight webserver that will automatically reload pages when it detects changed files.
-* The executable `adoctohtml`  that comes with {asciidoctor-html} has a `--watch` option that
-will regenerate the HTML for modified AsciiDoc sources.
-
-The above two tools can be used together to instantly view an HTML preview when you change a source file. They
-can be installed with:
+In the root directory, run
 
 [source,bash]
 ----
 gem install bundler <1>
-bundle init         <2>
-bundle add logger jekyll asciidoctor-html <3>
+bundle install      <2>
 ----
 <1> Skip this if you already have https://bundler.io/[Bundler] installed.
-<2> Creates a default https://bundler.io/guides/gemfile.html[Gemfile]. Skip this if you are using the
-{template-repo}.
-<3> Adds the required dependencies to the Gemfile and installs them.
+<2> Installs the required Ruby dependencies.
 
-=== Run the live preview
+=== Install NPM packages
 
-Open a terminal window and, in the working directory, run
+These are needed to create an optimised build and to enable fast live previews.
 
 [source,bash]
 ----
-adoctohtml --watch
+npm i
 ----
+
+=== Build and preview the site
+
+Open a terminal window and, in the AsciiDoc sources directory, run
+
+[source,bash]
+----
+adoctohtml --watch <1>
+----
+<1> Builds an HTML site in the `html/` directory, automatically
+regenerating the output when an AsciiDoc source is modified. The output directory
+can be changed in the <<config-yaml,configuration file>>.
+
 
 In another terminal, run
 
 [source,bash]
 ----
-cd wwww <1>
-jekyll serve --livereload
+npm run start <1>
 ----
-<1> This is the output directory, and can be changed in the <<config-yaml,configuration file>>.
-
-This will serve a preview on `localhost:4000` which automatically refreshes when you change a source file.
+<1> This packages the site in the `dist/` directory and starts a live preview server on `localhost:1234`.
 
 WARNING: The `adoctohtml` script only listens to changes to the source files listed under `chapters` and `appendices`
 in <<config-yaml>>. If you change the configuration file itself, or any includes or <<sec-assets,assets>>,
