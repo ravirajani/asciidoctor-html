@@ -14,7 +14,7 @@ module Asciidoctor
 
       def process(parent, target, attrs)
         doc_key = Pathname(target).sub_ext "" unless target.empty?
-        title = %(<h5 class="block-title">#{parent.apply_subs attrs["title"]}</h5>) if attrs.include?("title")
+        title = %(<h4 class="block-title">#{parent.apply_subs attrs["title"]}</h4>) if attrs.include?("title")
         bordered_class = " bordered" if attrs.include?("border")
         border_width = attrs["border"].to_i if bordered_class
         style = %( style="border-top-width: #{border_width}px; border-bottom-width: #{border_width}px;") if border_width

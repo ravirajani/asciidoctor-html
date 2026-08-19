@@ -84,7 +84,7 @@ module Asciidoctor
 
       def convert_sidebar(node)
         classes = ["aside", node.role].compact.join(" ")
-        title = node.title? ? %(<h5 class="aside-title">#{node.title}</h5>\n) : ""
+        title = node.title? ? %(<h4 class="aside-title">#{node.title}</h4>\n) : ""
         content = "#{title}#{node.content}"
         %(<aside#{Utils.id_class_attr_str node.id, classes}>\n#{content}\n</aside>\n)
       end

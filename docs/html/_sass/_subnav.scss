@@ -22,12 +22,17 @@
             color: var(--bs-secondary);
         }
     }
+    .block-title + nav {
+        margin-left: 0.75rem;
+    }
 }
 
 .presentation .content-container .subnav {
     --fw-padding: 0;
-    ul {
+    nav {
         margin-left: 0.75rem;
+    }
+    ul {
         li {
             list-style-type: '•';
             a {
