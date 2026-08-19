@@ -259,3 +259,8 @@
 - Add unstyled option for example blocks.
 - Move site.webmanifest to webroot.
 - Update docs to use Parcel for live previews.
+
+## [2.1.6] - 2026-08-19
+
+- Adjusted the h tags to align with new css responsive font sizes for headings.
+- Update docs to use browser sync for live preview since Parcel is too buggy.
