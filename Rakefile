@@ -10,12 +10,17 @@ require_relative "lib/asciidoctor/html"
 
 JEKYLL_SITEDIR = "#{__dir__}/docs/html/_site".freeze
 JEKYLL_CSSDIR = "#{JEKYLL_SITEDIR}/assets/css".freeze
+CONFIG_FILE = "#{__dir__}/docs/asciidoc/config.yml".freeze
 
 Minitest::TestTask.create
 
 RuboCop::RakeTask.new
 
-task jekyll: %i[test rubocop] do
+task docs: %i[test rubocop] do
+  Asciidoctor::Html::CLI.run({ "config-file": CONFIG_FILE, watch: false })
+end
+
+task jekyll: %i[docs] do
   config = Jekyll.configuration({
                                   source: "#{__dir__}/docs/html",
                                   destination: JEKYLL_SITEDIR
@@ -31,9 +36,13 @@ task autoprefix: %i[jekyll] do
   File.write filename, prefixed
 end
 
+task cachebust: %i[autoprefix] do
+  Asciidoctor::Html::CacheBuster.process JEKYLL_SITEDIR
+end
+
 task stylesheet: %i[autoprefix] do
   FileUtils.mkdir_p Asciidoctor::Html::CSS_PATH, verbose: true
   FileUtils.cp_r JEKYLL_CSSDIR, Asciidoctor::Html::ASSETS_PATH, verbose: true
 end
 
-task default: %i[test rubocop]
+task default: %i[docs]

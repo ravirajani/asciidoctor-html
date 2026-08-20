@@ -45,7 +45,7 @@ jobs:
       - name: Install dependencies
         run: bin/setup
       - name: Build the Jekyll docs site
-        run: bundle exec rake autoprefix
+        run: bundle exec rake cachebust
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
         with:
