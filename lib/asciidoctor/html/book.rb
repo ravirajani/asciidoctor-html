@@ -220,7 +220,7 @@ module Asciidoctor
           line_number += 1
           items << BookTemplate.nav_item(url, "#{prefix}#{section.title}", line_number:)
         end
-        return "" unless items.size > 1
+        return unless items.size > 1
 
         "<ul>#{items.join "\n"}</ul>"
       end
@@ -240,7 +240,7 @@ module Asciidoctor
       def nav_items(active_key = -1, doc = nil)
         items = @templates.map do |k, td|
           active = (k == active_key)
-          subnav = active && doc ? outline(k, doc, absolute: false) : ""
+          subnav = active && doc ? outline(k, doc, absolute: false) : td.outline
           navtext = BookTemplate.nav_text td.chapprefix, td.chaptitle
           BookTemplate.nav_item "#{k}.html", navtext, subnav, active:
         end
@@ -261,7 +261,7 @@ module Asciidoctor
         BookTemplate.html(
           content,
           nav_items,
-          has_subnav: !outline.empty?,
+          has_subnav: !outline.nil?,
           has_live: doc.attr?("live"),
           title: @title,
           short_title: @short_title,

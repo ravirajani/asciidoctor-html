@@ -24,7 +24,7 @@ module Asciidoctor
           const chapheading = page.querySelector('.chapheading');
           const chaptitle = page.querySelector('.chaptitle');
 
-          const nav = document.querySelectorAll('#sidebar nav > ul > li.active > ul > li');
+          const nav = document.querySelectorAll('#sidebar nav > ul > li.active  ul  li');
 
           let currentId = "page";
           focusEl.querySelectorAll(':scope > .flip').forEach(el => {

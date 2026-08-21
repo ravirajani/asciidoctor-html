@@ -18,10 +18,26 @@ module Asciidoctor
         </button>
       HTML
 
-      def self.nav_item(target, text, content = "", active: false, line_number: 0)
-        active_class = active ? %( class="active") : ""
-        link = %(<a href="#{target}">#{text}</a>)
-        subnav = content.empty? ? content : "\n#{content}\n"
+      def self.nav_item(target, text, content = nil, active: false, line_number: 0)
+        if content
+          id = target.sub(/\.html$/, "-subnav").tr ".", "-"
+          show_class = " show" if active
+          subnav = %(<div class="collapse#{show_class}" id="#{id}">\n#{content}\n</div>)
+          toggle = <<~HTML
+            <button class="btn subnav-toggle#{" collapsed" unless active}"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="##{id}"
+                    aria-expanded="#{active ? "true" : "false"}"
+                    aria-controls="#{id}">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="caret" viewBox="0 0 16 16">
+                <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+              </svg>
+            </button>
+          HTML
+        end
+        active_class = %( class="active") if active
+        link = %(<a href="#{target}">#{text}</a>#{toggle})
         live_attr = Utils.line_number_attr(line_number, live: line_number.positive?)
         %(<li#{active_class}#{live_attr}>#{link}#{subnav}</li>\n)
       end

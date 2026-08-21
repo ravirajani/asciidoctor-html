@@ -43,7 +43,7 @@
                 --bs-btn-font-size: #{$cp-btn-font-size};
                 --bs-btn-border-width: 0px;
                 --bs-btn-padding-y: 0px;
-                .bi::before { vertical-align: 0; }
+                vertical-align: baseline;
             }
         }
         margin-bottom: 0;

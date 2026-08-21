@@ -2,12 +2,13 @@
     $active-nav-emphasis-color: $warning-text-emphasis-dark;
     $active-nav-color: $gray-400;
     $inactive-nav-color: #cccccc;
-    $nav-item-padding-x: 1rem;
+    $nav-item-padding-x: 0.5rem;
     $nav-item-padding-y: 0.375rem;
     $sidebar-padding-y: 0.75rem;
+    $sidebar-padding-x: 0.5rem;
     $active-line-width: 4px;
     --sidebar-bg: #{$body-bg-dark};
-    padding: $sidebar-padding-y 0;
+    padding: $sidebar-padding-y 0 $sidebar-padding-y $sidebar-padding-x;
     background-color: var(--sidebar-bg);
     scrollbar-color: $gray-600 var(--sidebar-bg);
     @include color-mode(dark) {
@@ -35,11 +36,11 @@
     }
     nav {
         ul {
-            @extend .nav;
-            @extend .flex-column;
+            @extend .list-unstyled;
             li {
                 @extend .nav-item;
                 a {
+                    display: inline-block;
                     --bs-nav-link-padding-x: #{$nav-item-padding-x};
                     --bs-nav-link-padding-y: #{$nav-item-padding-y};
                     --bs-nav-link-color: #{$inactive-nav-color};
@@ -51,11 +52,31 @@
                         margin-right: 1.1ex;
                     }
                 }
+                .subnav-toggle {
+                    --bs-btn-padding-x: 0.25rem;
+                    --bs-btn-padding-y: #{$nav-item-padding-y};
+                    --bs-btn-color: #{$gray-600};
+                    --bs-btn-border-width: 0;
+                    --bs-btn-active-color: #{$gray-600};
+                    --bs-btn-hover-color: #{$gray-600};
+                    --bs-btn-line-height: 1;
+                    --bs-btn-box-shadow: none;
+                    --bs-btn-focus-box-shadow: none;
+                    vertical-align: baseline;
+                    .caret {
+                        transform-origin: 0.5625rem;
+                        width: 1rem;
+                    }
+                    &.collapsed .caret {
+                        transform: rotate(0.25turn);
+                    }
+                }
                 ul {
                     margin: 0.25rem 0 0.5rem calc(#{$nav-item-padding-x} + 0.5ex - 0.5*#{$active-line-width});
-                    border-left: $active-line-width solid shade-color($active-nav-emphasis-color, 25%);
+                    border-left: $active-line-width solid $gray-600;
                     li {
                         a {
+                            display: block;
                             --bs-nav-link-padding-x: 1.5rem;
                             --bs-nav-link-padding-y: 0.25rem;
                             --bs-nav-link-color: #{$active-nav-color};
@@ -77,6 +98,9 @@
                     > a {
                         --bs-nav-link-color: #{$active-nav-emphasis-color};
                         --bs-nav-link-hover-color: #{$active-nav-emphasis-color};
+                    }
+                    ul {
+                        border-left-color: shade-color($active-nav-emphasis-color, 25%);
                     }
                 }
             }

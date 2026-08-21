@@ -265,9 +265,12 @@ html {
 @media screen {
     @include media-breakpoint-up(sm) {
         html body > .sidebar {
+            min-width: 40%;
             width: auto;
-            min-width: 30%;
             border-left: 1px solid $gray-700;
+            &:has(+ .presentation) {
+                min-width: 30%;
+            }
         }
         .page.multi.presentation .main .content-container {
             zoom: 1.25;

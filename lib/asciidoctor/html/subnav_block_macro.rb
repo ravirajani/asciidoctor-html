@@ -19,8 +19,9 @@ module Asciidoctor
         border_width = attrs["border"].to_i if bordered_class
         style = %( style="border-top-width: #{border_width}px; border-bottom-width: #{border_width}px;") if border_width
         roles = " #{attrs["role"]}" if attrs.include?("role")
+        id_attr = %( id="#{attrs["id"]}") if attrs.include?("id")
         content = <<~HTML
-          <div class="subnav#{bordered_class}#{roles}"#{style}>
+          <div#{id_attr} class="subnav#{bordered_class}#{roles}"#{style}>
             #{title}
             <nav>
             <%= templates.dig("#{doc_key}", "outline") || outline %>
