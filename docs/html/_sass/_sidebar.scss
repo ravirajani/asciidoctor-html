@@ -7,8 +7,9 @@
     $sidebar-padding-y: 0.75rem;
     $sidebar-padding-x: 0.5rem;
     $active-line-width: 4px;
+    $caret-width: 2rem;
     --sidebar-bg: #{$body-bg-dark};
-    padding: $sidebar-padding-y 0 $sidebar-padding-y $sidebar-padding-x;
+    padding: $sidebar-padding-x $sidebar-padding-y;
     background-color: var(--sidebar-bg);
     scrollbar-color: $gray-600 var(--sidebar-bg);
     @include color-mode(dark) {
@@ -41,6 +42,7 @@
                 @extend .nav-item;
                 a {
                     display: inline-block;
+                    width: calc(100% - $caret-width);
                     --bs-nav-link-padding-x: #{$nav-item-padding-x};
                     --bs-nav-link-padding-y: #{$nav-item-padding-y};
                     --bs-nav-link-color: #{$inactive-nav-color};
@@ -63,6 +65,7 @@
                     --bs-btn-box-shadow: none;
                     --bs-btn-focus-box-shadow: none;
                     vertical-align: baseline;
+                    width: $caret-width;
                     .caret {
                         transform-origin: 0.5625rem;
                         width: 1rem;
