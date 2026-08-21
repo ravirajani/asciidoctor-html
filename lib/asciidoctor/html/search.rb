@@ -23,7 +23,7 @@ module Asciidoctor
             </form>
           </div>
           <div id="search-results-container" class="hidden">
-          <h4 class="search-matches-title">Found <span id="search-nmatches">0 matches</span></h4>
+          <div class="h4 search-matches-title">Found <span id="search-nmatches">0 matches</span></div>
           <ul id="search-results" class="search-results list-group list-group-flush"></ul>
           </div>
         HTML

@@ -104,6 +104,7 @@ abbr[data-bs-original-title] {
 }
 
 .block-title {
+    @extend .h5;
     margin-bottom: 0.25rem;
     color: var(--strong-text-color);
 }

@@ -13,6 +13,7 @@
         --strong-text-color: #{tint-color($secondary, 60%)};
     }
     .aside-title {
+        @extend .h4;
         text-align: center;
         color: var(--strong-text-color);
     }
