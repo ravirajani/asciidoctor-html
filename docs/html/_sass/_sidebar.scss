@@ -41,8 +41,10 @@
             li {
                 @extend .nav-item;
                 a {
-                    display: inline-block;
-                    max-width: calc(100% - $caret-width);
+                    &:has(+ .subnav-toggle) {
+                        display: inline-block;
+                        max-width: calc(100% - $caret-width);
+                    }
                     --bs-nav-link-padding-x: #{$nav-item-padding-x};
                     --bs-nav-link-padding-y: #{$nav-item-padding-y};
                     --bs-nav-link-color: #{$inactive-nav-color};
@@ -80,7 +82,6 @@
                     border-left: $active-line-width solid $gray-600;
                     li {
                         a {
-                            display: block;
                             --bs-nav-link-padding-x: 1.5rem;
                             --bs-nav-link-padding-y: 0.25rem;
                             --bs-nav-link-color: #{$active-nav-color};
