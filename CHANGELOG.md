@@ -264,3 +264,9 @@
 
 - Adjusted the h tags to align with new css responsive font sizes for headings.
 - Update docs to use browser sync for live preview since Parcel is too buggy.
+
+## [2.1.7] - 2026-08-21
+
+- Avoid invalid ordering of h levels by making block titles divs styled as headings.
+- Add cache busting support.
+- Include expandable subnavs for each chapter in the navigation sidebar.
