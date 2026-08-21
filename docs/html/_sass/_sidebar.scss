@@ -72,7 +72,7 @@
                         width: 1rem;
                     }
                     &.collapsed .caret {
-                        transform: rotate(0.25turn);
+                        transform: rotate(0.25turn) translateY(0.125rem);
                     }
                 }
                 ul {
