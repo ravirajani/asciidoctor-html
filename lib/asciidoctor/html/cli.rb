@@ -9,6 +9,7 @@ require_relative "book"
 require_relative "webmanifest"
 require_relative "version"
 require_relative "jupyterlite"
+require_relative "cache_buster"
 
 module Asciidoctor
   module Html
@@ -16,6 +17,7 @@ module Asciidoctor
     module CLI
       DEFAULT_OPTIONS = {
         "config-file": "config.yml",
+        "bust-cache": false,
         watch: false
       }.freeze
 
@@ -29,6 +31,8 @@ module Asciidoctor
         OptionParser.new do |parser|
           parser.on("-w", "--watch",
                     "Watch for file changes in SRCDIR. Default: unset")
+          parser.on("-b", "--bust-cache",
+                    "Modify asset names for cache busting. Default: #{options[:"bust-cache"]}")
           parser.on("-c", "--config-file CONFIG",
                     "Location of config file. Default: #{options[:"config-file"]}")
           parser.on("-v", "--version", "Print version and exit.")
@@ -121,6 +125,7 @@ module Asciidoctor
         puts "Writing book to\n  #{outdir}"
         puts
         book.write config["chapters"], config["appendices"], outdir, sitemap: true
+        CacheBuster.process(outdir) if opts[:"bust-cache"]
         return unless opts[:watch]
 
         Filewatcher.new("#{srcdir}/*.adoc").watch do |changes|

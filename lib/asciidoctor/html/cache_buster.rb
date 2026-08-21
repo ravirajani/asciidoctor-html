@@ -11,12 +11,13 @@ module Asciidoctor
       AssetData = Struct.new("AssetData", :filehash, :newpath)
 
       def self.process(outdir)
-        puts "Cache busting..."
+        puts "-- Begin cache busting --"
         puts
         cache = {} # assetpath => {:filehash,:newpath}
         glob = ["**/*.html", "*.webmanifest"]
         Pathname(outdir).glob(glob) do |filepath|
-          puts "Processing #{filepath}"
+          puts "Processing"
+          puts "  #{filepath}"
           scanner = StringScanner.new(filepath.read)
           rgx = %r{"((?<prefix>[\./]*?#{ASSETS_PATH}/.+?)(?<hash>\.|\.[a-f0-9]{8}\.)(?<ext>[a-z]+?))"}
           buffer = []
@@ -52,10 +53,12 @@ module Asciidoctor
 
           puts
           puts "Renaming:"
-          puts assetpath
-          puts "-> #{assetdata.newpath}"
+          puts "  #{assetpath}"
+          puts "->#{assetdata.newpath}"
           assetpath.rename(assetdata.newpath)
         end
+        puts
+        puts "-- End cache busting --"
       end
     end
   end

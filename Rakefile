@@ -17,7 +17,7 @@ Minitest::TestTask.create
 RuboCop::RakeTask.new
 
 task docs: %i[test rubocop] do
-  Asciidoctor::Html::CLI.run({ "config-file": CONFIG_FILE, watch: false })
+  Asciidoctor::Html::CLI.run({ "config-file": CONFIG_FILE })
 end
 
 task jekyll: %i[docs] do

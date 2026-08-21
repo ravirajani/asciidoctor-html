@@ -68,7 +68,6 @@ adoctohtml --watch <1>
 regenerating the output when an AsciiDoc source is modified. The output directory
 can be changed in the <<config-yaml,configuration file>>.
 
-
 In another terminal, run
 
 [source,bash]
@@ -93,6 +92,8 @@ The `adoctohtml` script loads its configuration from a file whose location can b
 [title-prefix=Usage]
 `-w, --watch`::
 Watch for file changes in `srcdir`.
+`-b, --bust-cache`::
+Rename assets in `outdir` to force browsers to fetch new versions.
 `-c, --config-file CONFIG`::
 Location of config file. Default: `config.yml`.
 `-v, --version`::
