@@ -265,12 +265,8 @@ html {
 @media screen {
     @include media-breakpoint-up(sm) {
         html body > .sidebar {
-            min-width: 40%;
-            width: auto;
+            width: 50%;
             border-left: 1px solid $gray-700;
-            &:has(+ .presentation) {
-                min-width: 30%;
-            }
         }
         .page.multi.presentation .main .content-container {
             zoom: 1.25;
@@ -278,6 +274,9 @@ html {
     }
 
     @include media-breakpoint-up(md) {
+        html body > .sidebar {
+            width: 40%;
+        }
         .page:not(.presentation) {
             .dynamic-width {
                 width: $content-width;
@@ -291,6 +290,9 @@ html {
     }
 
     @include media-breakpoint-up(lg) {
+        html body > .sidebar:has(+ .page.presentation) {
+            width: 30%;
+        }
         html:not(:has(.page.presentation)) {
             .btn.menu {
                 display: none;

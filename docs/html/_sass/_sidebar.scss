@@ -7,7 +7,7 @@
     $sidebar-padding-y: 0.75rem;
     $sidebar-padding-x: 0.5rem;
     $active-line-width: 4px;
-    $caret-width: 2rem;
+    $caret-width: 1.5rem;
     --sidebar-bg: #{$body-bg-dark};
     padding: $sidebar-padding-x $sidebar-padding-y;
     background-color: var(--sidebar-bg);
@@ -42,7 +42,7 @@
                 @extend .nav-item;
                 a {
                     display: inline-block;
-                    width: calc(100% - $caret-width);
+                    max-width: calc(100% - $caret-width);
                     --bs-nav-link-padding-x: #{$nav-item-padding-x};
                     --bs-nav-link-padding-y: #{$nav-item-padding-y};
                     --bs-nav-link-color: #{$inactive-nav-color};
@@ -55,7 +55,7 @@
                     }
                 }
                 .subnav-toggle {
-                    --bs-btn-padding-x: 0.25rem;
+                    --bs-btn-padding-x: 0;
                     --bs-btn-padding-y: #{$nav-item-padding-y};
                     --bs-btn-color: #{$gray-600};
                     --bs-btn-border-width: 0;
@@ -65,6 +65,7 @@
                     --bs-btn-box-shadow: none;
                     --bs-btn-focus-box-shadow: none;
                     vertical-align: baseline;
+                    text-align: left;
                     width: $caret-width;
                     .caret {
                         transform-origin: 0.5625rem;
