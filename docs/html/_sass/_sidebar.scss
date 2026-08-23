@@ -11,7 +11,7 @@
     --sidebar-bg: #{$body-bg-dark};
     padding: $sidebar-padding-x $sidebar-padding-y;
     background-color: var(--sidebar-bg);
-    scrollbar-color: $gray-600 var(--sidebar-bg);
+    scrollbar-color: $gray-700 var(--sidebar-bg);
     @include color-mode(dark) {
         --sidebar-bg: #2b2b2b;
     }
