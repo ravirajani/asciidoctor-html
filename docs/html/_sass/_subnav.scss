@@ -1,7 +1,7 @@
 .content-container .subnav {
-    @extend .full-width-bg;
     @extend .block;
     &.bordered {
+        @extend .full-width-bg;
         border-top: 1px solid var(--bs-border-color);
         border-bottom: 1px solid var(--bs-border-color);
         padding-top: var(--parsep);
@@ -31,7 +31,6 @@
 }
 
 .presentation .content-container .subnav {
-    --fw-padding: 0;
     nav {
         margin-left: 0.75rem;
     }
