@@ -1,0 +1,97 @@
+= Python example notebook
+
+== A Python kernel backed by Pyodide
+
+[.code,python]
+----
+import pyodide_kernel
+pyodide_kernel.__version__
+----
+
+=== Simple code execution
+
+[.code,python]
+----
+a = 3
+----
+
+[.code,python]
+----
+a
+----
+
+[.code,python]
+----
+b = 89
+
+def sq(x):
+    return x * x
+
+sq(b)
+----
+
+[.code,python]
+----
+print
+----
+
+=== Redirected streams
+
+[.code,python]
+----
+import sys
+
+print("Error !!", file=sys.stderr)
+----
+
+=== Error handling
+
+[.code,python]
+----
+"Hello"
+
+def dummy_function():
+    import missing_module
+----
+
+[.code,python]
+----
+dummy_function()
+----
+
+=== Code completion
+
+Press `tab` to see what is available in `sys` module.
+
+[.code,python]
+----
+from sys import
+----
+
+=== Code inspection
+
+Use the question mark.
+
+[.code,python]
+----
+?print
+----
+
+Or press kbd:[shift + tab]
+
+[.code,python]
+----
+print(
+----
+
+=== Input support
+
+[.code,python]
+----
+name = await input('Enter your name: ')
+----
+
+[.code,python]
+----
+'Hello, ' + name
+----

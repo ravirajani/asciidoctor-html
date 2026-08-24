@@ -49,8 +49,8 @@ module Asciidoctor
           exit 1
         end
         config_dir = Pathname(config_file).dirname
-        %w[outdir srcdir].each do |prop|
-          config[prop] = File.expand_path(config[prop] || DEFAULT_DIRS[prop], config_dir)
+        %w[outdir srcdir nbdir].each do |prop|
+          config[prop] &&= File.expand_path(config[prop] || DEFAULT_DIRS[prop], config_dir)
         end
         %w[chapters appendices].each do |prop|
           config[prop] ||= []
@@ -58,11 +58,10 @@ module Asciidoctor
             "#{config["srcdir"]}/#{f}"
           end
         end
-        config["jupyterlite"] = config["jupyterlite"] || false
         config
       end
 
-      def self.setup_outdir(srcdir, outdir, jupyterlite: false)
+      def self.setup_outdir(rootdir, srcdir, outdir)
         assets_out = "#{outdir}/#{ASSETS_PATH}"
         FileUtils.mkdir_p assets_out unless File.directory?(assets_out)
         %W[#{IMG_PATH} #{CSS_PATH} #{FAVICON_PATH}].each do |p|
@@ -73,7 +72,6 @@ module Asciidoctor
           puts
           FileUtils.cp_r dir, assets_out
         end
-        rootdir = File.absolute_path "#{__dir__}/../../.."
         %W[#{CSS_PATH} #{FAVICON_PATH}].each do |p|
           dir = "#{outdir}/#{p}"
           next if Dir.exist?(dir)
@@ -82,7 +80,6 @@ module Asciidoctor
           puts
           FileUtils.cp_r "#{rootdir}/#{p}", assets_out
         end
-        build_jupyterlite(rootdir, outdir) if jupyterlite
       end
 
       def self.generate_webmanifest(outdir, name, short_name)
@@ -102,11 +99,11 @@ module Asciidoctor
         book_opts
       end
 
-      def self.build_jupyterlite(rootdir, outdir)
+      def self.build_jupyterlite(rootdir, nbdir, outdir)
         jupyterlite_outdir = "#{outdir}/#{Jupyterlite::PATH}"
-        return if File.directory?(jupyterlite_outdir)
-
-        system %(#{rootdir}/exe/build-jupyterlite -o "#{jupyterlite_outdir}" "#{rootdir}/#{Jupyterlite::PATH}")
+        command = "#{rootdir}/scripts/build-jupyterlite"
+        args = %(-c "#{nbdir}" -o "#{jupyterlite_outdir}" "#{rootdir}/#{Jupyterlite::PATH}")
+        system "#{command} #{args}"
       end
 
       def self.run(opts = nil)
@@ -118,8 +115,11 @@ module Asciidoctor
         config = read_config opts[:"config-file"]
         outdir = config["outdir"]
         srcdir = config["srcdir"]
+        rootdir = File.absolute_path "#{__dir__}/../../.."
+        nbdir = config["nbdir"]
         book_opts = generate_bookopts config
-        setup_outdir srcdir, outdir, jupyterlite: config["jupyterlite"]
+        setup_outdir rootdir, srcdir, outdir
+        build_jupyterlite(rootdir, nbdir, outdir) if nbdir
         generate_webmanifest outdir, book_opts[:title], book_opts[:short_title]
         book = Book.new book_opts
         puts "Writing book to\n  #{outdir}"
@@ -128,21 +128,39 @@ module Asciidoctor
         CacheBuster.process(outdir) if opts[:"bust-cache"]
         return unless opts[:watch]
 
-        Filewatcher.new("#{srcdir}/*.adoc").watch do |changes|
-          chapters = []
-          appendices = []
-          changes.each_key do |filename|
-            puts "Detected change in\n  #{filename}"
-            puts
-            chapters.append(filename) if config["chapters"].include?(filename)
-            appendices.append(filename) if config["appendices"].include?(filename)
-          end
-          puts "Regenerating book:"
-          puts "  Chapters: #{chapters.map { |c| Pathname(c).basename }.join ", "}" unless chapters.empty?
-          puts "  Appendices: #{appendices.map { |a| Pathname(a).basename }.join ", "}" unless appendices.empty?
+        threads = []
+        threads << Thread.new do
+          puts "Watching for changes to chapters and appendices..."
           puts
-          book.write chapters, appendices, config["outdir"]
+          Filewatcher.new("#{srcdir}/*.adoc").watch do |changes|
+            chapters = []
+            appendices = []
+            changes.each_key do |filename|
+              puts "Detected change in\n  #{filename}"
+              puts
+              chapters.append(filename) if config["chapters"].include?(filename)
+              appendices.append(filename) if config["appendices"].include?(filename)
+            end
+            puts "Regenerating book:"
+            puts "  Chapters: #{chapters.map { |c| Pathname(c).basename }.join ", "}" unless chapters.empty?
+            puts "  Appendices: #{appendices.map { |a| Pathname(a).basename }.join ", "}" unless appendices.empty?
+            puts
+            book.write chapters, appendices, config["outdir"]
+          end
         end
+
+        if nbdir
+          threads << Thread.new do
+            puts "Watching for changes to #{nbdir}..."
+            puts
+            Filewatcher.new("#{nbdir}/").watch do |_changes|
+              build_jupyterlite rootdir, nbdir, outdir
+              puts
+            end
+          end
+        end
+
+        threads.each(&:join)
       end
     end
   end

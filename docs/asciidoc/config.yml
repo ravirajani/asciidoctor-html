@@ -33,5 +33,8 @@ outdir: ../html   # default: www
 # a sitemap
 base_url: https://ravirajani.github.io/asciidoctor-html/
 
-# specify if you want to use embedded jupyterlite cells
-jupyterlite: true # default: false
+# If a nbdir (notebook directory) is provided, a
+# JupyterLite site is created at relative path jupyterlite/
+# with the contents of nbdir preloaded.
+# NOTE: This requires node.js and Python to be installed.
+nbdir: ../ipynb
