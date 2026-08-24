@@ -148,18 +148,15 @@ module Asciidoctor
             book.write chapters, appendices, config["outdir"]
           end
         end
-
         if nbdir
           threads << Thread.new do
             puts "Watching for changes to #{nbdir}..."
-            puts
             Filewatcher.new("#{nbdir}/").watch do |_changes|
               build_jupyterlite rootdir, nbdir, outdir
               puts
             end
           end
         end
-
         threads.each(&:join)
       end
     end
