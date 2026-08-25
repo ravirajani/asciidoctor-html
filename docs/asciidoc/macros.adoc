@@ -24,7 +24,7 @@ reftext:: (Optional) The reference text to be used if the default resolution is 
 ****
 
 .Example uses of the cref macro
-[%compact]
+[#tbl-cref%compact]
 |===
 |Source |Generated Link
 
@@ -38,6 +38,29 @@ reftext:: (Optional) The reference text to be used if the default resolution is 
 |pass:q[`cref:tests[\]`]
 |cref:tests[]
 |===
+
+[#sec-reuse]
+== reuse
+
+The `reuse` block macro allows you to reuse an element in `multi` mode.
+This is especially useful when embedding an iframe such as a cref:presentations#sec-jupyter-cells[Jupyter cell].
+
+****
+.pass:q,a[`reuse::{dollar}id[{dollar}reftext\]`]
+[title-prefix=Usage]
+id:: The ID of the element you wish to reuse.
+reftext:: (Optional) The reference text to be used if the default resolution is not suitable.
+****
+
+=== Example uses of the reuse macro
+
+[source,asciidoc]
+----
+reuse::tbl-cref[]
+----
+
+reuse::tbl-cref[]
+
 
 [#sec-subnav]
 == subnav

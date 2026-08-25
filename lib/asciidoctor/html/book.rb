@@ -9,6 +9,7 @@ require_relative "cref_inline_macro"
 require_relative "bi_inline_macro"
 require_relative "text_inline_macro"
 require_relative "subnav_block_macro"
+require_relative "reuse_block_macro"
 require_relative "book_template"
 require_relative "pagination"
 require_relative "search"
@@ -27,6 +28,7 @@ module Asciidoctor
         inline_macro TextInlineMacro
         inline_macro BiInlineMacro
         block_macro SubnavBlockMacro
+        block_macro ReuseBlockMacro
       end
 
       DOCATTRS = {
@@ -191,7 +193,7 @@ module Asciidoctor
       end
 
       def reftext(node)
-        node.reftext || (node.title unless node.inline?) || "[#{node.id}]" if node.id
+        Utils.reftext node
       end
 
       def display_authors(doc = nil)

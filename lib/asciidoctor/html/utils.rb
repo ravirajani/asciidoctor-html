@@ -111,6 +111,16 @@ module Asciidoctor
         classes = %( class="#{node.role}") if discrete && node.role
         %(<#{tag_name}#{classes}>#{title}</#{tag_name}>\n)
       end
+
+      def self.show_error(message)
+        <<~HTML
+          <p class="border border-danger p-2">#{message}</p>
+        HTML
+      end
+
+      def self.reftext(node)
+        node.reftext || (node.title unless node.inline?) || "[#{node.id}]" if node.id
+      end
     end
   end
 end

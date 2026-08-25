@@ -119,7 +119,7 @@ attribute can be one of `left` (default), `top`, `bottom`, or `right`.
 
 CAUTION: This will only work if `repl_url` is set in cref:getting-started#configuration[config.yaml].
 
-[%jupyter,python,height=200]
+[#jupyter-cell%jupyter,python,height=200]
 ----
 def say_hi(name='world'):
     """Prints "Hi `name`" to the screen."""

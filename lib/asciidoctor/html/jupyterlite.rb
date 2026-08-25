@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative "utils"
+
 module Asciidoctor
   module Html
     # Jupyterlite library
@@ -33,9 +35,8 @@ module Asciidoctor
       end
 
       def self.html(node)
-        return <<~HTML unless node.document.attr("repl-url")
-          <p class="border border-danger p-2">Set a <code>repl_url</code> in your <code>config.yaml</code>.</p>
-        HTML
+        error_msg = "Set a <code>repl_url</code> in your <code>config.yaml</code>."
+        return Utils.show_error(error_msg) unless node.document.attr("repl-url")
 
         cell_id = "jupyter-cell-frame-#{node.attr "jupyter-cell-id"}"
         height_attr = %( style="height: #{node.attr("height")}px;") if node.attr?("height")
