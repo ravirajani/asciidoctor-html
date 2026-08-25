@@ -112,12 +112,12 @@ def reverse(x):
 [#sec-jupyter-cells.hfill]
 == Jupyter Cells
 
-Enable the `jupyter` option on a listing to generate a Jupyter code cell
+Enable the `jupyter` option on a listing to generate a Jupyter REPL
 that runs in the browser with https://pyodide.com/[Pyodide].
 The listing's `height` attribute will control the cell height and the `prompt-position`
 attribute can be one of `left` (default), `top`, `bottom`, or `right`.
 
-CAUTION: This will only work if `nbdir` is set in cref:getting-started#configuration[config.yaml].
+CAUTION: This will only work if `repl_url` is set in cref:getting-started#configuration[config.yaml].
 
 [%jupyter,python,height=200]
 ----

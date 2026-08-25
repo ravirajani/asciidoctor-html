@@ -4,8 +4,19 @@ IFS=$'\n\t'
 set -vx
 
 DIR=$(cd "$(dirname "$0")" && pwd)
+JUPYTERLITE_OUTDIR=../docs/html/jupyterlite
 
 bundle install
 
-cd $DIR/../docs/html
+cd "$DIR/../docs/html"
 npm i
+
+cd "$DIR/../jupyterlite"
+python -m pip install -r requirements.txt
+
+if [[ ! -d $JUPYTERLITE_OUTDIR ]]; then
+    jupyter lite build --contents ../docs/ipynb --output-dir $JUPYTERLITE_OUTDIR
+    sed -i \
+        's|</head>|<link rel="stylesheet" href="../../assets/css/jupyterlite-repl.css">\n</head>|g' \
+        "$JUPYTERLITE_OUTDIR/repl/index.html"
+fi

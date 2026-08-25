@@ -33,8 +33,6 @@ outdir: ../html   # default: www
 # a sitemap
 base_url: https://ravirajani.github.io/asciidoctor-html/
 
-# If a nbdir (notebook directory) is provided, a
-# JupyterLite site is created at relative path jupyterlite/
-# with the contents of nbdir preloaded.
-# NOTE: This requires node.js and Python to be installed.
-nbdir: ../ipynb
+# provide a repl_url if you want to embed
+# a JupyterLite REPL
+repl_url: jupyterlite/repl/index.html

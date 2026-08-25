@@ -1,3 +1,5 @@
+:repl-url: jupyterlite/repl/index.html
+
 .First Python function
 [%jupyter,python]
 ----

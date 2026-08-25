@@ -4,9 +4,6 @@ module Asciidoctor
   module Html
     # Jupyterlite library
     module Jupyterlite
-      PATH = "jupyterlite"
-      REPL_PATH = "repl/index.html"
-
       CONFIG = {
         toolbar: true,
         kernel: "python",
@@ -32,10 +29,14 @@ module Asciidoctor
                   end
           "#{k}=#{URI.encode_uri_component value}"
         end
-        "#{REPL_PATH}?#{query_string.join "&"}"
+        "#{node.document.attr "repl-url"}?#{query_string.join "&"}"
       end
 
       def self.html(node)
+        return <<~HTML unless node.document.attr("repl-url")
+          <p class="border border-danger p-2">Set a <code>repl_url</code> in your <code>config.yaml</code>.</p>
+        HTML
+
         cell_id = "jupyter-cell-frame-#{node.attr "jupyter-cell-id"}"
         height_attr = %( style="height: #{node.attr("height")}px;") if node.attr?("height")
         <<~HTML
@@ -45,7 +46,7 @@ module Asciidoctor
               const cell = document.getElementById('#{cell_id}');
               addEventListener('load', () => {
                 const frame = document.createElement('iframe');
-                frame.src = '#{PATH}/#{repl_path_with_options node}';
+                frame.src = '#{repl_path_with_options node}';
                 frame.width = '100%';
                 frame.height = '100%';
                 cell.appendChild(frame);
