@@ -92,6 +92,20 @@ module Asciidoctor
             }
           }
 
+          function reuseElements() {
+            focusEl.querySelectorAll(':scope > .flip.d-block .reuse').forEach(target => {
+              const link = target && target.querySelector('a');
+              if(!link) return;
+
+              const source = document.getElementById(link.hash.substring(1));
+              const reuse = document.createElement('div');
+              reuse.classList.add('reuse');
+              reuse.replaceChildren(target.children);
+              source.replaceWith(reuse);
+              target.replaceChildren(source);
+            });
+          }
+
           function flip(e) {
             if(!page.classList.contains('multi')) {
               focusOnLoad();
@@ -128,6 +142,8 @@ module Asciidoctor
               }
             }
 
+            reuseElements();
+
             nav.forEach(el => {
               const a = el.querySelector('a');
               a && a.hash && el.classList.toggle('active', id == a.hash.substring(1));
@@ -135,7 +151,7 @@ module Asciidoctor
 
             ADHT.nudgeMenuBtn();
 
-            const scrollEl = page.classList.contains('presentation') ? main : page;
+            const scrollEl = isPresentation ? main : page;
             if(target == section) {
               scrollEl.scrollTo({
                 top: 0,
