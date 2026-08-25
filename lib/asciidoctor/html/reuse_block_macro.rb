@@ -25,7 +25,7 @@ module Asciidoctor
                       <<~HTML
                         <div#{id} class="reuse#{classes}">
                           #{title}
-                          <p><a href="##{target}">#{reftext}</a></p>
+                          <p><a class="reuse-link" href="##{target}">#{reftext}</a></p>
                         </div>
                       HTML
                     else

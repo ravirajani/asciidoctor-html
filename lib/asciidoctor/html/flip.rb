@@ -94,14 +94,17 @@ module Asciidoctor
 
           function reuseElements() {
             focusEl.querySelectorAll(':scope > .flip.d-block .reuse').forEach(target => {
-              const link = target && target.querySelector('a');
+              const link = target && target.querySelector('a.reuse-link');
               if(!link) return;
 
               const source = document.getElementById(link.hash.substring(1));
-              const reuse = document.createElement('div');
-              reuse.classList.add('reuse');
-              reuse.replaceChildren(target.children);
-              source.replaceWith(reuse);
+              let reuse = source.parentElement;
+              if(!reuse.classList.contains('reuse')) {
+                reuse = document.createElement('div');
+                reuse.classList.add('reuse');
+                source.replaceWith(reuse);
+              }
+              reuse.replaceChildren(...target.children);
               target.replaceChildren(source);
             });
           }

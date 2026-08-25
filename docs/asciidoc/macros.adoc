@@ -4,6 +4,8 @@ cross referencing of content on other pages with full resolution of reference te
 footnotes that are rendered in popovers; easy insertion of icons; and rendering of \
 semantic inline text elements.
 
+:pagestyle: multi
+
 include::includes/variables.adoc[]
 
 {asciidoctor-html} includes some convenient macros
@@ -45,9 +47,10 @@ reftext:: (Optional) The reference text to be used if the default resolution is 
 
 The `subnav` block macro displays a chapter-level navigation menu.
 
+[#usage-subnav]
 ****
 .pass:q,a[`subnav::{dollar}docname[{dollar}attrs&hellip;\]`]
-[#usage-subnav,title-prefix=Usage]
+[title-prefix=Usage]
 docname:: (Optional) The name of the AsciiDoc file. The `.adoc` extension may be omitted.
 Defaults to the current file.
 attrs:: Set `border={dollar}width` to add top and bottom borders of `{dollar}width` pixels
