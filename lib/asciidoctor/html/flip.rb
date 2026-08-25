@@ -98,7 +98,9 @@ module Asciidoctor
               if(!link) return;
 
               const source = document.getElementById(link.hash.substring(1));
-              let reuse = source.parentElement;
+              let reuse = source && source.parentElement;
+              if(!reuse) return;
+
               if(!reuse.classList.contains('reuse')) {
                 reuse = document.createElement('div');
                 reuse.classList.add('reuse');

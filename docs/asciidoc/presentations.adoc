@@ -51,7 +51,7 @@ to move __**b**__ack. Then move beyond this line with the text:kbd[n] key.
 * Once you've reached the end of the list, pressing text:kbd[n] again uncovers the first line
 of the next live block on the current slide, or if there is no such line, flips to the next slide.
 
-[#sec-keyboard-navigation]
+[#sec-keyboard-navigation.hfill]
 == Keyboard Navigation
 
 [%unnumbered.mt-2,cols="1,4",live=normal-faded]
@@ -82,6 +82,8 @@ or move to the previous/next live block or slide.
 |Exit presentation mode and enter the multipage reading view.
 |===
 
+TIP: Set the `hfill` role on the section to make it occupy the maximal amount of horizontal space.
+
 [#sec-live-demos]
 == Live Code Demos
 
@@ -109,28 +111,6 @@ def reverse(x):
         x[n - i - 1] = tmp
 ----
 
-[#sec-jupyter-cells.hfill]
-== Jupyter Cells
-
-Enable the `jupyter` option on a listing to generate a Jupyter REPL
-that runs in the browser with https://pyodide.com/[Pyodide].
-The listing's `height` attribute will control the cell height and the `prompt-position`
-attribute can be one of `left` (default), `top`, `bottom`, or `right`.
-
-CAUTION: This will only work if `repl_url` is set in cref:getting-started#configuration[config.yaml].
-
-[#jupyter-cell%jupyter,python,height=200]
-----
-def say_hi(name='world'):
-    """Prints "Hi `name`" to the screen."""
-    print(f'Hi {name}')
-
-say_hi('Ravi')
-say_hi()
-----
-
-TIP: Set the `hfill` role on the section to make it occupy the maximal amount of horizontal space.
-
 [#sec-live-svgs]
 == Live SVGs
 
@@ -150,6 +130,26 @@ to create a "`live`" SVG with `data-line-number={dollar}n` attributes inserted o
 .Live demo of Newton's method{br}(`live=covered-covered`)
 [%inline%unnumbered,live=covered-covered]
 image::newton.live.svg[Netwton's Method,400]
+
+[#sec-jupyter-cells]
+== Jupyter Cells
+
+Enable the `jupyter` option on a listing to generate a Jupyter REPL
+that runs in the browser with https://pyodide.com/[Pyodide].
+The listing's `height` attribute will control the cell height and the `prompt-position`
+attribute can be one of `top` (default), `bottom`, `left`, or `right`.
+
+CAUTION: This will only work if `repl_url` is set in cref:getting-started#configuration[config.yaml].
+
+[#jupyter-cell%jupyter,python,height=200]
+----
+def say_hi(name='world'):
+    """Prints "Hi `name`" to the screen."""
+    print(f'Hi {name}')
+
+say_hi('Ravi')
+say_hi()
+----
 
 [#sec-thank-you%skipnav]
 == The End
