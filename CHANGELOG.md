@@ -270,3 +270,8 @@
 - Avoid invalid ordering of h levels by making block titles divs styled as headings.
 - Add cache busting support.
 - Include expandable subnavs for each chapter in the navigation sidebar.
+
+## [2.2.0] - 2026-08-26
+
+- JupyterLite repl url configurable, but build should be a separate process.
+- Some CSS tweaks.
