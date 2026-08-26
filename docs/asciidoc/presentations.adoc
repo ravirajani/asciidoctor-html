@@ -9,7 +9,9 @@ include::includes/variables.adoc[]
 [.vcenter]
 {asciidoctor-html} has a presentation mode in which a chapter is displayed as a slide deck.
 To render a chapter in presentation mode by default, use the document property
-`:pagestyle: presentation`. You can make elements without an ID appear in just presentation (resp. "`handout`")
+`:pagestyle: presentation`.
+
+TIP: You can make elements without an ID appear in just presentation (resp. "`handout`")
 mode using the `presentation-only` (resp. `presentation-hidden`) roles.
 
 [#sec-outline%skipnav]
@@ -40,6 +42,7 @@ the "`lines`". The attribute value is of the form `{dollar}initial-{dollar}live`
 For example, the list in the right column has `live=covered-covered`. Repeatedly press the text:kbd[n] button to
 uncover each line one at a time.
 
+[.presentation-only]
 == Covered List Demo
 
 [live=covered-covered]
@@ -142,9 +145,10 @@ and the `prompt-position` attribute can be one of `top` (default), `left`, `bott
 
 CAUTION: This will only work if `repl_url` is set in cref:getting-started#config-yaml[config.yaml].
 
+[.hfill]
 == {notitle}
 
-[#jupyter-cell%jupyter,python,height=300,width=400]
+[#jupyter-cell%jupyter,python,height=300]
 ----
 def say_hi(name='world'):
     """Prints "Hi `name`" to the screen."""

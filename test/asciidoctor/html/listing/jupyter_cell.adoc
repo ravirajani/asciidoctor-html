@@ -1,6 +1,6 @@
 :repl-url: jupyterlite/repl/index.html
 
-[%jupyter,python,prompt-position=top,height=300]
+[%jupyter,python,height=300]
 ----
 def print_hi():
     """Prints hi"""

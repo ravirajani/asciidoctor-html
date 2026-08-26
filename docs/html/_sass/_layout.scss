@@ -73,6 +73,9 @@ html {
     .chaphead .chapauthors:not(.d-block) {
         display: none;
     }
+    &:not(.presentation) {
+        .presentation-only:not([id]) { display: none !important; }
+    }
     &.multi {
         > .main, .paginator a {
             opacity: 0;
@@ -132,6 +135,9 @@ html {
                     zoom: 1.2;
                     max-height: 100%;
                     max-width: $presentation-content-width;
+                    .presentation-hidden:not([id]) {
+                        display: none !important;
+                    }
                     p {
                         max-width: $presentation-content-width;
                     }

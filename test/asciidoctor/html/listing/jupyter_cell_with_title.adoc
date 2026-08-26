@@ -1,7 +1,7 @@
 :repl-url: jupyterlite/repl/index.html
 
 .First Python function
-[%jupyter,python]
+[%jupyter,python,prompt-position=left]
 ----
 def print_hi():
     """Prints hi"""
