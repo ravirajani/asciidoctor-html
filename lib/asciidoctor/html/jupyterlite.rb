@@ -39,9 +39,12 @@ module Asciidoctor
         return Utils.show_error(error_msg) unless node.document.attr("repl-url")
 
         cell_id = "jupyter-cell-frame-#{node.attr "jupyter-cell-id"}"
-        height_attr = %( style="height: #{node.attr("height")}px;") if node.attr?("height")
+        styles = []
+        styles << "height:#{node.attr "height"}px;" if node.attr?("height")
+        styles << "width:#{node.attr "width"}px;" if node.attr?("width")
+        style_attr = %( style="#{styles.join}") unless styles.empty?
         <<~HTML
-          <div id="#{cell_id}"#{height_attr} class="jupyter-cell"></div>
+          <div id="#{cell_id}"#{style_attr} class="jupyter-cell"></div>
           <script>
             (function(){
               const cell = document.getElementById('#{cell_id}');
