@@ -8,6 +8,10 @@ JUPYTERLITE_OUTDIR=../docs/html/jupyterlite
 
 bundle install
 
+cd "$DIR/../docs"
+parallel pandoc -o ipynb/'$('basename {} .adoc')'.ipynb {} \
+    ::: asciidoc/notebooks/*.adoc
+
 cd "$DIR/../docs/html"
 npm i
 
