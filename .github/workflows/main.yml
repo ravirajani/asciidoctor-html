@@ -46,6 +46,10 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
+      - name: Generate notebooks
+        run: |
+          parallel pandoc -o docs/ipynb/'$('basename {} .adoc')'.ipynb {} \
+            ::: docs/asciidoc/notebooks/*.adoc
       - name: Install dependencies
         run: bin/setup
       - name: Build the Jekyll docs site
