@@ -275,3 +275,7 @@
 
 - JupyterLite repl url configurable, but build should be a separate process.
 - Some CSS tweaks.
+
+## [2.2.1] - 2026-08-26
+
+- Rename JupyterLite CSS file.
