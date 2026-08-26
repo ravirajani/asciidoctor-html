@@ -279,3 +279,8 @@
 ## [2.2.1] - 2026-08-26
 
 - Rename JupyterLite CSS file.
+
+## [2.2.2] - 2026-08-26
+
+- Implement presentation visibility roles.
+- Add pandoc process to setup script.
