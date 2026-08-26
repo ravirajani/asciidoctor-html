@@ -1,0 +1,36 @@
+=== Matplotlib
+
+[.code,python]
+----
+import numpy as np
+import matplotlib.pyplot as plt
+----
+
+[.code,python]
+----
+x = np.linspace(0, 10, 1000)
+plt.plot(x, np.sin(x));
+----
+
+[.code,python]
+----
+plt.show()
+----
+
+=== Matplotlib: support for widgets backend
+
+[.code,python]
+----
+%pip install -q ipympl
+----
+
+[.code,python]
+----
+%matplotlib widget
+----
+
+[.code,python]
+----
+x = np.linspace(0, 10, 1000)
+plt.plot(x, np.sin(x))
+----

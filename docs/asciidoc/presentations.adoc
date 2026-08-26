@@ -9,7 +9,8 @@ include::includes/variables.adoc[]
 [.vcenter]
 {asciidoctor-html} has a presentation mode in which a chapter is displayed as a slide deck.
 To render a chapter in presentation mode by default, use the document property
-`:pagestyle: presentation`.
+`:pagestyle: presentation`. You can make elements without an ID appear in just presentation (resp. "`handout`")
+mode using the `presentation-only` (resp. `presentation-hidden`) roles.
 
 [#sec-outline%skipnav]
 == Outline
@@ -137,7 +138,7 @@ image::newton.live.svg[Netwton's Method,400]
 Enable the `jupyter` option on a listing to generate a Jupyter REPL
 that runs in the browser with https://pyodide.com/[Pyodide].
 The listing's `height` attribute will control the cell height and the `prompt-position`
-attribute can be one of `top` (default), `bottom`, `left`, or `right`.
+attribute can be one of `top` (default), `left`, `bottom`, or `right`.
 
 CAUTION: This will only work if `repl_url` is set in cref:getting-started#configuration[config.yaml].
 

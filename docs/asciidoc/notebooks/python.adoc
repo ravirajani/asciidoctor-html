@@ -1,5 +1,3 @@
-= Python example notebook
-
 == A Python kernel backed by Pyodide
 
 [.code,python]
@@ -8,7 +6,7 @@ import pyodide_kernel
 pyodide_kernel.__version__
 ----
 
-=== Simple code execution
+== Simple code execution
 
 [.code,python]
 ----
@@ -35,7 +33,7 @@ sq(b)
 print
 ----
 
-=== Redirected streams
+== Redirected streams
 
 [.code,python]
 ----
@@ -44,7 +42,7 @@ import sys
 print("Error !!", file=sys.stderr)
 ----
 
-=== Error handling
+== Error handling
 
 [.code,python]
 ----
@@ -59,32 +57,32 @@ def dummy_function():
 dummy_function()
 ----
 
-=== Code completion
+== Code completion
 
-Press `tab` to see what is available in `sys` module.
+==== press kbd:[tab] to see what is available in `sys` module
 
 [.code,python]
 ----
-from sys import
+from sys import 
 ----
 
-=== Code inspection
+== Code inspection
 
-Use the question mark.
+==== using the question mark
 
 [.code,python]
 ----
 ?print
 ----
 
-Or press kbd:[shift + tab]
+==== by pressing kbd:[shift + tab]
 
 [.code,python]
 ----
 print(
 ----
 
-=== Input support
+== Input support
 
 [.code,python]
 ----
@@ -94,4 +92,244 @@ name = await input('Enter your name: ')
 [.code,python]
 ----
 'Hello, ' + name
+----
+
+== Rich representation
+
+[.code,python]
+----
+from IPython.display import display, Markdown, HTML, JSON, Latex
+----
+
+=== HTML
+
+[.code,python]
+----
+print('Before display')
+
+s = '<h1>HTML Title</h1>'
+display(HTML(s))
+
+print('After display')
+----
+
+=== Markdown
+
+[.code,python]
+----
+Markdown('''
+# Title
+
+**in bold**
+
+~~Strikthrough~~
+''')
+----
+
+=== Pandas DataFrame
+
+[.code,python]
+----
+import pandas as pd
+import numpy as np
+from string import ascii_uppercase as letters
+from IPython.display import display
+
+df = pd.DataFrame(np.random.randint(0, 100, size=(100, len(letters))), columns=list(letters))
+df
+----
+
+==== Show the same DataFrame
+
+[.code,python]
+----
+df
+----
+
+[[ipythondisplay-module]]
+=== IPython.display module
+
+[.code,python]
+----
+from IPython.display import clear_output, display, update_display
+from asyncio import sleep
+----
+
+==== Update display
+
+[.code,python]
+----
+class Square:
+    color = 'PeachPuff'
+    def _repr_html_(self):
+        return '''
+        <div style="background: %s; width: 200px; height: 100px; border-radius: 10px;">
+        </div>''' % self.color
+square = Square()
+
+display(square, display_id='some-square')
+----
+
+[.code,python]
+----
+square.color = 'OliveDrab'
+update_display(square, display_id='some-square')
+----
+
+==== Clear output
+
+[.code,python]
+----
+print("hello")
+await sleep(3)
+clear_output()             # will flicker when replacing "hello" with "goodbye"
+print("goodbye")
+----
+
+[.code,python]
+----
+print("hello")
+await sleep(3)
+clear_output(wait=True)   # prevents flickering
+print("goodbye")
+----
+
+==== Display classes
+
+[.code,python]
+----
+from IPython.display import HTML
+HTML('''
+        <div style="background: aliceblue; width: 200px; height: 100px; border-radius: 10px;">
+        </div>''')
+----
+
+[.code,python]
+----
+from IPython.display import Math
+Math(r'F(k) = \int_{-\infty}^{\infty} f(x) e^{2\pi i k} dx')
+----
+
+[.code,python]
+----
+from IPython.display import Latex
+Latex(r"""\begin{eqnarray}
+\nabla \times \vec{\mathbf{B}} -\, \frac1c\, \frac{\partial\vec{\mathbf{E}}}{\partial t} & = \frac{4\pi}{c}\vec{\mathbf{j}} \\
+\nabla \cdot \vec{\mathbf{E}} & = 4 \pi \rho \\
+\nabla \times \vec{\mathbf{E}}\, +\, \frac1c\, \frac{\partial\vec{\mathbf{B}}}{\partial t} & = \vec{\mathbf{0}} \\
+\nabla \cdot \vec{\mathbf{B}} & = 0 
+\end{eqnarray}""")
+----
+
+[.code,python]
+----
+from IPython.display import ProgressBar
+
+for i in ProgressBar(10):
+    await sleep(0.1)
+----
+
+[.code,python]
+----
+from IPython.display import JSON
+JSON(['foo', {'bar': ('baz', None, 1.0, 2)}], metadata={}, expanded=True, root='test')
+----
+
+[.code,python]
+----
+from IPython.display import GeoJSON
+GeoJSON(
+  data={
+      "type": "Feature",
+      "geometry": {
+          "type": "Point",
+          "coordinates": [11.8, -45.04]
+      }
+  }, url_template="http://s3-eu-west-1.amazonaws.com/whereonmars.cartodb.net/{basemap_id}/{z}/{x}/{y}.png",
+  layer_options={
+      "basemap_id": "celestia_mars-shaded-16k_global",
+      "attribution" : "Celestia/praesepe",
+      "tms": True,
+      "minZoom" : 0,
+      "maxZoom" : 5
+  }
+)
+----
+
+=== Network requests and JSON
+
+[.code,python]
+----
+import json
+from js import fetch
+----
+
+[.code,python]
+----
+res = await fetch('https://httpbin.org/get')
+text = await res.text()
+obj = json.loads(text) 
+JSON(obj)
+----
+
+=== Sympy
+
+[.code,python]
+----
+from sympy import Integral, sqrt, symbols, init_printing
+
+init_printing()
+
+x = symbols('x')
+
+Integral(sqrt(1 / x), x)
+----
+
+=== Magics
+
+[.code,python]
+----
+import os
+os.listdir()
+----
+
+[.code,python]
+----
+%cd /home
+----
+
+[.code,python]
+----
+%pwd
+----
+
+[.code,python]
+----
+current_path = %pwd
+print(current_path)
+----
+
+[.code,python]
+----
+%%writefile test.txt
+
+This will create a new file. 
+With the text that you see here.
+----
+
+[.code,python]
+----
+%history
+----
+
+[.code,python]
+----
+import time
+----
+
+[.code,python]
+----
+%%timeit 
+
+time.sleep(0.1)
 ----

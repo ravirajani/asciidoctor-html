@@ -20,7 +20,7 @@ module Asciidoctor
       def self.repl_path_with_options(node)
         query_string = ["code=#{URI.encode_uri_component node.content}"]
         query_string << CONFIG.merge(
-          { promptCellPosition: node.attr("prompt-position", "left") }
+          { promptCellPosition: node.attr("prompt-position", "top") }
         ).map do |k, v|
           value = if v == true
                     1
