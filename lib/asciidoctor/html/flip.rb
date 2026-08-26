@@ -92,25 +92,6 @@ module Asciidoctor
             }
           }
 
-          function reuseElements() {
-            focusEl.querySelectorAll(':scope > .flip.d-block .reuse').forEach(target => {
-              const link = target && target.querySelector('a.reuse-link');
-              if(!link) return;
-
-              const source = document.getElementById(link.hash.substring(1));
-              let reuse = source && source.parentElement;
-              if(!reuse) return;
-
-              if(!reuse.classList.contains('reuse')) {
-                reuse = document.createElement('div');
-                reuse.classList.add('reuse');
-                source.replaceWith(reuse);
-              }
-              reuse.replaceChildren(...target.children);
-              target.replaceChildren(source);
-            });
-          }
-
           function flip(e) {
             if(!page.classList.contains('multi')) {
               focusOnLoad();
@@ -146,8 +127,6 @@ module Asciidoctor
                 sectsById[key].forEach(el => el.classList.remove('d-block'));
               }
             }
-
-            reuseElements();
 
             nav.forEach(el => {
               const a = el.querySelector('a');

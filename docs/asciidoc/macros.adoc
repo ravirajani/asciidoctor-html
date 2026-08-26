@@ -155,38 +155,3 @@ NOTE: _These_ types of #markup# are built in to the *AsciiDoc* language and _don
 
 |pass:q[`text:kbd[Ctrl + A\]`] |text:kbd[Ctrl + A]
 |===
-
-[#sec-reuse]
-== reuse
-
-The `reuse` block macro allows you to reuse an element in `multi` mode.
-This is especially useful when embedding an iframe such as a cref:presentations#sec-jupyter-cells[Jupyter cell].
-
-****
-.pass:q,a[`reuse::{dollar}id[{dollar}reftext\]`]
-[title-prefix=Usage]
-id:: The ID of the element you wish to reuse.
-reftext:: (Optional) The reference text to be used if the default resolution is not suitable.
-****
-
-=== Example uses of the reuse macro
-
-[source,asciidoc]
-----
-[.mb-4]
-reuse::tbl-cref[]
-----
-
-[.mb-4]
-reuse::tbl-cref[]
-
-[source,asciidoc]
-----
-.Usage of subnav macro
-[#reuse-example.mb-4]
-reuse::usage-subnav[This content will be swapped with the referenced element in multi mode.]
-----
-
-.Usage of subnav macro
-[#reuse-example.mb-4]
-reuse::usage-subnav[This content will be swapped with the referenced element in multi mode.]
