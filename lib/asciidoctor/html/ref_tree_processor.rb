@@ -48,7 +48,8 @@ module Asciidoctor
         context = :image if style == "figlist"
         env = env context, style
         block.set_attr("showcaption", true) unless context == :stem
-        assign_numeral! block, NUMBERED_CONTEXTS[context] unless context == :section
+        counter_name = NUMBERED_CONTEXTS[context]
+        assign_numeral!(block, counter_name) if counter_name
         relative_numeral = relative_numeral block
 
         reftext = if context == :stem
@@ -79,24 +80,6 @@ module Asciidoctor
 
         @tabs_id += 1
         block.set_attr "tabs-id", @tabs_id
-      end
-
-      def process_sect!(node, sect_id)
-        node.set_attr "with-sect-id", sect_id
-        node.set_attr("fn-indexes", {}) unless node.attr?("fn-indexes")
-      end
-
-      def footnote?(node)
-        node.context == :inline_footnote
-      end
-
-      def process_footnote!(node, sect_id)
-        doc = node.document
-        section = doc.catalog[:refs][sect_id]
-        return unless section
-
-        fn_indexes = node.attr "fn-indexes"
-        fn_indexes[doc.counter("footnote-number")] = true
       end
 
       def env(context, style)
@@ -273,13 +256,8 @@ module Asciidoctor
         node.context == :listing && node.style == "source" && node.attr?("language")
       end
 
-      def level1_sect?(node)
-        node.context == :section && node.level == 1
-      end
-
       def process(document)
         listdepth = bulletdepth = flat_idx = 0
-        sect_id = nil
         flat_style = live = false
         line_number = 1
         tw = TreeWalker.new document
@@ -312,11 +290,6 @@ module Asciidoctor
             elsif source_code? block
               linenums = block.option?("linenums") || block.attr?("live")
               process_source_code! document, block.attr("language"), linenums:
-            elsif level1_sect? block
-              sect_id = block.id if block.id
-              process_sect!(block, sect_id) if sect_id
-            elsif footnote?(block) && sect_id
-              process_footnote!(block, sect_id)
             end
             block.set_attr "refprocessed", true
           end

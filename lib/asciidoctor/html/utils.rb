@@ -123,17 +123,27 @@ module Asciidoctor
       end
 
       # index_filter: Hash(index => bool)
-      def self.display_footnotes(node, index_filter = nil)
-        result = [%(<div class="fn-wrapper">)]
-        result << %(<div class="footnote-separator"></div><div class="footnotes">)
-        node.footnotes.each do |fn|
-          next if index_filter && !index_filter.include?(fn.index)
+      def self.display_footnotes(node, content)
+        footnotes = []
+        content.scan(/data-contentid="_footnotedef_(\d)"/) do |matches|
+          index = matches&.first&.to_i
+          fn = node.document.footnotes.select { |fn| fn.index == index }.first
+          next unless fn
 
-          result << %(<div class="fn-row"><div class="fn-mark">#{fn.index}</div>)
-          result << %(<div class="footnote" id="_footnotedef_#{fn.index}">#{fn.text}</div></div>)
+          footnotes << %(<div class="fn-row"><div class="fn-mark">#{fn.index}</div>)
+          footnotes << %(<div class="footnote" id="_footnotedef_#{fn.index}">#{fn.text}</div></div>)
         end
-        result << %(</div></div>)
-        result.join "\n"
+        return "" if footnotes.empty?
+
+        <<~HTML
+          <div class="fn-wrapper">
+            <div class="footnote-separator"></div>
+            <div class="footnotes">
+            #{footnotes.join "\n"}
+            </div>
+          </div> <!-- .fn-wrapper -->
+
+        HTML
       end
     end
   end

@@ -17,9 +17,7 @@ module Asciidoctor
       include Figure
 
       def convert_embedded(node)
-        result = [node.content]
-        result << Utils.display_footnotes(node) if node.footnotes?
-        result.join("\n")
+        node.content
       end
 
       def convert_preamble(node)
@@ -33,8 +31,10 @@ module Asciidoctor
         classes = "section#{" flip" if level == 1}#{" #{node.role}" if node.role}"
         display_sectnum = Utils.display_sectnum(node, level) if show_sectnum
         title = "#{display_sectnum}#{node.title}"
-        content = "#{Utils.heading node, title}#{node.content}"
-        Utils.wrap_id_classes content, node.id, classes, :section
+        content = node.content
+        result = ["#{Utils.heading node, title}#{content}"]
+        result << Utils.display_footnotes(node, content) if node.level == 1
+        Utils.wrap_id_classes result.join("\n"), node.id, classes, :section
       end
 
       def convert_floating_title(node)
