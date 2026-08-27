@@ -33,7 +33,8 @@ module Asciidoctor
         title = "#{display_sectnum}#{node.title}"
         content = node.content
         result = ["#{Utils.heading node, title}#{content}"]
-        result << Utils.display_footnotes(node, content) if node.level == 1
+        footnotes = Utils.display_footnotes(node, content) if node.level == 1
+        result << footnotes if footnotes
         Utils.wrap_id_classes result.join("\n"), node.id, classes, :section
       end
 

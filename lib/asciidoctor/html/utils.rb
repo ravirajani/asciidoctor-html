@@ -130,19 +130,22 @@ module Asciidoctor
           fn = node.document.footnotes.select { |fn| fn.index == index }.first
           next unless fn
 
-          footnotes << %(<div class="fn-row"><div class="fn-mark">#{fn.index}</div>)
-          footnotes << %(<div class="footnote" id="_footnotedef_#{fn.index}">#{fn.text}</div></div>)
+          footnotes << <<~HTML
+            <div class="fn-row">
+              <div class="fn-mark">#{fn.index}</div>
+              <div class="footnote" id="_footnotedef_#{fn.index}">#{fn.text}</div>
+            </div>
+          HTML
         end
-        return "" if footnotes.empty?
+        return if footnotes.empty?
 
         <<~HTML
           <div class="fn-wrapper">
             <div class="footnote-separator"></div>
             <div class="footnotes">
-            #{footnotes.join "\n"}
-            </div>
+              #{footnotes.join "\n"}
+            </div> <!-- .footnotes -->
           </div> <!-- .fn-wrapper -->
-
         HTML
       end
     end
