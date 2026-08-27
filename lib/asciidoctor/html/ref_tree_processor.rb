@@ -75,19 +75,15 @@ module Asciidoctor
           @jupyter_cell_id += 1
           block.set_attr "jupyter-cell-id", @jupyter_cell_id
         end
-        if block.option? "tabs"
-          @tabs_id += 1
-          block.set_attr "tabs-id", @tabs_id
-        end
-        process_sect!(block) if level1_sect_with_id?(block)
+        return unless block.option? "tabs"
+
+        @tabs_id += 1
+        block.set_attr "tabs-id", @tabs_id
       end
 
-      def process_sect!(node)
-        doc = node.document
-        # Initialise the hash to store footnote indexes by section ID
-        doc.set_attr("fn-by-sect", {}) unless doc.attr?("fn-by-sect")
-        fn_by_sect = doc.attr "fn-by-sect"
-        fn_by_sect[node.id] = {} unless fn_by_sect.include?(node.id)
+      def process_sect!(node, sect_id)
+        node.set_attr "with-sect-id", sect_id
+        node.set_attr("fn-indexes", {}) unless node.attr?("fn-indexes")
       end
 
       def footnote?(node)
@@ -96,7 +92,11 @@ module Asciidoctor
 
       def process_footnote!(node, sect_id)
         doc = node.document
-        doc.attr("fn-by-sect")[sect_id][doc.counter("footnote-number")] = true
+        section = doc.catalog[:refs][sect_id]
+        return unless section
+
+        fn_indexes = node.attr "fn-indexes"
+        fn_indexes[doc.counter("footnote-number")] = true
       end
 
       def env(context, style)
@@ -273,8 +273,8 @@ module Asciidoctor
         node.context == :listing && node.style == "source" && node.attr?("language")
       end
 
-      def level1_sect_with_id?(node)
-        node.context == :section && node.level == 1 && node.id
+      def level1_sect?(node)
+        node.context == :section && node.level == 1
       end
 
       def process(document)
@@ -286,8 +286,6 @@ module Asciidoctor
         while (block = tw.next_block)
           unless block.attr? "refprocessed"
             process_block! block
-            sect_id = block.id if level1_sect_with_id?(block)
-            process_footnote!(block, sect_id) if sect_id && footnote?(block)
             if colist? block
               process_colist! block
             elsif (is_olist = olist? block) || (is_ulist = ulist? block)
@@ -314,6 +312,11 @@ module Asciidoctor
             elsif source_code? block
               linenums = block.option?("linenums") || block.attr?("live")
               process_source_code! document, block.attr("language"), linenums:
+            elsif level1_sect? block
+              sect_id = block.id if block.id
+              process_sect!(block, sect_id) if sect_id
+            elsif footnote?(block) && sect_id
+              process_footnote!(block, sect_id)
             end
             block.set_attr "refprocessed", true
           end

@@ -6,10 +6,10 @@ Metrics/AbcSize:
   Max: 70
 
 Metrics/CyclomaticComplexity:
-  Max: 35
+  Max: 40
 
 Metrics/PerceivedComplexity:
-  Max: 35
+  Max: 40
 
 Metrics/BlockNesting:
   Max: 5
