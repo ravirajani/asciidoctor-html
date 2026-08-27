@@ -2,6 +2,6 @@
 
 module Asciidoctor
   module Html
-    VERSION = "2.2.2"
+    VERSION = "2.2.3"
   end
 end

@@ -284,3 +284,7 @@
 
 - Implement presentation visibility roles.
 - Add pandoc process to setup script.
+
+## [2.2.3] - 2026-08-27
+
+- Footnotes grouped by section and visible only in presentation and print modes.
