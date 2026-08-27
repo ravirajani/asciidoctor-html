@@ -74,7 +74,12 @@ html {
         display: none;
     }
     &:not(.presentation) {
-        .fn-wrapper { display: none; }
+        .fn-wrapper { 
+            display: none;
+            @media print {
+                display: block;
+            }
+        }
         .presentation-only:not([id]) { display: none !important; }
     }
     &.multi {
