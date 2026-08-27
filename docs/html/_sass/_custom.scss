@@ -96,14 +96,9 @@ abbr[data-bs-original-title] {
         --blocksep: var(--parsep);
     }
     margin-bottom: var(--blocksep);
-    > .block-title, > summary {
-        &:first-child {
-            margin-bottom: calc(0.5 * var(--parsep));
-        }
-    }
 }
 
-.block-title {
+.block-title, summary {
     @extend .h5;
     margin-bottom: 0.25rem;
     color: var(--strong-text-color);
@@ -129,10 +124,6 @@ ol, ul, dl {
     p:has(+ .stem), .stem:has(+ p), p:has(+ .list), p:has(+ .list-wrapper) {
         margin-bottom: calc(0.5 * var(--paritemsep));
     }
-}
-
-summary {
-    font-weight: 500;
 }
 
 strong, th {

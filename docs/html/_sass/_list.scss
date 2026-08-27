@@ -120,12 +120,6 @@ $mark-width: 1.5rem;
     }
 }
 
-.list-wrapper {
-    .block-title {
-        margin-bottom: var(--paritemsep);      
-    }
-}
-
 .dlist-wrapper {
     @extend .block;
 }
