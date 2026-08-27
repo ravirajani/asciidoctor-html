@@ -75,10 +75,28 @@ module Asciidoctor
           @jupyter_cell_id += 1
           block.set_attr "jupyter-cell-id", @jupyter_cell_id
         end
-        return unless block.option? "tabs"
+        if block.option? "tabs"
+          @tabs_id += 1
+          block.set_attr "tabs-id", @tabs_id
+        end
+        process_sect!(block) if level1_sect_with_id?(block)
+      end
 
-        @tabs_id += 1
-        block.set_attr "tabs-id", @tabs_id
+      def process_sect!(node)
+        doc = node.document
+        # Initialise the hash to store footnote indexes by section ID
+        doc.set_attr("fn-by-sect", {}) unless doc.attr?("fn-by-sect")
+        fn_by_sect = doc.attr "fn-by-sect"
+        fn_by_sect[node.id] = {} unless fn_by_sect.include?(node.id)
+      end
+
+      def footnote?(node)
+        node.context == :inline_footnote
+      end
+
+      def process_footnote!(node, sect_id)
+        doc = node.document
+        doc.attr("fn-by-sect")[sect_id][doc.counter("footnote-number")] = true
       end
 
       def env(context, style)
@@ -255,14 +273,21 @@ module Asciidoctor
         node.context == :listing && node.style == "source" && node.attr?("language")
       end
 
+      def level1_sect_with_id?(node)
+        node.context == :section && node.level == 1 && node.id
+      end
+
       def process(document)
         listdepth = bulletdepth = flat_idx = 0
+        sect_id = nil
         flat_style = live = false
         line_number = 1
         tw = TreeWalker.new document
         while (block = tw.next_block)
           unless block.attr? "refprocessed"
             process_block! block
+            sect_id = block.id if level1_sect_with_id?(block)
+            process_footnote!(block, sect_id) if sect_id && footnote?(block)
             if colist? block
               process_colist! block
             elsif (is_olist = olist? block) || (is_ulist = ulist? block)
