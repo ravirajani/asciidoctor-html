@@ -1,9 +1,4 @@
-.open {
-    @extend .block;
-}
-
 .open-proof {
-    @extend .full-width-bg;
     position: relative;
     > p:last-child::after {
         content: '\a0\a0\220e';

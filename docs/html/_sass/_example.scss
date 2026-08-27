@@ -16,7 +16,7 @@
     &.mt-join {
         margin-top: calc(-1*var(--example-border-width));
     }
-    &:has(+ :not(.open):not(.list-colist)) {
+    &:has(+ :not(.open-proof):not(.list-colist)) {
         margin-bottom: calc(1.5*var(--blocksep));
     }
     &:has(+ .list-colist) {
