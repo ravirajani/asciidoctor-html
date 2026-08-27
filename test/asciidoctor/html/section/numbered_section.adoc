@@ -19,7 +19,7 @@ x^2 + y^2 = z^2
 .Minor Lemma
 [lemma#lem-minor-2]
 ====
-This is a lemma.
+This is a lemma.footnote:[A lemma is a minor result.]
 ====
 
 Building on <<lem-minor-2>>:

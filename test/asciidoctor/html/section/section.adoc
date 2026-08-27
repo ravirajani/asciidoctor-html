@@ -17,7 +17,7 @@ part <<prop-part-minor>>.
 
 [proposition]
 ====
-This is a proposition with multiple parts.
+This is a propositionfootnote:[A proposition is almost as important as a theorem.] with multiple parts.
 
 [markers=(a)]
 . First part of proposition.
