@@ -121,9 +121,14 @@ ol, ul, dl {
     p, .stem { 
         margin-bottom: var(--paritemsep);
     }
-    p:has(+ .stem), .stem:has(+ p), p:has(+ .list), p:has(+ .list-wrapper) {
+    p:has(+ .stem), .stem:has(+ p), p:has(+ .list) {
         margin-bottom: calc(0.5 * var(--paritemsep));
     }
+}
+
+.paragraph:has(+ .list), .paragraph:has(+ .list-wrapper),
+p:has(+ .list), p:has(+ .list-wrapper) {
+    margin-bottom: calc(0.5 * var(--parsep));
 }
 
 strong, th {

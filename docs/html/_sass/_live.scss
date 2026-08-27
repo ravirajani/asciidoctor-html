@@ -40,6 +40,9 @@
         width: 2*$content-padding-x;
         left: -2.5*$content-padding-x;
         text-align: right;
+        .bi::before {
+            vertical-align: baseline;
+        }
     }
 }
 

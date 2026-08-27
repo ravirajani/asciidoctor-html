@@ -1,4 +1,5 @@
 .open-proof {
+    @extend .block;
     position: relative;
     > p:last-child::after {
         content: '\a0\a0\220e';
