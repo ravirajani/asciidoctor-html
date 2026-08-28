@@ -288,3 +288,7 @@
 ## [2.2.3] - 2026-08-27
 
 - Footnotes grouped by section and visible only in presentation and print modes.
+
+## [2.2.4] - 2026-08-28
+
+- Updated live eye icon and some css tweaks.
