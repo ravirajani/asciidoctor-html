@@ -238,7 +238,7 @@ module Asciidoctor
         end
         result << "</dl>\n"
         Live.wrap_live(Utils.wrap_id_classes_with_title(result.join("\n"), node, node.id, "dlist-wrapper"),
-                        node.attr("live"))
+                       node.attr("live"))
       end
 
       def convert_inline_anchor(node)
