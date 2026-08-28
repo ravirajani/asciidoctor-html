@@ -7,6 +7,7 @@ require_relative "figure"
 require_relative "table"
 require_relative "tabs"
 require_relative "jupyterlite"
+require_relative "live"
 
 module Asciidoctor
   module Html
@@ -140,7 +141,7 @@ module Asciidoctor
         end
         title = Utils.display_title node
         content = title + pre_open + node.content + pre_close
-        Utils.wrap_live Utils.wrap_node(content, node), node.attr("live")
+        Live.wrap_live Utils.wrap_node(content, node), node.attr("live")
       end
 
       def convert_literal(node)
@@ -174,7 +175,7 @@ module Asciidoctor
       def convert_image(node)
         content = display_figure node
         classes = ["figbox", node.role]
-        Utils.wrap_live(
+        Live.wrap_live(
           Utils.wrap_id_classes(content, node.id, classes.compact.join(" ")),
           node.attr("live")
         )
@@ -236,7 +237,7 @@ module Asciidoctor
           result << "</dd>"
         end
         result << "</dl>\n"
-        Utils.wrap_live(Utils.wrap_id_classes_with_title(result.join("\n"), node, node.id, "dlist-wrapper"),
+        Live.wrap_live(Utils.wrap_id_classes_with_title(result.join("\n"), node, node.id, "dlist-wrapper"),
                         node.attr("live"))
       end
 
@@ -295,7 +296,7 @@ module Asciidoctor
         end
         result << "#{Table.display_rows(node)}</table>"
         wrap_classes = "table-responsive#{" #{node.role}" if node.role}"
-        Utils.wrap_live Utils.wrap_id_classes(result.join("\n"), nil, wrap_classes), node.attr("live")
+        Live.wrap_live Utils.wrap_id_classes(result.join("\n"), nil, wrap_classes), node.attr("live")
       end
     end
   end

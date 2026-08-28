@@ -2,6 +2,7 @@
 
 require "asciidoctor"
 require "pathname"
+require_relative "live"
 
 module Asciidoctor
   module Html
@@ -28,7 +29,7 @@ module Asciidoctor
             </nav>
           </div>
         HTML
-        content = Utils.wrap_live content, attrs["live"]
+        content = Live.wrap_live content, attrs["live"]
         create_pass_block parent, content, attrs, subs: nil
       end
     end

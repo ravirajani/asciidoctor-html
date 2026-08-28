@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require_relative "utils"
+require_relative "live"
+
 module Asciidoctor
   module Html
     # Helper functions for the list conversion
@@ -26,7 +29,7 @@ module Asciidoctor
         end
         result << %(</#{tag_name}> <!-- .level-#{level} -->\n)
         wrap_classes = %(list-wrapper#{" #{node.role}" if node.title? && node.role})
-        Utils.wrap_live Utils.wrap_id_classes_with_title(result.join("\n"), node, node.id, wrap_classes), node.attr("live")
+        Live.wrap_live Utils.wrap_id_classes_with_title(result.join("\n"), node, node.id, wrap_classes), node.attr("live")
       end
 
       def self.display_list_item(item, inside: false)

@@ -135,6 +135,20 @@ module Asciidoctor
           });
         })();
       JS
+
+      def self.wrap_live(content, live_attr)
+        return content unless live_attr
+
+        /\A(?<default>normal|faded|covered)-(?<live>faded|covered)\Z/ =~ live_attr
+
+        live_class = %(live-#{live || "faded"})
+        default_class = %(live-default-#{default || "normal"})
+        <<~HTML
+          <div class="live #{default_class} #{live_class}" data-reset="#{default_class}">
+          <div class="live-select"><i class="bi bi-eye"></i></div>
+          #{content}</div> <!-- .live -->
+        HTML
+      end
     end
   end
 end
