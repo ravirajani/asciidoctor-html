@@ -126,7 +126,7 @@ ol, ul, dl {
     }
 }
 
-.paragraph:has(+ .list), .paragraph:has(+ .list-wrapper),
+.paragraph:has(+ .list) p, .paragraph:has(+ .list-wrapper) p,
 p:has(+ .list), p:has(+ .list-wrapper) {
     margin-bottom: calc(0.5 * var(--parsep));
 }
