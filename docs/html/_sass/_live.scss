@@ -36,12 +36,12 @@
     .live-select {
         display: none;
         position: absolute;
-        color: var(--bs-secondary);
         width: 2*$content-padding-x;
         left: -2.5*$content-padding-x;
         text-align: right;
-        .bi::before {
-            vertical-align: baseline;
+        .live-icon {
+            color: var(--bs-dark-text-emphasis);
+            width: 0.875rem;
         }
     }
 }
