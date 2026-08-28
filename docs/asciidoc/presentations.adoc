@@ -143,7 +143,7 @@ that runs in the browser with https://pyodide.com/[Pyodide].
 The listing's `width` and `height` attribute will control the cell size,
 and the `prompt-position` attribute can be one of `top` (default), `left`, `bottom`, or `right`.
 
-CAUTION: This will only work if `repl_url` is set in cref:getting-started#config-yaml[config.yaml].
+CAUTION: This will only work if `repl_url` is set in cref:getting-started#config-yaml[].
 
 [.hfill]
 == {notitle}
