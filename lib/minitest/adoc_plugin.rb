@@ -59,7 +59,7 @@ module Minitest
     end
   end
 
-  def self.plugin_html_init(_options)
+  def self.plugin_adoc_init(_options)
     reporter << HTMLReporter.new
   end
 end
