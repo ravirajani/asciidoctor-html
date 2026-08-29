@@ -5,7 +5,7 @@ require "cgi"
 
 # Add class to Minitest module
 module Minitest
-  # Custom reporter class that creates an HTML file in the docs folder
+  # Custom reporter class that creates an asciidoc file in the docs folder
   class HTMLReporter < AbstractReporter
     DOCS_DIR = "#{__dir__}/../../docs/asciidoc".freeze
     TESTS_DIR = "#{__dir__}/../../test/asciidoctor/html".freeze
