@@ -25,7 +25,7 @@ NOTE: Most users will prefer the <<sec-advanced-usage>> over the <<sec-quick-sta
 .Prerequisite
 [CAUTION]
 You have https://www.ruby-lang.org/en/documentation/installation/[Ruby]
-and https://nodejs.org/[node.js] installed on your system.
+installed on your system.
 
 :sectnums:
 
@@ -49,13 +49,13 @@ bundle install      <2>
 
 === Build the site
 
-Open a terminal window and, in the AsciiDoc sources directory, run
+Open a terminal window and run
 
 [source,bash]
 ----
 adoctohtml --watch <1>
 ----
-<1> Builds an HTML site in the `public` directory, automatically
+<1> Builds an HTML site in the `www` directory, automatically
 regenerating the output when an AsciiDoc source is modified. The output directory
 can be changed in the <<config-yaml,configuration file>>.
 
