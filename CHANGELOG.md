@@ -292,3 +292,7 @@
 ## [2.2.4] - 2026-08-28
 
 - Updated live eye icon and some css tweaks.
+
+## [2.2.5] - 2026-09-05
+
+- CSS tweaks.
