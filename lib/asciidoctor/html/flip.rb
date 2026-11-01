@@ -102,19 +102,24 @@ module Asciidoctor
 
             const href = location.hash;
             let id = href.substring(1);
-            const target = document.getElementById(id);
+            let target = document.getElementById(id);
 
-            if(!target) id = 'page';
-
-            const isPresentation = page.classList.contains('presentation');
-            document.querySelector('.breadcrumb').classList.toggle('d-block', id != 'page' && !isPresentation);
-            document.querySelector('.chapauthors').classList.toggle('d-block', isPresentation);
+            if(!target) {
+              id = 'page';
+              target = page;
+            }
 
             let section = target && target.closest('.content-container > .section');
             if(section) {
               id = section.dataset.withSect;
               section = sectsById[id][0];
+            } else {
+              id = 'page';
             }
+
+            const isPresentation = page.classList.contains('presentation');
+            document.querySelector('.breadcrumb').classList.toggle('d-block', id != 'page' && !isPresentation);
+            document.querySelector('.chapauthors').classList.toggle('d-block', isPresentation);
 
             for(const key in sectsById) {
               if(key == id) {

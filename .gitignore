@@ -6,6 +6,7 @@
 /pkg/
 /spec/reports/
 /tmp/
+.vscode/
 _site
 /docs/asciidoc/tests.adoc
 .jekyll-cache
