@@ -150,3 +150,9 @@ strong {
         @include font-size($h6-font-size);
     }
 }
+
+section[id] {
+    > h2, > h3, > h4 {
+        cursor: default;
+    } 
+}

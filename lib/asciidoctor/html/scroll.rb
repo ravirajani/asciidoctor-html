@@ -29,6 +29,12 @@ module Asciidoctor
             !scrolledOnce && scrollToElement();
           });
           addEventListener('hashchange', scrollToElement);
+          const clickableHSelector = [ 'h2', 'h3', 'h4' ].map(v => `section[id] > ${v}`).join(', ');
+          document.querySelectorAll(clickableHSelector).forEach(el => {
+            el.addEventListener('click', function() {
+              location.hash = el.parentElement.id;
+            });
+          });
         })();
       JS
     end
