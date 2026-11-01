@@ -141,7 +141,7 @@ module Asciidoctor
             ADHT.nudgeMenuBtn();
 
             const scrollEl = isPresentation ? main : page;
-            if(target == section) {
+            if(target == section || target == page) {
               scrollEl.scrollTo({
                 top: 0,
                 left: 0,
