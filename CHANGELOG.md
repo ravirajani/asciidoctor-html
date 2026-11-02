@@ -301,3 +301,8 @@
 
 - Anchors on section headings.
 - Bugfix: linking to element not within section in multipage view.
+
+## [2.2.7] - 2026-11-02
+
+- Adjust mathjax config so there is more vertical space between lines in displaymath
+  with automatic line breaking.
