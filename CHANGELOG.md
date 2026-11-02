@@ -296,3 +296,8 @@
 ## [2.2.5] - 2026-09-05
 
 - CSS tweaks.
+
+## [2.2.6] - 2026-11-02
+
+- Anchors on section headings.
+- Bugfix: linking to element not within section in multipage view.
