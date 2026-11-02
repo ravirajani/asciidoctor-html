@@ -216,7 +216,10 @@ module Asciidoctor
                 inlineMath: {'[+]': [['$', '$']]}
               },
               output: {
-                displayOverflow: 'linebreak'
+                displayOverflow: 'linebreak',
+                linebreaks: {
+                  lineleading: 0.5
+                }
               }
             };
             ADHT = {}; // Custom namespace.
