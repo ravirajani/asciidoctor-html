@@ -57,7 +57,7 @@
                     }
                 }
                 .subnav-toggle {
-                    --bs-btn-padding-x: 0;
+                    --bs-btn-padding-x: #{0.5*$nav-item-padding-x};
                     --bs-btn-padding-y: #{$nav-item-padding-y};
                     --bs-btn-color: #{$gray-600};
                     --bs-btn-border-width: 0;
@@ -70,11 +70,15 @@
                     text-align: left;
                     width: $caret-width;
                     .caret {
-                        transform-origin: 0.5625rem;
-                        width: 1rem;
+                        transform-origin: center;
+                        transform-box: view-box;
+                        vertical-align: baseline;
+                        width: 0.5rem;
+                        height: auto;
                     }
-                    &.collapsed .caret {
-                        transform: rotate(0.25turn) translateY(0.125rem);
+                    &:not(.collapsed) .caret {
+                        transform: rotate(0.25turn);
+                        vertical-align: middle;
                     }
                 }
                 ul {
