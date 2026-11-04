@@ -119,7 +119,7 @@ module Asciidoctor
       # - pagestyle: Symbol
       def self.main(opts)
         <<~HTML
-          <main id="main" class="main">
+          <main id="main" class="main fadein">
           <div id="content-container" class="content-container dynamic-width"  tabindex="0">
           #{chapheader opts[:chapheading], opts[:chapsubheading]}
           <div class="chaphead flip d-block">
@@ -171,7 +171,7 @@ module Asciidoctor
 
       def self.footer(authors)
         <<~HTML
-          <footer class="footer">
+          <footer class="footer fadein">
             <div class="footer-content dynamic-width">
               <div class="footer-left">&#169; <span id="cr-year"></span> #{authors}</div>
               <div class="footer-right">Built with
@@ -268,6 +268,11 @@ module Asciidoctor
           <div id="page" class="#{page_classname}">
           #{MENU_BTN if nav}
           #{header opts[:title], opts[:short_title], opts[:chapheading], opts[:has_subnav]}
+          <div class="spinner-container">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
           #{main content:, **opts}
           #{opts[:paginator]}
           #{footer opts[:authors]}

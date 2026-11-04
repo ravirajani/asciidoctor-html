@@ -159,8 +159,6 @@ module Asciidoctor
             if(isPresentation) focusEl.dataset.flip = id;
           }
 
-          flip();
-
           const dropdownItems = document.querySelectorAll('#viewmode-actions .dropdown-item');
           const dropdownToggle = document.getElementById('btn-toggle');
           function changeViewmode(viewmode) {
@@ -202,8 +200,12 @@ module Asciidoctor
             changeViewmode(viewmode);
           }));
 
-          page.classList.add('loaded');
+          function init() {
+            flip();
+            page.classList.add('loaded');
+          }
 
+          MathJax.startup.promise.then(init);
           ADHT.move = move;
         })();
       JS

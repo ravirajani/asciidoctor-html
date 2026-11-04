@@ -62,6 +62,12 @@ html {
     width: 100%;
     overflow-y: auto;
     position: relative;
+    .spinner-container { 
+        display: none;
+        width: 100%;
+        margin-top: 4rem;
+        justify-content: center;
+    }
     &.noscroll {
         overflow-y: hidden;
         scrollbar-gutter: stable;
@@ -82,18 +88,30 @@ html {
         }
         .presentation-only:not([id]) { display: none !important; }
     }
-    &.multi {
-        > .main, .paginator a {
-            opacity: 0;
-            transition: opacity 500ms ease-in;
+    > .fadein {
+        opacity: 0;
+        transition: opacity 500ms ease-in;
+    }
+    &:not(.loaded) {
+        overflow-y: hidden;
+        .spinner-container { display: flex; }
+    }
+    &.loaded {
+        > .fadein {
+            opacity: 1;
         }
-        &.loaded {
-            > .main, .paginator a {
-                opacity: 1;
-            }
+    }
+    &.multi {
+        &.loaded .content-container > .flip:not(.d-block) {
+            display: none;
         }
         .content-container > {
-            .flip:not(.d-block) { display: none; }
+            .flip {
+                &:not(.d-block) { 
+                    visibility: hidden;
+                }
+                &.d-block { visibility: visible; }
+            }
             .section {
                 margin-top: $spacer;
             }
