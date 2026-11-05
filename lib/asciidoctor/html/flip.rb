@@ -92,7 +92,7 @@ module Asciidoctor
             }
           }
 
-          function typesetMath(els) {
+          async function typesetMath(els) {
             const scrollEl = page.classList.contains('presentation') ? main : page;
             scrollEl.scrollTo({
               top: 0,
@@ -100,6 +100,7 @@ module Asciidoctor
               behavior: 'instant'
             });
             page.classList.remove('loaded');
+            await MathJax.startup.promise;
             return MathJax.typesetPromise(els);
           }
 

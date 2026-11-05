@@ -5,10 +5,10 @@ module Asciidoctor
     # Configure the popovers for footnotes and citations.
     module Popovers
       POPOVERS = <<~JS
-        (function() {
+        (async function() {
           const popovers = []
-          function initPopovers() {
-            document.querySelectorAll('.btn-po[data-contentid]').forEach(el => {
+          async function initPopovers() {
+            for(const el of document.querySelectorAll('.btn-po[data-contentid]')) {
               const id = el.dataset.contentid;
               let content = document.getElementById(id);
               if(content) {
@@ -18,6 +18,7 @@ module Asciidoctor
                   bibItem.removeChild(bibItem.firstChild); // remove the anchor
                   content = bibItem.innerHTML;
                 } else {
+                  await MathJax.typesetPromise([content]);
                   content = content.cloneNode(true);
                 }
                 popovers.push(new bootstrap.Popover(el, {
@@ -26,7 +27,7 @@ module Asciidoctor
                   sanitize: false
                 }));
               }
-            });
+            }
           }
           addEventListener('click', e => {
             const match = e.target.closest('.btn-po[aria-describedby],.popover');
@@ -34,7 +35,10 @@ module Asciidoctor
               popovers.forEach(po => po.hide());
             }
           })
-          MathJax.startup.promise.then(initPopovers);
+
+          await MathJax.startup.promise;
+          await initPopovers();
+
           // Enable tooltips
           document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => {
             bootstrap.Tooltip.getOrCreateInstance(el);

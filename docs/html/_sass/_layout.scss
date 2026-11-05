@@ -90,16 +90,15 @@ html {
     }
     > .fadein {
         opacity: 0;
-        transition: opacity 500ms ease-in;
     }
     &:not(.loaded) {
         overflow-y: hidden;
         .spinner-container { display: flex; }
-        .main .breadcrumb { display: none !important; }
     }
     &.loaded {
         > .fadein {
             opacity: 1;
+            transition: opacity 500ms ease-in;
         }
     }
     &.multi {
@@ -107,12 +106,6 @@ html {
             display: none;
         }
         .content-container > {
-            .flip {
-                &:not(.d-block) { 
-                    visibility: hidden;
-                }
-                &.d-block { visibility: visible; }
-            }
             .section {
                 margin-top: $spacer;
             }
