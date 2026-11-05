@@ -92,15 +92,8 @@ module Asciidoctor
             }
           }
 
-          async function typesetMath(els) {
-            page.classList.remove('loaded');
-            await MathJax.startup.promise;
-            return MathJax.typesetPromise(els);
-          }
-
           async function flip(e) {
             e && e.preventDefault();
-            focusEl.classList.add('hidden');
             const scrollEl = page.classList.contains('presentation') ? main : page;
 
             const href = location.hash;
@@ -124,31 +117,32 @@ module Asciidoctor
             document.querySelector('.breadcrumb').classList.toggle('d-block', id != 'page' && !isPresentation);
             document.querySelector('.chapauthors').classList.toggle('d-block', isPresentation);
 
+            let activeSects = [focusEl];
             if(page.classList.contains('multi')) {
+              page.classList.remove('loaded');
               for(const key in sectsById) {
                 if(key == id) {
                   const firstSect = sectsById[key][0];
                   const prev = firstSect.dataset.prevPage && sectsById[firstSect.dataset.prevPage][0];
                   const next = firstSect.dataset.nextPage && sectsById[firstSect.dataset.nextPage][0];
                   updatePaginator(prev, next);
-                  const activeSects = sectsById[key];
-                  await typesetMath([...activeSects, paginator])
+                  activeSects = sectsById[key];
                   activeSects.forEach(el => el.classList.add('d-block'));
                 } else {
                   sectsById[key].forEach(el => el.classList.remove('d-block'));
                 }
               }
-            } else {
-              await typesetMath([focusEl, paginator]);
             }
+
+            // MathJax needs displayed content to calculate auto line breaks.
+            await MathJax.startup.promise;
+            await MathJax.typesetPromise([...activeSects, paginator]);
+            page.classList.add('loaded');
 
             nav.forEach(el => {
               const a = el.querySelector('a');
               a && a.hash && el.classList.toggle('active', id == a.hash.substring(1));
             });
-
-            page.classList.add('loaded');
-            focusEl.classList.remove('hidden');
 
             if(target == section && page.classList.contains('multi') || target == page) {
               scrollEl.scrollTo({

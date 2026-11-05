@@ -271,13 +271,16 @@ module Asciidoctor
           <body>
           #{sidebar(nav_items) if nav}
           <div id="page" class="#{page_classname}">
-          #{MENU_BTN if nav}
-          #{header opts[:title], opts[:short_title], opts[:chapheading], opts[:has_subnav]}
-          <div class="spinner-container">
-            <div class="spinner-border" role="status">
-              <span class="visually-hidden">Loading...</span>
+          <div class="loading-overlay">
+            #{header opts[:title], opts[:short_title], opts[:chapheading], opts[:has_subnav]}
+            <div class="spinner-container">
+              <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
             </div>
           </div>
+          #{MENU_BTN if nav}
+          #{header opts[:title], opts[:short_title], opts[:chapheading], opts[:has_subnav]}
           #{main content:, **opts}
           #{opts[:paginator]}
           #{footer opts[:authors]}
