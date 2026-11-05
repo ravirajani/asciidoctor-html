@@ -95,6 +95,7 @@ html {
     &:not(.loaded) {
         overflow-y: hidden;
         .spinner-container { display: flex; }
+        .main .breadcrumb { display: none !important; }
     }
     &.loaded {
         > .fadein {

@@ -215,6 +215,12 @@ module Asciidoctor
           #{highlightjs(opts)}
           <script>
             MathJax = {
+              startup: {
+                typeset: false,
+                pageReady() {
+                  return MathJax.typesetPromise([document.getElementById('sidebar')]);
+                }
+              },
               tex: {
                 inlineMath: {'[+]': [['$', '$']]}
               },

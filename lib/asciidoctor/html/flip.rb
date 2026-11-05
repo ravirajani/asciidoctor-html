@@ -20,6 +20,7 @@ module Asciidoctor
           const page = document.getElementById('page');
           const main = document.getElementById('main');
           const focusEl = document.getElementById('content-container');
+          const paginator = document.getElementById('paginator');
           const searchForm = document.getElementById('search-form');
           const chapheading = page.querySelector('.chapheading');
           const chaptitle = page.querySelector('.chaptitle');
@@ -59,7 +60,6 @@ module Asciidoctor
           }
 
           function updatePaginator(prev, next) {
-            const paginator = document.querySelector('.paginator');
             if(!paginator) return;
             const nextPage = paginator.lastElementChild;
             const prevPage = paginator.firstElementChild;
@@ -92,8 +92,21 @@ module Asciidoctor
             }
           }
 
-          function flip(e) {
+          function typesetMath(els) {
+            const scrollEl = page.classList.contains('presentation') ? main : page;
+            scrollEl.scrollTo({
+              top: 0,
+              left: 0,
+              behavior: 'instant'
+            });
+            page.classList.remove('loaded');
+            return MathJax.typesetPromise(els);
+          }
+
+          async function flip(e) {
             if(!page.classList.contains('multi')) {
+              await typesetMath([focusEl, paginator]);
+              page.classList.add('loaded');
               focusOnLoad();
               return;
             }
@@ -127,7 +140,9 @@ module Asciidoctor
                 const prev = firstSect.dataset.prevPage && sectsById[firstSect.dataset.prevPage][0];
                 const next = firstSect.dataset.nextPage && sectsById[firstSect.dataset.nextPage][0];
                 updatePaginator(prev, next);
-                sectsById[key].forEach(el => el.classList.add('d-block'));
+                const activeSects = sectsById[key];
+                await typesetMath([...activeSects, paginator])
+                activeSects.forEach(el => el.classList.add('d-block'));
               } else {
                 sectsById[key].forEach(el => el.classList.remove('d-block'));
               }
@@ -155,6 +170,7 @@ module Asciidoctor
               });
             }
 
+            page.classList.add('loaded');
             focusOnLoad();
             if(isPresentation) focusEl.dataset.flip = id;
           }
@@ -200,12 +216,8 @@ module Asciidoctor
             changeViewmode(viewmode);
           }));
 
-          function init() {
-            flip();
-            page.classList.add('loaded');
-          }
+          flip();
 
-          MathJax.startup.promise.then(init);
           ADHT.move = move;
         })();
       JS

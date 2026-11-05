@@ -42,7 +42,7 @@ module Asciidoctor
         blank = %(<span class="blank">&nbsp;</span>)
         html = [<<~HTML
           <div class="paginator-wrapper fadein">
-          <div class="paginator dynamic-width">
+          <div id="paginator" class="paginator dynamic-width">
         HTML
         ]
         html << if prv
