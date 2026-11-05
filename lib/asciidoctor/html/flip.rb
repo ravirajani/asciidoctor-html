@@ -103,13 +103,6 @@ module Asciidoctor
             focusEl.classList.add('hidden');
             const scrollEl = page.classList.contains('presentation') ? main : page;
 
-            if(!page.classList.contains('multi')) {
-              await typesetMath([focusEl, paginator]);
-              page.classList.add('loaded');
-              focusEl.classList.remove('hidden');
-              focusOnLoad();
-            }
-
             const href = location.hash;
             let id = href.substring(1);
             let target = document.getElementById(id);
@@ -131,18 +124,22 @@ module Asciidoctor
             document.querySelector('.breadcrumb').classList.toggle('d-block', id != 'page' && !isPresentation);
             document.querySelector('.chapauthors').classList.toggle('d-block', isPresentation);
 
-            for(const key in sectsById) {
-              if(key == id) {
-                const firstSect = sectsById[key][0];
-                const prev = firstSect.dataset.prevPage && sectsById[firstSect.dataset.prevPage][0];
-                const next = firstSect.dataset.nextPage && sectsById[firstSect.dataset.nextPage][0];
-                updatePaginator(prev, next);
-                const activeSects = sectsById[key];
-                await typesetMath([...activeSects, paginator])
-                activeSects.forEach(el => el.classList.add('d-block'));
-              } else {
-                sectsById[key].forEach(el => el.classList.remove('d-block'));
+            if(page.classList.contains('multi')) {
+              for(const key in sectsById) {
+                if(key == id) {
+                  const firstSect = sectsById[key][0];
+                  const prev = firstSect.dataset.prevPage && sectsById[firstSect.dataset.prevPage][0];
+                  const next = firstSect.dataset.nextPage && sectsById[firstSect.dataset.nextPage][0];
+                  updatePaginator(prev, next);
+                  const activeSects = sectsById[key];
+                  await typesetMath([...activeSects, paginator])
+                  activeSects.forEach(el => el.classList.add('d-block'));
+                } else {
+                  sectsById[key].forEach(el => el.classList.remove('d-block'));
+                }
               }
+            } else {
+              await typesetMath([focusEl, paginator]);
             }
 
             nav.forEach(el => {
@@ -151,7 +148,6 @@ module Asciidoctor
             });
 
             page.classList.add('loaded');
-            scrollEl.scrollTop = 0;
             focusEl.classList.remove('hidden');
 
             if(target == section && page.classList.contains('multi') || target == page) {
