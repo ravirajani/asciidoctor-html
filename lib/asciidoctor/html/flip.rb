@@ -93,26 +93,22 @@ module Asciidoctor
           }
 
           async function typesetMath(els) {
-            const scrollEl = page.classList.contains('presentation') ? main : page;
-            scrollEl.scrollTo({
-              top: 0,
-              left: 0,
-              behavior: 'instant'
-            });
             page.classList.remove('loaded');
             await MathJax.startup.promise;
             return MathJax.typesetPromise(els);
           }
 
           async function flip(e) {
+            e && e.preventDefault();
+            focusEl.classList.add('hidden');
+            const scrollEl = page.classList.contains('presentation') ? main : page;
+
             if(!page.classList.contains('multi')) {
               await typesetMath([focusEl, paginator]);
               page.classList.add('loaded');
+              focusEl.classList.remove('hidden');
               focusOnLoad();
-              return;
             }
-
-            e && e.preventDefault();
 
             const href = location.hash;
             let id = href.substring(1);
@@ -154,10 +150,11 @@ module Asciidoctor
               a && a.hash && el.classList.toggle('active', id == a.hash.substring(1));
             });
 
-            ADHT.nudgeMenuBtn();
+            page.classList.add('loaded');
+            scrollEl.scrollTop = 0;
+            focusEl.classList.remove('hidden');
 
-            const scrollEl = isPresentation ? main : page;
-            if(target == section || target == page) {
+            if(target == section && page.classList.contains('multi') || target == page) {
               scrollEl.scrollTo({
                 top: 0,
                 left: 0,
@@ -171,9 +168,9 @@ module Asciidoctor
               });
             }
 
-            page.classList.add('loaded');
             focusOnLoad();
             if(isPresentation) focusEl.dataset.flip = id;
+            ADHT.nudgeMenuBtn();
           }
 
           const dropdownItems = document.querySelectorAll('#viewmode-actions .dropdown-item');
@@ -209,6 +206,13 @@ module Asciidoctor
               case 'Escape':
                 page.classList.contains('presentation') && changeViewmode('multi');
             }
+          });
+
+          const clickableHSelector = [2, 3, 4].map(v => `section[id] > h${v}:first-child`).join(', ');
+          document.querySelectorAll(clickableHSelector).forEach(el => {
+            el.addEventListener('click', function() {
+              location.hash = el.parentElement.id;
+            });
           });
 
           dropdownItems && dropdownItems.forEach(link => link.addEventListener('click', function(e){
