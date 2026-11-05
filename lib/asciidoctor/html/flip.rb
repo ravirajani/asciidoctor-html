@@ -15,7 +15,7 @@ module Asciidoctor
           };
 
           // Dictionary sect ID => [all sects until next sect with ID]
-          const sectsById = { "page": []};
+          const sectsById = { 'page': []};
 
           const page = document.getElementById('page');
           const main = document.getElementById('main');
@@ -27,7 +27,7 @@ module Asciidoctor
 
           const nav = document.querySelectorAll('#sidebar nav > ul > li.active  ul  li');
 
-          let currentId = "page";
+          let currentId = 'page';
           focusEl.querySelectorAll(':scope > .flip').forEach(el => {
             if(el.id) {
               el.dataset.prevPage = currentId;
@@ -92,6 +92,8 @@ module Asciidoctor
             }
           }
 
+          currentId = null;
+
           async function flip(e) {
             e && e.preventDefault();
             const scrollEl = page.classList.contains('presentation') ? main : page;
@@ -113,12 +115,14 @@ module Asciidoctor
               id = 'page';
             }
 
+            const needsFlip = (currentId !== id);
+
             const isPresentation = page.classList.contains('presentation');
             document.querySelector('.breadcrumb').classList.toggle('d-block', id != 'page' && !isPresentation);
             document.querySelector('.chapauthors').classList.toggle('d-block', isPresentation);
 
             let activeSects = [focusEl];
-            if(page.classList.contains('multi')) {
+            if(page.classList.contains('multi') && needsFlip) {
               page.classList.remove('loaded');
               for(const key in sectsById) {
                 if(key == id) {
@@ -160,6 +164,7 @@ module Asciidoctor
 
             focusOnLoad();
             if(isPresentation) focusEl.dataset.flip = id;
+            currentId = id;
             ADHT.nudgeMenuBtn();
           }
 
