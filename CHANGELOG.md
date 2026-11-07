@@ -306,3 +306,7 @@
 
 - Adjust mathjax config so there is more vertical space between lines in displaymath
   with automatic line breaking.
+
+## [2.2.8] - 2026-11-07
+
+- Lazy typsetting of MathJax in multi mode to improve page load time.
