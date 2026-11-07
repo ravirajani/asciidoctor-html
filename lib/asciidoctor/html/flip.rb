@@ -123,11 +123,12 @@ module Asciidoctor
             const needsFlip = (currentId !== id);
 
             const isPresentation = page.classList.contains('presentation');
-            document.querySelector('.breadcrumb').classList.toggle('d-block', id != 'page' && !isPresentation);
+            const isMulti = page.classList.contains('multi');
+            document.querySelector('.breadcrumb').classList.toggle('d-block', id != 'page' && isMulti && !isPresentation);
             document.querySelector('.chapauthors').classList.toggle('d-block', isPresentation);
 
             let activeSects = [focusEl];
-            if(page.classList.contains('multi') && needsFlip) {
+            if(isMulti && needsFlip) {
               page.classList.remove('loaded');
               for(const key in sectsById) {
                 if(key == id) {
