@@ -144,9 +144,10 @@ module Asciidoctor
               }
             }
 
+            const typesetEls = paginator ? [...activeSects, paginator] : activeSects;
             // MathJax needs displayed content to calculate auto line breaks.
             await MathJax.startup.promise;
-            await MathJax.typesetPromise([...activeSects, paginator]);
+            await MathJax.typesetPromise(typesetEls);
             page.classList.add('loaded');
 
             nav.forEach(el => {
