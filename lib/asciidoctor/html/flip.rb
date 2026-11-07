@@ -27,6 +27,7 @@ module Asciidoctor
 
           const nav = document.querySelectorAll('#sidebar nav > ul > li.active  ul  li');
 
+          let scrollTop = {}; // cache scroll position by id
           let currentId = 'page';
           focusEl.querySelectorAll(':scope > .flip').forEach(el => {
             if(el.id) {
@@ -92,11 +93,15 @@ module Asciidoctor
             }
           }
 
+          function getScrollEl() {
+            return page.classList.contains('presentation') ? main : page;
+          }
+
           currentId = null;
 
           async function flip(e) {
             e && e.preventDefault();
-            const scrollEl = page.classList.contains('presentation') ? main : page;
+            const scrollEl = getScrollEl();
 
             const href = location.hash;
             let id = href.substring(1);
@@ -150,14 +155,15 @@ module Asciidoctor
 
             if(target == section && page.classList.contains('multi') || target == page) {
               scrollEl.scrollTo({
-                top: 0,
+                top: id in scrollTop ? scrollTop[id] : 0,
                 left: 0,
                 behavior: 'instant'
               });
             } else {
               const rect = target.getBoundingClientRect();
+              const containerRect = scrollEl.getBoundingClientRect();
               scrollEl.scrollTo({
-                top: rect.top + scrollEl.scrollTop,
+                top: rect.top + scrollEl.scrollTop - containerRect.top,
                 left: 0
               });
             }
@@ -174,11 +180,11 @@ module Asciidoctor
             page.classList.toggle('multi', viewmode == 'multi' || viewmode == 'presentation');
             page.classList.toggle('presentation', viewmode == 'presentation');
             if(viewmode == 'single') {
-              ADHT.nudgeMenuBtn();
               updatePaginator();
-            } else {
-              flip();
             }
+            currentId = null;
+            scrollTop = {};
+            flip();
             dropdownItems.forEach(el => {
               const isActive = (el.dataset.viewmode == viewmode);
               el.classList.toggle('active', isActive);
@@ -201,6 +207,14 @@ module Asciidoctor
               case 'Escape':
                 page.classList.contains('presentation') && changeViewmode('multi');
             }
+          });
+          document.querySelectorAll('a').forEach(el => {
+            el.addEventListener('click', () => {
+              const scrollEl = getScrollEl();
+              if(currentId) {
+                scrollTop[currentId] = scrollEl.scrollTop;
+              }
+            });
           });
 
           const clickableHSelector = [2, 3, 4].map(v => `section[id] > h${v}:first-child`).join(', ');

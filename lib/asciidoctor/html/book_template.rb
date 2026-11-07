@@ -214,6 +214,9 @@ module Asciidoctor
           #{highlightjs(opts)}
           <script>
             MathJax = {
+              options: {
+                enableMenu: false
+              },
               startup: {
                 typeset: false,
                 pageReady() {
