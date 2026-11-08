@@ -41,8 +41,8 @@ module Asciidoctor
       def display_paginator(prv, nxt)
         blank = %(<span class="blank">&nbsp;</span>)
         html = [<<~HTML
-          <div class="paginator-wrapper fadein">
-          <div id="paginator" class="paginator dynamic-width">
+          <div class="paginator-wrapper">
+          <div id="paginator" class="paginator dynamic-width fadein">
         HTML
         ]
         html << if prv
