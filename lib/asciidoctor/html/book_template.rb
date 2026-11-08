@@ -11,7 +11,7 @@ module Asciidoctor
     # The template for the book layout
     module BookTemplate
       MENU_BTN = <<~HTML
-        <button type="button" id="menu-btn" class="btn menu"
+        <button type="button" id="menu-btn" class="btn menu fadein"
                 aria-expanded="false" aria-controls="sidebar">
           <i class="bi bi-list"></i>
         </button>

@@ -18,10 +18,7 @@ module Asciidoctor
           const scrollbarWidth = page.offsetWidth - page.clientWidth;
 
           // Nudge menuBtn in case there is a scrollbar
-          menuBtn.animate(
-            { transform: 'translateX(' + (-scrollbarWidth) + 'px)' },
-            { fill: 'forwards', duration: 150 }
-          );
+          menuBtn.style.right = (scrollbarWidth + 12) + 'px';
 
           // Cache scrollbar width
           ADHT.scrollbarWidth = scrollbarWidth;
@@ -43,7 +40,7 @@ module Asciidoctor
           addEventListener('resize', hideSidebar);
           dismissBtn && dismissBtn.addEventListener('click', hideSidebar);
 
-          const menuBtn = ADHT.nudgeMenuBtn();
+          const menuBtn = document.getElementById('menu-btn');
           if(!menuBtn) return;
           // Add click listener to toggle sidebar
           menuBtn.addEventListener('click', function() {

@@ -148,6 +148,7 @@ module Asciidoctor
             // MathJax needs displayed content to calculate auto line breaks.
             await MathJax.startup.promise;
             await MathJax.typesetPromise(typesetEls);
+            ADHT.nudgeMenuBtn();
             page.classList.add('loaded');
 
             nav.forEach(el => {
@@ -173,7 +174,6 @@ module Asciidoctor
             focusOnLoad();
             if(isPresentation) focusEl.dataset.flip = id;
             currentId = id;
-            ADHT.nudgeMenuBtn();
           }
 
           const dropdownItems = document.querySelectorAll('#viewmode-actions .dropdown-item');

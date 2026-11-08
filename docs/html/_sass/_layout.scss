@@ -8,7 +8,7 @@ html {
         height: 100%;
         > .sidebar {
             display: none;
-            z-index: 2000;
+            z-index: $zindex-offcanvas;
             position: fixed;
             top: 0;
             height: 100%;
@@ -32,7 +32,7 @@ html {
     $icon-size: 1.625rem;
     position: fixed;
     display: block;
-    right: $content-padding-x;
+    right: 16px;
     z-index: $zindex-fixed;
     top: calc(0.5 * ($header-height - $icon-size - 0.25rem));
     --bs-btn-bg: rgba(var(--header-bg-rgb), 0.7);
@@ -64,7 +64,7 @@ html {
     position: relative;
     .loading-overlay { 
         display: none;
-        z-index: 1000;
+        z-index: $zindex-modal-backdrop;
         width: 100%;
         position: sticky;
         top: 0;
@@ -80,11 +80,6 @@ html {
     }
     &.noscroll {
         overflow-y: hidden;
-        scrollbar-gutter: stable;
-    }
-    &:has(.search-results) {
-        scrollbar-gutter: stable;
-        overflow-y: scroll;
     }
     .chaphead .chapauthors:not(.d-block) {
         display: none;
@@ -207,7 +202,7 @@ html {
     }
     padding: 0;
     scroll-behavior: smooth;
-    scrollbar-color: $gray-700 var(--header-bg);
+    scrollbar-gutter: stable;
     .header {
         height: $header-height;
         padding: 0 $content-padding-x;
@@ -346,6 +341,9 @@ html {
                 width: calc(100% - $main-width);
                 + .page {
                     width: $main-width;
+                    scrollbar-color: $gray-700 var(--header-bg);
+                    scrollbar-gutter: stable;
+                    overflow-y: scroll;
                 }
             }
         }
