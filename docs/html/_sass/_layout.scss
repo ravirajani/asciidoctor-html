@@ -33,7 +33,7 @@ html {
     position: fixed;
     display: block;
     right: 16px;
-    z-index: $zindex-fixed;
+    z-index: $zindex-offcanvas-backdrop;
     top: calc(0.5 * ($header-height - $icon-size - 0.25rem));
     --bs-btn-bg: rgba(var(--header-bg-rgb), 0.7);
     --bs-btn-hover-bg: var(--header-bg);
@@ -85,6 +85,8 @@ html {
         display: none;
     }
     &:not(.presentation) {
+        scrollbar-gutter: stable;
+        overflow-y: scroll;
         .fn-wrapper { 
             display: none;
             @media print {
@@ -117,7 +119,6 @@ html {
         }
         &.presentation {
             $presentation-header-height: 32px;
-            scrollbar-color: unset;
             &:not(:has(> .main > .content-container > .chaphead.d-block)) {
                 .home-sublink {
                     display: inline;
@@ -202,7 +203,6 @@ html {
     }
     padding: 0;
     scroll-behavior: smooth;
-    scrollbar-gutter: stable;
     .header {
         height: $header-height;
         padding: 0 $content-padding-x;
@@ -342,8 +342,6 @@ html {
                 + .page {
                     width: $main-width;
                     scrollbar-color: $gray-700 var(--header-bg);
-                    scrollbar-gutter: stable;
-                    overflow-y: scroll;
                 }
             }
         }

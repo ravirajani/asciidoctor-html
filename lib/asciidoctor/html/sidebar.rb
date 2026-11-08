@@ -9,16 +9,14 @@ module Asciidoctor
           const menuBtn = document.getElementById('menu-btn');
           if(!menuBtn) return;
 
-          const isPresentation = page.classList.contains('presentation')
-          if(isPresentation) {
-            menuBtn.getAnimations().forEach(anim => anim.cancel());
-            return menuBtn;
-          }
-
           const scrollbarWidth = page.offsetWidth - page.clientWidth;
 
           // Nudge menuBtn in case there is a scrollbar
           menuBtn.style.right = (scrollbarWidth + 12) + 'px';
+
+          if(menuBtn.classList.contains('fadein')) {
+            setTimeout(() => menuBtn.classList.remove('fadein'), 600);
+          }
 
           // Cache scrollbar width
           ADHT.scrollbarWidth = scrollbarWidth;
