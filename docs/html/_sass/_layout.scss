@@ -91,7 +91,7 @@ html {
         scrollbar-gutter: stable;
         scrollbar-color: var(--scrollbar-fg, #878d93) var(--scrollbar-bg, #{$scrollbar-bg});
         &:not(.loaded) {
-            --scrollbar-fg: var(--scrollbar-bg, #{$scrollbar-bg});
+            scrollbar-color: var(--scrollbar-bg, #{$scrollbar-bg}) var(--scrollbar-bg, #{$scrollbar-bg});
         }
         &:not(.noscroll) {
             overflow-y: scroll;
