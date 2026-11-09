@@ -85,7 +85,12 @@ html {
         display: none;
     }
     &:not(.presentation) {
+        $scrollbar-bg: #f4f4f4;
         scrollbar-gutter: stable;
+        scrollbar-color: var(--scrollbar-fg, #878d93) var(--scrollbar-bg, #{$scrollbar-bg});
+        &:not(.loaded) {
+            --scrollbar-fg: var(--scrollbar-bg, #{$scrollbar-bg});
+        }
         overflow-y: scroll;
         .fn-wrapper { 
             display: none;
@@ -95,15 +100,14 @@ html {
         }
         .presentation-only:not([id]) { display: none !important; }
     }
-    > .fadein {
+    .fadein {
         opacity: 0;
     }
     &:not(.loaded) {
-        overflow-y: hidden;
         .loading-overlay { display: block; }
     }
     &.loaded {
-        > .fadein {
+        .fadein {
             opacity: 1;
             transition: opacity 500ms ease-in;
         }
@@ -119,6 +123,7 @@ html {
         }
         &.presentation {
             $presentation-header-height: 32px;
+            overflow-y: hidden;
             &:not(:has(> .main > .content-container > .chaphead.d-block)) {
                 .home-sublink {
                     display: inline;
@@ -341,7 +346,7 @@ html {
                 width: calc(100% - $main-width);
                 + .page {
                     width: $main-width;
-                    scrollbar-color: $gray-700 var(--header-bg);
+                    scrollbar-color: #444648 #25292d;
                 }
             }
         }
@@ -408,6 +413,10 @@ html {
         .page {
             &.presentation .paginator-wrapper {
                 border-top: 1px solid $gray-800;
+            }
+            &:not(.presentation) {
+                --scrollbar-bg: #25292d;
+                --scrollbar-fg: #444648;
             }
             .header {
                 border-bottom: 1px solid $gray-800;
