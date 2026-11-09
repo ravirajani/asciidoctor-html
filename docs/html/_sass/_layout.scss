@@ -1,6 +1,8 @@
 $header-height: 3rem;
 $main-width: $content-width + 2*$content-padding-x;
 $presentation-content-width: 70ch;
+$dark-scrollbar-bg: #25292d;
+$dark-scrollbar-fg: #444648;
 
 html {
     height: var(--unit-100vh);
@@ -346,7 +348,8 @@ html {
                 width: calc(100% - $main-width);
                 + .page {
                     width: $main-width;
-                    scrollbar-color: #444648 #25292d;
+                    --scrollbar-bg: #{$dark-scrollbar-bg};
+                    --scrollbar-fg: #{$dark-scrollbar-fg};
                 }
             }
         }
@@ -415,8 +418,8 @@ html {
                 border-top: 1px solid $gray-800;
             }
             &:not(.presentation) {
-                --scrollbar-bg: #25292d;
-                --scrollbar-fg: #444648;
+                --scrollbar-bg: #{$dark-scrollbar-bg};
+                --scrollbar-fg: #{$dark-scrollbar-fg};
             }
             .header {
                 border-bottom: 1px solid $gray-800;
