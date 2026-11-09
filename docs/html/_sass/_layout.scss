@@ -35,7 +35,7 @@ html {
     position: fixed;
     display: block;
     right: 16px;
-    z-index: $zindex-offcanvas-backdrop;
+    z-index: $zindex-fixed;
     top: calc(0.5 * ($header-height - $icon-size - 0.25rem));
     --bs-btn-bg: rgba(var(--header-bg-rgb), 0.7);
     --bs-btn-hover-bg: var(--header-bg);
@@ -66,7 +66,7 @@ html {
     position: relative;
     .loading-overlay { 
         display: none;
-        z-index: $zindex-modal-backdrop;
+        z-index: $zindex-sticky;
         width: 100%;
         position: sticky;
         top: 0;
@@ -93,7 +93,9 @@ html {
         &:not(.loaded) {
             --scrollbar-fg: var(--scrollbar-bg, #{$scrollbar-bg});
         }
-        overflow-y: scroll;
+        &:not(.noscroll) {
+            overflow-y: scroll;
+        }
         .fn-wrapper { 
             display: none;
             @media print {
