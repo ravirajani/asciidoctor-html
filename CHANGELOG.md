@@ -310,3 +310,7 @@
 ## [2.2.8] - 2026-11-07
 
 - Lazy typsetting of MathJax in multi mode to improve page load time.
+
+## [2.2.9] - 2026-11-10
+
+- Stable scrollbar gutter so MathJax can correctly calculate widths for automatic line breaking.
