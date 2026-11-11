@@ -144,17 +144,17 @@ module Asciidoctor
               }
             }
 
+            nav.forEach(el => {
+              const a = el.querySelector('a');
+              a && a.hash && el.classList.toggle('active', id == a.hash.substring(1));
+            });
+
             const typesetEls = paginator ? [...activeSects, paginator] : activeSects;
             // MathJax needs displayed content to calculate auto line breaks.
             await MathJax.startup.promise;
             await MathJax.typesetPromise(typesetEls);
             ADHT.nudgeMenuBtn();
             page.classList.add('loaded');
-
-            nav.forEach(el => {
-              const a = el.querySelector('a');
-              a && a.hash && el.classList.toggle('active', id == a.hash.substring(1));
-            });
 
             if(target == section && page.classList.contains('multi') || target == page) {
               scrollEl.scrollTo({
