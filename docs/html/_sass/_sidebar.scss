@@ -15,9 +15,6 @@
     @include color-mode(dark) {
         --sidebar-bg: #2b2b2b;
     }
-    .search button {
-        --bs-btn-padding-x: #{$content-padding-x};
-    }
     .btn.dismiss {
         color: $inactive-nav-color;
         $size: 1.2rem;

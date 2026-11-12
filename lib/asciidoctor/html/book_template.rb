@@ -259,7 +259,7 @@ module Asciidoctor
       def self.html(content, nav_items, opts = {})
         nav = !nav_items.empty? && (nav_items.size > 1 || opts[:has_subnav])
         page_classes = ["page"]
-        if nav
+        if opts[:has_subnav]
           page_classes << "multi" unless opts[:pagestyle] == :single
           page_classes << "presentation" if opts[:pagestyle] == :presentation
         end
