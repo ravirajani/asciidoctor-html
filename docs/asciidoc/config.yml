@@ -33,6 +33,7 @@ outdir: ../html   # default: www
 # a sitemap
 base_url: https://ravirajani.github.io/asciidoctor-html/
 
+# EXPERIMENTAL:
 # provide a repl_url if you want to embed
 # a JupyterLite REPL
 repl_url: jupyterlite/repl/index.html
