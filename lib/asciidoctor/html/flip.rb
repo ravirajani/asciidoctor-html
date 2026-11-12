@@ -203,11 +203,17 @@ module Asciidoctor
           addEventListener('hashchange', flip);
           addEventListener('keyup', function(e) {
             switch(e.key) {
-              case 'ArrowLeft': move('left'); break;
-              case 'ArrowRight': move('right'); break;
               case 'q':
               case 'Escape':
                 page.classList.contains('presentation') && changeViewmode('multi');
+            }
+          });
+          addEventListener('keydown', function(e) {
+            if(e.altKey) return;
+
+            switch(e.key) {
+              case 'ArrowLeft': move('left'); break;
+              case 'ArrowRight': move('right');
             }
           });
           document.querySelectorAll('a').forEach(el => {
