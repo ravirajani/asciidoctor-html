@@ -314,3 +314,7 @@
 ## [2.2.9] - 2026-11-10
 
 - Stable scrollbar gutter so MathJax can correctly calculate widths for automatic line breaking.
+
+## [2.3.0] - 2026-11-12
+
+- Remove official support for Jupyter cells (mark as experimental).
