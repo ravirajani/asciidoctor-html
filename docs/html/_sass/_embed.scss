@@ -13,6 +13,7 @@ html body.embed {
             display: none !important;
         }
         .content-container {
+            --fw-margin: 0;
             .fn-wrapper {
                 display: block !important;
             }
