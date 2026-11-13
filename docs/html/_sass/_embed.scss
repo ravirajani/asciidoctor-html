@@ -1,0 +1,22 @@
+
+html body.embed {
+    > .sidebar {
+        display: none !important;
+    }
+    > .page {
+        padding: $spacer 0;
+        overflow-y: visible;
+        height: auto;
+        width: 100% !important;
+        scrollbar-gutter: auto !important;
+        scrollbar-color: auto !important;
+        .footer, .layout-toggle, .header, .btn.menu, .paginator-wrapper {
+            display: none !important;
+        }
+        .content-container {
+            .fn-wrapper {
+                display: block !important;
+            }
+        }
+    }
+}
