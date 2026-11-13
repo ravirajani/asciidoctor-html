@@ -8,6 +8,8 @@ module Asciidoctor
     module Flip
       FLIP = <<~JS.freeze
         (function() {
+          const urlParams = new URLSearchParams(window.location.search);
+
           // Holds replaced pagination links to prev/next chapter
           const chapPagination = {
             prevChap: null,
@@ -238,6 +240,8 @@ module Asciidoctor
             changeViewmode(viewmode);
           }));
 
+          const viewmode = urlParams.get('viewmode');
+          viewmode && changeViewmode(viewmode);
           flip();
 
           ADHT.move = move;

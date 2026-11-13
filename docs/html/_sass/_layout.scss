@@ -60,9 +60,11 @@ html {
 }
 
 .page {
+    $scrollbar-bg: #f4f4f4;
     height: 100%;
     width: 100%;
-    overflow-y: auto;
+    overflow-y: scroll;
+    scrollbar-color: var(--scrollbar-fg, #878d93) var(--scrollbar-bg, #{$scrollbar-bg});
     position: relative;
     .loading-overlay { 
         display: none;
@@ -87,15 +89,7 @@ html {
         display: none;
     }
     &:not(.presentation) {
-        $scrollbar-bg: #f4f4f4;
         scrollbar-gutter: stable;
-        scrollbar-color: var(--scrollbar-fg, #878d93) var(--scrollbar-bg, #{$scrollbar-bg});
-        &:not(.loaded) {
-            scrollbar-color: var(--scrollbar-bg, #{$scrollbar-bg}) var(--scrollbar-bg, #{$scrollbar-bg});
-        }
-        &:not(.noscroll) {
-            overflow-y: scroll;
-        }
         .fn-wrapper { 
             display: none;
             @media print {
@@ -109,6 +103,7 @@ html {
     }
     &:not(.loaded) {
         .loading-overlay { display: block; }
+        scrollbar-color: var(--scrollbar-bg, #{$scrollbar-bg}) var(--scrollbar-bg, #{$scrollbar-bg});
     }
     &.loaded {
         .fadein {
