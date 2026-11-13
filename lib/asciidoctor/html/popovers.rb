@@ -39,6 +39,10 @@ module Asciidoctor
           await MathJax.startup.promise;
           await initPopovers();
 
+          document.querySelectorAll('.btn-po[data-contentid]').forEach(el => {
+            el.addEventListener('click', e => e.preventDefault());
+          });
+
           // Enable tooltips
           document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => {
             bootstrap.Tooltip.getOrCreateInstance(el);

@@ -74,7 +74,7 @@ module Asciidoctor
       def self.popover_button(content, content_id, classes = nil)
         extra_classes = classes ? " #{classes}" : ""
         attrs = %( tabindex="0" role="button" class="btn-po#{extra_classes}" data-contentid="#{content_id}")
-        %(<a#{attrs}>#{content}</a>)
+        %(<a href="##{content_id}"#{attrs}>#{content}</a>)
       end
 
       def self.display_sectnum(node, level = 1)

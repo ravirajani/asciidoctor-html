@@ -282,6 +282,7 @@ html {
         padding: 0 $content-padding-x;
     }
     @media print {
+        scrollbar-gutter: unset;
         overflow-y: visible;
         details {
             &::details-content {
