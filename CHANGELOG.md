@@ -318,3 +318,8 @@
 ## [2.3.0] - 2026-11-12
 
 - Remove official support for Jupyter cells (mark as experimental).
+
+## [2.3.1] - 2026-11-13
+
+- Fix print view scroll bug.
+- Allow setting viewmode via query param.
