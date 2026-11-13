@@ -283,6 +283,15 @@ html {
     }
     @media print {
         overflow-y: visible;
+        details {
+            &::details-content {
+                content-visibility: visible;
+            }
+            summary {
+                display: block;
+                cursor: auto;
+            }
+        }
     }
 }
 
