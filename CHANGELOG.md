@@ -327,3 +327,7 @@
 ## [2.3.2] - 2026-11-13
 
 - Set embed style via query param role=embed.
+
+## [2.3.3] - 2026-11-14
+
+- Enable footnotes in preamble and in sectionless doc.
