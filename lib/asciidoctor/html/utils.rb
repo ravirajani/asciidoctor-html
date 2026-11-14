@@ -108,7 +108,6 @@ module Asciidoctor
         node.reftext || (node.title unless node.inline?) || "[#{node.id}]" if node.id
       end
 
-      # index_filter: Hash(index => bool)
       def self.display_footnotes(node, content)
         footnotes = []
         content.scan(/data-contentid="_footnotedef_(\d)"/) do |matches|

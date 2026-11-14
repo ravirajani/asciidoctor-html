@@ -18,11 +18,19 @@ module Asciidoctor
       include Figure
 
       def convert_embedded(node)
-        node.content
+        content = node.content
+        doc = node.document
+        return "#{content}\n#{Utils.display_footnotes node, content}" if doc.sections.empty?
+
+        content
       end
 
       def convert_preamble(node)
-        %(<div class="preamble flip d-block">\n#{node.content}</div> <!-- .preamble.flip -->\n)
+        content = node.content
+        result = [content]
+        footnotes = Utils.display_footnotes node, content
+        result << footnotes if footnotes
+        %(<div class="preamble flip d-block">\n#{result.join "\n"}</div> <!-- .preamble.flip -->\n)
       end
 
       def convert_section(node)
