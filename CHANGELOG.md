@@ -323,3 +323,7 @@
 
 - Fix print view scroll bug.
 - Allow setting viewmode via query param.
+
+## [2.3.2] - 2026-11-13
+
+- Set embed style via query param role=embed.
