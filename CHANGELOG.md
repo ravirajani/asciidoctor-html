@@ -336,3 +336,7 @@
 
 - Fix duplicate and wrongly numbered footnotes.
 - Increase scollbar contrast.
+
+## [2.4.5] - 2026-11-21
+
+- Fix footnote number regex to handle multiple digits.

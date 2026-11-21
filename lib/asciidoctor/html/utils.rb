@@ -110,7 +110,7 @@ module Asciidoctor
 
       def self.display_footnotes(node, content)
         footnotes = []
-        content.scan(/data-contentid="_footnotedef_(\d)"/) do |matches|
+        content.scan(/data-contentid="_footnotedef_(\d+?)"/) do |matches|
           index = matches&.first&.to_i
           fn = node.document.footnotes.select { |fn| fn.index == index }.first
           next unless fn
