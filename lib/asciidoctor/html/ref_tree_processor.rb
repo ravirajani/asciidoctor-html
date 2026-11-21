@@ -162,11 +162,22 @@ module Asciidoctor
         0
       end
 
-      # Finds an anchor at the start of item.text and updates
-      # its reftext to that of item's if necessary.
+      def leading_anchor_id(item)
+        raw = item.instance_variable_get(:@text)
+        return unless raw
+
+        match = /\A\s*\[\[(?<id>[^,\]]+)(?:,[^\]]*)?\]\]/.match(raw)
+        return unless match
+
+        match[:id].strip
+      end
+
       def register_reftext!(item, reftext)
         item.set_attr "reftext", reftext
-        /\A<a id="(?<anchor_id>.+?)"/ =~ item.text
+
+        anchor_id = leading_anchor_id(item)
+        return unless anchor_id
+
         node = item.document.catalog[:refs][anchor_id]
         node&.text ||= reftext
       end

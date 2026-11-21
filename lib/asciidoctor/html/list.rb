@@ -34,11 +34,12 @@ module Asciidoctor
 
       def self.display_list_item(item, inside: false)
         result = []
+        text = item.text
         lineno_attr = Utils.line_number_attr item.attr("line-number"), live: item.attr?("line-number")
         inside_mark = %(<span class="li-mark-inside">#{item.attr "mark"} </span>) if inside
         result << %(<li#{Utils.id_class_attr_str item.id, item.role}#{lineno_attr}>)
         result << %(<div class="li-mark">#{item.attr "mark"}</div><div class="li-content">) unless inside
-        result << %(<p>#{inside_mark}#{item.text}</p>) unless item.text.empty?
+        result << %(<p>#{inside_mark}#{text}</p>) unless text.empty?
         result << "\n#{item.content}" if item.blocks?
         result << "</div>" unless inside
         result << %(</li>#{Utils.id_class_sel_comment item.id, item.role})
