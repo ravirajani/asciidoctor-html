@@ -331,3 +331,8 @@
 ## [2.3.3] - 2026-11-14
 
 - Enable footnotes in preamble and in sectionless doc.
+
+## [2.3.4] - 2026-11-21
+
+- Fix duplicate and wrongly numbered footnotes.
+- Increase scollbar contrast.
