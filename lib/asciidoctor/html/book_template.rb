@@ -69,9 +69,9 @@ module Asciidoctor
       def self.toggle_button(pagestyle)
         states = {
           single: "single page view",
-          multi: "multipage view",
-          presentation: "presentation view (ESC to exit)"
+          multi: "multipage view"
         }
+        states[:presentation] = "presentation view (ESC to exit)" if pagestyle == :presentation
         alternate_states = states.map do |key, value|
           <<~HTML
             <li>
