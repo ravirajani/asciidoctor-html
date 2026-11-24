@@ -112,7 +112,7 @@ html {
         }
     }
     &.multi {
-        &.loaded .content-container > .flip:not(.d-block) {
+        .content-container > .flip:not(.d-block) {
             display: none;
         }
         .content-container > {
