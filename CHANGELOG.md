@@ -337,6 +337,11 @@
 - Fix duplicate and wrongly numbered footnotes.
 - Increase scollbar contrast.
 
-## [2.4.5] - 2026-11-21
+## [2.3.5] - 2026-11-21
 
 - Fix footnote number regex to handle multiple digits.
+
+## [2.4.0] - 2026-11-24
+
+- Don't show presentation view in dropdown unless the page is "presentation-first".
+- Make sure dynamic mathjax typesetting works properly in presentation view.
