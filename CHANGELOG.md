@@ -345,3 +345,8 @@
 
 - Don't show presentation view in dropdown unless the page is "presentation-first".
 - Make sure dynamic mathjax typesetting works properly in presentation view.
+
+## [2.4.1] - 2026-11-26
+
+- Apply role class before page loaded when set via query parameter.
+- Document viewmode query parameter.
