@@ -14,7 +14,7 @@ including automatic generation of reference text.
 
 NOTE: This part has two https://docs.asciidoctor.org/asciidoc/latest/attributes/document-attributes/[document attributes] set, viz. the
 standard boolean attribute `:sectnums:` and the custom attribute `:pagestyle: multi` which splits the sections into separate pages
-by default.
+by default. The page style can also be configured via the `viewmode` URL parameter. Valid values are `multi`, `single`, or `presentation`.
 
 [#sec-basic-list]
 == Basic List

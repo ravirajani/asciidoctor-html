@@ -11,8 +11,14 @@ include::includes/variables.adoc[]
 To render a chapter in presentation mode by default, use the document property
 `:pagestyle: presentation`.
 
-TIP: You can make elements without an ID appear in just presentation (resp. "`handout`")
+[TIP]
+--
+You can make elements without an ID appear in just presentation (resp. "`handout`")
 mode using the `presentation-only` (resp. `presentation-hidden`) roles.
+
+Create a link to a handout by setting the URL parameter `viewmode` to one of `multi`
+or `single`.
+--
 
 [#sec-outline%skipnav]
 == Outline

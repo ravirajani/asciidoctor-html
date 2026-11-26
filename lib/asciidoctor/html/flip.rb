@@ -202,9 +202,6 @@ module Asciidoctor
             else if (direction == 'left' && (link = document.getElementById('flip-back')))
               navigation.navigate(link.href);
           }
-          function addRole(className) {
-            document.body.classList.add(className);
-          }
           addEventListener('hashchange', flip);
           addEventListener('keyup', function(e) {
             switch(e.key) {
@@ -244,9 +241,9 @@ module Asciidoctor
           }));
 
           const viewmode = urlParams.get('viewmode');
-          viewmode && changeViewmode(viewmode);
-          const role = urlParams.get('role');
-          role && addRole(role);
+          if(['single', 'multi', 'presentation'].includes(viewmode)) {
+            changeViewmode(viewmode);
+          }
 
           flip();
 

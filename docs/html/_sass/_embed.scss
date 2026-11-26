@@ -1,4 +1,4 @@
-html body.embed {
+html.embed body {
     > .sidebar {
         display: none !important;
     }
@@ -9,7 +9,7 @@ html body.embed {
         width: 100% !important;
         scrollbar-gutter: auto !important;
         scrollbar-color: auto !important;
-        .footer, .layout-toggle, .header, .btn.menu, .paginator-wrapper {
+        .footer, .layout-toggle, .header, .btn.menu, .paginator-wrapper, .loading-overlay {
             display: none !important;
         }
         .content-container {

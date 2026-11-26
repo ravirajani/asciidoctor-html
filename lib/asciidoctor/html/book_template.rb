@@ -210,6 +210,15 @@ module Asciidoctor
           <link rel="apple-touch-icon" sizes="180x180" href="#{FAVICON_PATH}/apple-touch-icon.png">
           <meta name="apple-mobile-web-app-title" content="#{opts[:short_title]}">
           <link rel="manifest" href="site.webmanifest">
+          <script>
+            (function() {
+              const params = new URLSearchParams(window.location.search);
+              const role = params.get('role');
+              if (role && /^[a-zA-Z0-9_-]+$/.test(role)) {
+                document.documentElement.classList.add(role);
+              }
+            })();
+          </script>
           <link rel="stylesheet" href="#{CSS_PATH}/styles.css">
           #{highlightjs(opts)}
           <script>
